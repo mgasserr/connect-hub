@@ -1,20 +1,14 @@
 package Backend.Authentication;
 
-import java.util.*;
-import static Backend.Authentication.PasswordHash.hashPassword;
-import Backend.Database.LoadedAccounts;
+import Backend.Database.AccountsFileManagement;
 import java.security.NoSuchAlgorithmException;
 
-/**
- *
- * @author LEGION
- */
 public class LogIn {
 
     public boolean login(String UserName, String Password) throws NoSuchAlgorithmException {
         String Hashpass = PasswordHash.hashPassword(Password); //Hashing the entered password
-        LoadedAccounts.readFromFile();
-        return LoadedAccounts.loginCheck(UserName, Hashpass);
+        AccountsFileManagement.readFromFile();
+        return AccountsFileManagement.loginCheck(UserName, Hashpass);
 
     }
 }

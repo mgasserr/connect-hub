@@ -1,20 +1,14 @@
 package Backend.Authentication;
 
-import Backend.Account;
-import Backend.Database.LoadedAccounts;
+import Backend.Database.Account;
+import static Backend.Database.AccountsFileManagement.*;
 import static Backend.Database.Validations.*;
 import java.time.LocalDate;
-/**
- *
- * @author LEGION
- */
-
-import Backend.Database.SaveAccount;
 import java.security.NoSuchAlgorithmException;
 
 public class SignUp {
 
-    public String SignUp(String userId, String Email, String Username, String Password, LocalDate DOB) throws NoSuchAlgorithmException {
+    public static String signUp(String Email, String Username, String Password, LocalDate DOB) throws NoSuchAlgorithmException {
         String Hashpass = PasswordHash.hashPassword(Password);
         if (!(isValidEmail(Email))) {
             return "INVALIDEMAIL";
@@ -24,18 +18,18 @@ public class SignUp {
             return "INVALIDDOB";
             //BELOW 13 YEARS OLD ---> FRONTEND
         }
-        LoadedAccounts.readFromFile();
-        if (LoadedAccounts.containsEmail(Email)) {
+        readFromFile();
+        if (containsEmail(Email)) {
             return "EMAILUSED";
             //ALREADY USED EMAIL ---> FRONTEND
         }
-        if (LoadedAccounts.containsUsername(Username)) {
+        if (containsUsername(Username)) {
             return "USERUSED";
             //ALREADY USED USERNAME ---> FRONTEND
         }
 
-        Account A = new Account(userId, Email, Username, Hashpass, DOB);
-        SaveAccount.saveAccount(A);
+        Account A = new Account(Email, Username, Hashpass, DOB);
+        saveNewAccount(A);
         return "SIGNUPDONE";
     }
 }

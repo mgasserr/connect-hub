@@ -1,13 +1,9 @@
-package Backend;
+package Backend.Database;
 
-import Backend.Activity.Status;
+import Backend.Database.Activity.Status;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-/**
- *
- * @author hp
- */
 public class Account {
 
     private final String accountId;
@@ -17,16 +13,18 @@ public class Account {
     private LocalDate DOB;
     private Status Status;
     private ArrayList<Account> Friends;
-    
+    static int accountsCount;
 
-    public Account(String userId, String Email, String Username, String Password, LocalDate DOB) {
-        this.accountId = userId;
+    public Account(String Email, String Username, String Password, LocalDate DOB) {
+        accountsCount++;
+        this.accountId = String.format("%04d", accountsCount);
         this.Email = Email;
         this.Username = Username;
         this.Password = Password;
         this.DOB = DOB;
         this.Status = Status.ONLINE;
-        Friends =new ArrayList<>();
+        Friends = new ArrayList<>();
+
     }
 
     public String getUserId() {
@@ -80,9 +78,9 @@ public class Account {
     public void addFriends(Account friend) {
         this.Friends.add(friend);
     }
+
     public void removeFriends(Account friend) {
         this.Friends.remove(friend);
     }
-    
 
 }

@@ -4,10 +4,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
-/**
- *
- * @author LEGION
- */
 public class PasswordHash {
 
     public static String hashPassword(String password) throws NoSuchAlgorithmException {

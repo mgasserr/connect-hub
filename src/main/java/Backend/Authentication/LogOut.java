@@ -1,17 +1,13 @@
 package Backend.Authentication;
 
-import Backend.Account;
-import Backend.Activity;
-import Backend.Database.SaveAccount;
+import Backend.Database.Account;
+import Backend.Database.Activity;
+import static Backend.Database.AccountsFileManagement.saveAllAccounts;
 
-/**
- *
- * @author LEGION
- */
 public class LogOut {
 
-    public static void logout(Account user) {
-        user.setStatus(Activity.Status.OFFLINE);
-        SaveAccount.saveAccount(user);
+    public static void logout(Account acc) {
+        acc.setStatus(Activity.Status.OFFLINE);
+        saveAllAccounts();
     }
 }
