@@ -8,7 +8,7 @@ import java.time.LocalDate;
  */
 public class Account {
 
-    private final String userId;
+    private final String accountId;
     private String Email;
     private String Username;
     private String Password;
@@ -16,7 +16,7 @@ public class Account {
     private String Status;
 
     public Account(String userId, String Email, String Username, String Password, LocalDate DOB, String Status) {
-        this.userId = userId;
+        this.accountId = userId;
         this.Email = Email;
         this.Username = Username;
         this.Password = Password;
@@ -25,7 +25,7 @@ public class Account {
     }
 
     public String getUserId() {
-        return userId;
+        return accountId;
     }
 
     public String getEmail() {
