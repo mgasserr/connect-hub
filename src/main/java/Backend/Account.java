@@ -1,5 +1,6 @@
 package Backend;
 
+import Backend.Activity.Status;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -14,16 +15,17 @@ public class Account {
     private String Username;
     private String Password;
     private LocalDate DOB;
-    private String Status;
+    private Status Status;
     private ArrayList<Account> Friends;
+    
 
-    public Account(String userId, String Email, String Username, String Password, LocalDate DOB, String Status) {
+    public Account(String userId, String Email, String Username, String Password, LocalDate DOB) {
         this.accountId = userId;
         this.Email = Email;
         this.Username = Username;
         this.Password = Password;
         this.DOB = DOB;
-        this.Status = Status;
+        this.Status = Status.ONLINE;
         Friends =new ArrayList<>();
     }
 
@@ -63,11 +65,11 @@ public class Account {
         this.DOB = DOB;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return Status;
     }
 
-    public void setStatus(String Status) {
+    public void setStatus(Status Status) {
         this.Status = Status;
     }
 

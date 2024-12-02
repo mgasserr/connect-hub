@@ -1,6 +1,7 @@
 package Backend.Database;
 
 import Backend.Account;
+import Backend.Activity;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -27,8 +28,12 @@ public class LoadedAccounts {
                 String username = userJson.getString("username");
                 String password = userJson.getString("password");
                 LocalDate dob = LocalDate.parse(userJson.getString("dob"), formatter);
-                String status = userJson.getString("status");
-                accounts.add(new Account(id, email, username, password, dob, status));
+                String statusstring = userJson.getString("status");
+                Account user= new Account(id, email, username, password, dob);
+                Activity.Status status = Activity.Status.valueOf(statusstring.toUpperCase());
+                user.setStatus(status);
+                accounts.add(user);
+                
             }
         } catch (IOException ex) {
             System.out.println("Can't open/read accounts.json");

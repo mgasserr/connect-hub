@@ -1,1 +1,9 @@
-C:\Users\Mohamed\Documents\GitHub\Connect-Hub\src\main\java\com\mycompany\connect_hub\Connect_Hub.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Account.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Activity.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\LogIn.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\LogOut.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\PasswordHash.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\SignUp.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Database\LoadedAccounts.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Database\SaveAccount.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Database\Validations.java

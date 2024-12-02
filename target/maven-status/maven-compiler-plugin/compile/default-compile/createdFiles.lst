@@ -1,1 +1,10 @@
-com\mycompany\connect_hub\Connect_Hub.class
+Backend\Authentication\SignUp.class
+Backend\Database\SaveAccount.class
+Backend\Authentication\LogOut.class
+Backend\Account.class
+Backend\Authentication\PasswordHash.class
+Backend\Database\LoadedAccounts.class
+Backend\Database\Validations.class
+Backend\Activity$Status.class
+Backend\Authentication\LogIn.class
+Backend\Activity.class

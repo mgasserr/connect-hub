@@ -32,7 +32,7 @@ public class SignUp {
             //ALREADY USED USERNAME ---> FRONTEND
         }
 
-        Account A = new Account(userId, Email, Username, Password, DOB, Status);
+        Account A = new Account(userId, Email, Username, Password, DOB);
         SaveAccount.saveAccount(A);
         return "SIGN UP DONE";
     }
