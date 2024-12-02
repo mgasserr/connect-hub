@@ -1,5 +1,8 @@
 package Backend.Database;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 /**
  *
  * @author hp
@@ -13,6 +16,11 @@ public class Validations {
             }
         }
         return true;
+    }
+
+    public static boolean isValidDate(LocalDate Date) {
+        Period P = Period.between(Date, LocalDate.now());
+        return P.getDays() >= (13 * 365);
     }
 
     public static boolean isValidPhone(String phoneNumber) {
