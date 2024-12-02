@@ -14,7 +14,7 @@ public class LoadedAccounts {
 
     private static ArrayList<Account> accounts = new ArrayList<>();
 
-    public static ArrayList<Account> readFromFile() {
+    public static void readFromFile() {
         try {
             String jsonstring = new String(Files.readAllBytes(Paths.get("users.json")));
             JSONArray usersArray = new JSONArray(jsonstring);
@@ -32,24 +32,24 @@ public class LoadedAccounts {
         } catch (IOException ex) {
             System.out.println("Can't open/read accounts.json");
         }
-        return accounts;
+       
     }
 
     public static boolean containsUsername(String string) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(string)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
     public static boolean containsEmail(String string) {
         for (Account account : accounts) {
             if (account.getEmail().equalsIgnoreCase(string)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean loginCheck(String username, String password) {
