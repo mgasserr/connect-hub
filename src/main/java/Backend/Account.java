@@ -15,24 +15,21 @@ public class Account {
     private String Email;
     private String Username;
     private String Password;
-    private LocalDate dob;
+    private LocalDate DOB;
     private String Status;
 
-    public Account(String Email, String Username, String Password, LocalDate dob, String Status) {
+    public Account(String userId, String Email, String Username, String Password, LocalDate DOB, String Status) {
+        this.userId = userId;
         this.Email = Email;
         this.Username = Username;
         this.Password = Password;
-        this.dob = dob;
+        this.DOB = DOB;
         this.Status = Status;
     }
 
     public String getUserId() {
         return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+    }F
 
     public String getEmail() {
         return Email;
@@ -59,11 +56,11 @@ public class Account {
     }
 
     public LocalDate getDob() {
-        return dob;
+        return DOB;
     }
 
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setDob(LocalDate DOB) {
+        this.DOB = DOB;
     }
 
     public String getStatus() {
