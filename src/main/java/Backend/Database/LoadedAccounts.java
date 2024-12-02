@@ -38,18 +38,19 @@ public class LoadedAccounts {
     public static boolean containsUsername(String string) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(string)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
+
     public static boolean containsEmail(String string) {
         for (Account account : accounts) {
             if (account.getEmail().equalsIgnoreCase(string)) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean loginCheck(String username, String password) {
