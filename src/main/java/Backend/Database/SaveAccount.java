@@ -16,7 +16,7 @@ public class SaveAccount {
             js.put("username", account.getUsername());
             js.put("password", account.getPassword());
             js.put("dob", account.getDob());
-            js.put("status", account.getDob());
+            js.put("status", account.getStatus());
         try {
                 try (FileWriter file = new FileWriter("accounts.json")) {
                     file.write(js.toString(3));

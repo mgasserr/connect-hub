@@ -12,7 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class LoadedAccounts {
-
+    
     private static ArrayList<Account> accounts = new ArrayList<>();
 
     //READ DATA FROM JSON
@@ -28,17 +28,14 @@ public class LoadedAccounts {
                 String username = userJson.getString("username");
                 String password = userJson.getString("password");
                 LocalDate dob = LocalDate.parse(userJson.getString("dob"), formatter);
-                String statusstring = userJson.getString("status");
-                Account user= new Account(id, email, username, password, dob);
-                Activity.Status status = Activity.Status.valueOf(statusstring.toUpperCase());
+                Account user = new Account(id, email, username, password, dob);
+                Activity.Status status = Activity.Status.valueOf(userJson.getString("status"));
                 user.setStatus(status);
                 accounts.add(user);
-                
             }
         } catch (IOException ex) {
             System.out.println("Can't open/read accounts.json");
         }
-
     }
 
     //VALIDATION TO CHECK IF THE USERNAME ALREADY USED 
@@ -66,11 +63,13 @@ public class LoadedAccounts {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 if (account.getPassword().equals(password)) {
+                    account.setStatus(Activity.Status.ONLINE);
+                    SaveAccount.saveAccount(account);
                     return true;
                 }
             }
         }
         return false;
     }
-
+    
 }

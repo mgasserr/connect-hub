@@ -10,30 +10,32 @@ import java.time.LocalDate;
  */
 
 import Backend.Database.SaveAccount;
+import java.security.NoSuchAlgorithmException;
 
 public class SignUp {
 
-    public String SignUp(String userId, String Email, String Username, String Password, LocalDate DOB, String Status) {
+    public String SignUp(String userId, String Email, String Username, String Password, LocalDate DOB) throws NoSuchAlgorithmException {
+        String Hashpass = PasswordHash.hashPassword(Password);
         if (!(isValidEmail(Email))) {
-            return "INVALID EMAIL";
+            return "INVALIDEMAIL";
             //INVALID EMAIL ---> FRONTEND
         }
         if (!(isValidDate(DOB))) {
-            return "INVALID DOB";
+            return "INVALIDDOB";
             //BELOW 13 YEARS OLD ---> FRONTEND
         }
         LoadedAccounts.readFromFile();
         if (LoadedAccounts.containsEmail(Email)) {
-            return "EMAIL USED";
+            return "EMAILUSED";
             //ALREADY USED EMAIL ---> FRONTEND
         }
         if (LoadedAccounts.containsUsername(Username)) {
-            return "USER USED";
+            return "USERUSED";
             //ALREADY USED USERNAME ---> FRONTEND
         }
 
-        Account A = new Account(userId, Email, Username, Password, DOB);
+        Account A = new Account(userId, Email, Username, Hashpass, DOB);
         SaveAccount.saveAccount(A);
-        return "SIGN UP DONE";
+        return "SIGNUPDONE";
     }
 }
