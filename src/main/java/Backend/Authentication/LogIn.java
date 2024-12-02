@@ -10,11 +10,11 @@ import java.security.NoSuchAlgorithmException;
  * @author LEGION
  */
 public class LogIn {
-    public boolean login(String UserName, String Password) throws NoSuchAlgorithmException{
-        
-        String Hashpass=PasswordHash.hashPassword(Password);
+
+    public boolean login(String UserName, String Password) throws NoSuchAlgorithmException {
+        String Hashpass = PasswordHash.hashPassword(Password); //Hashing the entered password
         LoadedAccounts.readFromFile();
         return LoadedAccounts.loginCheck(UserName, Hashpass);
-        
+
     }
 }

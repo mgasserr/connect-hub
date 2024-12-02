@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 public class SaveAccount {
 
+    //SAVE DATA INTO JSON FILE
     public static void saveAccount(Account account) {
             JSONObject js = new JSONObject();
             js.put("userId", account.getUserId());

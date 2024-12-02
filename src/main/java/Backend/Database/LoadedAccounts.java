@@ -14,6 +14,7 @@ public class LoadedAccounts {
 
     private static ArrayList<Account> accounts = new ArrayList<>();
 
+    //READ DATA FROM JSON
     public static void readFromFile() {
         try {
             String jsonstring = new String(Files.readAllBytes(Paths.get("users.json")));
@@ -32,9 +33,10 @@ public class LoadedAccounts {
         } catch (IOException ex) {
             System.out.println("Can't open/read accounts.json");
         }
-       
+
     }
 
+    //VALIDATION TO CHECK IF THE USERNAME ALREADY USED 
     public static boolean containsUsername(String string) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(string)) {
@@ -44,6 +46,7 @@ public class LoadedAccounts {
         return false;
     }
 
+    //VALIDATION TO CHECK IF THE EMAIL ALREADY USED 
     public static boolean containsEmail(String string) {
         for (Account account : accounts) {
             if (account.getEmail().equalsIgnoreCase(string)) {
@@ -53,6 +56,7 @@ public class LoadedAccounts {
         return false;
     }
 
+    //VALIDATION TO CHECK IF THE ENTERED USERNAME AND PASSWORD ARE CORRECT
     public static boolean loginCheck(String username, String password) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
