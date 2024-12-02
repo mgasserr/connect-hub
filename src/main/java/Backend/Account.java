@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Backend;
 
 import java.time.LocalDate;
@@ -11,7 +7,8 @@ import java.time.LocalDate;
  * @author hp
  */
 public class Account {
-    private String userId;
+
+    private final String userId;
     private String Email;
     private String Username;
     private String Password;
@@ -29,7 +26,7 @@ public class Account {
 
     public String getUserId() {
         return userId;
-    }F
+    }
 
     public String getEmail() {
         return Email;
@@ -70,7 +67,5 @@ public class Account {
     public void setStatus(String Status) {
         this.Status = Status;
     }
-    
-    
-    
+
 }
