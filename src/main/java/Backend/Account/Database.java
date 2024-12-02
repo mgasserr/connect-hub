@@ -1,6 +1,5 @@
 package Backend.Account;
 
-import static Backend.Account.Account.accountsCount;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,7 +18,7 @@ public class Database {
     public static void readFromFile() {
         try {
             accounts.removeAll(accounts);
-            accountsCount = 0;
+            Account.setAccountsCount(0);
             String jsonstring = new String(Files.readAllBytes(Paths.get("accounts.json")));
             JSONArray usersArray = new JSONArray(jsonstring);
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;

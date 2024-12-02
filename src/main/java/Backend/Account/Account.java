@@ -13,7 +13,7 @@ public class Account {
     private LocalDate DOB;
     private Status Status;
     private ArrayList<Account> Friends;
-    static int accountsCount;
+    private static int accountsCount;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -81,6 +81,14 @@ public class Account {
 
     public void removeFriends(Account friend) {
         this.Friends.remove(friend);
+    }
+
+    public static int getAccountsCount() {
+        return accountsCount;
+    }
+
+    public static void setAccountsCount(int accountsCount) {
+        Account.accountsCount = accountsCount;
     }
 
 }
