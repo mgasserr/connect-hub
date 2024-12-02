@@ -20,10 +20,7 @@ public class Validations {
     }
 
     public static boolean isValidPhone(String phoneNumber) {
-        if (phoneNumber != null && phoneNumber.length() == 11 && phoneNumber.matches("[0-9]+")) {
-            return true;
-        }
-        return false;
+        return phoneNumber != null && phoneNumber.length() == 11 && phoneNumber.matches("[0-9]+");
     }
 
     public static boolean isValidEmail(String Email) {
@@ -31,9 +28,6 @@ public class Validations {
             return false;
         }
         String[] parts = Email.split("@");
-        if (parts.length != 2 || parts[0].isEmpty() || parts[1].isEmpty() || !parts[1].contains(".")) {
-            return false;
-        }
-        return true;
+        return !(parts.length != 2 || parts[0].isEmpty() || parts[1].isEmpty() || !parts[1].contains("."));
     }
 }
