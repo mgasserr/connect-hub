@@ -4,7 +4,10 @@
  */
 package Frontend;
 
-import Backend.Database.AccountsFileManagement;
+import Backend.Authentication.*;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -94,11 +97,15 @@ public class startuptest extends javax.swing.JFrame {
     }//GEN-LAST:event_passActionPerformed
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
-        // TODO add your handling code here:
-        if (AccountsFileManagement.loginCheck(user.getText(), pass.getText())) {
-            System.out.println("LOGIN SUCCESSFUL");
-        } else {
-            System.out.println("WRONG USERNAME/PASSWORD");
+        try {
+            // TODO add your handling code here:
+            if (LogIn.login(user.getText(), pass.getText())) {
+                System.out.println("LOGIN SUCCESSFUL");
+            } else {
+                System.out.println("WRONG USERNAME/PASSWORD");
+            }
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(startuptest.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_loginActionPerformed
