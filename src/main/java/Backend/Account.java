@@ -1,6 +1,7 @@
 package Backend;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,6 +15,7 @@ public class Account {
     private String Password;
     private LocalDate DOB;
     private String Status;
+    private ArrayList<Account> Friends;
 
     public Account(String userId, String Email, String Username, String Password, LocalDate DOB, String Status) {
         this.accountId = userId;
@@ -22,6 +24,7 @@ public class Account {
         this.Password = Password;
         this.DOB = DOB;
         this.Status = Status;
+        Friends =new ArrayList<>();
     }
 
     public String getUserId() {
@@ -67,5 +70,17 @@ public class Account {
     public void setStatus(String Status) {
         this.Status = Status;
     }
+
+    public ArrayList<Account> getFriends() {
+        return Friends;
+    }
+
+    public void addFriends(Account friend) {
+        this.Friends.add(friend);
+    }
+    public void removeFriends(Account friend) {
+        this.Friends.remove(friend);
+    }
+    
 
 }
