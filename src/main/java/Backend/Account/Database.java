@@ -1,6 +1,6 @@
-package Backend.Database;
+package Backend.Account;
 
-import static Backend.Database.Account.accountsCount;
+import static Backend.Account.Account.accountsCount;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class AccountsFileManagement {
+public class Database {
 
     private static ArrayList<Account> accounts = new ArrayList<>();
 

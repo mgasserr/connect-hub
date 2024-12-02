@@ -123,7 +123,7 @@ public class startuptest extends javax.swing.JFrame {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         try {
             // TODO add your handling code here:
-            if (LogIn.login(user.getText(), pass.getText())) {
+            if (Log.login(user.getText(), pass.getText())) {
                 System.out.println("LOGIN SUCCESSFUL");
             } else {
                 System.out.println("WRONG USERNAME/PASSWORD");

@@ -1,4 +1,4 @@
-package Backend.Database;
+package Backend.Authentication;
 
 import java.time.LocalDate;
 import java.time.Period;

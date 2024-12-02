@@ -1,6 +1,6 @@
-package Backend.Database;
+package Backend.Account;
 
-import Backend.Database.Activity.Status;
+import Backend.Account.Activity.Status;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
