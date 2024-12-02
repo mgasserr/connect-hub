@@ -121,6 +121,7 @@ public class signuptest extends javax.swing.JFrame {
                     System.out.println("username used");
                 }
                 case "SIGNUPDONE" -> {
+                    System.out.println("11");
                     System.out.println("SIGNUP SUCCESS");
                 }
             }
