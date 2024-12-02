@@ -29,7 +29,7 @@ public class Account {
 
     public String getUserId() {
         return userId;
-    }F
+    }
 
     public String getEmail() {
         return Email;
