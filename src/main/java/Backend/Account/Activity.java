@@ -1,4 +1,4 @@
-package Backend.Database;
+package Backend.Account;
 
 public class Activity {
 

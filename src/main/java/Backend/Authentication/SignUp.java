@@ -1,8 +1,8 @@
 package Backend.Authentication;
 
-import Backend.Database.Account;
-import static Backend.Database.AccountsFileManagement.*;
-import static Backend.Database.Validations.*;
+import Backend.Account.Account;
+import static Backend.Account.Database.*;
+import static Backend.Authentication.Validations.*;
 import java.time.LocalDate;
 import java.security.NoSuchAlgorithmException;
 
