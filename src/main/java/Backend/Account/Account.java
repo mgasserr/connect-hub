@@ -14,6 +14,8 @@ public class Account {
     private Status Status;
     private ArrayList<Account> Friends;
     static int accountsCount;
+    private String ProfileImg; 
+    private String CoverImg;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -26,6 +28,24 @@ public class Account {
         Friends = new ArrayList<>();
 
     }
+
+    public String getProfileImg() {
+        return ProfileImg;
+    }
+
+    public void setProfileImg(String ProfileImg) {
+        this.ProfileImg = ProfileImg;
+    }
+
+    public String getCoverImg() {
+        return CoverImg;
+    }
+
+    public void setCoverImg(String CoverImg) {
+        this.CoverImg = CoverImg;
+    }
+    
+    
 
     public String getUserId() {
         return accountId;
