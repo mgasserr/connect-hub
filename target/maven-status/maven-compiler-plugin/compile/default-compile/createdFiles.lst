@@ -1,1 +1,16 @@
-com\mycompany\connect_hub\Connect_Hub.class
+Backend\Authentication\SignUp.class
+Backend\Authentication\LogOut.class
+Backend\Database\Activity$Status.class
+Frontend\startuptest$3.class
+Frontend\signuptest$1.class
+Backend\Authentication\PasswordHash.class
+Frontend\startuptest$2.class
+Backend\Database\Validations.class
+Frontend\signuptest.class
+Backend\Database\Account.class
+Backend\Database\AccountsFileManagement.class
+Backend\Database\Activity.class
+Frontend\startuptest$1.class
+Frontend\startuptest.class
+Backend\Authentication\LogIn.class
+Frontend\startuptest$4.class
