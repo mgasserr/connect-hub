@@ -10,17 +10,18 @@ public class SaveAccount {
 
     public static void saveAccount(Account account) {
             JSONObject js = new JSONObject();
-            js.put("accountid", account.getUserId());
+            js.put("userId", account.getUserId());
             js.put("email", account.getEmail());
-            js.put("dob", account.getDob());
+            js.put("username", account.getUsername());
             js.put("password", account.getPassword());
-        
+            js.put("dob", account.getDob());
+            js.put("status", account.getDob());
         try {
-            FileWriter file = new FileWriter("users.json");
-            file.write(js.toString(4));
-            file.close();
+                try (FileWriter file = new FileWriter("accounts.json")) {
+                    file.write(js.toString(3));
+                }
         } catch (IOException e) {
-            System.out.println("Error");
+            System.out.println("Error in saving user to accounts.json");
         }
     }
 }
