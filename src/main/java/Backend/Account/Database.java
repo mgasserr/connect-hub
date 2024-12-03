@@ -116,4 +116,13 @@ public class Database {
         return false;
     }
 
+    public static Account getAccount(String username) {
+        for (Account acc : accounts) {
+            if (acc.getUsername().equalsIgnoreCase(username)) {
+                return acc;
+            }
+        }
+        return null;
+    }
+
 }

@@ -18,7 +18,6 @@ public class SignUp {
             return "INVALIDDOB";
             //BELOW 13 YEARS OLD ---> FRONTEND
         }
-        readFromFile();
         if (containsEmail(Email)) {
             return "EMAILUSED";
             //ALREADY USED EMAIL ---> FRONTEND

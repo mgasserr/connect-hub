@@ -8,11 +8,17 @@ import java.security.NoSuchAlgorithmException;
 
 public class Log {
 
-    public static boolean login(String UserName, String Password) throws NoSuchAlgorithmException {
-        String Hashpass = PasswordHash.hashPassword(Password); //Hashing the entered password
-        Database.readFromFile();
-        return Database.loginCheck(UserName, Hashpass);
-
+    public static Account login(String UserName, String Password) {
+        String Hashpass = null;
+        try {
+            Hashpass = PasswordHash.hashPassword(Password); //Hashing the entered password
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("Error in login method");
+        }
+        if (Database.loginCheck(UserName, Hashpass)) {
+            return Database.getAccount(UserName);
+        }
+        return null;
     }
 
     public static void logout(Account acc) {
