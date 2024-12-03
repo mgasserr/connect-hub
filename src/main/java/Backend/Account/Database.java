@@ -10,6 +10,8 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,17 +19,16 @@ public class Database {
 
     private static ArrayList<Account> accounts = new ArrayList<>();
 
-    public static Account getuser(String username,String password) throws NoSuchAlgorithmException{
-        String hashpass=PasswordHash.hashPassword(password);
-        for (int i=0; i<accounts.size();i++) {
-            if (accounts.get(i).getUsername().equalsIgnoreCase(username)&&accounts.get(i).getPassword().equals(hashpass)) {
+    public static Account getuser(String username, String password) throws NoSuchAlgorithmException {
+        String hashpass = PasswordHash.hashPassword(password);
+        for (int i = 0; i < accounts.size(); i++) {
+            if (accounts.get(i).getUsername().equalsIgnoreCase(username) && accounts.get(i).getPassword().equals(hashpass)) {
                 return accounts.get(i);
             }
         }
         return null;
-        
-    }
 
+    }
 
     //READ DATA FROM JSON
     public static void readFromFile() {
@@ -72,20 +73,6 @@ public class Database {
             obj.put("status", acc.getStatus());
             usersArray.put(obj);
         }
-        return usersArray;
-    }
-
-    public static void saveNewAccount(Account account) {
-        JSONArray usersArray = saveAllAccounts();
-        JSONObject obj = new JSONObject();
-        obj.put("userid", account.getUserId());
-        obj.put("email", account.getEmail());
-        obj.put("username", account.getUsername());
-        obj.put("password", account.getPassword());
-        obj.put("dob", account.getDob());
-        obj.put("status", account.getStatus());
-        usersArray.put(obj);
-        accounts.add(account);
         try {
             FileWriter file = new FileWriter("accounts.json");
             file.write("");
@@ -95,6 +82,12 @@ public class Database {
         } catch (IOException e) {
             System.out.println("Error in saveAccount");
         }
+        return usersArray;
+    }
+
+    public static void addNewAccount(Account account) {
+        accounts.add(account);
+        
     }
 
     //VALIDATION TO CHECK IF THE USERNAME ALREADY USED 
@@ -130,6 +123,29 @@ public class Database {
         }
         return false;
     }
-    
+
+    public static String changePassword(Account user, String oldpassword, String newpassword, String confirmpassword) {
+        String hashpass;
+        try {
+            
+            hashpass = PasswordHash.hashPassword(oldpassword);
+            if (!user.getPassword().equals(hashpass)) {
+                return "INVALIDOLDPASS";
+            }
+            if(!newpassword.equals(confirmpassword)){
+                return "INVALIDCONFIRMPASS";
+            }
+            String newhashpass=PasswordHash.hashPassword(newpassword);
+            user.setPassword(newhashpass);
+            
+            System.out.println(newhashpass);
+            saveAllAccounts();
+            return "PASSWORDCHANGED";
+            
+        } catch (NoSuchAlgorithmException ex) {
+
+        }
+        return null;
+    }
 
 }

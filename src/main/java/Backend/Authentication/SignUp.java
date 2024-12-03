@@ -29,7 +29,7 @@ public class SignUp {
         }
 
         Account A = new Account(Email, Username, Hashpass, DOB);
-        saveNewAccount(A);
+        addNewAccount(A);
         return "SIGNUPDONE";
     }
 }

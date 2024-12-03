@@ -10,8 +10,11 @@ Frontend\startuptest$2.class
 Frontend\signuptest.class
 Backend\Authentication\Validations.class
 Frontend\logedin.class
+Frontend\chamgepassword$1.class
 Frontend\startuptest$1.class
 Backend\Account\Activity$Status.class
 Frontend\logedin$1.class
+Frontend\chamgepassword.class
 Frontend\startuptest.class
+Frontend\logedin$2.class
 Frontend\startuptest$4.class
