@@ -2,6 +2,7 @@ package Frontend;
 
 import Backend.Account.Account;
 import Backend.Account.Database;
+import Backend.Authentication.Log;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -171,8 +172,7 @@ public class Startup extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = usernameText.getText();
         String password = passwordText.getText();
-        Backend.Authentication.Log logInstance = new Backend.Authentication.Log();
-        Account acc = logInstance.login(username, password);
+        Account acc = new Log().login(username, password);
         if (acc == null) {
             loginerrorLabel.setText("Wrong username/password");
         } else {
