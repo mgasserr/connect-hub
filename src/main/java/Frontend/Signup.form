@@ -187,6 +187,9 @@
     <Component class="javax.swing.JPasswordField" name="jPasswordField1">
     </Component>
     <Component class="javax.swing.JSpinner" name="jSpinner1">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
