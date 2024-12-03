@@ -9,11 +9,17 @@ public class Log {
 
     private Database database = Database.getInstance();
 
-    public boolean login(String UserName, String Password) throws NoSuchAlgorithmException {
-        String Hashpass = PasswordHash.hashPassword(Password); //Hashing the entered password
-        database.readFromFile();
-        return database.loginCheck(UserName, Hashpass);
-
+    public Account login(String UserName, String Password) {
+        String Hashpass = null;
+        try {
+            Hashpass = PasswordHash.hashPassword(Password); //Hashing the entered password
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("Error in login method");
+        }
+        if (database.loginCheck(UserName, Hashpass)) {
+            return database.getAccount(UserName);
+        }
+        return null;
     }
 
     public void logout(Account acc) {
