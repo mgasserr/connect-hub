@@ -17,7 +17,6 @@ public class Account {
     private Status Status;
     private ArrayList<Account> Friends;
     static int accountsCount;
-    private JFileChooser fileChooser = new JFileChooser();
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
 
@@ -37,18 +36,10 @@ public class Account {
         return ProfileImg;
     }
 
-    public void setProfileImg() {
-        fileChooser.setDialogTitle("Choose Profile Picture");
+    public void setProfileImg(String Imgpath) {
 
-        int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String imagePath = selectedFile.getAbsolutePath();
+        this.ProfileImg = new ImageIcon(Imgpath);
 
-            ImageIcon profileImage = new ImageIcon(imagePath);
-            this.ProfileImg = profileImage;
-
-        }
     }
 
     public ImageIcon getCoverImg() {
@@ -56,18 +47,9 @@ public class Account {
         return CoverImg;
     }
 
-    public void setCoverImg() {
-        fileChooser.setDialogTitle("Choose cover Picture");
+    public void setCoverImg(String Imgpath) {
 
-        int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            String imagePath = selectedFile.getAbsolutePath();
-
-            ImageIcon CoverImg = new ImageIcon(imagePath);
-            this.CoverImg = CoverImg;
-
-        }
+        this.CoverImg = new ImageIcon(Imgpath);
 
     }
 

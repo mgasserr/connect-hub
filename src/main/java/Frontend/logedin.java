@@ -5,6 +5,10 @@
 package Frontend;
 
 import Backend.Account.Account;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 /**
  *
@@ -75,9 +79,16 @@ public class logedin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        yassin.setProfileImg();
-        
-       profileLabel.setIcon(yassin.getProfileImg());
+       JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Choose Profile Picture");
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String imagePath = selectedFile.getAbsolutePath();
+            yassin.setProfileImg(imagePath);
+    profileLabel.setIcon(new ImageIcon(imagePath));
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
