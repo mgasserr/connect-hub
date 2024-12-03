@@ -6,7 +6,7 @@ import static Backend.Authentication.Validations.*;
 import java.time.LocalDate;
 import java.security.NoSuchAlgorithmException;
 
-public abstract class SignUp {
+public class SignUp {
     private Database database = Database.getInstance();
 
     public String signUp(String Email, String Username, String Password, LocalDate DOB) throws NoSuchAlgorithmException {
