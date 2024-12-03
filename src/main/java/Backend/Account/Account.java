@@ -1,11 +1,7 @@
 package Backend.Account;
 
 import Backend.Account.Activity.Status;
-import java.io.File;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 
 public class Account {
 
@@ -49,11 +45,11 @@ public class Account {
         this.Username = Username;
     }
 
-    public String getPassword() {
+    String getPassword() {
         return Password;
     }
 
-    public void setPassword(String Password) {
+    void setPassword(String Password) {
         this.Password = Password;
     }
 
