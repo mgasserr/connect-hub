@@ -14,6 +14,7 @@ public class Startup extends javax.swing.JFrame {
     public Startup() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         Backend.Account.Database.readFromFile();
         addComponentListener(new ComponentAdapter() {
             @Override
