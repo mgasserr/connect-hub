@@ -1,8 +1,10 @@
 package Frontend;
 
 import Backend.Account.Account;
+import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.SwingWorker;
 
 public class Startup extends javax.swing.JFrame {
 
@@ -108,20 +110,19 @@ public class Startup extends javax.swing.JFrame {
                                     .addComponent(passwordText, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(120, 120, 120)
                                 .addComponent(SignupButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(124, 124, 124)
-                                .addComponent(LoginButton))))
+                                .addComponent(LoginButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(loginerrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(242, 242, 242)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(260, 260, 260)
-                        .addComponent(loginerrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)))
                 .addGap(139, 139, 139))
         );
         layout.setVerticalGroup(
@@ -166,22 +167,29 @@ public class Startup extends javax.swing.JFrame {
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
         // TODO add your handling code here:
-        loginerrorLabel.setText("");
         String username = usernameText.getText();
         String password = passwordText.getText();
         Account acc = Backend.Authentication.Log.login(username, password);
         if (acc == null) {
             loginerrorLabel.setText("Wrong username/password");
         } else {
-            try {
-                loginerrorLabel.setText("Logging in...");
-                Thread.sleep(1000);
-                Home homewindow = new Home(acc);
-                homewindow.setVisible(true);
-                this.setVisible(false);
-            } catch (InterruptedException ex) {
-                System.out.println("Startup sleep interrupted");
-            }
+            loginerrorLabel.setForeground(Color.black);
+            loginerrorLabel.setText("Logging in...");
+            SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                @Override
+                protected Void doInBackground() throws Exception {
+                    Thread.sleep(1000);
+                    return null;
+                }
+
+                @Override
+                protected void done() {
+                    Home homewindow = new Home(acc);
+                    homewindow.setVisible(true);
+                    Startup.this.setVisible(false);
+                }
+            };
+            worker.execute();
         }
 
     }//GEN-LAST:event_LoginButtonActionPerformed

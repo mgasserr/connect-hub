@@ -14,6 +14,7 @@ Frontend\Startup$1.class
 Backend\Authentication\Validations.class
 Frontend\Home.class
 Frontend\Signup$1.class
+Frontend\Startup$6.class
 Frontend\Signup.class
 Backend\Account\Activity$Status.class
 Frontend\Startup$5.class
