@@ -17,7 +17,7 @@ public class Account {
     private Status Status;
     private ArrayList<Account> Friends;
     static int accountsCount;
-    JFileChooser fileChooser = new JFileChooser();
+    private JFileChooser fileChooser = new JFileChooser();
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
 
