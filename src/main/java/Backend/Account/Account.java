@@ -45,22 +45,31 @@ public class Account {
             File selectedFile = fileChooser.getSelectedFile();
             String imagePath = selectedFile.getAbsolutePath();
 
-            // Step 2: Create an ImageIcon from the selected file
             ImageIcon profileImage = new ImageIcon(imagePath);
             this.ProfileImg = profileImage;
-            
+
         }
     }
 
     public ImageIcon getCoverImg() {
+
         return CoverImg;
     }
 
-    public void setCoverImg(ImageIcon CoverImg) {
-        this.CoverImg = CoverImg;
-    }
+    public void setCoverImg() {
+        fileChooser.setDialogTitle("Choose cover Picture");
 
-    
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String imagePath = selectedFile.getAbsolutePath();
+
+            ImageIcon CoverImg = new ImageIcon(imagePath);
+            this.CoverImg = CoverImg;
+
+        }
+
+    }
 
     public String getUserId() {
         return accountId;
