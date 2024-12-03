@@ -1,6 +1,5 @@
 package Backend.Account;
 
-
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -10,12 +9,13 @@ import javax.swing.ImageIcon;
  */
 public class ProfileManagement {
 
+    private Database database = Database.getInstance();
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
     //private Content Content;
     private String Bio;
-    private ArrayList<Account> Friends= new ArrayList<>();
-    private ArrayList<Account> FriendRequests= new ArrayList<>();
+    private ArrayList<Account> Friends = new ArrayList<>();
+    private ArrayList<Account> FriendRequests = new ArrayList<>();
 
     public ImageIcon getProfileImg() {
         return ProfileImg;
@@ -49,27 +49,28 @@ public class ProfileManagement {
     public void removeFriends(Account friend) {
         this.Friends.remove(friend);
     }
-    public void friendrequests(String username){
-        Account user=Database.getuser(username);
+
+    public void friendrequests(String username) {
+        Account user = database.getAccount(username);
         FriendRequests.add(user);
-        
+
     }
-    public void acceptfriendrequests(String username){
-        Account user=Database.getuser(username);
+
+    public void acceptfriendrequests(String username) {
+        Account user = database.getAccount(username);
         FriendRequests.remove(user);
         addFriends(user);
-        
+
     }
-     public void declinefriendrequests(String username){
-        Account user=Database.getuser(username);
+
+    public void declinefriendrequests(String username) {
+        Account user = database.getAccount(username);
         FriendRequests.remove(user);
-        
-        
-        
+
     }
 
     public ArrayList<Account> getFriendRequests() {
         return FriendRequests;
     }
-    
+
 }

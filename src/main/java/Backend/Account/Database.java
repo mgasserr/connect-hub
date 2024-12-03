@@ -15,21 +15,30 @@ import org.json.JSONObject;
 
 public class Database {
 
-    private static ArrayList<Account> accounts = new ArrayList<>();
+    private static Database database = null;
+    private ArrayList<Account> accounts = new ArrayList<>();
 
-    public static Account getuser(String username) {
-        
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getUsername().equalsIgnoreCase(username)) {
-                return accounts.get(i);
+    private Database() {
+    }
+
+    public static Database getInstance() {
+        if (database == null) {
+            database = new Database();
+        }
+        return database;
+    }
+
+    public Account getAccount(String username) {
+        for (Account acc : accounts) {
+            if (acc.getUsername().equalsIgnoreCase(username)) {
+                return acc;
             }
         }
         return null;
-
     }
 
     //READ DATA FROM JSON
-    public static void readFromFile() {
+    public void readFromFile() {
         try {
             accounts.removeAll(accounts);
             accountsCount = 0;
@@ -59,7 +68,7 @@ public class Database {
         }
     }
 
-    public static JSONArray saveAllAccounts() {
+    public JSONArray saveAllAccounts() {
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
             JSONObject obj = new JSONObject();
@@ -83,13 +92,13 @@ public class Database {
         return usersArray;
     }
 
-    public static void addNewAccount(Account account) {
+    public void addNewAccount(Account account) {
         accounts.add(account);
-        
+
     }
 
     //VALIDATION TO CHECK IF THE USERNAME ALREADY USED 
-    public static boolean containsUsername(String string) {
+    public boolean containsUsername(String string) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(string)) {
                 return true;
@@ -99,7 +108,7 @@ public class Database {
     }
 
     //VALIDATION TO CHECK IF THE EMAIL ALREADY USED 
-    public static boolean containsEmail(String string) {
+    public boolean containsEmail(String string) {
         for (Account account : accounts) {
             if (account.getEmail().equalsIgnoreCase(string)) {
                 return true;
@@ -109,7 +118,7 @@ public class Database {
     }
 
     //VALIDATION TO CHECK IF THE ENTERED USERNAME AND PASSWORD ARE CORRECT
-    public static boolean loginCheck(String username, String password) {
+    public boolean loginCheck(String username, String password) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 if (account.getPassword().equals(password)) {
@@ -122,24 +131,24 @@ public class Database {
         return false;
     }
 
-    public static String changePassword(Account user, String oldpassword, String newpassword, String confirmpassword) {
+    public String changePassword(Account user, String oldpassword, String newpassword, String confirmpassword) {
         String hashpass;
         try {
-            
+
             hashpass = PasswordHash.hashPassword(oldpassword);
             if (!user.getPassword().equals(hashpass)) {
                 return "INVALIDOLDPASS";
             }
-            if(!newpassword.equals(confirmpassword)){
+            if (!newpassword.equals(confirmpassword)) {
                 return "INVALIDCONFIRMPASS";
             }
-            String newhashpass=PasswordHash.hashPassword(newpassword);
+            String newhashpass = PasswordHash.hashPassword(newpassword);
             user.setPassword(newhashpass);
-            
+
             System.out.println(newhashpass);
             saveAllAccounts();
             return "PASSWORDCHANGED";
-            
+
         } catch (NoSuchAlgorithmException ex) {
 
         }
