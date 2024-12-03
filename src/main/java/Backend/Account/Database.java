@@ -19,10 +19,10 @@ public class Database {
 
     private static ArrayList<Account> accounts = new ArrayList<>();
 
-    public static Account getuser(String username, String password) throws NoSuchAlgorithmException {
-        String hashpass = PasswordHash.hashPassword(password);
+    public static Account getuser(String username) {
+        
         for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getUsername().equalsIgnoreCase(username) && accounts.get(i).getPassword().equals(hashpass)) {
+            if (accounts.get(i).getUsername().equalsIgnoreCase(username)) {
                 return accounts.get(i);
             }
         }
