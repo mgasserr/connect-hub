@@ -15,7 +15,7 @@ public class Startup extends javax.swing.JFrame {
     public Startup() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Database database= Database.getInstance();
+        Database database = Database.getInstance();
         database.readFromFile();
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -171,7 +171,8 @@ public class Startup extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = usernameText.getText();
         String password = passwordText.getText();
-        Account acc = Backend.Authentication.Log.login(username, password);
+        Backend.Authentication.Log logInstance = new Backend.Authentication.Log();
+        Account acc = logInstance.login(username, password);
         if (acc == null) {
             loginerrorLabel.setText("Wrong username/password");
         } else {
