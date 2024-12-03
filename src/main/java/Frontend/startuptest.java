@@ -4,6 +4,8 @@
  */
 package Frontend;
 
+import Backend.Account.Account;
+import Backend.Account.Database;
 import Backend.Authentication.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
@@ -125,6 +127,9 @@ public class startuptest extends javax.swing.JFrame {
             // TODO add your handling code here:
             if (Log.login(user.getText(), pass.getText())) {
                 System.out.println("LOGIN SUCCESSFUL");
+                Account yassin=Database.getuser(user.getText(), pass.getText());
+                logedin L= new logedin(yassin);
+                L.setVisible(true);
             } else {
                 System.out.println("WRONG USERNAME/PASSWORD");
             }

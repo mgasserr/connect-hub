@@ -1,10 +1,10 @@
-C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\LogIn.java
-C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\LogOut.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Account\Account.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Account\Activity.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Account\Database.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\Log.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\PasswordHash.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\SignUp.java
-C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Database\Account.java
-C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Database\AccountsFileManagement.java
-C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Database\Activity.java
-C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Database\Validations.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Backend\Authentication\Validations.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Frontend\logedin.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Frontend\signuptest.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\Frontend\startuptest.java

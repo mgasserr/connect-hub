@@ -1,10 +1,12 @@
 package Backend.Account;
 
 import static Backend.Account.Account.accountsCount;
+import Backend.Authentication.PasswordHash;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -14,6 +16,18 @@ import org.json.JSONObject;
 public class Database {
 
     private static ArrayList<Account> accounts = new ArrayList<>();
+
+    public static Account getuser(String username,String password) throws NoSuchAlgorithmException{
+        String hashpass=PasswordHash.hashPassword(password);
+        for (int i=0; i<accounts.size();i++) {
+            if (accounts.get(i).getUsername().equalsIgnoreCase(username)&&accounts.get(i).getPassword().equals(hashpass)) {
+                return accounts.get(i);
+            }
+        }
+        return null;
+        
+    }
+
 
     //READ DATA FROM JSON
     public static void readFromFile() {
@@ -116,5 +130,6 @@ public class Database {
         }
         return false;
     }
+    
 
 }

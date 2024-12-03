@@ -1,8 +1,11 @@
 package Backend.Account;
 
 import Backend.Account.Activity.Status;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 public class Account {
 
@@ -14,8 +17,9 @@ public class Account {
     private Status Status;
     private ArrayList<Account> Friends;
     static int accountsCount;
-    private String ProfileImg; 
-    private String CoverImg;
+    JFileChooser fileChooser = new JFileChooser();
+    private ImageIcon ProfileImg;
+    private ImageIcon CoverImg;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -29,22 +33,33 @@ public class Account {
 
     }
 
-    public String getProfileImg() {
+    public ImageIcon getProfileImg() {
         return ProfileImg;
     }
 
-    public void setProfileImg(String ProfileImg) {
-        this.ProfileImg = ProfileImg;
+    public void setProfileImg() {
+        fileChooser.setDialogTitle("Choose Profile Picture");
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String imagePath = selectedFile.getAbsolutePath();
+
+            // Step 2: Create an ImageIcon from the selected file
+            ImageIcon profileImage = new ImageIcon(imagePath);
+            this.ProfileImg = profileImage;
+            
+        }
     }
 
-    public String getCoverImg() {
+    public ImageIcon getCoverImg() {
         return CoverImg;
     }
 
-    public void setCoverImg(String CoverImg) {
+    public void setCoverImg(ImageIcon CoverImg) {
         this.CoverImg = CoverImg;
     }
-    
+
     
 
     public String getUserId() {
