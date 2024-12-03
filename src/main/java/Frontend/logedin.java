@@ -17,12 +17,12 @@ import javax.swing.JLabel;
 public class logedin extends javax.swing.JFrame {
 
     Account yassin;
+
     public logedin(Account yassin) {
         initComponents();
-        this.yassin=yassin;
+        this.yassin = yassin;
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -79,24 +79,23 @@ public class logedin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       JFileChooser fileChooser = new JFileChooser();
+        JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose Profile Picture");
 
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             String imagePath = selectedFile.getAbsolutePath();
-            yassin.setProfileImg(imagePath);
-    profileLabel.setIcon(new ImageIcon(imagePath));
+            yassin.getProfile().setProfileImg(imagePath);
+            profileLabel.setIcon(new ImageIcon(imagePath));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        chamgepassword change =new chamgepassword(yassin);
+        chamgepassword change = new chamgepassword(yassin);
         change.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

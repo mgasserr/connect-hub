@@ -16,5 +16,6 @@ Backend\Account\Activity$Status.class
 Frontend\logedin$1.class
 Frontend\chamgepassword.class
 Frontend\startuptest.class
+Backend\Account\ProfileManagement.class
 Frontend\logedin$2.class
 Frontend\startuptest$4.class

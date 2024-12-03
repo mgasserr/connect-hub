@@ -15,10 +15,8 @@ public class Account {
     private String Password;
     private LocalDate DOB;
     private Status Status;
-    private ArrayList<Account> Friends;
     static int accountsCount;
-    private ImageIcon ProfileImg;
-    private ImageIcon CoverImg;
+    private ProfileManagement Profile;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -28,29 +26,7 @@ public class Account {
         this.Password = Password;
         this.DOB = DOB;
         this.Status = Status.ONLINE;
-        Friends = new ArrayList<>();
-
-    }
-
-    public ImageIcon getProfileImg() {
-        return ProfileImg;
-    }
-
-    public void setProfileImg(String Imgpath) {
-
-        this.ProfileImg = new ImageIcon(Imgpath);
-
-    }
-
-    public ImageIcon getCoverImg() {
-
-        return CoverImg;
-    }
-
-    public void setCoverImg(String Imgpath) {
-
-        this.CoverImg = new ImageIcon(Imgpath);
-
+        this.Profile = new ProfileManagement();
     }
 
     public String getUserId() {
@@ -97,16 +73,12 @@ public class Account {
         this.Status = Status;
     }
 
-    public ArrayList<Account> getFriends() {
-        return Friends;
+    public ProfileManagement getProfile() {
+        return Profile;
     }
 
-    public void addFriends(Account friend) {
-        this.Friends.add(friend);
-    }
-
-    public void removeFriends(Account friend) {
-        this.Friends.remove(friend);
+    public void setProfile(ProfileManagement Profile) {
+        this.Profile = Profile;
     }
 
 }
