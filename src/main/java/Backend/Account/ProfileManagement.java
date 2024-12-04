@@ -1,5 +1,10 @@
 package Backend.Account;
 
+import Backend.Feed.Content;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -10,67 +15,45 @@ import javax.swing.ImageIcon;
 public class ProfileManagement {
 
     private Database database = Database.getInstance();
+    private Account acc;
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
-    //private Content Content;
     private String Bio;
-    private ArrayList<Account> Friends = new ArrayList<>();
-    private ArrayList<Account> FriendRequests = new ArrayList<>();
+    private Content content;
+
+    public ProfileManagement(Account acc) {
+        this.acc = acc;
+    }
 
     public ImageIcon getProfileImg() {
         return ProfileImg;
     }
 
-    public void setProfileImg(String Imgpath) {
-
+    public void setProfileImg(String Imgpath) throws IOException {
         this.ProfileImg = new ImageIcon(Imgpath);
-
+        Path Src = Path.of(Imgpath);
+        Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
+        Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
     }
 
     public ImageIcon getCoverImg() {
-
         return CoverImg;
     }
 
-    public void setCoverImg(String Imgpath) {
-
+    public void setCoverImg(String Imgpath) throws IOException {
         this.CoverImg = new ImageIcon(Imgpath);
-
+        Path Src = Path.of(Imgpath);
+        Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
+        Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
     }
 
-    public ArrayList<Account> getFriends() {
-        return Friends;
+    public Content getContent() {
+        return content;
     }
 
-    public void addFriends(Account friend) {
-        this.Friends.add(friend);
+    public void setContent(Content content) {
+        this.content = content;
     }
-
-    public void removeFriends(Account friend) {
-        this.Friends.remove(friend);
-    }
-
-    public void friendrequests(String username) {
-        Account user = database.getAccount(username);
-        FriendRequests.add(user);
-
-    }
-
-    public void acceptfriendrequests(String username) {
-        Account user = database.getAccount(username);
-        FriendRequests.remove(user);
-        addFriends(user);
-
-    }
-
-    public void declinefriendrequests(String username) {
-        Account user = database.getAccount(username);
-        FriendRequests.remove(user);
-
-    }
-
-    public ArrayList<Account> getFriendRequests() {
-        return FriendRequests;
-    }
+    
 
 }

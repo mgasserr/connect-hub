@@ -22,7 +22,7 @@ public class Account {
         this.Password = Password;
         this.DOB = DOB;
         this.Status = Status.ONLINE;
-        this.Profile = new ProfileManagement();
+        this.Profile = new ProfileManagement(this);
     }
 
     public String getUserId() {
