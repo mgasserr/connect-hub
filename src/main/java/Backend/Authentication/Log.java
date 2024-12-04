@@ -24,6 +24,6 @@ public class Log {
 
     public void logout(Account acc) {
         acc.setStatus(Activity.Status.OFFLINE);
-        database.saveAllAccounts();
+        database.saveAll();
     }
 }

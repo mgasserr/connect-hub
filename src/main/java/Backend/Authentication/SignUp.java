@@ -19,7 +19,6 @@ public class SignUp {
             return "INVALIDDOB";
             //BELOW 13 YEARS OLD ---> FRONTEND
         }
-        database.readFromFile();
         if (database.containsEmail(Email)) {
             return "EMAILUSED";
             //ALREADY USED EMAIL ---> FRONTEND
