@@ -2,6 +2,7 @@ package Backend.Account;
 
 import static Backend.Account.Account.accountsCount;
 import Backend.Authentication.PasswordHash;
+import Backend.Feed.Content;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -92,7 +93,7 @@ public class Database {
                 int friendscount = userJson.getInt("friendscount");
                 for (int j = 1; j <= friendscount; j++) {
                     String friendid = userJson.getString("friend" + j);
-                    accounts.get(i).getProfile().addFriends(getAccount(friendid));
+                    accounts.get(i).getProfile().addFriend(getAccount(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -116,7 +117,7 @@ public class Database {
                 int friendreqcount = userJson.getInt("friendreqcount");
                 for (int j = 1; j <= friendreqcount; j++) {
                     String friendid = userJson.getString("friendreq" + j);
-                    accounts.get(i).getProfile().addFriends(getAccount(friendid));
+                    accounts.get(i).getProfile().addFriend(getAccount(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -161,6 +162,8 @@ public class Database {
     private void saveFriends() {
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
+            if(acc.getProfile().getFriends()==null)
+                continue;
             JSONObject obj = new JSONObject();
             obj.put("userid", acc.getUserId());
             obj.put("friendscount", acc.getProfile().getFriends().size());
@@ -207,7 +210,27 @@ public class Database {
     }
 
     private void saveContent() {
-
+        JSONArray usersArray = new JSONArray();
+        for (Account acc : accounts) {
+            JSONObject obj = new JSONObject();
+            obj.put("userid", acc.getUserId());
+            obj.put("postscount", acc.getProfile().getPostsCount());
+            obj.put("storiescount", acc.getProfile().getStoriesCount());
+            for (Content content : acc.getProfile().getContent()) {
+                obj.put("contentid", content.getContentId());
+                
+            }
+            usersArray.put(obj);
+        }
+        try {
+            FileWriter file = new FileWriter("content.json");
+            file.write("");
+            file.write(usersArray.toString(3));
+            file.flush();
+            file.close();
+        } catch (IOException e) {
+            System.out.println("Error in saving content.json");
+        }
     }
 
     public void addNewAccount(Account account) {

@@ -1,5 +1,6 @@
 package Backend.Account;
 
+import Backend.Feed.*;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -12,7 +13,7 @@ public class ProfileManagement {
     private Database database = Database.getInstance();
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
-    //private Content Content;
+    private ArrayList<Content> content = new ArrayList<>();
     private String Bio;
     private ArrayList<Account> Friends = new ArrayList<>();
     private ArrayList<Account> FriendRequests = new ArrayList<>();
@@ -27,46 +28,78 @@ public class ProfileManagement {
 
     }
 
+    public void addContent(Content content) {
+        this.content.add(content);
+    }
+
+    public ArrayList<Content> getContent() {
+        return content;
+    }
+
+    public int getPostsCount() {
+        int count = 0;
+        for (Content c : content) {
+            if (c instanceof Posts) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getStoriesCount() {
+        int count = 0;
+        for (Content c : content) {
+            if (c instanceof Stories) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public String getBio() {
+        return Bio;
+    }
+
+    public void setBio(String Bio) {
+        this.Bio = Bio;
+    }
+
     public ImageIcon getCoverImg() {
 
         return CoverImg;
     }
 
     public void setCoverImg(String Imgpath) {
-
         this.CoverImg = new ImageIcon(Imgpath);
-
     }
 
     public ArrayList<Account> getFriends() {
         return Friends;
     }
 
-    public void addFriends(Account friend) {
-        this.Friends.add(friend);
+    public void addFriend(Account friend) {
+        Friends.add(friend);
     }
 
-    public void removeFriends(Account friend) {
-        this.Friends.remove(friend);
+    public void removeFriend(Account friend) {
+        Friends.remove(friend);
     }
 
-    public void friendrequests(String username) {
+    public void addFriendRequest(String username) { //which means that "username" has sent a friend request to this instance of the user
         Account user = database.getAccount(username);
         FriendRequests.add(user);
-
     }
 
-    public void acceptfriendrequests(String username) {
+    public void acceptFriendRequest(String username) {
         Account user = database.getAccount(username);
         FriendRequests.remove(user);
-        addFriends(user);
-
+        Friends.add(user);
+        addFriend(user);
     }
 
-    public void declinefriendrequests(String username) {
+    public void declineFriendRequest(String username) {
         Account user = database.getAccount(username);
-        FriendRequests.remove(user);
-
+        removeFriend(user);
     }
 
     public ArrayList<Account> getFriendRequests() {
