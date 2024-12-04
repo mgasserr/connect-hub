@@ -1,26 +1,29 @@
-[
-   {
-      "password": "GmViWQ7xnRBF0GxAVXQtOCiOnm3NcczeXO6A8dWndOs=",
-      "dob": "2004-08-08",
-      "userid": "0001",
-      "email": "50@gamil.com",
-      "username": "50",
-      "status": "ONLINE"
-   },
-   {
-      "password": "1HNeOiZeFu7gP1lxi5tdAwGcB9i2xR+Q2jpmbuwTqzU=",
-      "dob": "2004-08-08",
-      "userid": "0002",
-      "email": "2@gamil.com",
-      "username": "2",
-      "status": "ONLINE"
-   },
-   {
-      "password": "1HNeOiZeFu7gP1lxi5tdAwGcB9i2xR+Q2jpmbuwTqzU=",
-      "dob": "2004-08-08",
-      "userid": "0003",
-      "email": "1@gamil.com",
-      "username": "1",
-      "status": "ONLINE"
+private void saveContent() {
+   JSONArray usersArray = new JSONArray();
+   for (Account acc : accounts) {
+       JSONObject obj = new JSONObject();
+       obj.put("userid", acc.getUserId());
+       obj.put("postscount", acc.getProfile().getPostsCount());
+       obj.put("storiescount", acc.getProfile().getStoriesCount());
+       for (Content content : acc.getProfile().getContent()) {
+           obj.put("contentid", content.getContentId());
+           obj.put("imagepath", content.getContent());
+           obj.put("timestamp", content.getTime());
+           if (content instanceof Posts) {
+               obj.put("type", "post");
+           } else {
+               obj.put("type", "story");
+           }
+       }
+       usersArray.put(obj);
    }
-]
+   try {
+       FileWriter file = new FileWriter("content.json");
+       file.write("");
+       file.write(usersArray.toString(3));
+       file.flush();
+       file.close();
+   } catch (IOException e) {
+       System.out.println("Error in saving content.json");
+   }
+}

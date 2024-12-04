@@ -3,6 +3,7 @@ package Backend.Account;
 import static Backend.Account.Account.accountsCount;
 import Backend.Authentication.PasswordHash;
 import Backend.Feed.Content;
+import Backend.Feed.Posts;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -38,6 +39,15 @@ public class Database {
         return null;
     }
 
+    public Account getAccountbyID(String userid) {
+        for (Account acc : accounts) {
+            if (acc.getUserId().equals(userid)) {
+                return acc;
+            }
+        }
+        return null;
+    }
+
     public void readAll() {
         readFromFile();
         readFriends();
@@ -55,14 +65,12 @@ public class Database {
     //READ DATA FROM JSON
     public void readFromFile() {
         try {
-            accounts.removeAll(accounts);
             accountsCount = 0;
             String jsonstring = new String(Files.readAllBytes(Paths.get("accounts.json")));
             JSONArray usersArray = new JSONArray(jsonstring);
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
             for (int i = 0; i < usersArray.length(); i++) {
                 JSONObject userJson = usersArray.getJSONObject(i);
-                String id = userJson.getString("userid");
                 String email = userJson.getString("email");
                 String username = userJson.getString("username");
                 String password = userJson.getString("password");
@@ -93,7 +101,7 @@ public class Database {
                 int friendscount = userJson.getInt("friendscount");
                 for (int j = 1; j <= friendscount; j++) {
                     String friendid = userJson.getString("friend" + j);
-                    accounts.get(i).getProfile().addFriend(getAccount(friendid));
+                    getAccountbyID(userid).getProfile().addFriend(getAccountbyID(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -117,7 +125,7 @@ public class Database {
                 int friendreqcount = userJson.getInt("friendreqcount");
                 for (int j = 1; j <= friendreqcount; j++) {
                     String friendid = userJson.getString("friendreq" + j);
-                    accounts.get(i).getProfile().addFriend(getAccount(friendid));
+                    getAccountbyID(userid).getProfile().addFriend(getAccountbyID(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -160,24 +168,24 @@ public class Database {
     }
 
     private void saveFriends() {
-        JSONArray usersArray = new JSONArray();
+        JSONArray friendsArray = new JSONArray();
         for (Account acc : accounts) {
-            if(acc.getProfile().getFriends()==null)
-                continue;
-            JSONObject obj = new JSONObject();
-            obj.put("userid", acc.getUserId());
-            obj.put("friendscount", acc.getProfile().getFriends().size());
-            int count = 1;
-            for (Account friend : acc.getProfile().getFriends()) {
-                obj.put("friend" + count, friend.getUserId());
-                count++;
+            if (!acc.getProfile().getFriends().isEmpty()) {
+                JSONObject obj = new JSONObject();
+                obj.put("userid", acc.getUserId());
+                obj.put("friendscount", acc.getProfile().getFriends().size());
+                int count = 1;
+                for (Account friend : acc.getProfile().getFriends()) {
+                    obj.put("friend" + count, friend.getUserId());
+                    count++;
+                }
+                friendsArray.put(obj);
             }
-            usersArray.put(obj);
         }
         try {
             FileWriter file = new FileWriter("friends.json");
             file.write("");
-            file.write(usersArray.toString(3));
+            file.write(friendsArray.toString(3));
             file.flush();
             file.close();
         } catch (IOException e) {
@@ -217,8 +225,15 @@ public class Database {
             obj.put("postscount", acc.getProfile().getPostsCount());
             obj.put("storiescount", acc.getProfile().getStoriesCount());
             for (Content content : acc.getProfile().getContent()) {
+                if (content instanceof Posts) {
+                    obj.put("type", "post");
+                } else {
+                    obj.put("type", "story");
+                }
                 obj.put("contentid", content.getContentId());
-                
+                obj.put("imagepath", content.getContent());
+                obj.put("timestamp", content.getTime());
+
             }
             usersArray.put(obj);
         }
@@ -264,7 +279,6 @@ public class Database {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 if (account.getPassword().equals(password)) {
                     account.setStatus(Activity.Status.ONLINE);
-                    saveAllAccounts();
                     return true;
                 }
             }
@@ -287,7 +301,6 @@ public class Database {
             user.setPassword(newhashpass);
 
             System.out.println(newhashpass);
-            saveAllAccounts();
             return "PASSWORDCHANGED";
 
         } catch (NoSuchAlgorithmException ex) {
