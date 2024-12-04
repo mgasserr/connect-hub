@@ -47,14 +47,16 @@ public class Database {
         }
         return null;
     }
-
+    
+    //READS ALL FILES AND FILLS ALL ARRAYLISTS RESPECTIVELY 
     public void readAll() {
         readFromFile();
         readFriends();
         readFriendRequests();
         readContent();
     }
-
+    
+    //SAVES ALL ARRAYLISTS IN THEIR RESPECTIVE FILES
     public void saveAll() {
         saveAllAccounts();
         saveFriends();
@@ -63,7 +65,7 @@ public class Database {
     }
 
     //READ DATA FROM JSON
-    public void readFromFile() {
+    private void readFromFile() {
         try {
             accountsCount = 0;
             String jsonstring = new String(Files.readAllBytes(Paths.get("accounts.json")));
@@ -91,7 +93,7 @@ public class Database {
         }
     }
 
-    private void readFriends() { //read friends from friends.json //delete "removeall" in the method above
+    private void readFriends() { //read friends from friends.json
         try {
             String jsonstring = new String(Files.readAllBytes(Paths.get("friends.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
@@ -125,7 +127,7 @@ public class Database {
                 int friendreqcount = userJson.getInt("friendreqcount");
                 for (int j = 1; j <= friendreqcount; j++) {
                     String friendid = userJson.getString("friendreq" + j);
-                    getAccountbyID(userid).getProfile().addFriend(getAccountbyID(friendid));
+                    getAccountbyID(userid).getProfile().addFriendRequest(getAccountbyID(friendid).getUsername());
                 }
             }
         } catch (IOException ex) {
@@ -139,11 +141,11 @@ public class Database {
         }
     }
 
-    private void readContent() {
-
+    private void readContent() {                                //awaiting modifications in the "content" class logic
+        
     }
 
-    public JSONArray saveAllAccounts() {
+    private JSONArray saveAllAccounts() {
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
             JSONObject obj = new JSONObject();
@@ -167,7 +169,7 @@ public class Database {
         return usersArray;
     }
 
-    private void saveFriends() {
+    private void saveFriends() {        //save friends of each user in friends.json
         JSONArray friendsArray = new JSONArray();
         for (Account acc : accounts) {
             if (!acc.getProfile().getFriends().isEmpty()) {
@@ -193,18 +195,20 @@ public class Database {
         }
     }
 
-    private void saveFriendRequests() {
+    private void saveFriendRequests() {         //save friends requests that each user has in friendrequests.json
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
-            JSONObject obj = new JSONObject();
-            obj.put("userid", acc.getUserId());
-            obj.put("friendreqcount", acc.getProfile().getFriendRequests().size());
-            int count = 1;
-            for (Account friend : acc.getProfile().getFriendRequests()) {
-                obj.put("friendreq" + count, friend.getUserId());
-                count++;
+            if (!acc.getProfile().getFriendRequests().isEmpty()) {
+                JSONObject obj = new JSONObject();
+                obj.put("userid", acc.getUserId());
+                obj.put("friendreqcount", acc.getProfile().getFriendRequests().size());
+                int count = 1;
+                for (Account friend : acc.getProfile().getFriendRequests()) {
+                    obj.put("friendreq" + count, friend.getUserId());
+                    count++;
+                }
+                usersArray.put(obj);
             }
-            usersArray.put(obj);
         }
         try {
             FileWriter file = new FileWriter("friendrequests.json");
@@ -217,38 +221,38 @@ public class Database {
         }
     }
 
-    private void saveContent() {
-        JSONArray usersArray = new JSONArray();
-        for (Account acc : accounts) {
-            JSONObject obj = new JSONObject();
-            obj.put("userid", acc.getUserId());
-            obj.put("postscount", acc.getProfile().getPostsCount());
-            obj.put("storiescount", acc.getProfile().getStoriesCount());
-            for (Content content : acc.getProfile().getContent()) {
-                if (content instanceof Posts) {
-                    obj.put("type", "post");
-                } else {
-                    obj.put("type", "story");
-                }
-                obj.put("contentid", content.getContentId());
-                obj.put("imagepath", content.getContent());
-                obj.put("timestamp", content.getTime());
-
-            }
-            usersArray.put(obj);
-        }
-        try {
-            FileWriter file = new FileWriter("content.json");
-            file.write("");
-            file.write(usersArray.toString(3));
-            file.flush();
-            file.close();
-        } catch (IOException e) {
-            System.out.println("Error in saving content.json");
-        }
+    private void saveContent() {                            //awaiting modifications in the "content" class logic
+//        JSONArray usersArray = new JSONArray();
+//        for (Account acc : accounts) {
+//            JSONObject obj = new JSONObject();
+//            obj.put("userid", acc.getUserId());
+//            obj.put("postscount", acc.getProfile().getPostsCount());
+//            obj.put("storiescount", acc.getProfile().getStoriesCount());
+//            for (Content content : acc.getProfile().getContent()) {
+//                if (content instanceof Posts) {
+//                    obj.put("type", "post");
+//                } else {
+//                    obj.put("type", "story");
+//                }
+//                obj.put("contentid", content.getContentId());
+//                obj.put("imagepath", content.getContent());
+//                obj.put("timestamp", content.getTime());
+//
+//            }
+//            usersArray.put(obj);
+//        }
+//        try {
+//            FileWriter file = new FileWriter("content.json");
+//            file.write("");
+//            file.write(usersArray.toString(3));
+//            file.flush();
+//            file.close();
+//        } catch (IOException e) {
+//            System.out.println("Error in saving content.json");
+//        }
     }
 
-    public void addNewAccount(Account account) {
+    public void addNewAccount(Account account) {        //gets called when a user signs up
         accounts.add(account);
 
     }
