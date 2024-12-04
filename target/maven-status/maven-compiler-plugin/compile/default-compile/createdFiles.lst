@@ -7,3 +7,4 @@ Backend\Authentication\PasswordHash.class
 Backend\Authentication\Validations.class
 Backend\Account\Activity$Status.class
 Backend\Account\ProfileManagement.class
+Frontend\Home$1.class
