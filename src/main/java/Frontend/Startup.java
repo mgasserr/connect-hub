@@ -17,7 +17,7 @@ public class Startup extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         Database database = Database.getInstance();
-        database.readFromFile();
+        database.readAll();
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
