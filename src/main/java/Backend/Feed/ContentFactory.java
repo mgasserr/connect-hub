@@ -6,7 +6,7 @@ import java.time.LocalDate;
  *
  * @author LEGION
  */
-public class ContentFactor {
+public class ContentFactory {
         public Content Feed (String type, String authorId, String Content){
         if(type.equals("Post")){
             return new Posts(authorId, Content);
