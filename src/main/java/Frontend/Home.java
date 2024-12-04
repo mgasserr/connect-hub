@@ -48,9 +48,9 @@ public class Home extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 1, 24)); // NOI18N
         jLabel1.setText("CONNECT HUB");
 
-        SettingsButton.setIcon(new javax.swing.ImageIcon("D:\\image-40x40.jpg")); // NOI18N
+        SettingsButton.setIcon(new javax.swing.ImageIcon("D:\\image-40x40 (1).jpg")); // NOI18N
 
-        SearchButton.setIcon(new javax.swing.ImageIcon("D:\\image-40x40 (1).jpg")); // NOI18N
+        SearchButton.setIcon(new javax.swing.ImageIcon("D:\\image-40x40 (1.jpg")); // NOI18N
 
         searchTextField.setText("Search");
 
