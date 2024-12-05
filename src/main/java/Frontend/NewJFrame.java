@@ -21,9 +21,8 @@ import javax.swing.JFileChooser;
  */
 public class NewJFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
+    Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
+        ProfileManagement yas = new ProfileManagement(yassin,null, null, "hi");
     public NewJFrame() {
         initComponents();
     }
@@ -38,13 +37,21 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         ProfileLabel = new javax.swing.JLabel();
+        put = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ProfileLabel.setText("jLabel1");
 
-        jButton1.setText("jButton1");
+        put.setText("put");
+        put.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                putActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("change");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -60,9 +67,11 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(ProfileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(242, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(83, 83, 83))
+                .addContainerGap(248, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(put))
+                .addGap(80, 80, 80))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -70,16 +79,17 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(81, 81, 81)
                 .addComponent(ProfileLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addComponent(put)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(69, 69, 69))
+                .addGap(28, 28, 28))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Account yassin = new Account("1@gma.co", "69", "69", LocalDate.now());
-        ProfileManagement yas = new ProfileManagement(yassin);
+    private void putActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_putActionPerformed
+
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose Profile Picture");
 
@@ -97,6 +107,26 @@ public class NewJFrame extends javax.swing.JFrame {
         }
         Database d = Database.getInstance();
         d.saveAllAccounts();
+    }//GEN-LAST:event_putActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Choose Profile Picture");
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String imagePath = selectedFile.getAbsolutePath();
+        
+            try {
+                yas.setProfileImg(imagePath);
+                ProfileLabel.setIcon(new ImageIcon(imagePath));
+            } catch (IOException ex) {
+                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+             Database d = Database.getInstance();
+        d.saveAllAccounts();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -137,5 +167,6 @@ public class NewJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ProfileLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton put;
     // End of variables declaration//GEN-END:variables
 }

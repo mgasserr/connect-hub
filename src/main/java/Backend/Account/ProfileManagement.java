@@ -19,10 +19,12 @@ public class ProfileManagement {
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
     private String Bio;
-    private Content content;
 
-    public ProfileManagement(Account acc) {
+    public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
         this.acc = acc;
+        this.ProfileImg = ProfileImg;
+        this.CoverImg = CoverImg;
+        this.Bio = Bio;
     }
 
     public ImageIcon getProfileImg() {
@@ -46,14 +48,5 @@ public class ProfileManagement {
         Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
         Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
     }
-
-    public Content getContent() {
-        return content;
-    }
-
-    public void setContent(Content content) {
-        this.content = content;
-    }
-    
 
 }

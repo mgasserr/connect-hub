@@ -6,6 +6,7 @@ package Frontend;
 
 import Backend.Account.Account;
 import Backend.Account.ProfileManagement;
+import Backend.Feed.Content;
 import Backend.Feed.ContentFactory;
 import java.io.File;
 import java.io.IOException;
@@ -20,11 +21,11 @@ import javax.swing.JFileChooser;
  *
  * @author LEGION
  */
-public class Content extends javax.swing.JFrame {
+public class content extends javax.swing.JFrame {
 
     ContentFactory F = new ContentFactory();
 
-    public Content() {
+    public content() {
         initComponents();
     }
 
@@ -102,9 +103,10 @@ public class Content extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
-        ProfileManagement yas = new ProfileManagement(yassin);
+        ProfileManagement yas = new ProfileManagement(yassin,null,null,"hi");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose Profile Picture");
+        
 
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -113,9 +115,10 @@ public class Content extends javax.swing.JFrame {
             String h = "hii";
             Map<String, String> map = new HashMap<>();
             map.put(imagePath, h);
-            F.Feed("Post", yassin.getUserId(), map);
+            Content c=F.Feed("Post", yassin.getUserId(), map);
             photo.setIcon(new ImageIcon(imagePath));
             mess.setText(h);
+            System.out.println(c.getAuthorId() + c.getContentId() + c.getContent().get(imagePath));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -136,20 +139,21 @@ public class Content extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(content.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Content().setVisible(true);
+                new content().setVisible(true);
             }
         });
     }
