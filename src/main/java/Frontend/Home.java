@@ -21,17 +21,76 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        Friends = new javax.swing.JButton();
+        Settings = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
+        Profile = new javax.swing.JButton();
+        NewContent = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Bauhaus 93", 1, 24)); // NOI18N
+        jLabel1.setText("CONNECT HUB");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        Friends.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\friends (1).png")); // NOI18N
+
+        Settings.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\setting (1).png")); // NOI18N
+
+        Home.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\home (1).png")); // NOI18N
+
+        Profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\account (1).png")); // NOI18N
+
+        NewContent.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\post (1).png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                        .addComponent(Home)
+                        .addGap(18, 18, 18)
+                        .addComponent(Profile)
+                        .addGap(18, 18, 18)
+                        .addComponent(Friends)
+                        .addGap(18, 18, 18)
+                        .addComponent(NewContent)
+                        .addGap(18, 18, 18)
+                        .addComponent(Settings)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addComponent(Settings))
+                            .addComponent(Profile))
+                        .addComponent(NewContent)
+                        .addComponent(Friends))
+                    .addComponent(Home))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -39,5 +98,13 @@ public class Home extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Friends;
+    private javax.swing.JButton Home;
+    private javax.swing.JButton NewContent;
+    private javax.swing.JButton Profile;
+    private javax.swing.JButton Settings;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JList<String> jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
