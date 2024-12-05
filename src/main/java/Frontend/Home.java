@@ -9,6 +9,7 @@ public class Home extends javax.swing.JFrame {
     public Home(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
+        setResizable(false);
         account = acc;
     }
 
@@ -29,6 +30,7 @@ public class Home extends javax.swing.JFrame {
         Home = new javax.swing.JButton();
         Profile = new javax.swing.JButton();
         NewContent = new javax.swing.JButton();
+        LogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +54,8 @@ public class Home extends javax.swing.JFrame {
 
         NewContent.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\post (1).png")); // NOI18N
 
+        LogOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\New folder\\logout (1).png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -62,7 +66,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                         .addComponent(Home)
                         .addGap(18, 18, 18)
                         .addComponent(Profile)
@@ -71,25 +75,29 @@ public class Home extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(NewContent)
                         .addGap(18, 18, 18)
-                        .addComponent(Settings)))
+                        .addComponent(Settings)
+                        .addGap(18, 18, 18)
+                        .addComponent(LogOut)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(Settings))
-                            .addComponent(Profile))
-                        .addComponent(NewContent)
-                        .addComponent(Friends))
-                    .addComponent(Home))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LogOut)
+                                    .addComponent(Settings))
+                                .addComponent(Profile))
+                            .addComponent(NewContent)
+                            .addComponent(Friends))
+                        .addComponent(Home)))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -100,6 +108,7 @@ public class Home extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Friends;
     private javax.swing.JButton Home;
+    private javax.swing.JButton LogOut;
     private javax.swing.JButton NewContent;
     private javax.swing.JButton Profile;
     private javax.swing.JButton Settings;
