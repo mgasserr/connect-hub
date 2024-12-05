@@ -15,7 +15,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
 public class ContentGUI extends javax.swing.JFrame {
-Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
+
+    Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
     ContentFactory F = new ContentFactory();
 
     public ContentGUI() {
@@ -95,11 +96,10 @@ Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        ProfileManagement yas = new ProfileManagement(yassin,null,null,"hi");
+
+        ProfileManagement yas = new ProfileManagement(yassin, null, null, "hi");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose Profile Picture");
-        
 
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -109,10 +109,10 @@ Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
             Map<String, String> map = new HashMap<>();
             map.put("Text", h);
             map.put("Path", imagePath);
-            Content c=F.Feed("Post", yassin.getUserId(), map);
+            Content c = F.Feed("Post", yassin.getUserId(), map, null);
             photo.setIcon(new ImageIcon(imagePath));
             mess.setText(h);
-            System.out.println(c.getAuthorId() + c.getContentId() + c.getContent().get("Path") + c.getContent().get("Text"));
+            System.out.println(c.getAuthorId() + c.getContentId() + c.getContentMap().get("Path") + c.getContentMap().get("Text"));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
