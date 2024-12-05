@@ -34,7 +34,7 @@ public class ReceivedFreindReqDatabase extends Database {
                 int friendreqcount = userJson.getInt("friendreqcount");
                 for (int j = 1; j <= friendreqcount; j++) {
                     String friendid = userJson.getString("friendreq" + j);
-                    getAccountbyID(userid).getProfile().getFriendsManagement().addReceivedFriendRequest(getAccountbyID(friendid));
+                    getAccountbyID(userid).getFriendsManagement().addReceivedFriendRequest(getAccountbyID(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -52,12 +52,12 @@ public class ReceivedFreindReqDatabase extends Database {
     protected void save() {        //save friends of each user in friends.json
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
-            if (!acc.getProfile().getFriendsManagement().getReceivedFriendRequests().isEmpty()) {
+            if (!acc.getFriendsManagement().getReceivedFriendRequests().isEmpty()) {
                 JSONObject obj = new JSONObject();
                 obj.put("userid", acc.getUserId());
-                obj.put("friendreqcount", acc.getProfile().getFriendsManagement().getReceivedFriendRequests().size());
+                obj.put("friendreqcount", acc.getFriendsManagement().getReceivedFriendRequests().size());
                 int count = 1;
-                for (Account friend : acc.getProfile().getFriendsManagement().getReceivedFriendRequests()) {
+                for (Account friend : acc.getFriendsManagement().getReceivedFriendRequests()) {
                     obj.put("friendreq" + count, friend.getUserId());
                     count++;
                 }

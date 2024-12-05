@@ -8,23 +8,23 @@ import java.io.IOException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ContentDatabse extends Database {
+public class ContentDatabase extends Database {
 
-    private static ContentDatabse contentDatabase;
+    private static ContentDatabase contentDatabase;
 
-    private ContentDatabse() {
+    private ContentDatabase() {
         super();
     }
 
-    public static ContentDatabse getInstance() {
+    public static ContentDatabase getInstance() {
         if (contentDatabase == null) {
-            contentDatabase = new ContentDatabse();
+            contentDatabase = new ContentDatabase();
         }
         return contentDatabase;
     }
 
     @Override
-    protected void save() {
+    protected void save() {                                //REQUIRED MAJOR MODIFICATIONS //NOT FINISHED YET
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
             JSONObject obj = new JSONObject();
@@ -56,6 +56,6 @@ public class ContentDatabse extends Database {
     }
 
     @Override
-    protected void read() {
+    protected void read() {         //NOT IMPLEMENTED
     }
 }

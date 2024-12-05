@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class FriendsManagement {
 
     private Account acc;
-    private Database database = Database.getInstance();
     private ArrayList<Account> Friends = new ArrayList<>();
     private ArrayList<Account> ReceivedFriendRequests = new ArrayList<>();
     private ArrayList<Account> SentFriendRequests = new ArrayList<>();
@@ -82,31 +81,31 @@ public class FriendsManagement {
 
     public void deleteFriend(Account friend) {
         removeFriend(friend);
-        friend.getProfile().getFriendsManagement().removeFriend(acc);
+        friend.getFriendsManagement().removeFriend(acc);
     }
 
     public void sendFriendRequest(String username) {
-        Account receiver = database.getAccount(username);
-        receiver.getProfile().getFriendsManagement().addReceivedFriendRequest(acc);
+        Account receiver = Database.getAccount(username);
+        receiver.getFriendsManagement().addReceivedFriendRequest(acc);
         addSentFriendRequests(receiver);
     }
 
     public void acceptFriendRequest(String username) {
-        Account sender = database.getAccount(username);
+        Account sender = Database.getAccount(username);
         removeReceivedFriendRequest(sender);
         addFriend(sender);
-        sender.getProfile().getFriendsManagement().addFriend(acc);
-        sender.getProfile().getFriendsManagement().removeSentFriendRequests(acc);
+        sender.getFriendsManagement().addFriend(acc);
+        sender.getFriendsManagement().removeSentFriendRequests(acc);
     }
 
     public void declineFriendRequest(String username) {
-        Account sender = database.getAccount(username);
+        Account sender = Database.getAccount(username);
         removeReceivedFriendRequest(sender);
-        sender.getProfile().getFriendsManagement().removeSentFriendRequests(acc);
+        sender.getFriendsManagement().removeSentFriendRequests(acc);
     }
 
     public void Block(String username) {
-        Account usertobeblocked = database.getAccount(username);
+        Account usertobeblocked = Database.getAccount(username);
         addBlockedUser(usertobeblocked);
         if (Friends.contains(usertobeblocked)) {
             removeFriend(usertobeblocked);
@@ -114,7 +113,7 @@ public class FriendsManagement {
     }
 
     public void Unblock(String username) {
-        Account usertobeunblocked = database.getAccount(username);
+        Account usertobeunblocked = Database.getAccount(username);
         removeBlockedUser(usertobeunblocked);
     }
 }

@@ -66,6 +66,13 @@ public class AccountsDatabase extends Database {
             obj.put("password", acc.getPassword());
             obj.put("dob", acc.getDob());
             obj.put("status", acc.getStatus());
+            if (acc.getProfile().getBio() == null) {
+                obj.put("bio", "");
+            } else {
+                obj.put("bio", acc.getProfile().getBio());
+            }
+            obj.put("pfppath", acc.getProfile().getProfileImg());
+            obj.put("coverpath", acc.getProfile().getCoverImg());
             usersArray.put(obj);
         }
         try {

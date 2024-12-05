@@ -7,8 +7,6 @@ import java.security.NoSuchAlgorithmException;
 
 public class Log {
 
-    private Database database = Database.getInstance();
-
     public Account login(String UserName, String Password) {
         String Hashpass = null;
         try {
@@ -16,14 +14,14 @@ public class Log {
         } catch (NoSuchAlgorithmException ex) {
             System.out.println("Error in login method");
         }
-        if (database.loginCheck(UserName, Hashpass)) {
-            return database.getAccount(UserName);
+        if (Database.loginCheck(UserName, Hashpass)) {
+            return Database.getAccount(UserName);
         }
         return null;
     }
 
     public void logout(Account acc) {
         acc.setStatus(Activity.Status.OFFLINE);
-        database.saveAll();
+        Database.saveAll();
     }
 }

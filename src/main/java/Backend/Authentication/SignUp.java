@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.security.NoSuchAlgorithmException;
 
 public class SignUp {
-    private Database database = Database.getInstance();
 
     public String signUp(String Email, String Username, String Password, LocalDate DOB) throws NoSuchAlgorithmException {
         String Hashpass = PasswordHash.hashPassword(Password);
@@ -19,17 +18,17 @@ public class SignUp {
             return "INVALIDDOB";
             //BELOW 13 YEARS OLD ---> FRONTEND
         }
-        if (database.containsEmail(Email)) {
+        if (Database.containsEmail(Email)) {
             return "EMAILUSED";
             //ALREADY USED EMAIL ---> FRONTEND
         }
-        if (database.containsUsername(Username)) {
+        if (Database.containsUsername(Username)) {
             return "USERUSED";
             //ALREADY USED USERNAME ---> FRONTEND
         }
 
         Account A = new Account(Email, Username, Hashpass, DOB);
-        database.addNewAccount(A);
+        Database.addNewAccount(A);
         return "SIGNUPDONE";
     }
 }

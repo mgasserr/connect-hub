@@ -1,6 +1,5 @@
 package Backend.Account;
 
-
 import Backend.Feed.Content;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -32,7 +31,6 @@ public class ProfileManagement {
         this.Bio = Bio;
     }
 
-
     public ProfileManagement(Account acc) {
         this.acc = acc;
         friendsManagement = new FriendsManagement(acc);
@@ -42,7 +40,6 @@ public class ProfileManagement {
         return friendsManagement;
     }
 
-        
     public ImageIcon getProfileImg() {
         return ProfileImg;
     }
@@ -61,10 +58,9 @@ public class ProfileManagement {
     public void setCoverImg(String Imgpath) throws IOException {
         this.CoverImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase/CoverPicture//" + acc.getUserId() + ".png");
         Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
-
-
+    }
 
     public String getBio() {
         return Bio;
@@ -72,9 +68,6 @@ public class ProfileManagement {
 
     public void setBio(String Bio) {
         this.Bio = Bio;
-    }
-
-
     }
 
 }
