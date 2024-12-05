@@ -11,7 +11,7 @@ public class Account {
     private String Password;
     private LocalDate DOB;
     private Status Status;
-    static int accountsCount;
+    private static int accountsCount;
     private ProfileManagement Profile;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
@@ -45,11 +45,11 @@ public class Account {
         this.Username = Username;
     }
 
-    String getPassword() {
+    public String getPassword() {
         return Password;
     }
 
-    void setPassword(String Password) {
+    public void setPassword(String Password) {
         this.Password = Password;
     }
 

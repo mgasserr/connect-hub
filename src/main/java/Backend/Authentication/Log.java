@@ -1,7 +1,7 @@
 package Backend.Authentication;
 
 import Backend.Account.Account;
-import Backend.Account.Database;
+import Backend.Databases.Database;
 import Backend.Account.Activity;
 import java.security.NoSuchAlgorithmException;
 
@@ -24,6 +24,6 @@ public class Log {
 
     public void logout(Account acc) {
         acc.setStatus(Activity.Status.OFFLINE);
-        database.saveAllAccounts();
+        database.saveAll();
     }
 }

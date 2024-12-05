@@ -1,7 +1,7 @@
 package Backend.Authentication;
 
 import Backend.Account.Account;
-import Backend.Account.Database;
+import Backend.Databases.Database;
 import static Backend.Authentication.Validations.*;
 import java.time.LocalDate;
 import java.security.NoSuchAlgorithmException;
@@ -19,7 +19,6 @@ public class SignUp {
             return "INVALIDDOB";
             //BELOW 13 YEARS OLD ---> FRONTEND
         }
-        database.readFromFile();
         if (database.containsEmail(Email)) {
             return "EMAILUSED";
             //ALREADY USED EMAIL ---> FRONTEND
