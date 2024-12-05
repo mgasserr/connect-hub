@@ -1,6 +1,7 @@
 package Backend.Feed;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 /**
  *
@@ -11,12 +12,12 @@ public abstract class Content {
     private String contentId;
     private static int contentCount = 0;
     private String authorId;
-    private String Content;
+    private Map<String,String> Content;
     private LocalDate Time;
 
-    public Content(String authorId, String Content) {
+    public Content(String authorId, Map Content) {
         contentCount++;
-        this.contentId = String.format("%04d", contentId + authorId);
+        this.contentId = String.format("%04d", contentCount) + "-" + authorId;
         this.authorId = authorId;
         this.Content = Content;
         this.Time = LocalDate.now();
@@ -38,16 +39,18 @@ public abstract class Content {
         this.authorId = authorId;
     }
 
-    public String getContent() {
+    public Map getContent() {
         return Content;
     }
 
-    public void setContent(String Content) {
+    public void setContent(Map Content) {
         this.Content = Content;
     }
 
     public LocalDate getTime() {
         return Time;
     }
+    
+    
 
 }

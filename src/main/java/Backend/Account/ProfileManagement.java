@@ -1,7 +1,15 @@
 package Backend.Account;
 
+
+import Backend.Feed.Content;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
 import Backend.Databases.Database;
 import Backend.Feed.*;
+
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
@@ -11,13 +19,19 @@ import javax.swing.ImageIcon;
  */
 public class ProfileManagement {
 
-    private Database database = Database.getInstance();
     private Account acc;
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
-    private ArrayList<Content> content = new ArrayList<>();
     private String Bio;
     private FriendsManagement friendsManagement;
+
+    public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
+        this.acc = acc;
+        this.ProfileImg = ProfileImg;
+        this.CoverImg = CoverImg;
+        this.Bio = Bio;
+    }
+
 
     public ProfileManagement(Account acc) {
         this.acc = acc;
@@ -33,39 +47,24 @@ public class ProfileManagement {
         return ProfileImg;
     }
 
-    public void setProfileImg(String Imgpath) {
-
+    public void setProfileImg(String Imgpath) throws IOException {
         this.ProfileImg = new ImageIcon(Imgpath);
-
+        Path Src = Path.of(Imgpath);
+        Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
+        Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
     }
 
-    public void addContent(Content content) {
-        this.content.add(content);
+    public ImageIcon getCoverImg() {
+        return CoverImg;
     }
 
-    public ArrayList<Content> getContent() {
-        return content;
-    }
+    public void setCoverImg(String Imgpath) throws IOException {
+        this.CoverImg = new ImageIcon(Imgpath);
+        Path Src = Path.of(Imgpath);
+        Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
+        Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
 
-    public int getPostsCount() {
-        int count = 0;
-        for (Content c : content) {
-            if (c instanceof Posts) {
-                count++;
-            }
-        }
-        return count;
-    }
 
-    public int getStoriesCount() {
-        int count = 0;
-        for (Content c : content) {
-            if (c instanceof Stories) {
-                count++;
-            }
-        }
-        return count;
-    }
 
     public String getBio() {
         return Bio;
@@ -75,13 +74,7 @@ public class ProfileManagement {
         this.Bio = Bio;
     }
 
-    public ImageIcon getCoverImg() {
 
-        return CoverImg;
-    }
-
-    public void setCoverImg(String Imgpath) {
-        this.CoverImg = new ImageIcon(Imgpath);
     }
 
 }

@@ -1,6 +1,7 @@
 package Backend.Feed;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 /**
  *
@@ -8,8 +9,9 @@ import java.time.LocalDate;
  */
 public class Posts extends Content {
 
-    public Posts(String authorId, String Content) {
+    public Posts(String authorId, Map Content) {
         super(authorId, Content);
     }
-    
+
+   
 }
