@@ -44,17 +44,17 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        Friends.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\friends (1).png")); // NOI18N
+        Friends.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\friends.png")); // NOI18N
 
-        Settings.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\setting (1).png")); // NOI18N
+        Settings.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\setting.png")); // NOI18N
 
-        Home.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\home (1).png")); // NOI18N
+        Home.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\home.png")); // NOI18N
 
-        Profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\account (1).png")); // NOI18N
+        Profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\account.png")); // NOI18N
 
-        NewContent.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\post (1).png")); // NOI18N
+        NewContent.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\post.png")); // NOI18N
 
-        LogOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Desktop\\New folder\\logout (1).png")); // NOI18N
+        LogOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\logout.png")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,9 +66,9 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
                         .addComponent(Home)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Profile)
                         .addGap(18, 18, 18)
                         .addComponent(Friends)
@@ -85,19 +85,15 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Settings)
                     .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LogOut)
-                                    .addComponent(Settings))
-                                .addComponent(Profile))
-                            .addComponent(NewContent)
-                            .addComponent(Friends))
-                        .addComponent(Home)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(NewContent)
+                    .addComponent(Friends)
+                    .addComponent(LogOut)
+                    .addComponent(Home)
+                    .addComponent(Profile))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

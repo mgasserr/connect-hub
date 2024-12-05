@@ -29,9 +29,9 @@
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="136" max="32767" attributes="0"/>
+                      <EmptySpace pref="322" max="32767" attributes="0"/>
                       <Component id="Home" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="Profile" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Friends" min="-2" max="-2" attributes="0"/>
@@ -52,24 +52,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="Settings" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                  <Component id="LogOut" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Settings" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="Profile" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="NewContent" min="-2" max="-2" attributes="0"/>
-                          <Component id="Friends" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="Home" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="NewContent" min="-2" max="-2" attributes="0"/>
+                  <Component id="Friends" min="-2" max="-2" attributes="0"/>
+                  <Component id="LogOut" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="Home" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="Profile" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="349" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="361" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -112,42 +104,42 @@
     <Component class="javax.swing.JButton" name="Friends">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\LEGION\Desktop\friends (1).png"/>
+          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\ImagesDatabase\Icons\friends.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Settings">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\LEGION\Desktop\setting (1).png"/>
+          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\ImagesDatabase\Icons\setting.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Home">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\LEGION\Desktop\home (1).png"/>
+          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\ImagesDatabase\Icons\home.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="Profile">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\LEGION\Desktop\account (1).png"/>
+          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\ImagesDatabase\Icons\account.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="NewContent">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\LEGION\Desktop\post (1).png"/>
+          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\ImagesDatabase\Icons\post.png"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="LogOut">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\LEGION\Desktop\New folder\logout (1).png"/>
+          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\ImagesDatabase\Icons\logout.png"/>
         </Property>
       </Properties>
     </Component>
