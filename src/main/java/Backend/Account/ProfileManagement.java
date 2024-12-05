@@ -8,6 +8,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class ProfileManagement {
@@ -25,14 +27,8 @@ public class ProfileManagement {
         this.Bio = Bio;
     }
 
-<<<<<<< HEAD
-    public ProfileManagement(Account acc) {
-        this.acc = acc;
-        friendsManagement = new FriendsManagement(acc);
-=======
     public ArrayList<Content> getContent() {
         return content;
->>>>>>> b583627d3e231ca630fa809f5ae5a96e89770c5f
     }
 
     public void setContent(ArrayList<Content> content) {
@@ -67,22 +63,30 @@ public class ProfileManagement {
         return ProfileImg;
     }
 
-    public void setProfileImg(String Imgpath) throws IOException {
+    public void setProfileImg(String Imgpath) {
         this.ProfileImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
         Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
-        Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
+        try {
+            Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public ImageIcon getCoverImg() {
         return CoverImg;
     }
 
-    public void setCoverImg(String Imgpath) throws IOException {
+    public void setCoverImg(String Imgpath) {
         this.CoverImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
         Path dest = Path.of("ImagesDatabase/CoverPicture//" + acc.getUserId() + ".png");
-        Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
+        try {
+            Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getBio() {
