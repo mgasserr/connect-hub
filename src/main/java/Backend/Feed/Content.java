@@ -8,7 +8,7 @@ public abstract class Content {
     private String contentId;
     private static int contentCount = 0;
     private String authorId;
-    private Map<String, String> Content;
+    private Map<String, String> Content; //<"type", "story/post"> and <"imgpath","the pathhhh>
     private LocalDate Time;
 
     public Content(String authorId, Map Content) {

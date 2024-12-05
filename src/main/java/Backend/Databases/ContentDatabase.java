@@ -24,7 +24,7 @@ public class ContentDatabase extends Database {
     }
 
     @Override
-    protected void save() {
+    protected void save() {                                //REQUIRED MAJOR MODIFICATIONS //NOT FINISHED YET
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
             JSONObject obj = new JSONObject();
@@ -56,6 +56,6 @@ public class ContentDatabase extends Database {
     }
 
     @Override
-    protected void read() {
+    protected void read() {         //NOT IMPLEMENTED
     }
 }
