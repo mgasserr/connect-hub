@@ -34,7 +34,7 @@ public class FriendsDatabase extends Database {
                 int friendscount = userJson.getInt("friendscount");
                 for (int j = 1; j <= friendscount; j++) {
                     String friendid = userJson.getString("friend" + j);
-                    getAccountbyID(userid).getProfile().getFriendsManagement().addFriend(getAccountbyID(friendid));
+                    getAccountbyID(userid).getFriendsManagement().addFriend(getAccountbyID(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -52,12 +52,12 @@ public class FriendsDatabase extends Database {
     protected void save() {        //save friends of each user in friends.json
         JSONArray friendsArray = new JSONArray();
         for (Account acc : super.accounts) {
-            if (!acc.getProfile().getFriendsManagement().getFriends().isEmpty()) {
+            if (!acc.getFriendsManagement().getFriends().isEmpty()) {
                 JSONObject obj = new JSONObject();
                 obj.put("userid", acc.getUserId());
-                obj.put("friendscount", acc.getProfile().getFriendsManagement().getFriends().size());
+                obj.put("friendscount", acc.getFriendsManagement().getFriends().size());
                 int count = 1;
-                for (Account friend : acc.getProfile().getFriendsManagement().getFriends()) {
+                for (Account friend : acc.getFriendsManagement().getFriends()) {
                     obj.put("friend" + count, friend.getUserId());
                     count++;
                 }

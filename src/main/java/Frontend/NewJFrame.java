@@ -5,8 +5,8 @@
 package Frontend;
 
 import Backend.Account.Account;
-import Backend.Account.Database;
 import Backend.Account.ProfileManagement;
+import Backend.Databases.Database;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -105,8 +105,7 @@ public class NewJFrame extends javax.swing.JFrame {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        Database d = Database.getInstance();
-        d.saveAllAccounts();
+        Database.saveAll();
     }//GEN-LAST:event_putActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -124,8 +123,8 @@ public class NewJFrame extends javax.swing.JFrame {
             } catch (IOException ex) {
                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
-             Database d = Database.getInstance();
-        d.saveAllAccounts();
+             
+        Database.saveAll();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

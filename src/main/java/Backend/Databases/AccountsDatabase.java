@@ -57,7 +57,7 @@ public class AccountsDatabase extends Database {
 
     @Override
     protected void save() {
-        JSONArray usersArray = new JSONArray();
+        JSONArray usersArray = new JSONArray(); //save bio, pfp path, cover path
         for (Account acc : accounts) {
             JSONObject obj = new JSONObject();
             obj.put("userid", acc.getUserId());

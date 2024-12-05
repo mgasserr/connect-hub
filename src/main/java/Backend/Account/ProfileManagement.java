@@ -1,29 +1,22 @@
 package Backend.Account;
 
-
 import Backend.Feed.Content;
+import Backend.Feed.Posts;
+import Backend.Feed.Stories;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-
-import Backend.Databases.Database;
-import Backend.Feed.*;
-
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author LEGION
- */
 public class ProfileManagement {
 
     private Account acc;
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
     private String Bio;
-    private FriendsManagement friendsManagement;
+    private ArrayList<Content> content = new ArrayList<>();
 
     public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
         this.acc = acc;
@@ -32,17 +25,38 @@ public class ProfileManagement {
         this.Bio = Bio;
     }
 
-
-    public ProfileManagement(Account acc) {
-        this.acc = acc;
-        friendsManagement = new FriendsManagement(acc);
+    public ArrayList<Content> getContent() {
+        return content;
     }
 
-    public FriendsManagement getFriendsManagement() {
-        return friendsManagement;
+    public void setContent(ArrayList<Content> content) {
+        this.content = content;
     }
 
-        
+    public void addContent(Content content) {
+        this.content.add(content);
+    }
+
+    public int getPostsCount() {
+        int count = 0;
+        for (Content c : content) {
+            if (c instanceof Posts) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int getStoriesCount() {
+        int count = 0;
+        for (Content c : content) {
+            if (c instanceof Stories) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public ImageIcon getProfileImg() {
         return ProfileImg;
     }
@@ -63,8 +77,7 @@ public class ProfileManagement {
         Path Src = Path.of(Imgpath);
         Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
         Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
-
-
+    }
 
     public String getBio() {
         return Bio;
@@ -72,9 +85,6 @@ public class ProfileManagement {
 
     public void setBio(String Bio) {
         this.Bio = Bio;
-    }
-
-
     }
 
 }

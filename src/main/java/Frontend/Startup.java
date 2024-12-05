@@ -1,7 +1,7 @@
 package Frontend;
 
 import Backend.Account.Account;
-import Backend.Databases.Database;
+import Backend.Databases.*;
 import Backend.Authentication.Log;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
@@ -16,8 +16,12 @@ public class Startup extends javax.swing.JFrame {
     public Startup() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Database database = Database.getInstance();
-        database.readAll();
+        AccountsDatabase.getInstance();
+        FriendsDatabase.getInstance();
+        SentFreindReqDatabase.getInstance();
+        ReceivedFreindReqDatabase.getInstance();
+        ContentDatabase.getInstance();
+        Database.readAll();
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {

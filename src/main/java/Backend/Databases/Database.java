@@ -35,7 +35,7 @@ public abstract class Database {
 
     protected abstract void save();
 
-    public Account getAccount(String username) {
+    public static Account getAccount(String username) {
         for (Account acc : accounts) {
             if (acc.getUsername().equalsIgnoreCase(username)) {
                 return acc;
@@ -44,7 +44,7 @@ public abstract class Database {
         return null;
     }
 
-    public Account getAccountbyID(String userid) {
+    public static Account getAccountbyID(String userid) {
         for (Account acc : accounts) {
             if (acc.getUserId().equals(userid)) {
                 return acc;
