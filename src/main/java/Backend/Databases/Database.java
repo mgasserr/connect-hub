@@ -1,9 +1,8 @@
-package Backend.Account;
+package Backend.Databases;
 
-import static Backend.Account.Account.accountsCount;
+import Backend.Account.Account;
+import Backend.Account.Activity;
 import Backend.Authentication.PasswordHash;
-import Backend.Feed.Content;
-import Backend.Feed.Posts;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -67,7 +66,6 @@ public class Database {
     //READ DATA FROM JSON
     private void readFromFile() {
         try {
-            accountsCount = 0;
             String jsonstring = new String(Files.readAllBytes(Paths.get("accounts.json")));
             JSONArray usersArray = new JSONArray(jsonstring);
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;

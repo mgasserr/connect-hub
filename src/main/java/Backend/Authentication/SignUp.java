@@ -1,7 +1,7 @@
 package Backend.Authentication;
 
 import Backend.Account.Account;
-import Backend.Account.Database;
+import Backend.Databases.Database;
 import static Backend.Authentication.Validations.*;
 import java.time.LocalDate;
 import java.security.NoSuchAlgorithmException;

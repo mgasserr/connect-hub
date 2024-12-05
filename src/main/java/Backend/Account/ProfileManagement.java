@@ -1,5 +1,6 @@
 package Backend.Account;
 
+import Backend.Databases.Database;
 import Backend.Feed.*;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;

@@ -1,5 +1,6 @@
 package Backend.Account;
 
+import Backend.Databases.Database;
 import java.util.ArrayList;
 
 public class FriendsManagement {
@@ -47,7 +48,7 @@ public class FriendsManagement {
         return SentFriendRequests.get(i);
     }
 
-    void addFriend(Account friend) {
+    public void addFriend(Account friend) {
         this.Friends.add(friend);
     }
 
@@ -55,7 +56,7 @@ public class FriendsManagement {
         Friends.remove(friend);
     }
 
-    void addReceivedFriendRequest(Account sender) {
+    public void addReceivedFriendRequest(Account sender) {
         this.ReceivedFriendRequests.add(sender);
     }
 

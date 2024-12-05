@@ -1,7 +1,7 @@
 package Frontend;
 
 import Backend.Account.Account;
-import Backend.Account.Database;
+import Backend.Databases.Database;
 import Backend.Authentication.Log;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
