@@ -52,7 +52,7 @@ public class Database {
     public void readAll() {
         readFromFile();
         readFriends();
-        readFriendRequests();
+        readReceivedFriendRequests();
         readContent();
     }
     
@@ -60,7 +60,7 @@ public class Database {
     public void saveAll() {
         saveAllAccounts();
         saveFriends();
-        saveFriendRequests();
+        saveReceivedFriendRequests();
         saveContent();
     }
 
@@ -103,7 +103,7 @@ public class Database {
                 int friendscount = userJson.getInt("friendscount");
                 for (int j = 1; j <= friendscount; j++) {
                     String friendid = userJson.getString("friend" + j);
-                    getAccountbyID(userid).getProfile().addFriend(getAccountbyID(friendid));
+                    getAccountbyID(userid).getProfile().getFriendsManagement().addFriend(getAccountbyID(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -117,7 +117,7 @@ public class Database {
         }
     }
 
-    private void readFriendRequests() { //read friend requests from friendrequests.json
+    private void readReceivedFriendRequests() { //read friend requests from friendrequests.json
         try {
             String jsonstring = new String(Files.readAllBytes(Paths.get("friendrequests.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
@@ -127,7 +127,7 @@ public class Database {
                 int friendreqcount = userJson.getInt("friendreqcount");
                 for (int j = 1; j <= friendreqcount; j++) {
                     String friendid = userJson.getString("friendreq" + j);
-                    getAccountbyID(userid).getProfile().addFriendRequest(getAccountbyID(friendid).getUsername());
+                    getAccountbyID(userid).getProfile().getFriendsManagement().addReceivedFriendRequest(getAccountbyID(friendid));
                 }
             }
         } catch (IOException ex) {
@@ -172,12 +172,12 @@ public class Database {
     private void saveFriends() {        //save friends of each user in friends.json
         JSONArray friendsArray = new JSONArray();
         for (Account acc : accounts) {
-            if (!acc.getProfile().getFriends().isEmpty()) {
+            if (!acc.getProfile().getFriendsManagement().getFriends().isEmpty()) {
                 JSONObject obj = new JSONObject();
                 obj.put("userid", acc.getUserId());
-                obj.put("friendscount", acc.getProfile().getFriends().size());
+                obj.put("friendscount", acc.getProfile().getFriendsManagement().getFriends().size());
                 int count = 1;
-                for (Account friend : acc.getProfile().getFriends()) {
+                for (Account friend : acc.getProfile().getFriendsManagement().getFriends()) {
                     obj.put("friend" + count, friend.getUserId());
                     count++;
                 }
@@ -195,15 +195,15 @@ public class Database {
         }
     }
 
-    private void saveFriendRequests() {         //save friends requests that each user has in friendrequests.json
+    private void saveReceivedFriendRequests() {         //save friends requests that each user has in friendrequests.json
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
-            if (!acc.getProfile().getFriendRequests().isEmpty()) {
+            if (!acc.getProfile().getFriendsManagement().getReceivedFriendRequests().isEmpty()) {
                 JSONObject obj = new JSONObject();
                 obj.put("userid", acc.getUserId());
-                obj.put("friendreqcount", acc.getProfile().getFriendRequests().size());
+                obj.put("friendreqcount", acc.getProfile().getFriendsManagement().getReceivedFriendRequests().size());
                 int count = 1;
-                for (Account friend : acc.getProfile().getFriendRequests()) {
+                for (Account friend : acc.getProfile().getFriendsManagement().getReceivedFriendRequests()) {
                     obj.put("friendreq" + count, friend.getUserId());
                     count++;
                 }

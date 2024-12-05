@@ -11,13 +11,23 @@ import javax.swing.ImageIcon;
 public class ProfileManagement {
 
     private Database database = Database.getInstance();
+    private Account acc;
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
     private ArrayList<Content> content = new ArrayList<>();
     private String Bio;
-    private ArrayList<Account> Friends = new ArrayList<>();
-    private ArrayList<Account> FriendRequests = new ArrayList<>();
+    private FriendsManagement friendsManagement;
 
+    public ProfileManagement(Account acc) {
+        this.acc = acc;
+        friendsManagement = new FriendsManagement(acc);
+    }
+
+    public FriendsManagement getFriendsManagement() {
+        return friendsManagement;
+    }
+
+        
     public ImageIcon getProfileImg() {
         return ProfileImg;
     }
@@ -71,39 +81,6 @@ public class ProfileManagement {
 
     public void setCoverImg(String Imgpath) {
         this.CoverImg = new ImageIcon(Imgpath);
-    }
-
-    public ArrayList<Account> getFriends() {
-        return Friends;
-    }
-
-    public void addFriend(Account friend) {
-        Friends.add(friend);
-    }
-
-    public void removeFriend(Account friend) {
-        Friends.remove(friend);
-    }
-
-    public void addFriendRequest(String username) { //which means that "username" has sent a friend request to this instance of the user
-        Account user = database.getAccount(username);
-        FriendRequests.add(user);
-    }
-
-    public void acceptFriendRequest(String username) {
-        Account user = database.getAccount(username);
-        FriendRequests.remove(user);
-        Friends.add(user);
-        addFriend(user);
-    }
-
-    public void declineFriendRequest(String username) {
-        Account user = database.getAccount(username);
-        removeFriend(user);
-    }
-
-    public ArrayList<Account> getFriendRequests() {
-        return FriendRequests;
     }
 
 }
