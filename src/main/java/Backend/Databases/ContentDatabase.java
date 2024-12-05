@@ -1,7 +1,6 @@
 package Backend.Databases;
 
 import Backend.Account.Account;
-import Backend.Account.Activity;
 import static Backend.Databases.Database.accounts;
 import Backend.Feed.Content;
 import Backend.Feed.ContentFactory;
@@ -10,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
