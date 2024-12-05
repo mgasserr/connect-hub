@@ -6,7 +6,7 @@ package Frontend;
 
 import Backend.Account.Account;
 import Backend.Account.ProfileManagement;
-import Backend.Feed.ContentFactor;
+import Backend.Feed.ContentFactory;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -22,7 +22,7 @@ import javax.swing.JFileChooser;
  */
 public class Content extends javax.swing.JFrame {
 
-    ContentFactor F = new ContentFactor();
+    ContentFactory F = new ContentFactory();
 
     public Content() {
         initComponents();
