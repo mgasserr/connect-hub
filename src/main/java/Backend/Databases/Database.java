@@ -3,31 +3,37 @@ package Backend.Databases;
 import Backend.Account.Account;
 import Backend.Account.Activity;
 import Backend.Authentication.PasswordHash;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-public class Database {
+public abstract class Database {
 
-    private static Database database = null;
-    private ArrayList<Account> accounts = new ArrayList<>();
+    protected static ArrayList<Account> accounts = new ArrayList<>();
+    private static ArrayList<Database> childreninstances = new ArrayList<>();
 
-    private Database() {
+    protected Database() {
+        registerInstance(this);
     }
 
-    public static Database getInstance() {
-        if (database == null) {
-            database = new Database();
+    private static void registerInstance(Database instance) {
+        childreninstances.add(instance);
+    }
+
+    public static void readAll() {
+        for (Database d : childreninstances) {
+            d.read();
         }
-        return database;
     }
+
+    public static void saveAll() {
+        for (Database d : childreninstances) {
+            d.save();
+        }
+    }
+
+    protected abstract void read();
+
+    protected abstract void save();
 
     public Account getAccount(String username) {
         for (Account acc : accounts) {
@@ -46,217 +52,14 @@ public class Database {
         }
         return null;
     }
-    
-    //READS ALL FILES AND FILLS ALL ARRAYLISTS RESPECTIVELY 
-    public void readAll() {
-        readFromFile();
-        readFriends();
-        readReceivedFriendRequests();
-        readContent();
-    }
-    
-    //SAVES ALL ARRAYLISTS IN THEIR RESPECTIVE FILES
-    public void saveAll() {
-        saveAllAccounts();
-        saveFriends();
-        saveReceivedFriendRequests();
-        saveContent();
-    }
 
-    //READ DATA FROM JSON
-    private void readFromFile() {
-        try {
-            String jsonstring = new String(Files.readAllBytes(Paths.get("accounts.json")));
-            JSONArray usersArray = new JSONArray(jsonstring);
-            DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
-            for (int i = 0; i < usersArray.length(); i++) {
-                JSONObject userJson = usersArray.getJSONObject(i);
-                String email = userJson.getString("email");
-                String username = userJson.getString("username");
-                String password = userJson.getString("password");
-                LocalDate dob = LocalDate.parse(userJson.getString("dob"), formatter);
-                Account user = new Account(email, username, password, dob);
-                Activity.Status status = Activity.Status.valueOf(userJson.getString("status"));
-                user.setStatus(status);
-                accounts.add(user);
-            }
-        } catch (IOException ex) {
-            try {
-                FileWriter file = new FileWriter("accounts.json");
-                file.write((new JSONArray()).toString(3));
-                file.close();
-            } catch (IOException ex1) {
-                System.out.println("Error in readfromFile");
-            }
-        }
-    }
-
-    private void readFriends() { //read friends from friends.json
-        try {
-            String jsonstring = new String(Files.readAllBytes(Paths.get("friends.json")));
-            JSONArray fileArray = new JSONArray(jsonstring);
-            for (int i = 0; i < fileArray.length(); i++) {
-                JSONObject userJson = fileArray.getJSONObject(i);
-                String userid = userJson.getString("userid");
-                int friendscount = userJson.getInt("friendscount");
-                for (int j = 1; j <= friendscount; j++) {
-                    String friendid = userJson.getString("friend" + j);
-                    getAccountbyID(userid).getProfile().getFriendsManagement().addFriend(getAccountbyID(friendid));
-                }
-            }
-        } catch (IOException ex) {
-            try {
-                FileWriter file = new FileWriter("friends.json");
-                file.write((new JSONArray()).toString(3));
-                file.close();
-            } catch (IOException ex1) {
-                System.out.println("Error in readFriends");
-            }
-        }
-    }
-
-    private void readReceivedFriendRequests() { //read friend requests from friendrequests.json
-        try {
-            String jsonstring = new String(Files.readAllBytes(Paths.get("friendrequests.json")));
-            JSONArray fileArray = new JSONArray(jsonstring);
-            for (int i = 0; i < fileArray.length(); i++) {
-                JSONObject userJson = fileArray.getJSONObject(i);
-                String userid = userJson.getString("userid");
-                int friendreqcount = userJson.getInt("friendreqcount");
-                for (int j = 1; j <= friendreqcount; j++) {
-                    String friendid = userJson.getString("friendreq" + j);
-                    getAccountbyID(userid).getProfile().getFriendsManagement().addReceivedFriendRequest(getAccountbyID(friendid));
-                }
-            }
-        } catch (IOException ex) {
-            try {
-                FileWriter file = new FileWriter("friendrequests.json");
-                file.write((new JSONArray()).toString(3));
-                file.close();
-            } catch (IOException ex1) {
-                System.out.println("Error in readFriends");
-            }
-        }
-    }
-
-    private void readContent() {                                //awaiting modifications in the "content" class logic
-        
-    }
-
-    private JSONArray saveAllAccounts() {
-        JSONArray usersArray = new JSONArray();
-        for (Account acc : accounts) {
-            JSONObject obj = new JSONObject();
-            obj.put("userid", acc.getUserId());
-            obj.put("email", acc.getEmail());
-            obj.put("username", acc.getUsername());
-            obj.put("password", acc.getPassword());
-            obj.put("dob", acc.getDob());
-            obj.put("status", acc.getStatus());
-            usersArray.put(obj);
-        }
-        try {
-            FileWriter file = new FileWriter("accounts.json");
-            file.write("");
-            file.write(usersArray.toString(3));
-            file.flush();
-            file.close();
-        } catch (IOException e) {
-            System.out.println("Error in saveAccount");
-        }
-        return usersArray;
-    }
-
-    private void saveFriends() {        //save friends of each user in friends.json
-        JSONArray friendsArray = new JSONArray();
-        for (Account acc : accounts) {
-            if (!acc.getProfile().getFriendsManagement().getFriends().isEmpty()) {
-                JSONObject obj = new JSONObject();
-                obj.put("userid", acc.getUserId());
-                obj.put("friendscount", acc.getProfile().getFriendsManagement().getFriends().size());
-                int count = 1;
-                for (Account friend : acc.getProfile().getFriendsManagement().getFriends()) {
-                    obj.put("friend" + count, friend.getUserId());
-                    count++;
-                }
-                friendsArray.put(obj);
-            }
-        }
-        try {
-            FileWriter file = new FileWriter("friends.json");
-            file.write("");
-            file.write(friendsArray.toString(3));
-            file.flush();
-            file.close();
-        } catch (IOException e) {
-            System.out.println("Error in saving friends.json");
-        }
-    }
-
-    private void saveReceivedFriendRequests() {         //save friends requests that each user has in friendrequests.json
-        JSONArray usersArray = new JSONArray();
-        for (Account acc : accounts) {
-            if (!acc.getProfile().getFriendsManagement().getReceivedFriendRequests().isEmpty()) {
-                JSONObject obj = new JSONObject();
-                obj.put("userid", acc.getUserId());
-                obj.put("friendreqcount", acc.getProfile().getFriendsManagement().getReceivedFriendRequests().size());
-                int count = 1;
-                for (Account friend : acc.getProfile().getFriendsManagement().getReceivedFriendRequests()) {
-                    obj.put("friendreq" + count, friend.getUserId());
-                    count++;
-                }
-                usersArray.put(obj);
-            }
-        }
-        try {
-            FileWriter file = new FileWriter("friendrequests.json");
-            file.write("");
-            file.write(usersArray.toString(3));
-            file.flush();
-            file.close();
-        } catch (IOException e) {
-            System.out.println("Error in saving friendrequests.json");
-        }
-    }
-
-    private void saveContent() {                            //awaiting modifications in the "content" class logic
-//        JSONArray usersArray = new JSONArray();
-//        for (Account acc : accounts) {
-//            JSONObject obj = new JSONObject();
-//            obj.put("userid", acc.getUserId());
-//            obj.put("postscount", acc.getProfile().getPostsCount());
-//            obj.put("storiescount", acc.getProfile().getStoriesCount());
-//            for (Content content : acc.getProfile().getContent()) {
-//                if (content instanceof Posts) {
-//                    obj.put("type", "post");
-//                } else {
-//                    obj.put("type", "story");
-//                }
-//                obj.put("contentid", content.getContentId());
-//                obj.put("imagepath", content.getContent());
-//                obj.put("timestamp", content.getTime());
-//
-//            }
-//            usersArray.put(obj);
-//        }
-//        try {
-//            FileWriter file = new FileWriter("content.json");
-//            file.write("");
-//            file.write(usersArray.toString(3));
-//            file.flush();
-//            file.close();
-//        } catch (IOException e) {
-//            System.out.println("Error in saving content.json");
-//        }
-    }
-
-    public void addNewAccount(Account account) {        //gets called when a user signs up
+    public static void addNewAccount(Account account) {        //gets called when a user signs up
         accounts.add(account);
 
     }
 
     //VALIDATION TO CHECK IF THE USERNAME ALREADY USED 
-    public boolean containsUsername(String string) {
+    public static boolean containsUsername(String string) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(string)) {
                 return true;
@@ -266,7 +69,7 @@ public class Database {
     }
 
     //VALIDATION TO CHECK IF THE EMAIL ALREADY USED 
-    public boolean containsEmail(String string) {
+    public static boolean containsEmail(String string) {
         for (Account account : accounts) {
             if (account.getEmail().equalsIgnoreCase(string)) {
                 return true;
@@ -276,7 +79,7 @@ public class Database {
     }
 
     //VALIDATION TO CHECK IF THE ENTERED USERNAME AND PASSWORD ARE CORRECT
-    public boolean loginCheck(String username, String password) {
+    public static boolean loginCheck(String username, String password) {
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 if (account.getPassword().equals(password)) {
@@ -288,7 +91,7 @@ public class Database {
         return false;
     }
 
-    public String changePassword(Account user, String oldpassword, String newpassword, String confirmpassword) {
+    public static String changePassword(Account user, String oldpassword, String newpassword, String confirmpassword) {
         String hashpass;
         try {
 
