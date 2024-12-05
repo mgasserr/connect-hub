@@ -2,7 +2,7 @@ package Frontend;
 
 import Backend.Account.Account;
 import Backend.Databases.*;
-import Backend.Authentication.Log;
+import Backend.Authentication.Register;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -10,9 +10,6 @@ import javax.swing.SwingWorker;
 
 public class Startup extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Startup
-     */
     public Startup() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -176,7 +173,7 @@ public class Startup extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = usernameText.getText();
         String password = passwordText.getText();
-        Account acc = new Log().login(username, password);
+        Account acc = Register.getInstance().signIn(username, password);
         if (acc == null) {
             loginerrorLabel.setText("Wrong username/password");
         } else {
