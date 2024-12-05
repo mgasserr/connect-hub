@@ -29,7 +29,7 @@ public class ProfileManagement {
     public void setProfileImg(String Imgpath) {
         this.ProfileImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase/ProfilePicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase//ProfilePicture//" + acc.getUserId() + ".png");
         try {
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
@@ -44,7 +44,7 @@ public class ProfileManagement {
     public void setCoverImg(String Imgpath) {
         this.CoverImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase/CoverPicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase//CoverPicture//" + acc.getUserId() + ".png");
         try {
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {

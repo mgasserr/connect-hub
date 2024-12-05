@@ -1,5 +1,6 @@
 package Backend.Feed;
 
+import Backend.Account.ProfileManagement;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +28,14 @@ public abstract class Content {
             this.Time = timestamp;
         }
         setContentMap(ContentMap);
+        Path Src = Path.of((String) this.ContentMap.get("Path"));
+        Path dest = Path.of("ImagesDatabase//Content//" + this.contentId + ".png");
+        this.ContentMap.put("Path", dest.toString());
+        try {
+            Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getContentId() {
