@@ -17,12 +17,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
-/**
- *
- * @author LEGION
- */
 public class content extends javax.swing.JFrame {
-
+Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
     ContentFactory F = new ContentFactory();
 
     public content() {
@@ -102,7 +98,7 @@ public class content extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Account yassin = new Account("1@gma.co", "60", "60", LocalDate.now());
+        
         ProfileManagement yas = new ProfileManagement(yassin,null,null,"hi");
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose Profile Picture");
@@ -114,11 +110,12 @@ public class content extends javax.swing.JFrame {
             String imagePath = selectedFile.getAbsolutePath();
             String h = "hii";
             Map<String, String> map = new HashMap<>();
-            map.put(imagePath, h);
+            map.put("Text", h);
+            map.put("Path", imagePath);
             Content c=F.Feed("Post", yassin.getUserId(), map);
             photo.setIcon(new ImageIcon(imagePath));
             mess.setText(h);
-            System.out.println(c.getAuthorId() + c.getContentId() + c.getContent().get(imagePath));
+            System.out.println(c.getAuthorId() + c.getContentId() + c.getContent().get("Path") + c.getContent().get("Text"));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -97,13 +97,8 @@ public class NewJFrame extends javax.swing.JFrame {
         if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
             String imagePath = selectedFile.getAbsolutePath();
-            try {
-                yas.setProfileImg(imagePath);
-                ProfileLabel.setIcon(new ImageIcon(imagePath));
-
-            } catch (IOException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            yas.setProfileImg(imagePath);
+            ProfileLabel.setIcon(new ImageIcon(imagePath));
         }
         Database.saveAll();
     }//GEN-LAST:event_putActionPerformed
@@ -117,12 +112,8 @@ public class NewJFrame extends javax.swing.JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             String imagePath = selectedFile.getAbsolutePath();
         
-            try {
-                yas.setProfileImg(imagePath);
-                ProfileLabel.setIcon(new ImageIcon(imagePath));
-            } catch (IOException ex) {
-                Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            yas.setProfileImg(imagePath);
+            ProfileLabel.setIcon(new ImageIcon(imagePath));
              
         Database.saveAll();
         }

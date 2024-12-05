@@ -11,41 +11,41 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public abstract class Content {
-
+    
     private String contentId;
     private static int contentCount = 0;
     private String authorId;
     private Map<String, String> Content; //<"Text", "Caption"> and <"Path", "Image path">
     private LocalDate Time;
-
+    
     public Content(String authorId, Map Content) {
         contentCount++;
         this.contentId = String.format("%04d", contentCount) + "-" + authorId;
         this.authorId = authorId;
-        this.Content = Content;
         this.Time = LocalDate.now();
+        setContent(Content);
     }
-
+    
     public String getContentId() {
         return contentId;
     }
-
+    
     public void setContentId(String contentId) {
         this.contentId = contentId;
     }
-
+    
     public String getAuthorId() {
         return authorId;
     }
-
+    
     public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
-
+    
     public Map getContent() {
         return Content;
     }
-
+    
     public void setContent(Map Content) {
         this.Content = Content;
         Path Src = Path.of(this.Content.get("Path"));
@@ -56,9 +56,9 @@ public abstract class Content {
             Logger.getLogger(Content.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public LocalDate getTime() {
         return Time;
     }
-
+    
 }
