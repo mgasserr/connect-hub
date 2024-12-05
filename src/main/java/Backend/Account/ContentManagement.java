@@ -23,7 +23,13 @@ public class ContentManagement {
     }
 
     public void addContent(Content content) {
-        this.content.add(content);
+        if (content instanceof Stories) {
+            if (!((Stories) content).isExpired()) {
+                this.content.add(content);
+            }
+        } else {
+            this.content.add(content);
+        }
     }
 
     public int getPostsCount() {

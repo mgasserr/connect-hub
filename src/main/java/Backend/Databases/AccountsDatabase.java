@@ -50,7 +50,7 @@ public class AccountsDatabase extends Database {
                 file.write((new JSONArray()).toString(3));
                 file.close();
             } catch (IOException ex1) {
-                System.out.println("Error in readfromFile");
+                System.out.println("Error in reading accounts from file");
             }
         }
     }
@@ -82,7 +82,7 @@ public class AccountsDatabase extends Database {
             file.flush();
             file.close();
         } catch (IOException e) {
-            System.out.println("Error in saveAccount");
+                System.out.println("Error in saving content in file");
         }
     }
 
