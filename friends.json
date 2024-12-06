@@ -1,1 +1,12 @@
-[]
+[
+   {
+      "friend1": "0002",
+      "friendscount": 1,
+      "userid": "0001"
+   },
+   {
+      "friend1": "0001",
+      "friendscount": 1,
+      "userid": "0002"
+   }
+]

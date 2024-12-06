@@ -30,7 +30,7 @@
       "userid": "0003",
       "email": "r@j.com",
       "username": "s",
-      "status": "ONLINE"
+      "status": "OFFLINE"
    },
    {
       "coverpath": "ImagesDatabase/Default/cover.jpg",
@@ -41,6 +41,6 @@
       "userid": "0004",
       "email": "n@g.com",
       "username": "z",
-      "status": "ONLINE"
+      "status": "OFFLINE"
    }
 ]
