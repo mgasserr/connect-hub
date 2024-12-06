@@ -27,6 +27,9 @@ public class BlockedDatabase extends Database {
     @Override
     protected void read() { //read blocked users from blocked.json
         try {
+            for (Account account : accounts) {
+                account.getFriendsManagement().getBlockedUsers().removeAll(account.getFriendsManagement().getBlockedUsers());
+            }
             String jsonstring = new String(Files.readAllBytes(Paths.get("blocked.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
             for (int i = 0; i < fileArray.length(); i++) {

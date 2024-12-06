@@ -15,6 +15,21 @@ public class FriendsManagement {
         this.acc = acc;
     }
 
+    public ArrayList<Account> getSuggestedFriendsCLONED() {
+        ArrayList<Account> clone = new ArrayList<>(Database.getAllAccounts());
+        clone.remove(acc);
+        clone.removeAll(BlockedUsers);
+        clone.removeAll(Friends);
+        clone.removeAll(SentFriendRequests);
+        clone.removeAll(ReceivedFriendRequests);
+        for (Account account : clone) {
+            if (account.getFriendsManagement().getBlockedUsers().contains(acc)) {
+                clone.remove(account);
+            }
+        }
+        return clone;
+    }
+
     public ArrayList<Account> getSentFriendRequests() {
         return SentFriendRequests;
     }

@@ -26,6 +26,9 @@ public class ReceivedFreindReqDatabase extends Database {
     @Override
     protected void read() { //read friends from friends.json
         try {
+            for (Account account : accounts) {
+                account.getFriendsManagement().getReceivedFriendRequests().removeAll(account.getFriendsManagement().getReceivedFriendRequests());
+            }
             String jsonstring = new String(Files.readAllBytes(Paths.get("receivedfriendrequests.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
             for (int i = 0; i < fileArray.length(); i++) {
@@ -53,6 +56,7 @@ public class ReceivedFreindReqDatabase extends Database {
         JSONArray usersArray = new JSONArray();
         for (Account acc : accounts) {
             if (!acc.getFriendsManagement().getReceivedFriendRequests().isEmpty()) {
+                System.out.println("ADAUIWBDAOLBWD");
                 JSONObject obj = new JSONObject();
                 obj.put("userid", acc.getUserId());
                 obj.put("friendreqcount", acc.getFriendsManagement().getReceivedFriendRequests().size());

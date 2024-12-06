@@ -26,6 +26,9 @@ public class FriendsDatabase extends Database {
     @Override
     protected void read() { //read friends from friends.json
         try {
+            for (Account account : accounts) {
+                account.getFriendsManagement().getFriends().removeAll(account.getFriendsManagement().getFriends());
+            }
             String jsonstring = new String(Files.readAllBytes(Paths.get("friends.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
             for (int i = 0; i < fileArray.length(); i++) {
