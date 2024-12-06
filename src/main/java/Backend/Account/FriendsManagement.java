@@ -63,7 +63,7 @@ public class FriendsManagement {
         this.ReceivedFriendRequests.remove(sender);
     }
 
-    void addSentFriendRequests(Account receiver) {
+    public void addSentFriendRequests(Account receiver) {
         this.SentFriendRequests.add(receiver);
     }
 
@@ -71,7 +71,7 @@ public class FriendsManagement {
         this.SentFriendRequests.remove(receiver);
     }
 
-    void addBlockedUser(Account user) {
+    public void addBlockedUser(Account user) {
         this.BlockedUsers.add(user);
     }
 
