@@ -41,6 +41,7 @@ public class FindUsers extends javax.swing.JFrame {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
+                Database.refreshDatabase();
                 errorText.setText("");
                 searchText.setText("");
                 usersList.removeAll();
