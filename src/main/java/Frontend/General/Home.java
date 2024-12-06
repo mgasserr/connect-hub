@@ -7,34 +7,35 @@ import Frontend.Friends.FriendsManagement;
 import Frontend.Settings.Settings;
 import java.lang.String;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 public class Home extends javax.swing.JFrame {
-    
+
     private Account acc;
-    
+
     public Home(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
-        
+
         DefaultListModel<String> newsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
         for (int i = 0; i < acc.getFriendsManagement().getFriends().size(); i++) {
             String friendUsername = acc.getFriendsManagement().getFriends().get(i).getUsername();
             for (int j = 0; j < acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().size(); j++) {
                 // Extract content details
+                String time = acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getTime().toString();
                 String text = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Text");
                 String path = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Path");
                 // Format the data for display
-                String listItem = String.format("User: %s | Text: %s | Path: %s", friendUsername, text != null ? text : "No Text", path != null ? path : "No Path");
+                String listItem = String.format("%s|%s|%s|%s", friendUsername, time, text != null ? text : "No Text", path != null ? path : "No Path");
                 // Add the formatted string to the DefaultListModel
                 newsFeedModel.addElement(listItem);
             }
         }
-// Set the DefaultListModel to the JList
         newsFeed.setModel(newsFeedModel);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -137,10 +138,10 @@ public class Home extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(LogOut)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(255, 255, 255)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(View)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(254, 254, 254))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,9 +157,9 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Profile))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(View)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -210,8 +211,14 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewActionPerformed
-        DisplayContent c = new DisplayContent(this);
-        setVisible(false);
+        int i = newsFeed.getSelectedIndex();
+        if (i == -1) {
+            JOptionPane.showMessageDialog(this, "Choose a content to view!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String line = newsFeed.getSelectedValue();
+            String[] temp = line.split("|");
+            DisplayContent c = new DisplayContent(this, acc, temp);
+        }
     }//GEN-LAST:event_ViewActionPerformed
 
 
