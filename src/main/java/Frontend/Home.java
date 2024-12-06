@@ -1,7 +1,6 @@
 package Frontend;
 
 import Backend.Account.Account;
-import javax.swing.ImageIcon;
 
 public class Home extends javax.swing.JFrame {
 
@@ -12,7 +11,6 @@ public class Home extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
         account = acc;
-        Home.setIcon(new ImageIcon("ImagesDatabase//Icons//"));
     }
 
     /**
@@ -51,6 +49,11 @@ public class Home extends javax.swing.JFrame {
         Settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/setting.png"))); // NOI18N
 
         Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/home.png"))); // NOI18N
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
 
         Profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/account.png"))); // NOI18N
 
@@ -101,6 +104,10 @@ public class Home extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HomeActionPerformed
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

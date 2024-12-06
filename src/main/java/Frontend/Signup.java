@@ -1,11 +1,10 @@
 package Frontend;
 
+import Backend.Account.Account;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 
 public class Signup extends javax.swing.JFrame {
 
@@ -213,6 +212,10 @@ public class Signup extends javax.swing.JFrame {
             int year = Integer.parseInt(yearComboBox.getSelectedItem().toString());
             LocalDate dob = LocalDate.of(year, month, day);
             //IMPLEMENT SIGNUP CODE
+//            Account acc=new Account(email, username, password, dob);
+//            Home homewindow = new Home(acc);
+//            homewindow.setVisible(true);
+            this.setVisible(false);
         } catch (DateTimeException e) {
             errorText.setText("Invalid day of month!");
         }

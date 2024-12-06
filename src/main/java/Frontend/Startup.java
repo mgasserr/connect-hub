@@ -1,8 +1,8 @@
 package Frontend;
 
 import Backend.Account.Account;
-import Backend.Account.Database;
-import Backend.Authentication.Log;
+import Backend.Databases.*;
+import Backend.Authentication.Register;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -10,14 +10,15 @@ import javax.swing.SwingWorker;
 
 public class Startup extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Startup
-     */
     public Startup() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Database database = Database.getInstance();
-        database.readFromFile();
+        AccountsDatabase.getInstance();
+        FriendsDatabase.getInstance();
+        SentFreindReqDatabase.getInstance();
+        ReceivedFreindReqDatabase.getInstance();
+        ContentDatabase.getInstance();
+        Database.readAll();
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
