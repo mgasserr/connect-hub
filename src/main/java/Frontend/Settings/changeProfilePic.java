@@ -18,13 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class changeProfilePic extends javax.swing.JFrame {
 
-   Account acc;
-   Settings S;
-   String path;
+    Account acc;
+    Settings S;
+    String path;
+
     public changeProfilePic(Account acc, Settings aThis) {
         initComponents();
-        this.acc=acc;
-        S=aThis;
+        this.acc = acc;
+        S = aThis;
         this.profilepic.setIcon(acc.getProfile().getProfileImg());
         this.setLocationRelativeTo(null);
         setResizable(false);
@@ -134,25 +135,26 @@ public class changeProfilePic extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please choose a .png/.jpg/.jpeg file only.", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
-                this.path=tempfile.getAbsolutePath();
-                ImageIcon img= new ImageIcon(path);
+                this.path = tempfile.getAbsolutePath();
+                ImageIcon img = new ImageIcon(path);
                 this.profilepic.setIcon(img);
             }
         }
     }//GEN-LAST:event_choosepicButtonActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-       if(this.profilepic.getIcon()==null){
+        if (this.profilepic.getIcon() == null) {
             JOptionPane.showMessageDialog(this, "Choose profile photo");
-        }else{
+        } else {
             acc.getProfile().setProfileImg(this.path);
+            Database.refreshDatabase();
             dispose();
             S.setVisible(true);
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       Database.saveAll();
+        Database.saveAll();
     }//GEN-LAST:event_formWindowClosing
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
@@ -166,7 +168,6 @@ public class changeProfilePic extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;

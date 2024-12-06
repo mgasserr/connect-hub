@@ -41,7 +41,7 @@ public class ProfileManagement {
     public void setProfileImg(String Imgpath) {
         this.ProfileImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase/ProfilePicture/" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase//ProfilePicture//" + acc.getUserId() + ".png");
         try {
             // Ensure the destination directory exists
             Files.createDirectories(dest.getParent());
