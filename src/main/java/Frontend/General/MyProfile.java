@@ -1,6 +1,7 @@
 package frontend.general;
 
 import Backend.Account.Account;
+import Backend.Databases.Database;
 import frontend.friends.ViewFriendsList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
