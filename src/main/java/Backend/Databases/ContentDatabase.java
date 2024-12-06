@@ -36,6 +36,9 @@ public class ContentDatabase extends Database {
     protected void read() {
         try {
             // Read JSON content from file
+            for (Account account : accounts) {
+                account.getContentManagement().getContent().removeAll(account.getContentManagement().getContent());
+            }
             String jsonstring = new String(Files.readAllBytes(Paths.get("content.json")));
             JSONArray usersArray = new JSONArray(jsonstring);
             DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;

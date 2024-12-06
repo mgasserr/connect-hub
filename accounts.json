@@ -25,5 +25,41 @@
       "email": "1@gamil.com",
       "username": "1",
       "status": "ONLINE"
+   },
+   {
+      "password": "aaa",
+      "dob": "2024-12-06",
+      "bio": "",
+      "userid": "0004",
+      "email": "aa@gmail.com",
+      "username": "aaa",
+      "status": "ONLINE"
+   },
+   {
+      "password": "ss",
+      "dob": "2024-12-06",
+      "bio": "",
+      "userid": "0005",
+      "email": "ss@gmail.com",
+      "username": "sss",
+      "status": "ONLINE"
+   },
+   {
+      "password": "aaa",
+      "dob": "2024-12-06",
+      "bio": "",
+      "userid": "0006",
+      "email": "aa@gmail.com",
+      "username": "aaa",
+      "status": "ONLINE"
+   },
+   {
+      "password": "ss",
+      "dob": "2024-12-06",
+      "bio": "",
+      "userid": "0007",
+      "email": "ss@gmail.com",
+      "username": "sss",
+      "status": "ONLINE"
    }
 ]

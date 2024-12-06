@@ -30,6 +30,7 @@ public class AccountsDatabase extends Database {
     @Override
     protected void read() {
         try {
+            super.accounts.removeAll(accounts);
             String jsonstring = new String(Files.readAllBytes(Paths.get("accounts.json")));
             JSONArray usersArray = new JSONArray(jsonstring);
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;
@@ -82,7 +83,7 @@ public class AccountsDatabase extends Database {
             file.flush();
             file.close();
         } catch (IOException e) {
-                System.out.println("Error in saving content in file");
+            System.out.println("Error in saving content in file");
         }
     }
 

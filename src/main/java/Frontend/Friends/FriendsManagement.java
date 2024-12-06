@@ -15,6 +15,8 @@ public class FriendsManagement extends javax.swing.JFrame {
      */
     public FriendsManagement() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**

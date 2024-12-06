@@ -34,6 +34,8 @@ public abstract class Database {
     public static void refreshDatabase() {
         for (Database d : childreninstances) {
             d.save();
+        }
+        for (Database d : childreninstances) {
             d.read();
         }
     }
@@ -41,6 +43,10 @@ public abstract class Database {
     protected abstract void read();
 
     protected abstract void save();
+
+    public static ArrayList<Account> getAllAccounts() {
+        return accounts;
+    }
 
     public static Account getAccount(String username) {
         for (Account acc : accounts) {
