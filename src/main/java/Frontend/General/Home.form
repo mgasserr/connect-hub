@@ -33,7 +33,7 @@
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="101" max="32767" attributes="0"/>
+                      <EmptySpace pref="40" max="32767" attributes="0"/>
                       <Component id="Home" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Profile" min="-2" max="-2" attributes="0"/>
@@ -49,10 +49,10 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
               <Component id="View" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,20 +60,20 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Home" min="-2" max="-2" attributes="0"/>
-                  <Component id="Settings" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  <Component id="NewContent" min="-2" max="-2" attributes="0"/>
-                  <Component id="Friends" min="-2" max="-2" attributes="0"/>
-                  <Component id="LogOut" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="Profile" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="LogOut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Settings" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="NewContent" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Friends" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Profile" alignment="3" max="32767" attributes="0"/>
+                  <Component id="Home" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="332" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="7" max="32767" attributes="0"/>
               <Component id="View" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,9 +108,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="Friends">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Frontend/Images/friends.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Friends"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="FriendsActionPerformed"/>
@@ -118,9 +116,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="Settings">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Frontend/Images/setting.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Settings"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SettingsActionPerformed"/>
@@ -128,24 +124,23 @@
     </Component>
     <Component class="javax.swing.JButton" name="Home">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Frontend/Images/home.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Home"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HomeActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Profile">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Profile"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProfileActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="NewContent">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Frontend/Images/post.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="New content"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NewContentActionPerformed"/>
@@ -153,9 +148,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="LogOut">
       <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Frontend/Images/logout.png"/>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Log Out"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LogOutActionPerformed"/>

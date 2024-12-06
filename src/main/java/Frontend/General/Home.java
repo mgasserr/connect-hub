@@ -64,41 +64,42 @@ public class Home extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(newsFeed);
 
-        Friends.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/friends.png"))); // NOI18N
+        Friends.setText("Friends");
         Friends.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FriendsActionPerformed(evt);
             }
         });
 
-        Settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/setting.png"))); // NOI18N
+        Settings.setText("Settings");
         Settings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SettingsActionPerformed(evt);
             }
         });
 
-        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/home.png"))); // NOI18N
+        Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 HomeActionPerformed(evt);
             }
         });
 
+        Profile.setText("Profile");
         Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProfileActionPerformed(evt);
             }
         });
 
-        NewContent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/post.png"))); // NOI18N
+        NewContent.setText("New content");
         NewContent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NewContentActionPerformed(evt);
             }
         });
 
-        LogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/logout.png"))); // NOI18N
+        LogOut.setText("Log Out");
         LogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LogOutActionPerformed(evt);
@@ -124,7 +125,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                         .addComponent(Home)
                         .addGap(18, 18, 18)
                         .addComponent(Profile)
@@ -137,28 +138,28 @@ public class Home extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(LogOut)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(320, 320, 320)
                 .addComponent(View)
-                .addGap(254, 254, 254))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Home)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LogOut)
                     .addComponent(Settings)
-                    .addComponent(jLabel1)
                     .addComponent(NewContent)
                     .addComponent(Friends)
-                    .addComponent(LogOut)
-                    .addComponent(Profile))
+                    .addComponent(Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Home)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(View)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
