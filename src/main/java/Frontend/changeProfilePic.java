@@ -32,6 +32,7 @@ public class changeProfilePic extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Edit Profile Picture");
 
         choosepicButton.setBackground(new java.awt.Color(0, 204, 204));
         choosepicButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

@@ -32,6 +32,7 @@ public class ViewBlockList extends javax.swing.JFrame {
         unblockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Block List");
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("     View Block List");

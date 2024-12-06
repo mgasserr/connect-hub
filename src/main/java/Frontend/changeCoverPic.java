@@ -32,6 +32,7 @@ public class changeCoverPic extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Edit Cover Picture");
 
         choosepicButton.setBackground(new java.awt.Color(0, 204, 204));
         choosepicButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -66,13 +67,11 @@ public class changeCoverPic extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(choosepicButton)
-                                        .addGap(229, 229, 229))
+                                    .addComponent(choosepicButton)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(182, 182, 182)
                                         .addComponent(confirmButton)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(177, 177, 177))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(236, 236, 236)
                                 .addComponent(pictureText, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))

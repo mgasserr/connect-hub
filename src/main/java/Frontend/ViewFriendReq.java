@@ -33,6 +33,7 @@ public class ViewFriendReq extends javax.swing.JFrame {
         acceptButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Friend Requests");
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("View Friend Requests");

@@ -33,6 +33,7 @@ public class ViewFriendsList extends javax.swing.JFrame {
         removeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Friends List");
 
         blockButton.setBackground(new java.awt.Color(0, 204, 204));
         blockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
