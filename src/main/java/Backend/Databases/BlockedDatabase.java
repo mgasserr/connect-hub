@@ -35,7 +35,7 @@ public class BlockedDatabase extends Database {
                 int friendscount = userJson.getInt("blockedcount");
                 for (int j = 1; j <= friendscount; j++) {
                     String blockedid = userJson.getString("blocked" + j);
-                    getAccountbyID(userid).getFriendsManagement().addBlockedUser(getAccountbyID(blockedid));//asdasdasda
+                    getAccountbyID(userid).getFriendsManagement().addBlockedUser(getAccountbyID(blockedid));
                 }
             }
         } catch (IOException ex) {
@@ -50,29 +50,29 @@ public class BlockedDatabase extends Database {
     }
 
     @Override
-    protected void save() {        //save friends of each user in friends.json
-        JSONArray friendsArray = new JSONArray();
+    protected void save() {        //save blocked users of each user in blocked.json
+        JSONArray blockedArray = new JSONArray();
         for (Account acc : super.accounts) {
-            if (!acc.getFriendsManagement().getFriends().isEmpty()) {
+            if (!acc.getFriendsManagement().getBlockedUsers().isEmpty()) {
                 JSONObject obj = new JSONObject();
                 obj.put("userid", acc.getUserId());
-                obj.put("friendscount", acc.getFriendsManagement().getFriends().size());
+                obj.put("blockedcount", acc.getFriendsManagement().getBlockedUsers().size());
                 int count = 1;
-                for (Account friend : acc.getFriendsManagement().getFriends()) {
-                    obj.put("friend" + count, friend.getUserId());
+                for (Account blocked : acc.getFriendsManagement().getBlockedUsers()) {
+                    obj.put("blocked" + count, blocked.getUserId());
                     count++;
                 }
-                friendsArray.put(obj);
+                blockedArray.put(obj);
             }
         }
         try {
-            FileWriter file = new FileWriter("friends.json");
+            FileWriter file = new FileWriter("blocked.json");
             file.write("");
-            file.write(friendsArray.toString(3));
+            file.write(blockedArray.toString(3));
             file.flush();
             file.close();
         } catch (IOException e) {
-            System.out.println("Error in saving friends.json");
+            System.out.println("Error in saving blocked.json");
         }
     }
 }

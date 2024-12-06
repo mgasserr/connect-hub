@@ -31,6 +31,13 @@ public abstract class Database {
         }
     }
 
+    public static void refreshDatabase() {
+        for (Database d : childreninstances) {
+            d.save();
+            d.read();
+        }
+    }
+
     protected abstract void read();
 
     protected abstract void save();

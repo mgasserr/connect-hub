@@ -63,11 +63,11 @@ public class FriendsManagement {
         this.ReceivedFriendRequests.remove(sender);
     }
 
-    public void addSentFriendRequests(Account receiver) {
+    public void addSentFriendRequest(Account receiver) {
         this.SentFriendRequests.add(receiver);
     }
 
-    private void removeSentFriendRequests(Account receiver) {
+    private void removeSentFriendRequest(Account receiver) {
         this.SentFriendRequests.remove(receiver);
     }
 
@@ -87,7 +87,7 @@ public class FriendsManagement {
     public void sendFriendRequest(String username) {
         Account receiver = Database.getAccount(username);
         receiver.getFriendsManagement().addReceivedFriendRequest(acc);
-        addSentFriendRequests(receiver);
+        addSentFriendRequest(receiver);
     }
 
     public void acceptFriendRequest(String username) {
@@ -95,13 +95,13 @@ public class FriendsManagement {
         removeReceivedFriendRequest(sender);
         addFriend(sender);
         sender.getFriendsManagement().addFriend(acc);
-        sender.getFriendsManagement().removeSentFriendRequests(acc);
+        sender.getFriendsManagement().removeSentFriendRequest(acc);
     }
 
     public void declineFriendRequest(String username) {
         Account sender = Database.getAccount(username);
         removeReceivedFriendRequest(sender);
-        sender.getFriendsManagement().removeSentFriendRequests(acc);
+        sender.getFriendsManagement().removeSentFriendRequest(acc);
     }
 
     public void Block(String username) {

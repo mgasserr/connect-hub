@@ -26,7 +26,7 @@ public class ReceivedFreindReqDatabase extends Database {
     @Override
     protected void read() { //read friends from friends.json
         try {
-            String jsonstring = new String(Files.readAllBytes(Paths.get("friendrequests.json")));
+            String jsonstring = new String(Files.readAllBytes(Paths.get("receivedfriendrequests.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
             for (int i = 0; i < fileArray.length(); i++) {
                 JSONObject userJson = fileArray.getJSONObject(i);
@@ -39,7 +39,7 @@ public class ReceivedFreindReqDatabase extends Database {
             }
         } catch (IOException ex) {
             try {
-                FileWriter file = new FileWriter("friendrequests.json");
+                FileWriter file = new FileWriter("receivedfriendrequests.json");
                 file.write((new JSONArray()).toString(3));
                 file.close();
             } catch (IOException ex1) {
@@ -65,13 +65,13 @@ public class ReceivedFreindReqDatabase extends Database {
             }
         }
         try {
-            FileWriter file = new FileWriter("friendrequests.json");
+            FileWriter file = new FileWriter("receivedfriendrequests.json");
             file.write("");
             file.write(usersArray.toString(3));
             file.flush();
             file.close();
         } catch (IOException e) {
-            System.out.println("Error in saving friendrequests.json");
+            System.out.println("Error in saving receivedfriendrequests.json");
         }
     }
 }
