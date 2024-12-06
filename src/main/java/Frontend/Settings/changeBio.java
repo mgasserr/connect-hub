@@ -5,6 +5,7 @@
 package Frontend.Settings;
 
 import Backend.Account.Account;
+import Backend.Databases.Database;
 
 /**
  *
@@ -35,6 +36,11 @@ public class changeBio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Bio");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("ENTER CAPTION");
@@ -103,6 +109,10 @@ public class changeBio extends javax.swing.JFrame {
        dispose();
        S.setVisible(true);
     }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Database.saveAll();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

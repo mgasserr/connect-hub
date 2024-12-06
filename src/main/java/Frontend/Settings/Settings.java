@@ -6,6 +6,7 @@ package Frontend.Settings;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
+import Backend.Databases.Database;
 import Frontend.General.Startup;
 
 /**
@@ -170,7 +171,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_changebioButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        // window
+      Database.saveAll();
     }//GEN-LAST:event_formWindowClosing
 
     private void changecoverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changecoverButtonActionPerformed
