@@ -1,6 +1,7 @@
 package Frontend;
 
 import Backend.Account.Account;
+import javax.swing.ImageIcon;
 
 public class Home extends javax.swing.JFrame {
 
@@ -11,6 +12,7 @@ public class Home extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
         account = acc;
+        Home.setIcon(new ImageIcon("ImagesDatabase//Icons//"));
     }
 
     /**
@@ -44,17 +46,17 @@ public class Home extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jList1);
 
-        Friends.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\friends.png")); // NOI18N
+        Friends.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/friends.png"))); // NOI18N
 
-        Settings.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\setting.png")); // NOI18N
+        Settings.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/setting.png"))); // NOI18N
 
-        Home.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\home.png")); // NOI18N
+        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/home.png"))); // NOI18N
 
-        Profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\account.png")); // NOI18N
+        Profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/account.png"))); // NOI18N
 
-        NewContent.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\post.png")); // NOI18N
+        NewContent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/post.png"))); // NOI18N
 
-        LogOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\ImagesDatabase\\Icons\\logout.png")); // NOI18N
+        LogOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/logout.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,7 +68,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 322, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 538, Short.MAX_VALUE)
                         .addComponent(Home)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Profile)
@@ -93,13 +95,43 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Home)
                     .addComponent(Profile))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Startup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Startup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Startup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Startup.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Home(new Account(null,null,null,null)).setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Friends;
