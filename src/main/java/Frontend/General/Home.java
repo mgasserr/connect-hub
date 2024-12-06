@@ -217,7 +217,7 @@ public class Home extends javax.swing.JFrame {
         } else {
             String line = newsFeed.getSelectedValue();
             String[] temp = line.split("|");
-            DisplayContent c = new DisplayContent(this, acc, temp);
+            DisplayContent c = new DisplayContent(acc, temp);
         }
     }//GEN-LAST:event_ViewActionPerformed
 
