@@ -69,6 +69,7 @@ Frontend\Settings\changeBio$2.class
 Frontend\Friends\FriendsManagement$5.class
 Frontend\Friends\ViewSuggested$3.class
 Frontend\General\MyProfile$1.class
+Frontend\General\MyProfile$4.class
 Frontend\Settings\Settings$4.class
 Frontend\Settings\changeCoverPic.class
 Frontend\Friends\FindUsers$1.class
@@ -83,6 +84,7 @@ Frontend\Friends\ViewSuggested$2.class
 Frontend\Friends\FriendsManagement$6.class
 Frontend\Friends\ViewSentFriendReq$3.class
 Frontend\Friends\FindUsers$4.class
+Frontend\General\AddContent$4.class
 Frontend\Settings\changePass$4.class
 Frontend\Friends\ViewSuggested.class
 Frontend\General\Home$6.class
