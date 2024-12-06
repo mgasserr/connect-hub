@@ -42,12 +42,18 @@ public class AccountsDatabase extends Database {
                 String email = userJson.getString("email");
                 String username = userJson.getString("username");
                 String password = userJson.getString("password");
+                String statusss = userJson.getString("status");
                 LocalDate dob = LocalDate.parse(userJson.getString("dob"), formatter);
                 String pfppath = userJson.getString("pfppath");
                 String coverimg = userJson.getString("coverpath");
                 String bioo = userJson.getString("bio");
                 Account user = new Account(email, username, password, dob);
                 ProfileManagement prof = new ProfileManagement(user, new ImageIcon(pfppath), new ImageIcon(coverimg), bioo);
+                if (statusss.equalsIgnoreCase(Activity.Status.ONLINE.toString())) {
+                    user.setStatus(Activity.Status.ONLINE);
+                } else {
+                    user.setStatus(Activity.Status.OFFLINE);
+                }
                 user.setProfile(prof);
                 Activity.Status status = Activity.Status.valueOf(userJson.getString("status"));
                 user.setStatus(status);
