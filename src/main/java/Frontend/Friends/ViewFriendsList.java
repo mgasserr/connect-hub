@@ -33,7 +33,7 @@ public class ViewFriendsList extends javax.swing.JFrame {
                 Database.refreshDatabase();
                 DefaultListModel<String> listModel = new DefaultListModel<>();
                 for (Account user : acc.getFriendsManagement().getFriends()) {
-                    listModel.addElement(user.getUsername() + "   " + user.getStatus().toString());
+                    listModel.addElement(user.getUsername() + "=" + user.getStatus().toString());
                 }
                 usersList.setModel(listModel);
             }
@@ -152,7 +152,13 @@ public class ViewFriendsList extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().Block(usersList.getSelectedValue(), acc.getUsername());
+            String usernamelist = usersList.getSelectedValue();
+            if (usernamelist.contains("-ONLINE")) {
+                usernamelist = usernamelist.replace("-ONLINE", "");
+            } else if (usernamelist.contains("-OFFLINE")) {
+                usernamelist = usernamelist.replace("-OFFLINE", "");
+            }
+            acc.getFriendsManagement().Block(usernamelist, acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
@@ -177,7 +183,13 @@ public class ViewFriendsList extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().deleteFriend(Database.getAccount(usersList.getSelectedValue()), acc);
+            String usernamelist = usersList.getSelectedValue();
+            if (usernamelist.contains("-ONLINE")) {
+                usernamelist = usernamelist.replace("-ONLINE", "");
+            } else if (usernamelist.contains("-OFFLINE")) {
+                usernamelist = usernamelist.replace("-OFFLINE", "");
+            }
+            acc.getFriendsManagement().deleteFriend(Database.getAccount(usernamelist), acc);
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);

@@ -41,7 +41,6 @@ public class MyProfile extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         postsList = new javax.swing.JList<>();
-        DeletePost = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -64,15 +63,6 @@ public class MyProfile extends javax.swing.JFrame {
         });
 
         jScrollPane1.setViewportView(postsList);
-
-        DeletePost.setBackground(new java.awt.Color(0, 204, 204));
-        DeletePost.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DeletePost.setText("DELETE POST");
-        DeletePost.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DeletePostActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("My Profile");
@@ -149,7 +139,6 @@ public class MyProfile extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(ViewFriends, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(DeletePost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(ViewPost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(36, 36, 36))
                             .addGroup(layout.createSequentialGroup()
@@ -176,9 +165,7 @@ public class MyProfile extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(DeletePost))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(profilepic, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -186,7 +173,7 @@ public class MyProfile extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(coverpic, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ViewPost)
@@ -204,19 +191,6 @@ public class MyProfile extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void DeletePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePostActionPerformed
-        int i = postsList.getSelectedIndex();
-        if (i == -1) {
-            JOptionPane.showMessageDialog(this, "Choose a content to delete!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
-        } else {
-            String line = postsList.getSelectedValue();
-            String[] temp = line.split("~");
-            DisplayContent c = new DisplayContent(acc, temp);
-            c.setVisible(true);
-        }
-    }//GEN-LAST:event_DeletePostActionPerformed
 
     private void ViewFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFriendsActionPerformed
         ViewFriendsList v = new ViewFriendsList(acc);
@@ -250,7 +224,6 @@ public class MyProfile extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton DeletePost;
     private javax.swing.JButton Home;
     private javax.swing.JButton ViewFriends;
     private javax.swing.JButton ViewPost;
