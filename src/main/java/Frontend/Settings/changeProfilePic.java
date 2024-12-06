@@ -5,6 +5,7 @@
 package frontend.settings;
 
 import Backend.Account.Account;
+import Backend.Authentication.Register;
 import Backend.Databases.Database;
 import frontend.general.Home;
 import java.io.File;
@@ -154,7 +155,7 @@ public class changeProfilePic extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Database.saveAll();
+        Register.getInstance().logout(acc);
     }//GEN-LAST:event_formWindowClosing
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed

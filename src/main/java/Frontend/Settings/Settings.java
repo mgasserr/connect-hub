@@ -16,15 +16,15 @@ import frontend.general.Startup;
  */
 public class Settings extends javax.swing.JFrame {
 
-   Account acc;
+    Account acc;
+
     public Settings(Account acc) {
         initComponents();
-        this.acc=acc;
+        this.acc = acc;
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -170,37 +170,37 @@ public class Settings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void changepassButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changepassButtonActionPerformed
-        changePass CP= new changePass(acc,this);
+        changePass CP = new changePass(acc, this);
         CP.setVisible(true);
         dispose();
     }//GEN-LAST:event_changepassButtonActionPerformed
 
     private void changeprofileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeprofileButtonActionPerformed
-       changeProfilePic CPR=new changeProfilePic(acc,this);
+        changeProfilePic CPR = new changeProfilePic(acc, this);
         CPR.setVisible(true);
         dispose();
     }//GEN-LAST:event_changeprofileButtonActionPerformed
 
     private void changebioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changebioButtonActionPerformed
-        changeBio CB=new changeBio(acc,this);
+        changeBio CB = new changeBio(acc, this);
         CB.setVisible(true);
         dispose();
     }//GEN-LAST:event_changebioButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-      Database.saveAll();
+        Register.getInstance().logout(acc);
     }//GEN-LAST:event_formWindowClosing
 
     private void changecoverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changecoverButtonActionPerformed
-        changeCoverPic CC= new changeCoverPic(acc,this);
+        changeCoverPic CC = new changeCoverPic(acc, this);
         CC.setVisible(true);
         dispose();
     }//GEN-LAST:event_changecoverButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        Register R=Register.getInstance();
+        Register R = Register.getInstance();
         R.logout(acc);
-        Startup S= new Startup();
+        Startup S = new Startup();
         S.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_logoutButtonActionPerformed
@@ -216,7 +216,6 @@ public class Settings extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;

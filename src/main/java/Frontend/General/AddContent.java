@@ -1,6 +1,7 @@
 package frontend.general;
 
 import Backend.Account.Account;
+import Backend.Authentication.Register;
 import Backend.Databases.Database;
 import Backend.Feed.*;
 import java.io.File;
@@ -50,6 +51,11 @@ public class AddContent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Add Content ");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         choosepicButton.setBackground(new java.awt.Color(0, 204, 204));
         choosepicButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -134,8 +140,7 @@ public class AddContent extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addComponent(choosepicButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(choosepicButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(7, 7, 7)
                         .addComponent(picture, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,6 +216,11 @@ public class AddContent extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Register.getInstance().logout(acc);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

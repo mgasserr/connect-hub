@@ -5,6 +5,7 @@
 package frontend.settings;
 
 import Backend.Account.Account;
+import Backend.Authentication.Register;
 import Backend.Databases.Database;
 import frontend.general.Home;
 import javax.swing.JOptionPane;
@@ -174,7 +175,7 @@ public class changePass extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Database.saveAll();
+        Register.getInstance().logout(acc);
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -20,6 +20,7 @@ public class Startup extends javax.swing.JFrame {
         FriendsDatabase.getInstance();
         SentFreindReqDatabase.getInstance();
         ReceivedFreindReqDatabase.getInstance();
+        BlockedDatabase.getInstance();
         ContentDatabase.getInstance();
         Database.readAll();
         addComponentListener(new ComponentAdapter() {

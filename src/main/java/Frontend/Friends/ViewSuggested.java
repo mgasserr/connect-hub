@@ -1,6 +1,7 @@
 package frontend.friends;
 
 import Backend.Account.Account;
+import Backend.Authentication.Register;
 import Backend.Databases.Database;
 import frontend.general.Home;
 import java.awt.Color;
@@ -67,6 +68,11 @@ public class ViewSuggested extends javax.swing.JFrame {
         blockButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("Suggested Friends");
@@ -184,6 +190,11 @@ public class ViewSuggested extends javax.swing.JFrame {
             errorText.setText("Account blocked!");
         }
     }//GEN-LAST:event_blockButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Register.getInstance().logout(acc);
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,7 @@
 package frontend.friends;
 
 import Backend.Account.Account;
+import Backend.Authentication.Register;
 import Backend.Databases.Database;
 import frontend.general.Home;
 import java.awt.Color;
@@ -58,6 +59,11 @@ public class ViewFriendsList extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Friends List");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         blockButton.setBackground(new java.awt.Color(0, 204, 204));
         blockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -179,6 +185,11 @@ public class ViewFriendsList extends javax.swing.JFrame {
             Database.refreshDatabase();
         }
     }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Register.getInstance().logout(acc);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

@@ -1,6 +1,7 @@
 package frontend.friends;
 
 import Backend.Account.Account;
+import Backend.Authentication.Register;
 import Backend.Databases.Database;
 import frontend.general.Home;
 import java.awt.Color;
@@ -53,6 +54,11 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Friend Requests");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("View Pending Requests");
@@ -142,6 +148,11 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
             errorText.setText("Friend request unsent!");
         }
     }//GEN-LAST:event_unsendButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Register.getInstance().logout(acc);
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
