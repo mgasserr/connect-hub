@@ -38,7 +38,7 @@ public class BlockedDatabase extends Database {
                 int friendscount = userJson.getInt("blockedcount");
                 for (int j = 1; j <= friendscount; j++) {
                     String blockedid = userJson.getString("blocked" + j);
-                    getAccountbyID(userid).getFriendsManagement().addBlockedUser(getAccountbyID(blockedid));
+                    getAccountbyID(userid).getFriendsManagement().Block(getAccountbyID(blockedid).getUsername());
                 }
             }
         } catch (IOException ex) {

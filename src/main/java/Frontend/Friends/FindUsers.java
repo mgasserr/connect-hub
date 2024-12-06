@@ -4,6 +4,7 @@ import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
 import Frontend.General.Home;
+import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.DefaultListModel;
@@ -21,10 +22,11 @@ public class FindUsers extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        errorText.setText("");
         searchText.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
-                if (searchText.getText().equals("Search")) {
+                if (searchText.getText().equals("Search...")) {
                     searchText.setText("");
                 }
             }
@@ -32,7 +34,7 @@ public class FindUsers extends javax.swing.JFrame {
             @Override
             public void focusLost(java.awt.event.FocusEvent evt) {
                 if (searchText.getText().isEmpty()) {
-                    searchText.setText("Search");
+                    searchText.setText("Search...");
                 }
             }
         });
@@ -90,7 +92,7 @@ public class FindUsers extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
-        jLabel1.setText("Find Users");
+        jLabel1.setText("Find Non-friends");
 
         jScrollPane1.setViewportView(usersList);
 
@@ -126,11 +128,16 @@ public class FindUsers extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Home)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(152, 152, 152)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchText))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1)
+                        .addComponent(searchText)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
@@ -147,10 +154,6 @@ public class FindUsers extends javax.swing.JFrame {
                                 .addGap(35, 35, 35)
                                 .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Home)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,6 +202,7 @@ public class FindUsers extends javax.swing.JFrame {
         // TODO add your handling code here:
         errorText.setText("");
         if (searchText.getText().equals("")) {
+            errorText.setForeground(Color.red);
             errorText.setText("Search field is empty");
         } else {
             DefaultListModel<String> listModel = new DefaultListModel<>();
@@ -216,11 +220,13 @@ public class FindUsers extends javax.swing.JFrame {
         errorText.setText("");
         int i = usersList.getSelectedIndex();
         if (i == -1) {
-            errorText.setText("No users selected");
+            errorText.setForeground(Color.red);
+            errorText.setText("No accounts selected");
         } else {
             acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue());
             this.setVisible(false);
             this.setVisible(true);
+            errorText.setForeground(Color.black);
             errorText.setText("Friend request sent!");
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -229,11 +235,13 @@ public class FindUsers extends javax.swing.JFrame {
         errorText.setText("");
         int i = usersList.getSelectedIndex();
         if (i == -1) {
+            errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
             acc.getFriendsManagement().Block(usersList.getSelectedValue());
             this.setVisible(false);
             this.setVisible(true);
+            errorText.setForeground(Color.black);
             errorText.setText("Account blocked!");
         }
     }//GEN-LAST:event_blockButtonActionPerformed

@@ -4,17 +4,36 @@
  */
 package Frontend.Friends;
 
+import Backend.Account.Account;
+import java.awt.Color;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Zeina Hazem
  */
 public class ViewBlockList extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ViewBlockList
-     */
-    public ViewBlockList() {
+    Account acc;
+
+    public ViewBlockList(Account acc) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
+        this.acc = acc;
+        errorText.setText("");
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for (Account user : acc.getFriendsManagement().getBlockedUsers()) {
+                    listModel.addElement(user.getUsername());
+                }
+                blocklistText.setModel(listModel);
+            }
+        });
     }
 
     /**
@@ -30,6 +49,8 @@ public class ViewBlockList extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         blocklistText = new javax.swing.JList<>();
         unblockButton = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
+        errorText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Block List");
@@ -37,16 +58,20 @@ public class ViewBlockList extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("     View Block List");
 
-        blocklistText.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(blocklistText);
 
         unblockButton.setBackground(new java.awt.Color(0, 204, 204));
         unblockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         unblockButton.setText("UNBLOCK");
+        unblockButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unblockButtonActionPerformed(evt);
+            }
+        });
+
+        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/home.png"))); // NOI18N
+
+        errorText.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,37 +80,63 @@ public class ViewBlockList extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
+                        .addContainerGap()
+                        .addComponent(Home))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(205, 205, 205)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(63, 63, 63)
+                                .addComponent(unblockButton))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(unblockButton)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                        .addGap(236, 236, 236)
+                        .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addContainerGap()
+                .addComponent(Home)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addComponent(unblockButton)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void unblockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unblockButtonActionPerformed
+        errorText.setText("");
+        int i = blocklistText.getSelectedIndex();
+        if (i == -1) {
+            errorText.setForeground(Color.red);
+            errorText.setText("No accounts selected");
+        } else {
+            acc.getFriendsManagement().Unblock(blocklistText.getSelectedValue());
+            this.setVisible(false);
+            this.setVisible(true);
+            errorText.setForeground(Color.black);
+            errorText.setText("Account unblocked!");
+        }
+    }//GEN-LAST:event_unblockButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
     private javax.swing.JList<String> blocklistText;
+    private javax.swing.JLabel errorText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton unblockButton;

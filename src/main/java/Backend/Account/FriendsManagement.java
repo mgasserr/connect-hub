@@ -10,6 +10,7 @@ public class FriendsManagement {
     private ArrayList<Account> ReceivedFriendRequests = new ArrayList<>();
     private ArrayList<Account> SentFriendRequests = new ArrayList<>();
     private ArrayList<Account> BlockedUsers = new ArrayList<>();
+    private ArrayList<Account> BlockedBy = new ArrayList<>();
 
     public FriendsManagement(Account acc) {
         this.acc = acc;
@@ -22,12 +23,12 @@ public class FriendsManagement {
         clone.removeAll(Friends);
         clone.removeAll(SentFriendRequests);
         clone.removeAll(ReceivedFriendRequests);
-        for (Account account : clone) {
-            if (account.getFriendsManagement().getBlockedUsers().contains(acc)) {
-                clone.remove(account);
-            }
-        }
+        clone.removeAll(BlockedBy);
         return clone;
+    }
+
+    public ArrayList<Account> getBlockedBy() {
+        return BlockedBy;
     }
 
     public ArrayList<Account> getSentFriendRequests() {
@@ -44,22 +45,6 @@ public class FriendsManagement {
 
     public ArrayList<Account> getReceivedFriendRequests() {
         return ReceivedFriendRequests;
-    }
-
-    public Account getSentFriendRequestByIndex(int i) {
-        return SentFriendRequests.get(i);
-    }
-
-    public Account getBlockedUsersByIndex(int i) {
-        return BlockedUsers.get(i);
-    }
-
-    public Account getFriendByIndex(int i) {
-        return SentFriendRequests.get(i);
-    }
-
-    public Account getReceivedFriendRequestByIndex(int i) {
-        return SentFriendRequests.get(i);
     }
 
     public void addFriend(Account friend) {
@@ -88,6 +73,17 @@ public class FriendsManagement {
 
     public void addBlockedUser(Account user) {
         this.BlockedUsers.add(user);
+    }
+
+    public void addBlockedBy(Account friend) {
+        this.BlockedBy.add(friend);
+        if (Friends.contains(friend)) {
+            removeFriend(friend);
+        }
+    }
+
+    public void removeBlockedBy(Account friend) {
+        this.BlockedBy.remove(friend);
     }
 
     private void removeBlockedUser(Account user) {
@@ -120,15 +116,19 @@ public class FriendsManagement {
     }
 
     public void Block(String username) {
-        Account usertobeblocked = Database.getAccount(username);
-        addBlockedUser(usertobeblocked);
-        if (Friends.contains(usertobeblocked)) {
-            removeFriend(usertobeblocked);
+        if (!Database.getAccount(username).getFriendsManagement().getBlockedBy().contains(acc)) {
+            Account usertobeblocked = Database.getAccount(username);
+            addBlockedUser(usertobeblocked);
+            usertobeblocked.getFriendsManagement().addBlockedBy(acc);
+            if (Friends.contains(usertobeblocked)) {
+                removeFriend(usertobeblocked);
+            }
         }
     }
 
     public void Unblock(String username) {
         Account usertobeunblocked = Database.getAccount(username);
         removeBlockedUser(usertobeunblocked);
+        usertobeunblocked.getFriendsManagement().removeBlockedBy(acc);
     }
 }
