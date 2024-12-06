@@ -31,6 +31,7 @@ public class AccountsDatabase extends Database {
     protected void read() {
         try {
             super.accounts.removeAll(accounts);
+            Account.resetAccountsCount();
             String jsonstring = new String(Files.readAllBytes(Paths.get("accounts.json")));
             JSONArray usersArray = new JSONArray(jsonstring);
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE;

@@ -29,6 +29,10 @@ public class Account {
         this.contentManagement = new ContentManagement(this);
     }
 
+    public static void resetAccountsCount() {
+        accountsCount = 0;
+    }
+
     public FriendsManagement getFriendsManagement() {
         return friendsManagement;
     }
