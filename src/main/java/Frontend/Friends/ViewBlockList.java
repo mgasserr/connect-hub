@@ -86,21 +86,21 @@ public class ViewBlockList extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(205, 205, 205)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(63, 63, 63)
-                                        .addComponent(unblockButton))))
+                                .addGap(268, 268, 268)
+                                .addComponent(unblockButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(236, 236, 236)
                                 .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 229, Short.MAX_VALUE))
+                        .addGap(0, 264, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Home)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(210, 210, 210)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,9 +110,9 @@ public class ViewBlockList extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Home)
                     .addComponent(jLabel1))
-                .addGap(59, 59, 59)
+                .addGap(53, 53, 53)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
                 .addComponent(unblockButton)
@@ -129,11 +129,12 @@ public class ViewBlockList extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().Unblock(blocklistText.getSelectedValue(),acc.getUsername());
+            acc.getFriendsManagement().Unblock(blocklistText.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Account unblocked!");
+            Database.refreshDatabase();
         }
     }//GEN-LAST:event_unblockButtonActionPerformed
 

@@ -3,25 +3,26 @@ package Backend.Authentication;
 import Backend.Account.Account;
 import Backend.Databases.Database;
 import Backend.Account.Activity;
+import Backend.Account.ProfileManagement;
 import static Backend.Authentication.Validations.isValidDate;
 import static Backend.Authentication.Validations.isValidEmail;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 
 public class Register {
-
+    
     private static Register registerSingleton = null;
-
+    
     private Register() {
     }
-
+    
     public static Register getInstance() {
         if (registerSingleton == null) {
             registerSingleton = new Register();
         }
         return registerSingleton;
     }
-
+    
     public String signUp(String Email, String Username, String Password, LocalDate DOB) throws NoSuchAlgorithmException {
         String Hashpass = PasswordHash.hashPassword(Password);
         if (!(isValidEmail(Email))) {
@@ -40,13 +41,14 @@ public class Register {
             return "USERUSED";
             //ALREADY USED USERNAME ---> FRONTEND
         }
-
+        
         Account A = new Account(Email, Username, Hashpass, DOB);
+        A.setProfile(new ProfileManagement(A, null, null, null));
         Database.addNewAccount(A);
         Database.refreshDatabase();
         return "SIGNUPDONE";
     }
-
+    
     public Account signIn(String UserName, String Password) {
         String Hashpass = null;
         try {
@@ -59,10 +61,10 @@ public class Register {
         }
         return null;
     }
-
+    
     public void logout(Account acc) {
         acc.setStatus(Activity.Status.OFFLINE);
         Database.saveAll();
     }
-
+    
 }

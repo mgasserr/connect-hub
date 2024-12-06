@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -106,7 +107,7 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(233, 233, 233)
                                 .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 225, Short.MAX_VALUE))
+                        .addGap(225, 225, 225))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,6 +148,7 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Friend request accpepted!");
+            Database.refreshDatabase();
         }
     }//GEN-LAST:event_acceptButtonActionPerformed
 
@@ -162,6 +164,7 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Friend request declined!");
+            Database.refreshDatabase();
         }
     }//GEN-LAST:event_declineButtonActionPerformed
 

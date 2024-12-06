@@ -2,6 +2,7 @@ package Backend.Databases;
 
 import Backend.Account.Account;
 import Backend.Account.Activity;
+import Backend.Account.ProfileManagement;
 import static Backend.Databases.Database.accounts;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.swing.ImageIcon;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -41,7 +43,12 @@ public class AccountsDatabase extends Database {
                 String username = userJson.getString("username");
                 String password = userJson.getString("password");
                 LocalDate dob = LocalDate.parse(userJson.getString("dob"), formatter);
+                String pfppath = userJson.getString("pfppath");
+                String coverimg = userJson.getString("coverpath");
+                String bioo = userJson.getString("bio");
                 Account user = new Account(email, username, password, dob);
+                ProfileManagement prof = new ProfileManagement(user, new ImageIcon(pfppath), new ImageIcon(coverimg), bioo);
+                user.setProfile(prof);
                 Activity.Status status = Activity.Status.valueOf(userJson.getString("status"));
                 user.setStatus(status);
                 accounts.add(user);
@@ -68,11 +75,7 @@ public class AccountsDatabase extends Database {
             obj.put("password", acc.getPassword());
             obj.put("dob", acc.getDob());
             obj.put("status", acc.getStatus());
-            if (acc.getProfile().getBio() == null) {
-                obj.put("bio", "");
-            } else {
-                obj.put("bio", acc.getProfile().getBio());
-            }
+            obj.put("bio", acc.getProfile().getBio());
             obj.put("pfppath", acc.getProfile().getProfileImg());
             obj.put("coverpath", acc.getProfile().getCoverImg());
             usersArray.put(obj);

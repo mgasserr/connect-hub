@@ -27,8 +27,22 @@ public class ViewSuggested extends javax.swing.JFrame {
             public void componentShown(ComponentEvent e) {
                 Database.refreshDatabase();
                 DefaultListModel<String> listModel = new DefaultListModel<>();
-                for (Account user : acc.getFriendsManagement().getSuggestedFriendsCLONED(acc)) {
-                    listModel.addElement(user.getUsername());
+                for (Account user : Database.getAllAccounts()) {
+                    if (user.getUsername().equalsIgnoreCase(acc.getUsername())) {
+
+                    } else if (acc.getFriendsManagement().getFriends().contains(user)) {
+
+                    } else if (acc.getFriendsManagement().getSentFriendRequests().contains(user)) {
+
+                    } else if (acc.getFriendsManagement().getReceivedFriendRequests().contains(user)) {
+
+                    } else if (acc.getFriendsManagement().getBlockedBy().contains(user)) {
+
+                    } else if (acc.getFriendsManagement().getBlockedUsers().contains(user)) {
+
+                    } else {
+                        listModel.addElement(user.getUsername());
+                    }
                 }
                 usersList.setModel(listModel);
             }
@@ -91,9 +105,9 @@ public class ViewSuggested extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+                .addGap(172, 172, 172)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -126,7 +140,7 @@ public class ViewSuggested extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(39, 39, 39)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addGap(86, 86, 86))
         );
 
         pack();

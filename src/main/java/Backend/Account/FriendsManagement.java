@@ -16,17 +16,6 @@ public class FriendsManagement {
         this.acc = acc;
     }
 
-    public ArrayList<Account> getSuggestedFriendsCLONED(Account acc) {
-        ArrayList<Account> clone = new ArrayList<>(Database.getAllAccounts());
-        clone.remove(acc);
-        clone.removeAll(acc.getFriendsManagement().getBlockedBy());
-        clone.removeAll(acc.getFriendsManagement().getFriends());
-        clone.removeAll(acc.getFriendsManagement().getSentFriendRequests());
-        clone.removeAll(acc.getFriendsManagement().getReceivedFriendRequests());
-        clone.removeAll(acc.getFriendsManagement().getBlockedUsers());
-        return clone;
-    }
-
     public ArrayList<Account> getBlockedBy() {
         return BlockedBy;
     }
@@ -52,7 +41,7 @@ public class FriendsManagement {
     }
 
     private void removeFriend(Account friend) {
-        Friends.remove(friend);
+        this.Friends.remove(friend);
     }
 
     public void addReceivedFriendRequest(Account sender) {
@@ -77,7 +66,7 @@ public class FriendsManagement {
 
     public void addBlockedBy(Account friend, Account myacc) {
         this.BlockedBy.add(friend);
-        if (Friends.contains(friend)) {
+        if (myacc.getFriendsManagement().getFriends().contains(friend)) {
             myacc.getFriendsManagement().removeFriend(friend);
         }
     }
@@ -92,7 +81,7 @@ public class FriendsManagement {
 
     public void deleteFriend(Account friend, Account myacc) {
         myacc.getFriendsManagement().removeFriend(friend);
-        friend.getFriendsManagement().removeFriend(acc);
+        friend.getFriendsManagement().removeFriend(myacc);
     }
 
     public void sendFriendRequest(String receiver, String sender) {

@@ -17,9 +17,9 @@ import javax.swing.DefaultListModel;
  * @author Zeina Hazem
  */
 public class ViewFriendsList extends javax.swing.JFrame {
-    
+
     Account acc;
-    
+
     public ViewFriendsList(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -32,7 +32,7 @@ public class ViewFriendsList extends javax.swing.JFrame {
                 Database.refreshDatabase();
                 DefaultListModel<String> listModel = new DefaultListModel<>();
                 for (Account user : acc.getFriendsManagement().getFriends()) {
-                    listModel.addElement(user.getUsername());
+                    listModel.addElement(user.getUsername() + "   " + user.getStatus().toString());
                 }
                 usersList.setModel(listModel);
             }
@@ -76,6 +76,11 @@ public class ViewFriendsList extends javax.swing.JFrame {
         removeButton.setBackground(new java.awt.Color(0, 204, 204));
         removeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         removeButton.setText("REMOVE");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
 
         errorText.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -105,7 +110,7 @@ public class ViewFriendsList extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(226, 226, 226)
                                 .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 235, Short.MAX_VALUE))
+                        .addGap(235, 235, 235))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,11 +146,12 @@ public class ViewFriendsList extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().Block(usersList.getSelectedValue(),acc.getUsername());
+            acc.getFriendsManagement().Block(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Account blocked!");
+            Database.refreshDatabase();
         }
     }//GEN-LAST:event_blockButtonActionPerformed
 
@@ -156,6 +162,23 @@ public class ViewFriendsList extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        // TODO add your handling code here:
+        errorText.setText("");
+        int i = usersList.getSelectedIndex();
+        if (i == -1) {
+            errorText.setForeground(Color.red);
+            errorText.setText("No accounts selected");
+        } else {
+            acc.getFriendsManagement().deleteFriend(Database.getAccount(usersList.getSelectedValue()), acc);
+            this.setVisible(false);
+            this.setVisible(true);
+            errorText.setForeground(Color.black);
+            errorText.setText("Friend removed!");
+            Database.refreshDatabase();
+        }
+    }//GEN-LAST:event_removeButtonActionPerformed
 
     /**
      * @param args the command line arguments

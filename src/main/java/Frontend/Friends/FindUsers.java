@@ -156,7 +156,7 @@ public class FindUsers extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 39, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -195,9 +195,22 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("Search field is empty");
         } else {
+            Database.refreshDatabase();
             DefaultListModel<String> listModel = new DefaultListModel<>();
-            for (Account user : acc.getFriendsManagement().getSuggestedFriendsCLONED(acc)) {
-                if (user.getUsername().startsWith(searchText.getText())) {
+            for (Account user : Database.getAllAccounts()) {
+                if (user.getUsername().equalsIgnoreCase(acc.getUsername())) {
+
+                } else if (acc.getFriendsManagement().getFriends().contains(user)) {
+
+                } else if (acc.getFriendsManagement().getSentFriendRequests().contains(user)) {
+
+                } else if (acc.getFriendsManagement().getReceivedFriendRequests().contains(user)) {
+
+                } else if (acc.getFriendsManagement().getBlockedBy().contains(user)) {
+
+                } else if (acc.getFriendsManagement().getBlockedUsers().contains(user)) {
+
+                } else {
                     listModel.addElement(user.getUsername());
                 }
             }
@@ -213,11 +226,12 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(),acc.getUsername());
+            acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Friend request sent!");
+            Database.refreshDatabase();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -228,11 +242,12 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
-            acc.getFriendsManagement().Block(usersList.getSelectedValue(),acc.getUsername());
+            acc.getFriendsManagement().Block(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Account blocked!");
+            Database.refreshDatabase();
         }
     }//GEN-LAST:event_blockButtonActionPerformed
 
