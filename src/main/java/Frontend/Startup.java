@@ -191,6 +191,8 @@ public class Startup extends javax.swing.JFrame {
                     Home homewindow = new Home(acc);
                     homewindow.setVisible(true);
                     Startup.this.setVisible(false);
+                    ContentGUI C= new ContentGUI(acc);
+                    C.setVisible(true);
                 }
             };
             worker.execute();
