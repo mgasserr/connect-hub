@@ -189,7 +189,7 @@ public class ViewFriendsList extends javax.swing.JFrame {
             } else if (usernamelist.contains("-OFFLINE")) {
                 usernamelist = usernamelist.replace("-OFFLINE", "");
             }
-            acc.getFriendsManagement().deleteFriend(Database.getAccount(usernamelist), acc);
+            acc.getFriendsManagement().deleteFriend(usernamelist, acc.getUsername());
             Database.refreshDatabase();
             this.setVisible(false);
             this.setVisible(true);

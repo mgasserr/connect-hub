@@ -79,9 +79,9 @@ public class FriendsManagement {
         this.BlockedUsers.remove(user);
     }
 
-    public void deleteFriend(Account friend, Account myacc) {
-        myacc.getFriendsManagement().removeFriend(friend);
-        friend.getFriendsManagement().removeFriend(myacc);
+    public void deleteFriend(String friend, String myacc) {
+        Database.getAccount(myacc).getFriendsManagement().removeFriend(Database.getAccount(friend));
+        Database.getAccount(friend).getFriendsManagement().removeFriend(Database.getAccount(myacc));
     }
 
     public void sendFriendRequest(String receiver, String sender) {
