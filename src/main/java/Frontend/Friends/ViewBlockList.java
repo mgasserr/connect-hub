@@ -5,6 +5,7 @@
 package Frontend.Friends;
 
 import Backend.Account.Account;
+import Backend.Databases.Database;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -27,6 +28,7 @@ public class ViewBlockList extends javax.swing.JFrame {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
+                Database.refreshDatabase();
                 DefaultListModel<String> listModel = new DefaultListModel<>();
                 for (Account user : acc.getFriendsManagement().getBlockedUsers()) {
                     listModel.addElement(user.getUsername());
