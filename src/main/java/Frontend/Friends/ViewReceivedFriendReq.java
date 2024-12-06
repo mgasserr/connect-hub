@@ -4,17 +4,35 @@
  */
 package Frontend.Friends;
 
+import Backend.Account.Account;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Zeina Hazem
  */
 public class ViewReceivedFriendReq extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ViewFriendReq
-     */
-    public ViewReceivedFriendReq() {
+    Account acc;
+
+    public ViewReceivedFriendReq(Account acc) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
+        this.acc = acc;
+        errorText.setText("");
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for (Account user : acc.getFriendsManagement().getReceivedFriendRequests()) {
+                    listModel.addElement(user.getUsername());
+                }
+                usersList.setModel(listModel);
+            }
+        });
     }
 
     /**
@@ -28,9 +46,10 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        reqlistText = new javax.swing.JList<>();
+        usersList = new javax.swing.JList<>();
         declineButton = new javax.swing.JButton();
         acceptButton = new javax.swing.JButton();
+        errorText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Friend Requests");
@@ -38,64 +57,86 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("View Friend Requests");
 
-        reqlistText.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(reqlistText);
+        jScrollPane1.setViewportView(usersList);
 
         declineButton.setBackground(new java.awt.Color(0, 204, 204));
         declineButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         declineButton.setText("DECLINE");
+        declineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                declineButtonActionPerformed(evt);
+            }
+        });
 
         acceptButton.setBackground(new java.awt.Color(0, 204, 204));
         acceptButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         acceptButton.setText("ACCEPT");
+        acceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptButtonActionPerformed(evt);
+            }
+        });
+
+        errorText.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(declineButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(acceptButton))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(declineButton)
+                                .addGap(59, 59, 59)
+                                .addComponent(acceptButton))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(233, 233, 233)
+                        .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(18, 18, 18)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(declineButton)
                     .addComponent(acceptButton))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
+        // TODO add your handling code here:
+        asdasd;
+    }//GEN-LAST:event_acceptButtonActionPerformed
+
+    private void declineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_declineButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptButton;
     private javax.swing.JButton declineButton;
+    private javax.swing.JLabel errorText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> reqlistText;
+    private javax.swing.JList<String> usersList;
     // End of variables declaration//GEN-END:variables
 }

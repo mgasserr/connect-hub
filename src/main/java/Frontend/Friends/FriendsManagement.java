@@ -40,6 +40,7 @@ public class FriendsManagement extends javax.swing.JFrame {
         viewblockButton = new javax.swing.JButton();
         viewsentreqButton = new javax.swing.JButton();
         Home = new javax.swing.JButton();
+        viewsuggestedButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Friends Management");
@@ -104,6 +105,15 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
+        viewsuggestedButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewsuggestedButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        viewsuggestedButton.setText("VIEW SUGGESTED FRIENDS");
+        viewsuggestedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewsuggestedButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +130,8 @@ public class FriendsManagement extends javax.swing.JFrame {
                             .addComponent(viewlistButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(viewreceivedreqButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(viewsentreqButton)))
+                            .addComponent(viewsentreqButton, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewsuggestedButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Home)))
@@ -135,15 +146,17 @@ public class FriendsManagement extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(36, 36, 36)
                 .addComponent(addButton)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(viewsentreqButton)
-                .addGap(44, 44, 44)
+                .addGap(18, 18, 18)
                 .addComponent(viewreceivedreqButton)
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
                 .addComponent(viewlistButton)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addComponent(viewblockButton)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(viewsuggestedButton)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,6 +209,13 @@ public class FriendsManagement extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
 
+    private void viewsuggestedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewsuggestedButtonActionPerformed
+        // TODO add your handling code here:
+        ViewSuggested window = new ViewSuggested(acc);
+        window.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_viewsuggestedButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,5 +228,6 @@ public class FriendsManagement extends javax.swing.JFrame {
     private javax.swing.JButton viewlistButton;
     private javax.swing.JButton viewreceivedreqButton;
     private javax.swing.JButton viewsentreqButton;
+    private javax.swing.JButton viewsuggestedButton;
     // End of variables declaration//GEN-END:variables
 }
