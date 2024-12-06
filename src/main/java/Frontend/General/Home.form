@@ -139,7 +139,7 @@
     <Component class="javax.swing.JButton" name="Profile">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Frontend/Images/account.png"/>
+          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\src\main\java\Frontend\Images\account.png"/>
         </Property>
       </Properties>
       <Events>

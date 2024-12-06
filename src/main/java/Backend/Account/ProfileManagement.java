@@ -17,8 +17,8 @@ public class ProfileManagement {
 
     public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
         this.acc = acc;
-        this.ProfileImg = ProfileImg;
-        this.CoverImg = CoverImg;
+        this.ProfileImg = new ImageIcon("ImagesDatabase/Default/profile.png");
+        this.CoverImg = new ImageIcon("ImagesDatabase/Default/cover.jpg");
         this.Bio = Bio;
     }
 
@@ -29,12 +29,16 @@ public class ProfileManagement {
     public void setProfileImg(String Imgpath) {
         this.ProfileImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase//ProfilePicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase/ProfilePicture/" + acc.getUserId() + ".png");
         try {
+            // Ensure the destination directory exists
+            Files.createDirectories(dest.getParent());
+            // Copy the file
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
-            Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, "Error copying profile image", ex);
         }
+
     }
 
     public ImageIcon getCoverImg() {
@@ -44,7 +48,7 @@ public class ProfileManagement {
     public void setCoverImg(String Imgpath) {
         this.CoverImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase//CoverPicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase/CoverPicture/" + acc.getUserId() + ".png");
         try {
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {

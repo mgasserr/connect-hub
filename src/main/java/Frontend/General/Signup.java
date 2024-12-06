@@ -218,17 +218,21 @@ public class Signup extends javax.swing.JFrame {
                 switch (Register.getInstance().signUp(email, username, password, LocalDate.of(year, month, day))) {
                     case "INVALIDEMAIL":
                         JOptionPane.showMessageDialog(this, "Invalid email format!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case "INVALIDDOB":
                         JOptionPane.showMessageDialog(this, "You must be above 13 years old!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case "EMAILUSED":
                         JOptionPane.showMessageDialog(this, "This email is already used!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case "USERUSED":
                         JOptionPane.showMessageDialog(this, "This username is already used!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        break;
                     case "SIGNUPDONE":
+                        Startup S = new Startup();
+                        S.setVisible(true);
+                        this.setVisible(false);
                 }
-                Startup S = new Startup();
-                S.setVisible(true);
-                this.setVisible(false);
             } catch (DateTimeException e) {
                 errorText.setText("Invalid day of month!");
             } catch (NoSuchAlgorithmException ex) {

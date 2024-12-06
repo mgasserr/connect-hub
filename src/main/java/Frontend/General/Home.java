@@ -85,7 +85,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Profile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/account.png"))); // NOI18N
+        Profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\src\\main\\java\\Frontend\\Images\\account.png")); // NOI18N
         Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProfileActionPerformed(evt);
@@ -165,46 +165,12 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        //REFRESH AND GOES BACK TO HOME
-        Database.refreshDatabase();
-        Home home = new Home(acc);
-        home.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_HomeActionPerformed
-
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
         //GOES TO PROFILE
         MyProfile p = new MyProfile(acc);
         p.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ProfileActionPerformed
-
-    private void FriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendsActionPerformed
-        //GOES TO FRIENDS MANAGMENT
-        FriendsManagement f = new FriendsManagement(acc);
-        f.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_FriendsActionPerformed
-
-    private void NewContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewContentActionPerformed
-        //ADD NEW CONTENT
-        AddContent c = new AddContent(acc);
-        c.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_NewContentActionPerformed
-
-    private void SettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsActionPerformed
-        //GOES TO SETTINGS
-        Settings s = new Settings(acc);
-        s.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_SettingsActionPerformed
-
-    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
-        Register.getInstance().logout(acc);
-        this.setVisible(false);
-    }//GEN-LAST:event_LogOutActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Register.getInstance().logout(acc);
@@ -220,6 +186,40 @@ public class Home extends javax.swing.JFrame {
             DisplayContent c = new DisplayContent(acc, temp);
         }
     }//GEN-LAST:event_ViewActionPerformed
+
+    private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
+        Register.getInstance().logout(acc);
+        this.setVisible(false);
+    }//GEN-LAST:event_LogOutActionPerformed
+
+    private void SettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsActionPerformed
+        //GOES TO SETTINGS
+        Settings s = new Settings(acc);
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_SettingsActionPerformed
+
+    private void NewContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewContentActionPerformed
+        //ADD NEW CONTENT
+        AddContent c = new AddContent(acc);
+        c.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_NewContentActionPerformed
+
+    private void FriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendsActionPerformed
+        //GOES TO FRIENDS MANAGMENT
+        //        FriendsManagement f = new FriendsManagement(acc);
+        //        f.setVisible(true);
+        //        this.setVisible(false);
+    }//GEN-LAST:event_FriendsActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        //REFRESH AND GOES BACK TO HOME
+        Database.refreshDatabase();
+        Home home = new Home(acc);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_HomeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -24,7 +24,7 @@
       "userid": "0003",
       "email": "1@gamil.com",
       "username": "1",
-      "status": "ONLINE"
+      "status": "OFFLINE"
    },
    {
       "password": "aaa",
@@ -60,6 +60,15 @@
       "userid": "0007",
       "email": "ss@gmail.com",
       "username": "sss",
+      "status": "ONLINE"
+   },
+   {
+      "password": "YsZqel3XDDFGYYBjw0TlMebUtZ43mAhEPOlis6vWPFo=",
+      "dob": "1935-01-01",
+      "bio": "",
+      "userid": "0008",
+      "email": "m@gmail.com",
+      "username": "mohamed",
       "status": "ONLINE"
    }
 ]

@@ -15,9 +15,9 @@ public class MyProfile extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
-        profilepic.setIcon(new ImageIcon(acc.getProfile().getProfileImg().toString()));
-        coverpic.setIcon(new ImageIcon(acc.getProfile().getCoverImg().toString()));
-        bioText.setText(acc.getProfile().getBio());
+        profilepic.setIcon(this.acc.getProfile().getProfileImg());
+        coverpic.setIcon(this.acc.getProfile().getCoverImg());
+        bioText.setText(this.acc.getProfile().getBio());
 
         DefaultListModel<String> postsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
         for (int j = 0; j < acc.getContentManagement().getContent().size(); j++) {
@@ -190,7 +190,7 @@ public class MyProfile extends javax.swing.JFrame {
 
     private void DeletePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePostActionPerformed
         int i = postsList.getSelectedIndex();
-        
+
     }//GEN-LAST:event_DeletePostActionPerformed
 
     private void ViewFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFriendsActionPerformed
