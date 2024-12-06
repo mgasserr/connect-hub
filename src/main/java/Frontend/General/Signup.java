@@ -1,8 +1,12 @@
 package Frontend.General;
 
 import Backend.Account.Account;
+<<<<<<< Updated upstream
 import Backend.Authentication.Register;
 import Backend.Authentication.Validations;
+=======
+import Frontend.General.Startup;
+>>>>>>> Stashed changes
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.security.NoSuchAlgorithmException;
