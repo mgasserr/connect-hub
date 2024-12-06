@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package Frontend.Friends;
+package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
@@ -123,7 +119,7 @@ public class ViewBlockList extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().Unblock(blocklistText.getSelectedValue());
+            acc.getFriendsManagement().Unblock(blocklistText.getSelectedValue(),acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);

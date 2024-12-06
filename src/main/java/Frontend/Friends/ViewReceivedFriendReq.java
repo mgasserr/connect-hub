@@ -1,4 +1,4 @@
-package Frontend.Friends;
+package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
@@ -137,7 +137,7 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
-            acc.getFriendsManagement().acceptFriendRequest(usersList.getSelectedValue());
+            acc.getFriendsManagement().acceptFriendRequest(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
@@ -152,7 +152,7 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
-            acc.getFriendsManagement().declineFriendRequest(usersList.getSelectedValue());
+            acc.getFriendsManagement().declineFriendRequest(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);

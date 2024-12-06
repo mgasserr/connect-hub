@@ -1,4 +1,4 @@
-package Frontend.General;
+package frontend.general;
 
 import Backend.Account.Account;
 import Backend.Feed.*;
@@ -66,7 +66,6 @@ public class AddContent extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("ENTER CAPTION");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("How would you like your picture to be posted?");
 
         PostorStory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Post", "Story" }));

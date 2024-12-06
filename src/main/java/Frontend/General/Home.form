@@ -137,11 +137,6 @@
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Profile">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="C:\Users\LEGION\Documents\GitHub\Connect-Hub\src\main\java\Frontend\Images\account.png"/>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ProfileActionPerformed"/>
       </Events>

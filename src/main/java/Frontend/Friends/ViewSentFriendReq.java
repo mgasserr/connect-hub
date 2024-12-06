@@ -1,4 +1,4 @@
-package Frontend.Friends;
+package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;

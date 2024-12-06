@@ -1,9 +1,9 @@
-package Frontend.Friends;
+package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import Frontend.General.Home;
+import frontend.general.Home;
 
 /**
  *

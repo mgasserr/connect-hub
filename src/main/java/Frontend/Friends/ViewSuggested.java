@@ -1,8 +1,8 @@
-package Frontend.Friends;
+package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
-import Frontend.General.Home;
+import frontend.general.Home;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -143,7 +143,7 @@ public class ViewSuggested extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
-            acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue());
+            acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
@@ -166,7 +166,7 @@ public class ViewSuggested extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().Block(usersList.getSelectedValue());
+            acc.getFriendsManagement().Block(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);

@@ -1,4 +1,4 @@
-package Frontend.General;
+package frontend.general;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;

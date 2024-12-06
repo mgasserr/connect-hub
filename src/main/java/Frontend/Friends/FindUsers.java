@@ -1,12 +1,10 @@
-package Frontend.Friends;
+package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import Frontend.General.Home;
+import frontend.general.Home;
 import java.awt.Color;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import javax.swing.DefaultListModel;
 
 /**
@@ -36,15 +34,6 @@ public class FindUsers extends javax.swing.JFrame {
                 if (searchText.getText().isEmpty()) {
                     searchText.setText("Search...");
                 }
-            }
-        });
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                Database.refreshDatabase();
-                errorText.setText("");
-                searchText.setText("");
-                usersList.removeAll();
             }
         });
     }
@@ -224,7 +213,7 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue());
+            acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(),acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
@@ -239,7 +228,7 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
-            acc.getFriendsManagement().Block(usersList.getSelectedValue());
+            acc.getFriendsManagement().Block(usersList.getSelectedValue(),acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);

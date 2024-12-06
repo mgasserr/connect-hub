@@ -1,7 +1,5 @@
-package Frontend.General;
+package frontend.general;
 
-import Frontend.General.Signup;
-import Frontend.General.Home;
 import Backend.Account.Account;
 import Backend.Databases.*;
 import Backend.Authentication.Register;
@@ -60,7 +58,6 @@ public class Startup extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 1, 24)); // NOI18N
         jLabel1.setText("CONNECT HUB");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Welcome Back! Please enter your Username and Password");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -75,7 +72,6 @@ public class Startup extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("PASSWORD");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("Don't have an account? Sign up!");
 
         SignupButton.setBackground(new java.awt.Color(0, 204, 204));

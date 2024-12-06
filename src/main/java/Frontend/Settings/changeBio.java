@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend.Settings;
+package frontend.settings;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
-import Frontend.General.Home;
+import frontend.general.Home;
 
 /**
  *

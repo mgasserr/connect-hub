@@ -1,10 +1,10 @@
-package Frontend.General;
+package frontend.general;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import Frontend.Friends.FriendsManagement;
-import Frontend.Settings.Settings;
+import frontend.friends.FriendsManagement;
+import frontend.settings.Settings;
 import java.lang.String;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -85,7 +85,6 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Profile.setIcon(new javax.swing.ImageIcon("C:\\Users\\LEGION\\Documents\\GitHub\\Connect-Hub\\src\\main\\java\\Frontend\\Images\\account.png")); // NOI18N
         Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProfileActionPerformed(evt);
