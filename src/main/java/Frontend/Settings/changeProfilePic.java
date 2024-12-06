@@ -5,6 +5,7 @@
 package Frontend.Settings;
 
 import Backend.Account.Account;
+import Backend.Databases.Database;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -44,6 +45,11 @@ public class changeProfilePic extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Profile Picture");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         choosepicButton.setBackground(new java.awt.Color(0, 204, 204));
         choosepicButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -127,6 +133,10 @@ public class changeProfilePic extends javax.swing.JFrame {
             S.setVisible(true);
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       Database.saveAll();
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

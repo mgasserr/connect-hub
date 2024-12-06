@@ -8,9 +8,12 @@ import Backend.Authentication.Register;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 
 public class Startup extends javax.swing.JFrame {
+
+    Account acc = null;
 
     public Startup() {
         initComponents();
@@ -174,31 +177,36 @@ public class Startup extends javax.swing.JFrame {
     }//GEN-LAST:event_usernameTextActionPerformed
 
     private void LoginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginButtonActionPerformed
-        // TODO add your handling code here:
         String username = usernameText.getText();
         String password = passwordText.getText();
-        Account acc = Register.getInstance().signIn(username, password);
-        if (acc == null) {
-            loginerrorLabel.setText("Wrong username/password");
+        //CHECKS IF THE INPUTS ARE EMPTY
+        if (usernameText.getText().equals("") || passwordText.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Some feilds are empty!", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
-            loginerrorLabel.setForeground(Color.black);
-            loginerrorLabel.setText("Logging in...");
-            SwingWorker<Void, Void> worker = new SwingWorker<>() {
-                @Override
-                protected Void doInBackground() throws Exception {
-                    Thread.sleep(250);
-                    return null;
-                }
+            acc = Register.getInstance().signIn(username, password);
+            if (acc == null) {
+                loginerrorLabel.setText("Wrong username/password");
+            } else {
+                loginerrorLabel.setForeground(Color.black);
+                loginerrorLabel.setText("Logging in...");
+                SwingWorker<Void, Void> worker = new SwingWorker<>() {
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        Thread.sleep(250);
+                        return null;
+                    }
 
-                @Override
-                protected void done() {
-                    Home homewindow = new Home(acc);
-                    homewindow.setVisible(true);
-                    Startup.this.setVisible(false);
-                }
-            };
-            worker.execute();
+                    @Override
+                    protected void done() {
+                        Home homewindow = new Home(acc);
+                        homewindow.setVisible(true);
+                        Startup.this.setVisible(false);
+                    }
+                };
+                worker.execute();
+            }
         }
+
 
     }//GEN-LAST:event_LoginButtonActionPerformed
 
