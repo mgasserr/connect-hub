@@ -1,4 +1,4 @@
-package Frontend;
+package Frontend.General;
 
 import Backend.Account.Account;
 import java.awt.event.ComponentAdapter;

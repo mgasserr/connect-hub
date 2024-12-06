@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package Frontend.Friends;
 
 /**
  *
  * @author Zeina Hazem
  */
-public class ViewFriendReq extends javax.swing.JFrame {
+public class ViewFriendsList extends javax.swing.JFrame {
 
     /**
-     * Creates new form ViewFriendReq
+     * Creates new form ViewFriendsList
      */
-    public ViewFriendReq() {
+    public ViewFriendsList() {
         initComponents();
     }
 
@@ -26,32 +26,32 @@ public class ViewFriendReq extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        blockButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        reqlistText = new javax.swing.JList<>();
-        declineButton = new javax.swing.JButton();
-        acceptButton = new javax.swing.JButton();
+        friendslistText = new javax.swing.JList<>();
+        removeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Friend Requests");
+        setTitle("Friends List");
+
+        blockButton.setBackground(new java.awt.Color(0, 204, 204));
+        blockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        blockButton.setText("BLOCK");
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
-        jLabel1.setText("View Friend Requests");
+        jLabel1.setText("    View Friends List");
 
-        reqlistText.setModel(new javax.swing.AbstractListModel<String>() {
+        friendslistText.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(reqlistText);
+        jScrollPane1.setViewportView(friendslistText);
 
-        declineButton.setBackground(new java.awt.Color(0, 204, 204));
-        declineButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        declineButton.setText("DECLINE");
-
-        acceptButton.setBackground(new java.awt.Color(0, 204, 204));
-        acceptButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        acceptButton.setText("ACCEPT");
+        removeButton.setBackground(new java.awt.Color(0, 204, 204));
+        removeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        removeButton.setText("REMOVE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -63,11 +63,11 @@ public class ViewFriendReq extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(declineButton)
+                            .addComponent(removeButton)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(acceptButton))
+                            .addComponent(blockButton))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,9 +78,9 @@ public class ViewFriendReq extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(declineButton)
-                    .addComponent(acceptButton))
-                .addContainerGap(52, Short.MAX_VALUE))
+                    .addComponent(removeButton)
+                    .addComponent(blockButton))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -92,10 +92,10 @@ public class ViewFriendReq extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton acceptButton;
-    private javax.swing.JButton declineButton;
+    private javax.swing.JButton blockButton;
+    private javax.swing.JList<String> friendslistText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> reqlistText;
+    private javax.swing.JButton removeButton;
     // End of variables declaration//GEN-END:variables
 }
