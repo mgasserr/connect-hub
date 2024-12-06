@@ -6,15 +6,13 @@ import javax.swing.ImageIcon;
 
 public class DisplayContent extends javax.swing.JFrame {
 
-    Home h;
     String[] temp;
     Account acc;
 
-    public DisplayContent(Home h, Account acc, String[] temp) {
+    public DisplayContent(Account acc, String[] temp) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
-        this.h = h;
         this.acc = acc;
         this.temp = temp;
         Time.setText(temp[1]);
