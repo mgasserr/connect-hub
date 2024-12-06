@@ -27,7 +27,11 @@ public class ProfileManagement {
         } else {
             this.CoverImg = CoverImg;
         }
-        this.Bio = Bio;
+        if (Bio == null) {
+            this.Bio = "";
+        } else {
+            this.Bio = Bio;
+        }
     }
 
     public ImageIcon getProfileImg() {
