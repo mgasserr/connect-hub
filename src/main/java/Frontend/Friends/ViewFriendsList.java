@@ -4,17 +4,36 @@
  */
 package Frontend.Friends;
 
+import Backend.Account.Account;
+import java.awt.Color;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Zeina Hazem
  */
 public class ViewFriendsList extends javax.swing.JFrame {
-
-    /**
-     * Creates new form ViewFriendsList
-     */
-    public ViewFriendsList() {
+    
+    Account acc;
+    
+    public ViewFriendsList(Account acc) {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
+        this.acc = acc;
+        errorText.setText("");
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentShown(ComponentEvent e) {
+                DefaultListModel<String> listModel = new DefaultListModel<>();
+                for (Account user : acc.getFriendsManagement().getFriends()) {
+                    listModel.addElement(user.getUsername());
+                }
+                usersList.setModel(listModel);
+            }
+        });
     }
 
     /**
@@ -29,8 +48,9 @@ public class ViewFriendsList extends javax.swing.JFrame {
         blockButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        friendslistText = new javax.swing.JList<>();
+        usersList = new javax.swing.JList<>();
         removeButton = new javax.swing.JButton();
+        errorText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Friends List");
@@ -38,35 +58,42 @@ public class ViewFriendsList extends javax.swing.JFrame {
         blockButton.setBackground(new java.awt.Color(0, 204, 204));
         blockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         blockButton.setText("BLOCK");
+        blockButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blockButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("    View Friends List");
 
-        friendslistText.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(friendslistText);
+        jScrollPane1.setViewportView(usersList);
 
         removeButton.setBackground(new java.awt.Color(0, 204, 204));
         removeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         removeButton.setText("REMOVE");
+
+        errorText.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(200, 200, 200)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(removeButton)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(blockButton))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(removeButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(blockButton))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -76,7 +103,9 @@ public class ViewFriendsList extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(10, 10, 10)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(removeButton)
                     .addComponent(blockButton))
@@ -86,16 +115,31 @@ public class ViewFriendsList extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
+        errorText.setText("");
+        int i = usersList.getSelectedIndex();
+        if (i == -1) {
+            errorText.setForeground(Color.red);
+            errorText.setText("No accounts selected");
+        } else {
+            acc.getFriendsManagement().Block(usersList.getSelectedValue());
+            this.setVisible(false);
+            this.setVisible(true);
+            errorText.setForeground(Color.black);
+            errorText.setText("Account blocked!");
+        }
+    }//GEN-LAST:event_blockButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton blockButton;
-    private javax.swing.JList<String> friendslistText;
+    private javax.swing.JLabel errorText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton removeButton;
+    private javax.swing.JList<String> usersList;
     // End of variables declaration//GEN-END:variables
 }

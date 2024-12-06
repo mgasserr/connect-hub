@@ -43,6 +43,7 @@ public class Register {
 
         Account A = new Account(Email, Username, Hashpass, DOB);
         Database.addNewAccount(A);
+        Database.refreshDatabase();
         return "SIGNUPDONE";
     }
 

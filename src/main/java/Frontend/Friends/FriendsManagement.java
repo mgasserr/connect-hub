@@ -4,17 +4,24 @@
  */
 package Frontend.Friends;
 
+import Backend.Account.Account;
+import Backend.Authentication.Register;
+import Backend.Databases.Database;
+import Frontend.General.Home;
+
 /**
  *
  * @author Zeina Hazem
  */
 public class FriendsManagement extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FriendsManagement
-     */
+    Account acc;
+
     public FriendsManagement() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
+        this.acc = acc;
     }
 
     /**
@@ -28,14 +35,20 @@ public class FriendsManagement extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
-        removeButton = new javax.swing.JButton();
-        viewreqButton = new javax.swing.JButton();
+        viewreceivedreqButton = new javax.swing.JButton();
         viewlistButton = new javax.swing.JButton();
         viewblockButton = new javax.swing.JButton();
-        blockButton = new javax.swing.JButton();
+        viewsentreqButton = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
+        viewsuggestedButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Friends Management");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("Friends Management");
@@ -49,21 +62,12 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
-        removeButton.setBackground(new java.awt.Color(0, 204, 204));
-        removeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        removeButton.setText("REMOVE FRIEND");
-        removeButton.addActionListener(new java.awt.event.ActionListener() {
+        viewreceivedreqButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewreceivedreqButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        viewreceivedreqButton.setText("VIEW RECEIVED FRIEND REQUESTS");
+        viewreceivedreqButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonActionPerformed(evt);
-            }
-        });
-
-        viewreqButton.setBackground(new java.awt.Color(0, 204, 204));
-        viewreqButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        viewreqButton.setText("VIEW FRIEND REQUESTS");
-        viewreqButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewreqButtonActionPerformed(evt);
+                viewreceivedreqButtonActionPerformed(evt);
             }
         });
 
@@ -85,12 +89,28 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
-        blockButton.setBackground(new java.awt.Color(0, 204, 204));
-        blockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        blockButton.setText("BLOCK");
-        blockButton.addActionListener(new java.awt.event.ActionListener() {
+        viewsentreqButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewsentreqButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        viewsentreqButton.setText("VIEW PENDING FRIEND REQUESTS");
+        viewsentreqButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                blockButtonActionPerformed(evt);
+                viewsentreqButtonActionPerformed(evt);
+            }
+        });
+
+        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/home.png"))); // NOI18N
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
+        viewsuggestedButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewsuggestedButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        viewsuggestedButton.setText("VIEW SUGGESTED FRIENDS");
+        viewsuggestedButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewsuggestedButtonActionPerformed(evt);
             }
         });
 
@@ -104,75 +124,110 @@ public class FriendsManagement extends javax.swing.JFrame {
                         .addGap(214, 214, 214)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(blockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewblockButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewlistButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(viewreqButton))))
-                .addContainerGap(232, Short.MAX_VALUE))
+                        .addGap(200, 200, 200)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(viewblockButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewlistButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewreceivedreqButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewsentreqButton, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(viewsuggestedButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Home)))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addContainerGap()
+                .addComponent(Home)
+                .addGap(9, 9, 9)
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(addButton)
-                .addGap(34, 34, 34)
-                .addComponent(removeButton)
                 .addGap(36, 36, 36)
-                .addComponent(viewreqButton)
-                .addGap(30, 30, 30)
+                .addComponent(addButton)
+                .addGap(18, 18, 18)
+                .addComponent(viewsentreqButton)
+                .addGap(18, 18, 18)
+                .addComponent(viewreceivedreqButton)
+                .addGap(18, 18, 18)
                 .addComponent(viewlistButton)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(viewblockButton)
-                .addGap(32, 32, 32)
-                .addComponent(blockButton)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(viewsuggestedButton)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        FindUsers window = new FindUsers(acc);
+        window.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_addButtonActionPerformed
 
-    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+    private void viewreceivedreqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewreceivedreqButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_removeButtonActionPerformed
-
-    private void viewreqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewreqButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewreqButtonActionPerformed
+        ViewReceivedFriendReq window = new ViewReceivedFriendReq(acc);
+        window.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_viewreceivedreqButtonActionPerformed
 
     private void viewlistButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewlistButtonActionPerformed
         // TODO add your handling code here:
+        ViewFriendsList window = new ViewFriendsList(acc);
+        window.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_viewlistButtonActionPerformed
 
     private void viewblockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewblockButtonActionPerformed
         // TODO add your handling code here:
+        ViewBlockList window = new ViewBlockList(acc);
+        window.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_viewblockButtonActionPerformed
 
-    private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
+    private void viewsentreqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewsentreqButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_blockButtonActionPerformed
+        ViewSentFriendReq window = new ViewSentFriendReq(acc);
+        window.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_viewsentreqButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Register.getInstance().logout(acc);
+    }//GEN-LAST:event_formWindowClosing
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Database.refreshDatabase();
+        Home home = new Home(acc);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_HomeActionPerformed
+
+    private void viewsuggestedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewsuggestedButtonActionPerformed
+        // TODO add your handling code here:
+        ViewSuggested window = new ViewSuggested(acc);
+        window.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_viewsuggestedButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
     private javax.swing.JButton addButton;
-    private javax.swing.JButton blockButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton removeButton;
     private javax.swing.JButton viewblockButton;
     private javax.swing.JButton viewlistButton;
-    private javax.swing.JButton viewreqButton;
+    private javax.swing.JButton viewreceivedreqButton;
+    private javax.swing.JButton viewsentreqButton;
+    private javax.swing.JButton viewsuggestedButton;
     // End of variables declaration//GEN-END:variables
 }

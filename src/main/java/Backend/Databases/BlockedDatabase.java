@@ -27,6 +27,9 @@ public class BlockedDatabase extends Database {
     @Override
     protected void read() { //read blocked users from blocked.json
         try {
+            for (Account account : accounts) {
+                account.getFriendsManagement().getBlockedUsers().removeAll(account.getFriendsManagement().getBlockedUsers());
+            }
             String jsonstring = new String(Files.readAllBytes(Paths.get("blocked.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
             for (int i = 0; i < fileArray.length(); i++) {
@@ -35,7 +38,7 @@ public class BlockedDatabase extends Database {
                 int friendscount = userJson.getInt("blockedcount");
                 for (int j = 1; j <= friendscount; j++) {
                     String blockedid = userJson.getString("blocked" + j);
-                    getAccountbyID(userid).getFriendsManagement().addBlockedUser(getAccountbyID(blockedid));
+                    getAccountbyID(userid).getFriendsManagement().Block(getAccountbyID(blockedid).getUsername());
                 }
             }
         } catch (IOException ex) {

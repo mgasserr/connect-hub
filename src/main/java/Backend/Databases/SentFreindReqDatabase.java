@@ -28,6 +28,9 @@ public class SentFreindReqDatabase extends Database {
     @Override
     protected void read() {
         try {
+            for (Account account : accounts) {
+                account.getFriendsManagement().getSentFriendRequests().removeAll(account.getFriendsManagement().getSentFriendRequests());
+            }
             String jsonstring = new String(Files.readAllBytes(Paths.get("sentfriendrequests.json")));
             JSONArray fileArray = new JSONArray(jsonstring);
             for (int i = 0; i < fileArray.length(); i++) {
