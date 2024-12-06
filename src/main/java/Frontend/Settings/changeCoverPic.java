@@ -6,6 +6,7 @@ package Frontend.Settings;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
+import Frontend.General.Home;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -37,6 +38,7 @@ public class changeCoverPic extends javax.swing.JFrame {
         confirmButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         pictureLabel = new javax.swing.JLabel();
+        Home = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Cover Picture");
@@ -67,10 +69,21 @@ public class changeCoverPic extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel2.setText("Change Cover Picture");
 
+        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/home.png"))); // NOI18N
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -81,19 +94,22 @@ public class changeCoverPic extends javax.swing.JFrame {
                                 .addComponent(confirmButton))
                             .addComponent(choosepicButton)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
+                        .addGap(19, 19, 19)
+                        .addComponent(Home)
+                        .addGap(156, 156, 156)
                         .addComponent(jLabel2)))
                 .addContainerGap(217, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(pictureLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(Home)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(choosepicButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -135,12 +151,21 @@ public class changeCoverPic extends javax.swing.JFrame {
         Database.saveAll();
     }//GEN-LAST:event_formWindowClosing
 
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Database.refreshDatabase();
+        Home home = new Home(acc);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_HomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
     private javax.swing.JButton choosepicButton;
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel jLabel2;

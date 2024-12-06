@@ -6,6 +6,7 @@ package Frontend.Settings;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
+import Frontend.General.Home;
 
 /**
  *
@@ -33,6 +34,7 @@ public class changeBio extends javax.swing.JFrame {
         captionText = new javax.swing.JTextArea();
         confirmButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        Home = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Bio");
@@ -61,6 +63,13 @@ public class changeBio extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel2.setText("Change Bio");
 
+        Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Frontend/Images/home.png"))); // NOI18N
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,13 +88,18 @@ public class changeBio extends javax.swing.JFrame {
                             .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(238, 238, 238)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(Home)))
                 .addContainerGap(173, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(14, 14, 14)
+                .addComponent(Home)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jLabel1)
@@ -114,12 +128,21 @@ public class changeBio extends javax.swing.JFrame {
         Database.saveAll();
     }//GEN-LAST:event_formWindowClosing
 
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Database.refreshDatabase();
+        Home home = new Home(acc);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_HomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Home;
     private javax.swing.JTextArea captionText;
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel jLabel1;
