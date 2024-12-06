@@ -205,7 +205,7 @@ public class MyProfile extends javax.swing.JFrame {
         } else {
             String line = postsList.getSelectedValue();
             String[] temp = line.split("|");
-            DisplayContent c = new DisplayContent(this, acc, temp);
+            DisplayContent c = new DisplayContent(acc, temp);
             setVisible(false);
         }    }//GEN-LAST:event_ViewPostActionPerformed
 
