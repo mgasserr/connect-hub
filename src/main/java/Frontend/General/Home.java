@@ -190,6 +190,8 @@ public class Home extends javax.swing.JFrame {
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
         Register.getInstance().logout(acc);
         this.setVisible(false);
+        Startup window = new Startup();
+        window.setVisible(true);
     }//GEN-LAST:event_LogOutActionPerformed
 
     private void SettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SettingsActionPerformed
