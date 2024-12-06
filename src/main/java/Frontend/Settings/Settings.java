@@ -202,7 +202,7 @@ public class Settings extends javax.swing.JFrame {
         R.logout(acc);
         Startup S= new Startup();
         S.setVisible(true);
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
