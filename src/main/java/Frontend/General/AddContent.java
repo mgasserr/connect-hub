@@ -1,6 +1,7 @@
 package frontend.general;
 
 import Backend.Account.Account;
+import Backend.Databases.Database;
 import Backend.Feed.*;
 import java.io.File;
 import java.util.HashMap;
