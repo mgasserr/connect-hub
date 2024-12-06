@@ -27,7 +27,7 @@ public class MyProfile extends javax.swing.JFrame {
             String text = (String) acc.getContentManagement().getContent().get(j).getContentMap().get("Text");
             String path = (String) acc.getContentManagement().getContent().get(j).getContentMap().get("Path");
             // Format the data for display
-            String listItem = String.format("%s|%s|%s|%s", acc.getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
+            String listItem = String.format("%s~%s~%s~%s", acc.getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
             // Add the formatted string to the DefaultListModel
             postsFeedModel.addElement(listItem);
         }
@@ -201,7 +201,15 @@ public class MyProfile extends javax.swing.JFrame {
 
     private void DeletePostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletePostActionPerformed
         int i = postsList.getSelectedIndex();
-
+        if (i == -1) {
+            JOptionPane.showMessageDialog(this, "Choose a content to delete!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        } else {
+            String line = postsList.getSelectedValue();
+            String[] temp = line.split("~");
+            DisplayContent c = new DisplayContent(acc, temp);
+            c.setVisible(true);
+        }
     }//GEN-LAST:event_DeletePostActionPerformed
 
     private void ViewFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFriendsActionPerformed
@@ -213,11 +221,12 @@ public class MyProfile extends javax.swing.JFrame {
         int i = postsList.getSelectedIndex();
         if (i == -1) {
             JOptionPane.showMessageDialog(this, "Choose a content to view!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
         } else {
             String line = postsList.getSelectedValue();
-            String[] temp = line.split("|");
+            String[] temp = line.split("~");
             DisplayContent c = new DisplayContent(acc, temp);
-            setVisible(false);
+            c.setVisible(true);
         }    }//GEN-LAST:event_ViewPostActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed

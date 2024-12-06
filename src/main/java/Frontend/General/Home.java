@@ -28,7 +28,7 @@ public class Home extends javax.swing.JFrame {
                 String text = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Text");
                 String path = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Path");
                 // Format the data for display
-                String listItem = String.format("%s|%s|%s|%s", friendUsername, time, text != null ? text : "No Text", path != null ? path : "No Path");
+                String listItem = String.format("%s~%s~%s~%s", friendUsername, time, text != null ? text : "No Text", path != null ? path : "No Path");
                 // Add the formatted string to the DefaultListModel
                 newsFeedModel.addElement(listItem);
             }
@@ -182,8 +182,9 @@ public class Home extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Choose a content to view!", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
             String line = newsFeed.getSelectedValue();
-            String[] temp = line.split("|");
+            String[] temp = line.split("~");
             DisplayContent c = new DisplayContent(acc, temp);
+            c.setVisible(true);
         }
     }//GEN-LAST:event_ViewActionPerformed
 
