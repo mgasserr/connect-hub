@@ -33,6 +33,7 @@ public class Home extends javax.swing.JFrame {
         LogOut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Home");
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 1, 24)); // NOI18N
         jLabel1.setText("CONNECT HUB");

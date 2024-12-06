@@ -47,7 +47,7 @@ public class AddContent extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Content");
+        setTitle("Add Content ");
         setResizable(false);
 
         choosepicButton.setBackground(new java.awt.Color(0, 204, 204));

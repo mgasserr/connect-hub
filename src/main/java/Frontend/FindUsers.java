@@ -34,6 +34,7 @@ public class FindUsers extends javax.swing.JFrame {
         addButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Find User");
 
         searchText.setText("Search...");
 
