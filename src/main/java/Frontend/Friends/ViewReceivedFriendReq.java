@@ -8,12 +8,12 @@ package Frontend.Friends;
  *
  * @author Zeina Hazem
  */
-public class ViewFriendReq extends javax.swing.JFrame {
+public class ViewReceivedFriendReq extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewFriendReq
      */
-    public ViewFriendReq() {
+    public ViewReceivedFriendReq() {
         initComponents();
     }
 
