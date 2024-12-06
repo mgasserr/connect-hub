@@ -1,26 +1,46 @@
 [
    {
-      "password": "GmViWQ7xnRBF0GxAVXQtOCiOnm3NcczeXO6A8dWndOs=",
-      "dob": "2004-08-08",
+      "coverpath": "ImagesDatabase/Default/cover.jpg",
+      "password": "1HNeOiZeFu7gP1lxi5tdAwGcB9i2xR+Q2jpmbuwTqzU=",
+      "dob": "1965-01-01",
+      "bio": "",
+      "pfppath": "ImagesDatabase/Default/profile.png",
       "userid": "0001",
-      "email": "50@gamil.com",
-      "username": "50",
+      "email": "a@m.com",
+      "username": "y",
       "status": "ONLINE"
    },
    {
-      "password": "1HNeOiZeFu7gP1lxi5tdAwGcB9i2xR+Q2jpmbuwTqzU=",
-      "dob": "2004-08-08",
+      "coverpath": "ImagesDatabase/Default/cover.jpg",
+      "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+      "dob": "1994-01-01",
+      "bio": "",
+      "pfppath": "ImagesDatabase/Default/profile.png",
       "userid": "0002",
-      "email": "2@gamil.com",
-      "username": "2",
+      "email": "x@g.com",
+      "username": "g",
+      "status": "OFFLINE"
+   },
+   {
+      "coverpath": "ImagesDatabase/Default/cover.jpg",
+      "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+      "dob": "1994-01-01",
+      "bio": "",
+      "pfppath": "ImagesDatabase/Default/profile.png",
+      "userid": "0003",
+      "email": "r@j.com",
+      "username": "s",
       "status": "ONLINE"
    },
    {
-      "password": "1HNeOiZeFu7gP1lxi5tdAwGcB9i2xR+Q2jpmbuwTqzU=",
-      "dob": "2004-08-08",
-      "userid": "0003",
-      "email": "1@gamil.com",
-      "username": "1",
+      "coverpath": "ImagesDatabase/Default/cover.jpg",
+      "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+      "dob": "1986-01-01",
+      "bio": "",
+      "pfppath": "ImagesDatabase/Default/profile.png",
+      "userid": "0004",
+      "email": "n@g.com",
+      "username": "z",
       "status": "ONLINE"
    }
 ]

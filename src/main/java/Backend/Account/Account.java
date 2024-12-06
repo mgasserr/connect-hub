@@ -5,28 +5,44 @@ import java.time.LocalDate;
 
 public class Account {
 
-    private final String accountId;
+    private final String userId;
     private String Email;
     private String Username;
     private String Password;
     private LocalDate DOB;
     private Status Status;
-    static int accountsCount;
+    private static int accountsCount;
     private ProfileManagement Profile;
+    private FriendsManagement friendsManagement;
+    private ContentManagement contentManagement;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
-        this.accountId = String.format("%04d", accountsCount);
+        this.userId = String.format("%04d", accountsCount);
         this.Email = Email;
         this.Username = Username;
         this.Password = Password;
         this.DOB = DOB;
         this.Status = Status.ONLINE;
-        this.Profile = new ProfileManagement();
+        this.Profile = new ProfileManagement(this, null, null, null);
+        this.friendsManagement = new FriendsManagement(this);
+        this.contentManagement = new ContentManagement(this);
+    }
+
+    public static void resetAccountsCount() {
+        accountsCount = 0;
+    }
+
+    public FriendsManagement getFriendsManagement() {
+        return friendsManagement;
+    }
+
+    public ContentManagement getContentManagement() {
+        return contentManagement;
     }
 
     public String getUserId() {
-        return accountId;
+        return userId;
     }
 
     public String getEmail() {
@@ -45,11 +61,11 @@ public class Account {
         this.Username = Username;
     }
 
-    String getPassword() {
+    public String getPassword() {
         return Password;
     }
 
-    void setPassword(String Password) {
+    public void setPassword(String Password) {
         this.Password = Password;
     }
 

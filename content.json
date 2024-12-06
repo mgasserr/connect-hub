@@ -1,0 +1,42 @@
+[
+   {
+      "postscount": 1,
+      "stories": [],
+      "storiescount": 0,
+      "userid": "0001",
+      "posts": [{
+         "path": "ImagesDatabase\\Content\\0001-0001.png",
+         "caption": "",
+         "timestamp": "2024-12-06T22:53:00.689031400"
+      }]
+   },
+   {
+      "postscount": 1,
+      "stories": [{
+         "path": "ImagesDatabase\\Content\\0003-0002.png",
+         "caption": "hola",
+         "timestamp": "2024-12-06T22:58:41.456714"
+      }],
+      "storiescount": 1,
+      "userid": "0002",
+      "posts": [{
+         "path": "ImagesDatabase\\Content\\0002-0002.png",
+         "caption": "hola",
+         "timestamp": "2024-12-06T23:01:45.096409300"
+      }]
+   },
+   {
+      "postscount": 0,
+      "stories": [],
+      "storiescount": 0,
+      "userid": "0003",
+      "posts": []
+   },
+   {
+      "postscount": 0,
+      "stories": [],
+      "storiescount": 0,
+      "userid": "0004",
+      "posts": []
+   }
+]
