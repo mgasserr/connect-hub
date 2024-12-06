@@ -4,17 +4,28 @@
  */
 package Frontend.Settings;
 
+import Backend.Account.Account;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Zeina Hazem
  */
 public class changeProfilePic extends javax.swing.JFrame {
 
-    /**
-     * Creates new form changeProfilePic
-     */
-    public changeProfilePic() {
+   Account acc;
+   Settings S;
+   String path;
+    public changeProfilePic(Account acc, Settings aThis) {
         initComponents();
+        this.acc=acc;
+        S=aThis;
+        this.profilepic.setIcon(acc.getProfile().getCoverImg());
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
@@ -27,9 +38,9 @@ public class changeProfilePic extends javax.swing.JFrame {
     private void initComponents() {
 
         choosepicButton = new javax.swing.JButton();
-        pictureText = new javax.swing.JTextField();
         confirmButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        profilepic = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Profile Picture");
@@ -43,15 +54,14 @@ public class changeProfilePic extends javax.swing.JFrame {
             }
         });
 
-        pictureText.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pictureTextActionPerformed(evt);
-            }
-        });
-
         confirmButton.setBackground(new java.awt.Color(0, 204, 204));
         confirmButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         confirmButton.setText("CONFIRM");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel2.setText("Change Profile Picture");
@@ -63,20 +73,18 @@ public class changeProfilePic extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(pictureText, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(choosepicButton)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(choosepicButton)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(182, 182, 182)
-                                .addComponent(confirmButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(140, 140, 140)
-                                .addComponent(jLabel2)))
-                        .addGap(92, 92, 92)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                        .addGap(182, 182, 182)
+                        .addComponent(confirmButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel2)))
+                .addContainerGap(204, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(profilepic, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,9 +93,9 @@ public class changeProfilePic extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(49, 49, 49)
                 .addComponent(choosepicButton)
-                .addGap(30, 30, 30)
-                .addComponent(pictureText, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
+                .addGap(11, 11, 11)
+                .addComponent(profilepic, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
                 .addComponent(confirmButton)
                 .addContainerGap(43, Short.MAX_VALUE))
         );
@@ -96,12 +104,29 @@ public class changeProfilePic extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void choosepicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosepicButtonActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        if (fc.showOpenDialog(fc) == JFileChooser.APPROVE_OPTION) {
+            File tempfile = fc.getSelectedFile();
+            if (!tempfile.getName().endsWith(".png") && !tempfile.getName().endsWith(".jpg") && !tempfile.getName().endsWith(".jpeg")) {
+                JOptionPane.showMessageDialog(this, "Please choose a .png/.jpg/.jpeg file only.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            } else {
+                this.path=tempfile.getAbsolutePath();
+                ImageIcon img= new ImageIcon(path);
+                this.profilepic.setIcon(img);
+            }
+        }
     }//GEN-LAST:event_choosepicButtonActionPerformed
 
-    private void pictureTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pictureTextActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pictureTextActionPerformed
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+       if(this.profilepic.getIcon()==null){
+            JOptionPane.showMessageDialog(this, "Choose profile photo");
+        }else{
+            acc.getProfile().setProfileImg(this.path);
+            dispose();
+            S.setVisible(true);
+        }
+    }//GEN-LAST:event_confirmButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -112,6 +137,6 @@ public class changeProfilePic extends javax.swing.JFrame {
     private javax.swing.JButton choosepicButton;
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField pictureText;
+    private javax.swing.JLabel profilepic;
     // End of variables declaration//GEN-END:variables
 }
