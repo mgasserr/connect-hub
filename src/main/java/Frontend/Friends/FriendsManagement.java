@@ -13,11 +13,11 @@ public class FriendsManagement extends javax.swing.JFrame {
 
     Account acc;
 
-    public FriendsManagement() {
+    public FriendsManagement(Account acc1) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
-        this.acc = acc;
+        this.acc = acc1;
     }
 
     /**

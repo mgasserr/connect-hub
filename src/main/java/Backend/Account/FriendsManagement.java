@@ -16,14 +16,14 @@ public class FriendsManagement {
         this.acc = acc;
     }
 
-    public ArrayList<Account> getSuggestedFriendsCLONED() {
+    public ArrayList<Account> getSuggestedFriendsCLONED(Account acc) {
         ArrayList<Account> clone = new ArrayList<>(Database.getAllAccounts());
         clone.remove(acc);
-        clone.removeAll(BlockedUsers);
-        clone.removeAll(Friends);
-        clone.removeAll(SentFriendRequests);
-        clone.removeAll(ReceivedFriendRequests);
-        clone.removeAll(BlockedBy);
+        clone.removeAll(acc.getFriendsManagement().getBlockedBy());
+        clone.removeAll(acc.getFriendsManagement().getFriends());
+        clone.removeAll(acc.getFriendsManagement().getSentFriendRequests());
+        clone.removeAll(acc.getFriendsManagement().getReceivedFriendRequests());
+        clone.removeAll(acc.getFriendsManagement().getBlockedUsers());
         return clone;
     }
 

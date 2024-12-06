@@ -196,7 +196,7 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setText("Search field is empty");
         } else {
             DefaultListModel<String> listModel = new DefaultListModel<>();
-            for (Account user : acc.getFriendsManagement().getSuggestedFriendsCLONED()) {
+            for (Account user : acc.getFriendsManagement().getSuggestedFriendsCLONED(acc)) {
                 if (user.getUsername().startsWith(searchText.getText())) {
                     listModel.addElement(user.getUsername());
                 }

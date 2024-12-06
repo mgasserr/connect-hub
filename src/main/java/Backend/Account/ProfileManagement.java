@@ -17,8 +17,16 @@ public class ProfileManagement {
 
     public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
         this.acc = acc;
-        this.ProfileImg = new ImageIcon("ImagesDatabase/Default/profile.png");
-        this.CoverImg = new ImageIcon("ImagesDatabase/Default/cover.jpg");
+        if (ProfileImg == null) {
+            this.ProfileImg = new ImageIcon("ImagesDatabase/Default/profile.png");
+        } else {
+            this.ProfileImg = ProfileImg;
+        }
+        if (CoverImg == null) {
+            this.CoverImg = new ImageIcon("ImagesDatabase/Default/cover.jpg");
+        } else {
+            this.CoverImg = CoverImg;
+        }
         this.Bio = Bio;
     }
 

@@ -24,6 +24,7 @@ Frontend\Friends\FriendsManagement$7.class
 Frontend\Settings\changeBio.class
 Frontend\General\Home.class
 Frontend\Settings\changeBio$1.class
+Frontend\Friends\ViewBlockList$3.class
 Frontend\Friends\FriendsManagement$4.class
 Frontend\Friends\FriendsManagement$1.class
 Frontend\General\Startup$1.class

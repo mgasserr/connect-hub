@@ -209,10 +209,9 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_NewContentActionPerformed
 
     private void FriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FriendsActionPerformed
-        //GOES TO FRIENDS MANAGMENT
-        //        FriendsManagement f = new FriendsManagement(acc);
-        //        f.setVisible(true);
-        //        this.setVisible(false);
+        FriendsManagement f = new FriendsManagement(acc);
+        f.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_FriendsActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed

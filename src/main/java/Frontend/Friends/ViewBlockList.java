@@ -2,6 +2,7 @@ package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
+import frontend.general.Home;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -68,6 +69,11 @@ public class ViewBlockList extends javax.swing.JFrame {
         });
 
         Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
 
         errorText.setForeground(new java.awt.Color(255, 0, 0));
 
@@ -130,6 +136,14 @@ public class ViewBlockList extends javax.swing.JFrame {
             errorText.setText("Account unblocked!");
         }
     }//GEN-LAST:event_unblockButtonActionPerformed
+
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+        Database.refreshDatabase();
+        Home home = new Home(acc);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_HomeActionPerformed
 
     /**
      * @param args the command line arguments

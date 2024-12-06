@@ -27,7 +27,7 @@ public class ViewSuggested extends javax.swing.JFrame {
             public void componentShown(ComponentEvent e) {
                 Database.refreshDatabase();
                 DefaultListModel<String> listModel = new DefaultListModel<>();
-                for (Account user : acc.getFriendsManagement().getSuggestedFriendsCLONED()) {
+                for (Account user : acc.getFriendsManagement().getSuggestedFriendsCLONED(acc)) {
                     listModel.addElement(user.getUsername());
                 }
                 usersList.setModel(listModel);

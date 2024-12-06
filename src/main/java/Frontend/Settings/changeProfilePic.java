@@ -25,7 +25,7 @@ public class changeProfilePic extends javax.swing.JFrame {
         initComponents();
         this.acc=acc;
         S=aThis;
-        this.profilepic.setIcon(acc.getProfile().getCoverImg());
+        this.profilepic.setIcon(acc.getProfile().getProfileImg());
         this.setLocationRelativeTo(null);
         setResizable(false);
     }

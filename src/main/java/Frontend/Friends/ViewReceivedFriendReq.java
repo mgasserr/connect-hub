@@ -2,6 +2,7 @@ package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Database;
+import frontend.general.Home;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -166,6 +167,10 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
+        Database.refreshDatabase();
+        Home home = new Home(acc);
+        home.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
 
     /**
