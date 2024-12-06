@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package frontend.friends;
+package Frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import frontend.general.Home;
+import Frontend.general.Home;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -33,7 +33,7 @@ public class ViewFriendsList extends javax.swing.JFrame {
                 Database.refreshDatabase();
                 DefaultListModel<String> listModel = new DefaultListModel<>();
                 for (Account user : acc.getFriendsManagement().getFriends()) {
-                    listModel.addElement(user.getUsername() + "=" + user.getStatus().toString());
+                    listModel.addElement(user.getUsername() + "-" + user.getStatus().toString());
                 }
                 usersList.setModel(listModel);
             }

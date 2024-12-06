@@ -1,4 +1,4 @@
-package frontend.general;
+package Frontend.general;
 
 import Backend.Account.Account;
 import Backend.Databases.*;

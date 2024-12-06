@@ -1,9 +1,9 @@
-package frontend.settings;
+package Frontend.settings;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import frontend.general.Home;
+import Frontend.general.Home;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
