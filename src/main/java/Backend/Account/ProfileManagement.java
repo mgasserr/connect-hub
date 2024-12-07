@@ -18,12 +18,12 @@ public class ProfileManagement {
     public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
         this.acc = acc;
         if (ProfileImg == null) {
-            this.ProfileImg = new ImageIcon("ImagesDatabase//Default//profile.png");
+            this.ProfileImg = new ImageIcon("ImagesDatabase/Default/profile.png");
         } else {
             this.ProfileImg = ProfileImg;
         }
         if (CoverImg == null) {
-            this.CoverImg = new ImageIcon("ImagesDatabase//Default//cover.jpg");
+            this.CoverImg = new ImageIcon("ImagesDatabase/Default/cover.jpg");
         } else {
             this.CoverImg = CoverImg;
         }
@@ -39,6 +39,7 @@ public class ProfileManagement {
     }
 
     public void setProfileImg(String Imgpath) {
+        this.ProfileImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
         Path dest = Path.of("ImagesDatabase//ProfilePicture//" + acc.getUserId() + ".png");
         try {
@@ -49,7 +50,7 @@ public class ProfileManagement {
         } catch (IOException ex) {
             Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, "Error copying profile image", ex);
         }
-        this.ProfileImg = new ImageIcon(dest.toString());
+
     }
 
     public ImageIcon getCoverImg() {
@@ -57,15 +58,14 @@ public class ProfileManagement {
     }
 
     public void setCoverImg(String Imgpath) {
+        this.CoverImg = new ImageIcon(Imgpath);
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase//CoverPicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase/CoverPicture/" + acc.getUserId() + ".png");
         try {
-            Files.createDirectories(dest.getParent());
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
-            Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, "Error copying profile image", ex);
+            Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.CoverImg = new ImageIcon(dest.toString());
     }
 
     public String getBio() {

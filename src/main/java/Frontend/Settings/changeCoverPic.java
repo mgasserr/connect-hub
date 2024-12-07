@@ -15,14 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class changeCoverPic extends javax.swing.JFrame {
 
-    Account acc;
-    Settings S;
-    String path;
-
+   Account acc;
+   Settings S;
+   String path;
     public changeCoverPic(Account acc, Settings aThis) {
         initComponents();
-        this.acc = acc;
-        S = aThis;
+        this.acc=acc;
+        S=aThis;
         this.pictureLabel.setIcon(acc.getProfile().getCoverImg());
         this.setLocationRelativeTo(null);
         setResizable(false);
@@ -121,26 +120,25 @@ public class changeCoverPic extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void choosepicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosepicButtonActionPerformed
-        JFileChooser fc = new JFileChooser();
+       JFileChooser fc = new JFileChooser();
         if (fc.showOpenDialog(fc) == JFileChooser.APPROVE_OPTION) {
             File tempfile = fc.getSelectedFile();
             if (!tempfile.getName().endsWith(".png") && !tempfile.getName().endsWith(".jpg") && !tempfile.getName().endsWith(".jpeg")) {
                 JOptionPane.showMessageDialog(this, "Please choose a .png/.jpg/.jpeg file only.", "ERROR", JOptionPane.ERROR_MESSAGE);
                 return;
             } else {
-                this.path = tempfile.getAbsolutePath();
-                ImageIcon img = new ImageIcon(path);
+                this.path=tempfile.getAbsolutePath();
+                ImageIcon img= new ImageIcon(path);
                 this.pictureLabel.setIcon(img);
             }
         }
     }//GEN-LAST:event_choosepicButtonActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        if (this.pictureLabel.getIcon() == null) {
+        if(this.pictureLabel.getIcon()==null){
             JOptionPane.showMessageDialog(this, "Choose cover photo");
-        } else {
+        }else{
             acc.getProfile().setCoverImg(this.path);
-            Database.refreshDatabase();
             dispose();
             S.setVisible(true);
         }
@@ -161,6 +159,7 @@ public class changeCoverPic extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
