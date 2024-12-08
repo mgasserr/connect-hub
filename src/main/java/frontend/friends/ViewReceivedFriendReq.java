@@ -1,27 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package Frontend.friends;
+package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import Frontend.general.Home;
+import frontend.general.Home;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
  * @author Zeina Hazem
  */
-public class ViewFriendsList extends javax.swing.JFrame {
+public class ViewReceivedFriendReq extends javax.swing.JFrame {
 
     Account acc;
 
-    public ViewFriendsList(Account acc) {
+    public ViewReceivedFriendReq(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
@@ -32,8 +29,8 @@ public class ViewFriendsList extends javax.swing.JFrame {
             public void componentShown(ComponentEvent e) {
                 Database.refreshDatabase();
                 DefaultListModel<String> listModel = new DefaultListModel<>();
-                for (Account user : acc.getFriendsManagement().getFriends()) {
-                    listModel.addElement(user.getUsername() + "-" + user.getStatus().toString());
+                for (Account user : acc.getFriendsManagement().getReceivedFriendRequests()) {
+                    listModel.addElement(user.getUsername());
                 }
                 usersList.setModel(listModel);
             }
@@ -49,42 +46,42 @@ public class ViewFriendsList extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        blockButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         usersList = new javax.swing.JList<>();
-        removeButton = new javax.swing.JButton();
+        declineButton = new javax.swing.JButton();
+        acceptButton = new javax.swing.JButton();
         errorText = new javax.swing.JLabel();
         Home = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Friends List");
+        setTitle("Friend Requests");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
-        blockButton.setBackground(new java.awt.Color(0, 204, 204));
-        blockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        blockButton.setText("BLOCK");
-        blockButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                blockButtonActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
-        jLabel1.setText("    View Friends List");
+        jLabel1.setText("View Friend Requests");
 
         jScrollPane1.setViewportView(usersList);
 
-        removeButton.setBackground(new java.awt.Color(0, 204, 204));
-        removeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        removeButton.setText("REMOVE");
-        removeButton.addActionListener(new java.awt.event.ActionListener() {
+        declineButton.setBackground(new java.awt.Color(0, 204, 204));
+        declineButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        declineButton.setText("DECLINE");
+        declineButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeButtonActionPerformed(evt);
+                declineButtonActionPerformed(evt);
+            }
+        });
+
+        acceptButton.setBackground(new java.awt.Color(0, 204, 204));
+        acceptButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        acceptButton.setText("ACCEPT");
+        acceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptButtonActionPerformed(evt);
             }
         });
 
@@ -107,16 +104,16 @@ public class ViewFriendsList extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(200, 200, 200)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(removeButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(blockButton))
+                                        .addComponent(declineButton)
+                                        .addGap(59, 59, 59)
+                                        .addComponent(acceptButton))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(226, 226, 226)
-                                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(235, 235, 235))
+                                .addGap(233, 233, 233)
+                                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(225, 225, 225))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,45 +124,55 @@ public class ViewFriendsList extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(Home))
-                .addGap(60, 60, 60)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Home)
+                    .addComponent(jLabel1))
+                .addGap(41, 41, 41)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(removeButton)
-                    .addComponent(blockButton))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(declineButton)
+                    .addComponent(acceptButton))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void blockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockButtonActionPerformed
+    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
         errorText.setText("");
         int i = usersList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
-            errorText.setText("No accounts selected");
+            errorText.setText("No users selected");
         } else {
-            String usernamelist = usersList.getSelectedValue();
-            if (usernamelist.contains("-ONLINE")) {
-                usernamelist = usernamelist.replace("-ONLINE", "");
-            } else if (usernamelist.contains("-OFFLINE")) {
-                usernamelist = usernamelist.replace("-OFFLINE", "");
-            }
-            acc.getFriendsManagement().Block(usernamelist, acc.getUsername());
+            acc.getFriendsManagement().acceptFriendRequest(usersList.getSelectedValue(), acc.getUsername());
             this.setVisible(false);
             this.setVisible(true);
             errorText.setForeground(Color.black);
-            errorText.setText("Account blocked!");
+            errorText.setText("Friend request accpepted!");
             Database.refreshDatabase();
         }
-    }//GEN-LAST:event_blockButtonActionPerformed
+    }//GEN-LAST:event_acceptButtonActionPerformed
+
+    private void declineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineButtonActionPerformed
+        errorText.setText("");
+        int i = usersList.getSelectedIndex();
+        if (i == -1) {
+            errorText.setForeground(Color.red);
+            errorText.setText("No users selected");
+        } else {
+            acc.getFriendsManagement().declineFriendRequest(usersList.getSelectedValue(), acc.getUsername());
+            this.setVisible(false);
+            this.setVisible(true);
+            errorText.setForeground(Color.black);
+            errorText.setText("Friend request declined!");
+            Database.refreshDatabase();
+        }
+    }//GEN-LAST:event_declineButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
@@ -174,30 +181,6 @@ public class ViewFriendsList extends javax.swing.JFrame {
         home.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
-
-    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
-        // TODO add your handling code here:
-        errorText.setText("");
-        int i = usersList.getSelectedIndex();
-        if (i == -1) {
-            errorText.setForeground(Color.red);
-            errorText.setText("No accounts selected");
-        } else {
-            String usernamelist = usersList.getSelectedValue();
-            if (usernamelist.contains("-ONLINE")) {
-                usernamelist = usernamelist.replace("-ONLINE", "");
-            } else if (usernamelist.contains("-OFFLINE")) {
-                usernamelist = usernamelist.replace("-OFFLINE", "");
-            }
-            acc.getFriendsManagement().deleteFriend(usernamelist, acc.getUsername());
-            Database.refreshDatabase();
-            this.setVisible(false);
-            this.setVisible(true);
-            errorText.setForeground(Color.black);
-            errorText.setText("Friend removed!");
-            Database.refreshDatabase();
-        }
-    }//GEN-LAST:event_removeButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
@@ -210,11 +193,11 @@ public class ViewFriendsList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
-    private javax.swing.JButton blockButton;
+    private javax.swing.JButton acceptButton;
+    private javax.swing.JButton declineButton;
     private javax.swing.JLabel errorText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton removeButton;
     private javax.swing.JList<String> usersList;
     // End of variables declaration//GEN-END:variables
 }

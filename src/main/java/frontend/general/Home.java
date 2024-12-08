@@ -1,11 +1,10 @@
-package Frontend.general;
+package frontend.general;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import Frontend.friends.FriendsManagement;
-import Frontend.settings.Settings;
-import java.lang.String;
+import frontend.friends.FriendsManagement;
+import frontend.settings.Settings;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
