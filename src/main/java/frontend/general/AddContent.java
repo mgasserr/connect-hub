@@ -2,7 +2,7 @@ package frontend.general;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import Backend.Feed.*;
 import java.io.File;
 import java.util.HashMap;
@@ -16,6 +16,7 @@ public class AddContent extends javax.swing.JFrame {
     Account acc;
     ContentFactory F = new ContentFactory();
     String imagePath;
+    Databases Database = Databases.getInstance();
 
     public AddContent(Account acc) {
         initComponents();
@@ -206,12 +207,12 @@ public class AddContent extends javax.swing.JFrame {
         }
         acc.getContentManagement().addContent(c);
         JOptionPane.showMessageDialog(this, type + " posted successfully.");
-        Database.refreshDatabase();
+        Database.refresh();
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
+        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -219,7 +220,7 @@ public class AddContent extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        Register.getInstance().logout(acc);
+        acc.logout();
     }//GEN-LAST:event_formWindowClosing
 
     /**

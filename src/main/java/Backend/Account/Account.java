@@ -1,6 +1,7 @@
 package Backend.Account;
 
 import Backend.Account.Activity.Status;
+import Backend.Databases.Databases;
 import java.time.LocalDate;
 
 public class Account {
@@ -10,7 +11,7 @@ public class Account {
     private String Username;
     private String Password;
     private LocalDate DOB;
-    private Status Status;
+    private Status status;
     private static int accountsCount;
     private ProfileManagement Profile;
     private FriendsManagement friendsManagement;
@@ -23,7 +24,7 @@ public class Account {
         this.Username = Username;
         this.Password = Password;
         this.DOB = DOB;
-        this.Status = Status.ONLINE;
+        this.status = status.OFFLINE;
         this.Profile = new ProfileManagement(this, null, null, null);
         this.friendsManagement = new FriendsManagement(this);
         this.contentManagement = new ContentManagement(this);
@@ -78,11 +79,12 @@ public class Account {
     }
 
     public Status getStatus() {
-        return Status;
+        System.out.println("GETTING STATUS" + status);
+        return status;
     }
 
     public void setStatus(Status Status) {
-        this.Status = Status;
+        this.status = Status;
     }
 
     public ProfileManagement getProfile() {
@@ -93,4 +95,10 @@ public class Account {
         this.Profile = Profile;
     }
 
+    public void logout() {
+        this.status = Activity.Status.OFFLINE;
+        System.out.println("MY STATUS:" + status);
+        Databases Database = Databases.getInstance();
+        Database.save();
+    }
 }

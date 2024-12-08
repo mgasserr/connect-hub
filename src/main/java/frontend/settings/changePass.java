@@ -1,25 +1,26 @@
 package frontend.settings;
 
 import Backend.Account.Account;
+import Backend.Authentication.PasswordHash;
 import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.general.Home;
 import javax.swing.JOptionPane;
 
-
 public class changePass extends javax.swing.JFrame {
 
-     Account acc;
-     Settings S;
+    Account acc;
+    Settings S;
+    Databases Database = Databases.getInstance();
+
     public changePass(Account acc, Settings aThis) {
         initComponents();
-        this.acc= acc;
-        S=aThis;
+        this.acc = acc;
+        S = aThis;
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,30 +159,30 @@ public class changePass extends javax.swing.JFrame {
     }//GEN-LAST:event_newpassconfActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(this.oldpass.getText().equals("")|| this.newpass.getText().equals("")|| this.newpassconf.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Fill the feilds");
-        }else{
-            String old=oldpass.getText();
-            String newpassword=newpass.getText();
-            String newpassconfirm=newpassconf.getText();
-            JOptionPane.showMessageDialog(this,Database.changePassword(acc, old, newpassword, newpassconfirm));
+        if (this.oldpass.getText().equals("") || this.newpass.getText().equals("") || this.newpassconf.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Fill the feilds");
+        } else {
+            String old = oldpass.getText();
+            String newpassword = newpass.getText();
+            String newpassconfirm = newpassconf.getText();
+            JOptionPane.showMessageDialog(this, PasswordHash.changePassword(acc, old, newpassword, newpassconfirm));
             dispose();
             S.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Register.getInstance().logout(acc);
+        acc.logout();
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         S.setVisible(true);
-         dispose();
+        S.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
+        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

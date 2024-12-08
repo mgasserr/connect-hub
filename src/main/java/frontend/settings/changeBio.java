@@ -2,7 +2,7 @@ package frontend.settings;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.general.Home;
 
 /**
@@ -11,17 +11,18 @@ import frontend.general.Home;
  */
 public class changeBio extends javax.swing.JFrame {
 
-   Account acc;
-   Settings S;
+    Account acc;
+    Settings S;
+    Databases Database = Databases.getInstance();
+
     public changeBio(Account acc, Settings aThis) {
         initComponents();
-        this.acc=acc;
-        S=aThis;
+        this.acc = acc;
+        S = aThis;
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -110,23 +111,22 @@ public class changeBio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-       if(this.captionText.getText().equals("")){
-           acc.getProfile().setBio("");
-       }
-       else{
-           acc.getProfile().setBio(this.captionText.getText());
-       }
-       dispose();
-       S.setVisible(true);
+        if (this.captionText.getText().equals("")) {
+            acc.getProfile().setBio("");
+        } else {
+            acc.getProfile().setBio(this.captionText.getText());
+        }
+        dispose();
+        S.setVisible(true);
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Register.getInstance().logout(acc);
+        acc.logout();
     }//GEN-LAST:event_formWindowClosing
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
+        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -135,7 +135,6 @@ public class changeBio extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;

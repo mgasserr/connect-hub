@@ -1,6 +1,6 @@
 package Backend.Account;
 
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import java.util.ArrayList;
 
 public class FriendsManagement {
@@ -11,6 +11,7 @@ public class FriendsManagement {
     private ArrayList<Account> SentFriendRequests = new ArrayList<>();
     private ArrayList<Account> BlockedUsers = new ArrayList<>();
     private ArrayList<Account> BlockedBy = new ArrayList<>();
+    Databases Database = Databases.getInstance();
 
     public FriendsManagement(Account acc) {
         this.acc = acc;

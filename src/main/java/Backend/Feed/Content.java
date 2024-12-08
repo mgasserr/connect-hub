@@ -38,6 +38,10 @@ public abstract class Content {
         }
     }
 
+    public static void resetContentCount() {
+        contentCount = 0;
+    }
+
     public String getContentId() {
         return contentId;
     }

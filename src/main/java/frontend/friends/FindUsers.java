@@ -2,7 +2,7 @@ package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.general.Home;
 import java.awt.Color;
 import javax.swing.DefaultListModel;
@@ -14,6 +14,7 @@ import javax.swing.DefaultListModel;
 public class FindUsers extends javax.swing.JFrame {
 
     Account acc;
+    Databases Database = Databases.getInstance();
 
     public FindUsers(Account acc) {
         initComponents();
@@ -173,12 +174,12 @@ public class FindUsers extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        Register.getInstance().logout(acc);
+        acc.logout();
     }//GEN-LAST:event_formWindowClosing
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
+        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -195,7 +196,7 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("Search field is empty");
         } else {
-            Database.refreshDatabase();
+            Database.refresh();
             DefaultListModel<String> listModel = new DefaultListModel<>();
             for (Account user : Database.getAllAccounts()) {
                 if (user.getUsername().equalsIgnoreCase(acc.getUsername())) {
@@ -231,7 +232,7 @@ public class FindUsers extends javax.swing.JFrame {
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Friend request sent!");
-            Database.refreshDatabase();
+            Database.refresh();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -247,7 +248,7 @@ public class FindUsers extends javax.swing.JFrame {
             this.setVisible(true);
             errorText.setForeground(Color.black);
             errorText.setText("Account blocked!");
-            Database.refreshDatabase();
+            Database.refresh();
         }
     }//GEN-LAST:event_blockButtonActionPerformed
 

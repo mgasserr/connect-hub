@@ -1,0 +1,82 @@
+[
+   {
+      "stories": [],
+      "blocked": [],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0001",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "2004-08-08",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "g@gmail.com",
+         "username": "g",
+         "status": "OFFLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0002",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "2004-10-10",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "s@gmail.com",
+         "username": "s",
+         "status": "OFFLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0003",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "2003-11-28",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "y@gmail.com",
+         "username": "y",
+         "status": "OFFLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "receivedfriends": ["g"],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0004",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "2004-11-03",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "z@gmail.com",
+         "username": "z",
+         "status": "OFFLINE"
+      }]
+   }
+]
