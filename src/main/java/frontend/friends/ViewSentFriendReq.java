@@ -152,7 +152,7 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        acc.logout();
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     /**

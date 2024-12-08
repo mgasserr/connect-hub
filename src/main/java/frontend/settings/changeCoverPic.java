@@ -148,7 +148,7 @@ public class changeCoverPic extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        acc.logout();
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed

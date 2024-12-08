@@ -185,7 +185,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_changebioButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        acc.logout();
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     private void changecoverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changecoverButtonActionPerformed
@@ -195,7 +195,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_changecoverButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        acc.logout();
+        Database.logoutDatabase(acc.getUsername());
         Startup S = new Startup();
         S.setVisible(true);
         this.setVisible(false);

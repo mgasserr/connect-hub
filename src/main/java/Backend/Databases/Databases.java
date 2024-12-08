@@ -1,7 +1,6 @@
 package Backend.Databases;
 
 import Backend.Account.*;
-import Backend.Account.Activity.Status;
 import Backend.Feed.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -167,9 +166,9 @@ public class Databases {
                 account.setProfile(userprofile);
 
                 if (status.equals("OFFLINE")) {
-                    account.setStatus(Status.OFFLINE);
+                    account.setStatus(Activity.Status.OFFLINE);
                 } else {
-                    account.setStatus(Status.ONLINE);
+                    account.setStatus(Activity.Status.ONLINE);
                 }
 
                 accounts.add(account);
@@ -316,5 +315,15 @@ public class Databases {
             }
         }
         return false;
+    }
+
+    public void logoutDatabase(String username) {
+        for (Account account : accounts) {
+            if (account.getUsername().equalsIgnoreCase(username)) {
+                account.setStatus(Activity.Status.OFFLINE);
+                save();
+                return;
+            }
+        }
     }
 }

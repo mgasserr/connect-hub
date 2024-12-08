@@ -174,7 +174,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_ProfileActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        acc.logout();
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     private void ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewActionPerformed
@@ -190,7 +190,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewActionPerformed
 
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
-        acc.logout();
+        Database.logoutDatabase(acc.getUsername());
         this.setVisible(false);
         Startup window = new Startup();
         window.setVisible(true);
