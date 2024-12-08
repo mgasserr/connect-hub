@@ -1,9 +1,9 @@
-package Frontend.general;
+package frontend.general;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Database;
-import Frontend.friends.ViewFriendsList;
+import frontend.friends.ViewFriendsList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;

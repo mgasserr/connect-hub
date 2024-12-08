@@ -1,7 +1,6 @@
-package Frontend.general;
+package frontend.general;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import javax.swing.ImageIcon;
 
 public class DisplayContent extends javax.swing.JFrame {
