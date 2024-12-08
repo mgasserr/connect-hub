@@ -55,13 +55,12 @@ public class Databases {
             JSONArray Arrayposts = new JSONArray();
             JSONArray Arraystories = new JSONArray();
 
-            //INFO ARRAY
+            // INFO ARRAY
             JSONObject infoobj = new JSONObject();
             infoobj.put("username", acc.getUsername());
             infoobj.put("password", acc.getPassword());
             infoobj.put("email", acc.getEmail());
             infoobj.put("dob", acc.getDob());
-            System.out.println(acc.getStatus());
             infoobj.put("status", acc.getStatus());
             infoobj.put("bio", acc.getProfile().getBio());
             infoobj.put("coverimg", acc.getProfile().getCoverImg());
@@ -69,42 +68,42 @@ public class Databases {
             Arrayinfo.put(infoobj);
             userobj.put("info", Arrayinfo);
 
-            //FRIENDS ARRAY
+            // FRIENDS ARRAY
             ArrayList<String> friendsusernames = new ArrayList<>();
             for (Account friend : acc.getFriendsManagement().getFriends()) {
                 friendsusernames.add(friend.getUsername());
             }
-            userobj.put("friends", friendsusernames); //MAYBE ERRORRRRRRRRRRRRRRRRRRRRRR
+            userobj.put("friends", friendsusernames);
 
-            //RECEIVED REQ ARRAY
+            // RECEIVED REQ ARRAY
             ArrayList<String> receivedreqarray = new ArrayList<>();
             for (Account receivedfriend : acc.getFriendsManagement().getReceivedFriendRequests()) {
                 receivedreqarray.add(receivedfriend.getUsername());
             }
-            userobj.put("receivedfriends", receivedreqarray); //MAYBE ERRORRRRRRRRRRRRRRRRRRRRRR
+            userobj.put("receivedfriends", receivedreqarray);
 
-            //SENT REQ ARRAY
+            // SENT REQ ARRAY
             ArrayList<String> sentreqarray = new ArrayList<>();
             for (Account sentfriend : acc.getFriendsManagement().getSentFriendRequests()) {
-                receivedreqarray.add(sentfriend.getUsername());
+                sentreqarray.add(sentfriend.getUsername());
             }
-            userobj.put("sentfriends", sentreqarray); //MAYBE ERRORRRRRRRRRRRRRRRRRRRRRR
+            userobj.put("sentfriends", sentreqarray);
 
-            //BLOCKED ARRAY
+            // BLOCKED ARRAY
             ArrayList<String> blockedarray = new ArrayList<>();
             for (Account blocked : acc.getFriendsManagement().getBlockedUsers()) {
-                receivedreqarray.add(blocked.getUsername());
+                blockedarray.add(blocked.getUsername());
             }
-            userobj.put("blocked", blockedarray); //MAYBE ERRORRRRRRRRRRRRRRRRRRRRRR
+            userobj.put("blocked", blockedarray);
 
-            //BLOCKED BY ARRAY
+            // BLOCKED BY ARRAY
             ArrayList<String> blockedBYarray = new ArrayList<>();
             for (Account blockedBY : acc.getFriendsManagement().getBlockedBy()) {
-                receivedreqarray.add(blockedBY.getUsername());
+                blockedBYarray.add(blockedBY.getUsername());
             }
-            userobj.put("blockedBY", blockedBYarray); //MAYBE ERRORRRRRRRRRRRRRRRRRRRRRR
+            userobj.put("blockedBY", blockedBYarray);
 
-            //CONTENT
+            // CONTENT
             for (Content content : acc.getContentManagement().getContent()) {
                 if (content instanceof Posts) {
                     JSONObject postsobj = new JSONObject();
@@ -126,33 +125,28 @@ public class Databases {
             userobj.put("stories", Arraystories);
             Arrayusers.put(userobj);
         }
-        try {
-            FileWriter file = new FileWriter("database.json");
-            file.write("");
+        try (FileWriter file = new FileWriter("database.json")) {
             file.write(Arrayusers.toString(3));
-            file.flush();
-            file.close();
         } catch (IOException e) {
             System.out.println("Error in saving in database.json");
         }
     }
 
     public void read() {
-        try {
+        try (BufferedReader reader = new BufferedReader(new FileReader("database.json"))) {
             accounts.clear();
             Account.resetAccountsCount();
             Content.resetContentCount();
-            BufferedReader reader = new BufferedReader(new FileReader("database.json"));
+
             StringBuilder jsonContent = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
                 jsonContent.append(line);
             }
-            reader.close();
 
             JSONArray Arrayusers = new JSONArray(jsonContent.toString());
 
-            //create all accounts without setting relationships
+            // Create all accounts without setting relationships
             for (int i = 0; i < Arrayusers.length(); i++) {
                 JSONObject userobj = Arrayusers.getJSONObject(i);
                 JSONArray Arrayinfo = userobj.getJSONArray("info");
@@ -181,7 +175,7 @@ public class Databases {
                 accounts.add(account);
             }
 
-            //set relationships and content
+            // Set relationships and content
             for (int i = 0; i < Arrayusers.length(); i++) {
                 JSONObject userobj = Arrayusers.getJSONObject(i);
                 Account account = accounts.get(i);
@@ -230,22 +224,22 @@ public class Databases {
                 ContentFactory factory = new ContentFactory();
                 for (int j = 0; j < postsArray.length(); j++) {
                     JSONObject postObj = postsArray.getJSONObject(j);
-                    Map contentmap = new HashMap();
+                    Map<String, String> contentmap = new HashMap<>();
                     contentmap.put("Text", postObj.getString("caption"));
                     contentmap.put("Path", postObj.getString("path"));
                     LocalDateTime timestamp = LocalDateTime.parse(postObj.getString("timestamp"), DateTimeFormatter.ISO_DATE_TIME);
-                    Content c = factory.Feed("Post", line, contentmap, timestamp);
+                    Content c = factory.Feed("Post", postObj.getString("caption"), contentmap, timestamp);
                     account.getContentManagement().addContent(c);
                 }
 
                 JSONArray storiesArray = userobj.getJSONArray("stories");
                 for (int j = 0; j < storiesArray.length(); j++) {
                     JSONObject storyObj = storiesArray.getJSONObject(j);
-                    Map contentmap = new HashMap();
+                    Map<String, String> contentmap = new HashMap<>();
                     contentmap.put("Text", storyObj.getString("caption"));
                     contentmap.put("Path", storyObj.getString("path"));
                     LocalDateTime timestamp = LocalDateTime.parse(storyObj.getString("timestamp"), DateTimeFormatter.ISO_DATE_TIME);
-                    Content c = factory.Feed("Story", line, contentmap, timestamp);
+                    Content c = factory.Feed("Story", storyObj.getString("caption"), contentmap, timestamp);
                     if (!((Stories) c).isExpired()) {
                         account.getContentManagement().addContent(c);
                     }
@@ -253,19 +247,10 @@ public class Databases {
             }
 
         } catch (FileNotFoundException e) {
-            FileWriter file = null;
-            try {
-                file = new FileWriter("database.json");
+            try (FileWriter file = new FileWriter("database.json")) {
                 file.write((new JSONArray()).toString(3));
-                file.close();
             } catch (IOException ex) {
                 Logger.getLogger(Databases.class.getName()).log(Level.SEVERE, null, ex);
-            } finally {
-                try {
-                    file.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(Databases.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
