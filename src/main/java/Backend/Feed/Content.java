@@ -1,6 +1,5 @@
 package Backend.Feed;
 
-import Backend.Account.ProfileManagement;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +9,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import Backend.Account.ProfileManagement;
+
 public abstract class Content {
 
     private String contentId;
@@ -18,7 +19,7 @@ public abstract class Content {
     private Map<String, String> ContentMap; //<"Text", "Caption"> and <"Path", "Image path">
     private LocalDateTime Time;
 
-    public Content(String authorId, Map ContentMap, LocalDateTime timestamp) {
+    public Content(String authorId, Map<String, String> ContentMap, LocalDateTime timestamp) {
         contentCount++;
         this.contentId = String.format("%04d", contentCount) + "-" + authorId;
         this.authorId = authorId;
@@ -58,11 +59,11 @@ public abstract class Content {
         this.authorId = authorId;
     }
 
-    public Map getContentMap() {
+    public Map<String, String> getContentMap() {
         return ContentMap;
     }
 
-    public void setContentMap(Map ContentMap) {
+    public void setContentMap(Map<String, String> ContentMap) {
         this.ContentMap = ContentMap;
         Path Src = Path.of(this.ContentMap.get("Path"));
         Path dest = Path.of("ImagesDatabase/Content//" + contentId + ".png");

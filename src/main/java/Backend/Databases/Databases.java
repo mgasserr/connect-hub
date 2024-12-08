@@ -109,13 +109,13 @@ public class Databases {
                     JSONObject postsobj = new JSONObject();
                     postsobj.put("caption", content.getContentMap().get("Text"));
                     postsobj.put("path", content.getContentMap().get("Path"));
-                    postsobj.put("timestamp", content.getTime());
-
+                    postsobj.put("timestamp", content.getTime().toString()); // Ensure timestamp is serialized as string
                     Arrayposts.put(postsobj);
-                } else {
+                } else if (content instanceof Stories) {
                     JSONObject storyobj = new JSONObject();
                     storyobj.put("caption", content.getContentMap().get("Text"));
                     storyobj.put("path", content.getContentMap().get("Path"));
+                    storyobj.put("timestamp", content.getTime().toString()); // Ensure timestamp is serialized as string
                     Arraystories.put(storyobj);
                 }
             }

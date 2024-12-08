@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ContentFactory {
 
-    public Content Feed(String type, String authorId, Map Content, LocalDateTime timestamp) {
+    public Content Feed(String type, String authorId, Map<String, String> Content, LocalDateTime timestamp) {
 
         if (type.equals("Post")) {
             return new Posts(authorId, Content, timestamp);
