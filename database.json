@@ -1,10 +1,13 @@
 [
    {
       "stories": [],
-      "blocked": [],
+      "blocked": ["y"],
       "receivedfriends": [],
       "blockedBY": [],
-      "sentfriends": [],
+      "sentfriends": [
+         "s",
+         "z"
+      ],
       "posts": [],
       "userid": "0001",
       "friends": [],
@@ -22,7 +25,7 @@
    {
       "stories": [],
       "blocked": [],
-      "receivedfriends": [],
+      "receivedfriends": ["g"],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
@@ -43,7 +46,7 @@
       "stories": [],
       "blocked": [],
       "receivedfriends": [],
-      "blockedBY": [],
+      "blockedBY": ["g"],
       "sentfriends": [],
       "posts": [],
       "userid": "0003",
