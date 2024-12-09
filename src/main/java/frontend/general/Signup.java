@@ -21,6 +21,7 @@ public class Signup extends javax.swing.JFrame {
     public Signup(Startup startupwindow) {
         initComponents();
         this.setLocationRelativeTo(null);
+        Database.read();
         this.startupwindow = startupwindow;
         addComponentListener(new ComponentAdapter() {
             @Override

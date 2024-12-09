@@ -40,11 +40,6 @@ public class Databases {
         return database;
     }
 
-    public void refresh() {
-        save();
-        read();
-    }
-
     public void save() {
         JSONArray Arrayusers = new JSONArray();
         for (Account acc : accounts) {
@@ -257,6 +252,15 @@ public class Databases {
         }
     }
 
+    public ImageIcon getPfpImgDatabase(String username) {
+        for (Account account : accounts) {
+            if (account.getUsername().equals(username)) {
+                return account.getProfile().getProfileImg();
+            }
+        }
+        return null;
+    }
+
     public ArrayList<Account> getSuggestedAccountsDATABASE(String username) {
         ArrayList<Account> suggestedAccounts = new ArrayList<>();
         for (Account potentialFriend : accounts) {
@@ -368,6 +372,7 @@ public class Databases {
     }
 
     public void logoutDatabase(String username) {
+        read();
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 account.setStatus(Activity.Status.OFFLINE);

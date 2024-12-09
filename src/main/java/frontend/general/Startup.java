@@ -17,14 +17,13 @@ public class Startup extends javax.swing.JFrame {
     public Startup() {
         initComponents();
         this.setLocationRelativeTo(null);
-        Databases Database = Databases.getInstance();
         Database.read();
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 loginerrorLabel.setText("");
                 usernameText.setText("");
-                passwordText.setText("");;
+                passwordText.setText("");
             }
         });
     }

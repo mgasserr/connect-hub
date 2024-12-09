@@ -1,7 +1,6 @@
 package frontend.settings;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import frontend.general.Home;
 import java.io.File;
@@ -16,15 +15,14 @@ import javax.swing.JOptionPane;
 public class changeProfilePic extends javax.swing.JFrame {
 
     Account acc;
-    Settings S;
     String path;
     Databases Database = Databases.getInstance();
 
-    public changeProfilePic(Account acc, Settings aThis) {
+    public changeProfilePic(Account acc) {
         initComponents();
         this.acc = acc;
-        S = aThis;
-        this.profilepic.setIcon(acc.getProfile().getProfileImg());
+        Database.read();
+        this.profilepic.setIcon(Database.getPfpImgDatabase(acc.getUsername()));
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
@@ -127,27 +125,30 @@ public class changeProfilePic extends javax.swing.JFrame {
 
     private void choosepicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosepicButtonActionPerformed
         JFileChooser fc = new JFileChooser();
+        Database.read();
         if (fc.showOpenDialog(fc) == JFileChooser.APPROVE_OPTION) {
             File tempfile = fc.getSelectedFile();
             if (!tempfile.getName().endsWith(".png") && !tempfile.getName().endsWith(".jpg") && !tempfile.getName().endsWith(".jpeg")) {
                 JOptionPane.showMessageDialog(this, "Please choose a .png/.jpg/.jpeg file only.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                return;
             } else {
                 this.path = tempfile.getAbsolutePath();
                 ImageIcon img = new ImageIcon(path);
                 this.profilepic.setIcon(img);
+                Database.save();
             }
         }
     }//GEN-LAST:event_choosepicButtonActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        Database.read();
         if (this.profilepic.getIcon() == null) {
             JOptionPane.showMessageDialog(this, "Choose profile photo");
         } else {
-            acc.getProfile().setProfileImg(this.path);
-            Database.refresh();
-            dispose();
-            S.setVisible(true);
+            Database.getAccount(acc.getUsername()).getProfile().setProfileImg(this.path);
+            Database.save();
+            Home home = new Home(acc);
+            home.setVisible(true);
+            this.setVisible(false);
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
 
@@ -157,7 +158,6 @@ public class changeProfilePic extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

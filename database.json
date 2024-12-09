@@ -5,7 +5,23 @@
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [],
+      "posts": [
+         {
+            "path": "ImagesDatabase\\Content\\0001-lmaoooo.png",
+            "caption": "lmaoooo",
+            "timestamp": "2024-12-09T03:01:57.518186900"
+         },
+         {
+            "path": "ImagesDatabase\\Content\\0002-STOOOORYYY.png",
+            "caption": "STOOOORYYY",
+            "timestamp": "2024-12-09T03:02:24.653476500"
+         },
+         {
+            "path": "ImagesDatabase\\Content\\0003-testttt.png",
+            "caption": "testttt",
+            "timestamp": "2024-12-09T03:05:38.499590"
+         }
+      ],
       "userid": "0001",
       "friends": ["s"],
       "info": [{
@@ -13,7 +29,7 @@
          "coverimg": "ImagesDatabase//Default//cover.jpg",
          "dob": "2004-08-08",
          "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
+         "profileimg": "ImagesDatabase\\ProfilePicture\\0001.png",
          "email": "g@gmail.com",
          "username": "g",
          "status": "OFFLINE"
@@ -33,7 +49,7 @@
          "coverimg": "ImagesDatabase//Default//cover.jpg",
          "dob": "2004-10-10",
          "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
+         "profileimg": "ImagesDatabase\\ProfilePicture\\0002.png",
          "email": "s@gmail.com",
          "username": "s",
          "status": "OFFLINE"
@@ -56,7 +72,7 @@
          "profileimg": "ImagesDatabase//Default//profile.png",
          "email": "y@gmail.com",
          "username": "y",
-         "status": "ONLINE"
+         "status": "OFFLINE"
       }]
    },
    {

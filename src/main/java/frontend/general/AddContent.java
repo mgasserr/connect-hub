@@ -1,7 +1,6 @@
 package frontend.general;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import Backend.Feed.*;
 import java.io.File;
@@ -199,6 +198,7 @@ public class AddContent extends javax.swing.JFrame {
             map.put("Path", imagePath);
         }
         Content c;
+        Database.read();
         String type = (String) PostorStory.getSelectedItem();
         if (type.equals("Post")) {
             c = F.Feed("Post", acc.getUserId(), map, null);
@@ -206,13 +206,12 @@ public class AddContent extends javax.swing.JFrame {
             c = F.Feed("Story", acc.getUserId(), map, null);
         }
         acc.getContentManagement().addContent(c);
+        Database.save();
         JOptionPane.showMessageDialog(this, type + " posted successfully.");
-        Database.refresh();
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

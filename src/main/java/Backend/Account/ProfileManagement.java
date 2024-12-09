@@ -1,5 +1,6 @@
 package Backend.Account;
 
+import Backend.Databases.Databases;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,6 +15,7 @@ public class ProfileManagement {
     private ImageIcon ProfileImg;
     private ImageIcon CoverImg;
     private String Bio;
+    private Databases D = Databases.getInstance();
 
     public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
         this.acc = acc;
@@ -35,7 +37,7 @@ public class ProfileManagement {
     }
 
     public ImageIcon getProfileImg() {
-        return ProfileImg;
+        return D.getAccount(acc.getUsername()).getProfile().ProfileImg;
     }
 
     public void setProfileImg(String Imgpath) {
@@ -49,11 +51,11 @@ public class ProfileManagement {
         } catch (IOException ex) {
             Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, "Error copying profile image", ex);
         }
-        this.ProfileImg = new ImageIcon(dest.toString());
+        D.getAccount(acc.getUsername()).getProfile().ProfileImg = new ImageIcon(dest.toString());
     }
 
     public ImageIcon getCoverImg() {
-        return CoverImg;
+        return D.getAccount(acc.getUsername()).getProfile().CoverImg;
     }
 
     public void setCoverImg(String Imgpath) {
@@ -65,7 +67,7 @@ public class ProfileManagement {
         } catch (IOException ex) {
             Logger.getLogger(ProfileManagement.class.getName()).log(Level.SEVERE, "Error copying profile image", ex);
         }
-        this.CoverImg = new ImageIcon(dest.toString());
+        D.getAccount(acc.getUsername()).getProfile().CoverImg = new ImageIcon(dest.toString());
     }
 
     public String getBio() {

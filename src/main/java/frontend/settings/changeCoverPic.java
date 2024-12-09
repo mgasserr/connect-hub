@@ -1,7 +1,6 @@
 package frontend.settings;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import frontend.general.Home;
 import java.io.File;
@@ -27,6 +26,7 @@ public class changeCoverPic extends javax.swing.JFrame {
         this.pictureLabel.setIcon(acc.getProfile().getCoverImg());
         this.setLocationRelativeTo(null);
         setResizable(false);
+        Database.read();
     }
 
     @SuppressWarnings("unchecked")
@@ -122,26 +122,28 @@ public class changeCoverPic extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void choosepicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosepicButtonActionPerformed
+        Database.read();
         JFileChooser fc = new JFileChooser();
         if (fc.showOpenDialog(fc) == JFileChooser.APPROVE_OPTION) {
             File tempfile = fc.getSelectedFile();
             if (!tempfile.getName().endsWith(".png") && !tempfile.getName().endsWith(".jpg") && !tempfile.getName().endsWith(".jpeg")) {
                 JOptionPane.showMessageDialog(this, "Please choose a .png/.jpg/.jpeg file only.", "ERROR", JOptionPane.ERROR_MESSAGE);
-                return;
             } else {
                 this.path = tempfile.getAbsolutePath();
                 ImageIcon img = new ImageIcon(path);
                 this.pictureLabel.setIcon(img);
+                Database.save();
             }
         }
     }//GEN-LAST:event_choosepicButtonActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        Database.read();
         if (this.pictureLabel.getIcon() == null) {
             JOptionPane.showMessageDialog(this, "Choose cover photo");
         } else {
-            acc.getProfile().setCoverImg(this.path);
-            Database.refresh();
+            Database.getAccount(acc.getUsername()).getProfile().setCoverImg(this.path);
+            Database.save();
             dispose();
             S.setVisible(true);
         }
@@ -153,7 +155,6 @@ public class changeCoverPic extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

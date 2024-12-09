@@ -79,7 +79,6 @@ public class Account {
     }
 
     public Status getStatus() {
-        System.out.println("GETTING STATUS" + status);
         return status;
     }
 
@@ -97,7 +96,6 @@ public class Account {
 
     public void logout() {
         this.status = Activity.Status.OFFLINE;
-        System.out.println("MY STATUS:" + status);
         Databases Database = Databases.getInstance();
         Database.save();
     }

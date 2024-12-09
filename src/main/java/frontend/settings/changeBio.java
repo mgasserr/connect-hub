@@ -1,7 +1,6 @@
 package frontend.settings;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import frontend.general.Home;
 
@@ -15,12 +14,13 @@ public class changeBio extends javax.swing.JFrame {
     Settings S;
     Databases Database = Databases.getInstance();
 
-    public changeBio(Account acc, Settings aThis) {
+    public changeBio(Account acc, Settings settingswindow) {
         initComponents();
         this.acc = acc;
-        S = aThis;
+        S = settingswindow;
         this.setLocationRelativeTo(null);
         setResizable(false);
+        Database.read();
     }
 
     @SuppressWarnings("unchecked")
@@ -111,11 +111,13 @@ public class changeBio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        Database.read();
         if (this.captionText.getText().equals("")) {
-            acc.getProfile().setBio("");
+            Database.getAccount(acc.getUsername()).getProfile().setBio("");
         } else {
-            acc.getProfile().setBio(this.captionText.getText());
+            Database.getAccount(acc.getUsername()).getProfile().setBio(this.captionText.getText());
         }
+        Database.save();
         dispose();
         S.setVisible(true);
     }//GEN-LAST:event_confirmButtonActionPerformed
@@ -126,7 +128,6 @@ public class changeBio extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
