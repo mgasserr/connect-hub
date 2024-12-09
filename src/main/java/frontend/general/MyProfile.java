@@ -1,32 +1,32 @@
 package frontend.general;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.friends.ViewFriendsList;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class MyProfile extends javax.swing.JFrame {
 
     Account acc;
+    Databases Database = Databases.getInstance();
 
-    public MyProfile(Account acc) {
+    public MyProfile(Account acc1) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
-        this.acc = acc;
-        profilepic.setIcon(this.acc.getProfile().getProfileImg());
-        coverpic.setIcon(this.acc.getProfile().getCoverImg());
-        bioText.setText(this.acc.getProfile().getBio());
+        Database.read();
+        this.acc = acc1;
+        profilepic.setIcon(Database.getAccount(acc.getUsername()).getProfile().getProfileImg());
+        coverpic.setIcon(Database.getAccount(acc.getUsername()).getProfile().getCoverImg());
+        bioText.setText(Database.getAccount(acc.getUsername()).getProfile().getBio());
 
         DefaultListModel<String> postsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
-        for (int j = 0; j < acc.getContentManagement().getContent().size(); j++) {
+        for (int j = 0; j < Database.getAccount(acc.getUsername()).getContentManagement().getContent().size(); j++) {
             // Extract content details
-            String time = acc.getContentManagement().getContent().get(j).getTime().toString();
-            String text = (String) acc.getContentManagement().getContent().get(j).getContentMap().get("Text");
-            String path = (String) acc.getContentManagement().getContent().get(j).getContentMap().get("Path");
+            String time = Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getTime().toString();
+            String text = (String) Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getContentMap().get("Text");
+            String path = (String) Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getContentMap().get("Path");
             // Format the data for display
             String listItem = String.format("%s~%s~%s~%s", acc.getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
             // Add the formatted string to the DefaultListModel
@@ -195,13 +195,13 @@ public class MyProfile extends javax.swing.JFrame {
     private void ViewFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewFriendsActionPerformed
         ViewFriendsList v = new ViewFriendsList(acc);
         v.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_ViewFriendsActionPerformed
 
     private void ViewPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewPostActionPerformed
         int i = postsList.getSelectedIndex();
         if (i == -1) {
             JOptionPane.showMessageDialog(this, "Choose a content to view!", "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
         } else {
             String line = postsList.getSelectedValue();
             String[] temp = line.split("~");
@@ -211,7 +211,6 @@ public class MyProfile extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -219,7 +218,7 @@ public class MyProfile extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
 

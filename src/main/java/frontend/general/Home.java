@@ -2,7 +2,7 @@ package frontend.general;
 
 import Backend.Account.Account;
 import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.friends.FriendsManagement;
 import frontend.settings.Settings;
 import javax.swing.DefaultListModel;
@@ -11,9 +11,11 @@ import javax.swing.JOptionPane;
 public class Home extends javax.swing.JFrame {
 
     private Account acc;
+    Databases Database = Databases.getInstance();
 
     public Home(Account acc) {
         initComponents();
+        Database.read();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
@@ -172,7 +174,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_ProfileActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     private void ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewActionPerformed
@@ -188,7 +190,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewActionPerformed
 
     private void LogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogOutActionPerformed
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
         this.setVisible(false);
         Startup window = new Startup();
         window.setVisible(true);
@@ -216,7 +218,7 @@ public class Home extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         //REFRESH AND GOES BACK TO HOME
-        Database.refreshDatabase();
+        Database.read();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

@@ -1,8 +1,7 @@
 package frontend.friends;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.general.Home;
 
 /**
@@ -12,7 +11,8 @@ import frontend.general.Home;
 public class FriendsManagement extends javax.swing.JFrame {
 
     Account acc;
-
+    Databases Database = Databases.getInstance();
+    
     public FriendsManagement(Account acc1) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -192,12 +192,11 @@ public class FriendsManagement extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

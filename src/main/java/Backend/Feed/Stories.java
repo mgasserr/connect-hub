@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Stories extends Content {
 
-    public Stories(String authorId, Map Content, LocalDateTime timestamp) {
+    public Stories(String authorId, Map<String, String> Content, LocalDateTime timestamp) {
         super(authorId, Content, timestamp);
     }
 

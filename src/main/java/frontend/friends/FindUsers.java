@@ -1,10 +1,10 @@
 package frontend.friends;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.general.Home;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.DefaultListModel;
 
 /**
@@ -13,14 +13,18 @@ import javax.swing.DefaultListModel;
  */
 public class FindUsers extends javax.swing.JFrame {
 
-    Account acc;
+    private Account acc;
+    private Databases Database = Databases.getInstance();
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public FindUsers(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
+        Database.read();
         searchText.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -173,12 +177,11 @@ public class FindUsers extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -190,27 +193,15 @@ public class FindUsers extends javax.swing.JFrame {
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
+        Database.read();
         errorText.setText("");
         if (searchText.getText().equals("")) {
             errorText.setForeground(Color.red);
             errorText.setText("Search field is empty");
         } else {
-            Database.refreshDatabase();
-            DefaultListModel<String> listModel = new DefaultListModel<>();
-            for (Account user : Database.getAllAccounts()) {
-                if (user.getUsername().equalsIgnoreCase(acc.getUsername())) {
-
-                } else if (acc.getFriendsManagement().getFriends().contains(user)) {
-
-                } else if (acc.getFriendsManagement().getSentFriendRequests().contains(user)) {
-
-                } else if (acc.getFriendsManagement().getReceivedFriendRequests().contains(user)) {
-
-                } else if (acc.getFriendsManagement().getBlockedBy().contains(user)) {
-
-                } else if (acc.getFriendsManagement().getBlockedUsers().contains(user)) {
-
-                } else {
+            listModel.clear();
+            for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
+                if (user.getUsername().startsWith(searchText.getText())) {
                     listModel.addElement(user.getUsername());
                 }
             }
@@ -219,7 +210,7 @@ public class FindUsers extends javax.swing.JFrame {
     }//GEN-LAST:event_searchButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
+        Database.read();
         errorText.setText("");
         int i = usersList.getSelectedIndex();
         if (i == -1) {
@@ -227,11 +218,12 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setText("No accounts selected");
         } else {
             acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
-            this.setVisible(false);
-            this.setVisible(true);
+            Database.save();
+            listModel.clear();
+            usersList.setModel(listModel);
+            searchText.setText("");
             errorText.setForeground(Color.black);
             errorText.setText("Friend request sent!");
-            Database.refreshDatabase();
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -242,12 +234,14 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
+            Database.read();
             acc.getFriendsManagement().Block(usersList.getSelectedValue(), acc.getUsername());
-            this.setVisible(false);
-            this.setVisible(true);
+            Database.save();
+            listModel.clear();
+            usersList.setModel(listModel);
+            searchText.setText("");
             errorText.setForeground(Color.black);
             errorText.setText("Account blocked!");
-            Database.refreshDatabase();
         }
     }//GEN-LAST:event_blockButtonActionPerformed
 

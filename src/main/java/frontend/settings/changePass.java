@@ -1,25 +1,26 @@
 package frontend.settings;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Authentication.PasswordHash;
+import Backend.Databases.Databases;
 import frontend.general.Home;
 import javax.swing.JOptionPane;
 
-
 public class changePass extends javax.swing.JFrame {
 
-     Account acc;
-     Settings S;
+    Account acc;
+    Settings S;
+    Databases Database = Databases.getInstance();
+
     public changePass(Account acc, Settings aThis) {
         initComponents();
-        this.acc= acc;
-        S=aThis;
+        this.acc = acc;
+        S = aThis;
         this.setLocationRelativeTo(null);
         setResizable(false);
+        Database.read();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -31,8 +32,8 @@ public class changePass extends javax.swing.JFrame {
         oldpass = new javax.swing.JPasswordField();
         newpass = new javax.swing.JPasswordField();
         newpassconf = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        doneButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         Home = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,21 +68,21 @@ public class changePass extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton1.setText("DONE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        doneButton.setBackground(new java.awt.Color(0, 204, 204));
+        doneButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        doneButton.setText("DONE");
+        doneButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                doneButtonActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 204, 204));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton3.setText("BACK");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setBackground(new java.awt.Color(0, 204, 204));
+        backButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        backButton.setText("BACK");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -104,9 +105,9 @@ public class changePass extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Home))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton3)
+                        .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(doneButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -141,8 +142,8 @@ public class changePass extends javax.swing.JFrame {
                     .addComponent(newpassconf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(backButton)
+                    .addComponent(doneButton))
                 .addContainerGap())
         );
 
@@ -157,31 +158,43 @@ public class changePass extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_newpassconfActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(this.oldpass.getText().equals("")|| this.newpass.getText().equals("")|| this.newpassconf.getText().equals("")){
-            JOptionPane.showMessageDialog(this,"Fill the feilds");
-        }else{
-            String old=oldpass.getText();
-            String newpassword=newpass.getText();
-            String newpassconfirm=newpassconf.getText();
-            JOptionPane.showMessageDialog(this,Database.changePassword(acc, old, newpassword, newpassconfirm));
-            dispose();
-            S.setVisible(true);
+    private void doneButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doneButtonActionPerformed
+        if (this.oldpass.getText().equals("") || this.newpass.getText().equals("") || this.newpassconf.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Fill all feilds");
+        } else {
+            String old = oldpass.getText();
+            String newpassword = newpass.getText();
+            String newpassconfirm = newpassconf.getText();
+            Database.read();
+            switch (PasswordHash.changePassword(Database.getAccount(acc.getUsername()), old, newpassword, newpassconfirm)) {
+                case "INVALIDOLDPASS" -> {
+                    JOptionPane.showMessageDialog(this, "Invalid old password.");
+                }
+                case "INVALIDCONFIRMPASS" -> {
+                    JOptionPane.showMessageDialog(this, "New password doesn't match");
+                }
+                case "PASSWORDCHANGED" -> {
+                    JOptionPane.showMessageDialog(this, "Password changed successfully!");
+                    Database.save();
+                    dispose();
+                    S.setVisible(true);
+                }
+            }
+
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_doneButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         S.setVisible(true);
-         dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        S.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -190,8 +203,8 @@ public class changePass extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton backButton;
+    private javax.swing.JButton doneButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

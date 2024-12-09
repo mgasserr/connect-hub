@@ -1,7 +1,7 @@
 package frontend.general;
 
 import Backend.Account.Account;
-import Backend.Databases.*;
+import Backend.Databases.Databases;
 import Backend.Authentication.Register;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
@@ -12,23 +12,18 @@ import javax.swing.SwingWorker;
 public class Startup extends javax.swing.JFrame {
 
     Account acc = null;
+    private Databases Database = Databases.getInstance();
 
     public Startup() {
         initComponents();
         this.setLocationRelativeTo(null);
-        AccountsDatabase.getInstance();
-        FriendsDatabase.getInstance();
-        SentFreindReqDatabase.getInstance();
-        ReceivedFreindReqDatabase.getInstance();
-        BlockedDatabase.getInstance();
-        ContentDatabase.getInstance();
-        Database.readAll();
+        Database.read();
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentShown(ComponentEvent e) {
                 loginerrorLabel.setText("");
                 usernameText.setText("");
-                passwordText.setText("");;
+                passwordText.setText("");
             }
         });
     }
@@ -180,6 +175,7 @@ public class Startup extends javax.swing.JFrame {
         if (usernameText.getText().equals("") || passwordText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Some feilds are empty!", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
+            Database.read();
             acc = Register.getInstance().signIn(username, password);
             if (acc == null) {
                 loginerrorLabel.setText("Wrong username/password");
@@ -195,6 +191,7 @@ public class Startup extends javax.swing.JFrame {
 
                     @Override
                     protected void done() {
+                        Database.save();
                         Home homewindow = new Home(acc);
                         homewindow.setVisible(true);
                         Startup.this.setVisible(false);
@@ -241,6 +238,7 @@ public class Startup extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginButton;

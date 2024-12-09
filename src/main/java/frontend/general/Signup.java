@@ -3,6 +3,7 @@ package frontend.general;
 import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Authentication.Validations;
+import Backend.Databases.Databases;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.security.NoSuchAlgorithmException;
@@ -15,10 +16,12 @@ import javax.swing.JOptionPane;
 public class Signup extends javax.swing.JFrame {
 
     Startup startupwindow;
+    private Databases Database = Databases.getInstance();
 
     public Signup(Startup startupwindow) {
         initComponents();
         this.setLocationRelativeTo(null);
+        Database.read();
         this.startupwindow = startupwindow;
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -220,6 +223,7 @@ public class Signup extends javax.swing.JFrame {
                 int day = Integer.parseInt(dayComboBox.getSelectedItem().toString());
                 int month = monthComboBox.getSelectedIndex() + 1;
                 int year = Integer.parseInt(yearComboBox.getSelectedItem().toString());
+                Database.read();
                 switch (Register.getInstance().signUp(email, username, password, LocalDate.of(year, month, day))) {
                     case "INVALIDEMAIL":
                         JOptionPane.showMessageDialog(this, "Invalid email format!", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -234,6 +238,7 @@ public class Signup extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "This username is already used!", "ERROR", JOptionPane.ERROR_MESSAGE);
                         break;
                     case "SIGNUPDONE":
+                        Database.save();
                         Startup S = new Startup();
                         S.setVisible(true);
                         this.setVisible(false);

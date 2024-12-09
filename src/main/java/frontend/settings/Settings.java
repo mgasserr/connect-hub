@@ -1,8 +1,7 @@
 package frontend.settings;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import frontend.general.Home;
 import frontend.general.Startup;
 
@@ -13,12 +12,14 @@ import frontend.general.Startup;
 public class Settings extends javax.swing.JFrame {
 
     Account acc;
+    Databases Database = Databases.getInstance();
 
     public Settings(Account acc) {
         initComponents();
         this.acc = acc;
         this.setLocationRelativeTo(null);
         setResizable(false);
+        Database.read();
     }
 
     @SuppressWarnings("unchecked")
@@ -172,7 +173,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_changepassButtonActionPerformed
 
     private void changeprofileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeprofileButtonActionPerformed
-        changeProfilePic CPR = new changeProfilePic(acc, this);
+        changeProfilePic CPR = new changeProfilePic(acc);
         CPR.setVisible(true);
         dispose();
     }//GEN-LAST:event_changeprofileButtonActionPerformed
@@ -184,7 +185,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_changebioButtonActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     private void changecoverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changecoverButtonActionPerformed
@@ -194,8 +195,7 @@ public class Settings extends javax.swing.JFrame {
     }//GEN-LAST:event_changecoverButtonActionPerformed
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        Register R = Register.getInstance();
-        R.logout(acc);
+        Database.logoutDatabase(acc.getUsername());
         Startup S = new Startup();
         S.setVisible(true);
         this.setVisible(false);
@@ -203,7 +203,6 @@ public class Settings extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

@@ -1,8 +1,7 @@
 package frontend.general;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
-import Backend.Databases.Database;
+import Backend.Databases.Databases;
 import Backend.Feed.*;
 import java.io.File;
 import java.util.HashMap;
@@ -16,6 +15,7 @@ public class AddContent extends javax.swing.JFrame {
     Account acc;
     ContentFactory F = new ContentFactory();
     String imagePath;
+    Databases Database = Databases.getInstance();
 
     public AddContent(Account acc) {
         initComponents();
@@ -198,6 +198,7 @@ public class AddContent extends javax.swing.JFrame {
             map.put("Path", imagePath);
         }
         Content c;
+        Database.read();
         String type = (String) PostorStory.getSelectedItem();
         if (type.equals("Post")) {
             c = F.Feed("Post", acc.getUserId(), map, null);
@@ -205,13 +206,12 @@ public class AddContent extends javax.swing.JFrame {
             c = F.Feed("Story", acc.getUserId(), map, null);
         }
         acc.getContentManagement().addContent(c);
+        Database.save();
         JOptionPane.showMessageDialog(this, type + " posted successfully.");
-        Database.refreshDatabase();
     }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refreshDatabase();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -219,7 +219,7 @@ public class AddContent extends javax.swing.JFrame {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        Register.getInstance().logout(acc);
+        Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
 
     /**
