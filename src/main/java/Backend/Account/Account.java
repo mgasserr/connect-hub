@@ -16,6 +16,7 @@ public class Account {
     private ProfileManagement Profile;
     private FriendsManagement friendsManagement;
     private ContentManagement contentManagement;
+    private GroupManagement groupsManagement;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -32,6 +33,10 @@ public class Account {
 
     public static void resetAccountsCount() {
         accountsCount = 0;
+    }
+
+    public GroupManagement getGroupsManagement() {
+        return groupsManagement;
     }
 
     public FriendsManagement getFriendsManagement() {

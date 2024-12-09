@@ -1,5 +1,6 @@
 package Backend.Feed;
 
+import Backend.Account.GroupManagement;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -66,9 +67,7 @@ public class Group {
         //D.getAccount(acc.getUsername()).getProfile().ProfileImg = new ImageIcon(dest.toString());
     }
 
-    public static void setCount(int count) {
-        Group.count = count;
+    public static void resetCount() {
+        count = 0;
     }
-    
-
 }
