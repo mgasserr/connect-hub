@@ -15,7 +15,7 @@ public class Home extends javax.swing.JFrame {
 
     public Home(Account acc) {
         initComponents();
-        Database.refresh();
+        Database.read();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
@@ -218,7 +218,7 @@ public class Home extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         //REFRESH AND GOES BACK TO HOME
-        Database.refresh();
+        Database.read();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);

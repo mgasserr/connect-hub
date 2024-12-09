@@ -1,16 +1,13 @@
 [
    {
       "stories": [],
-      "blocked": ["y"],
+      "blocked": [],
       "receivedfriends": [],
       "blockedBY": [],
-      "sentfriends": [
-         "s",
-         "z"
-      ],
+      "sentfriends": [],
       "posts": [],
       "userid": "0001",
-      "friends": [],
+      "friends": ["s"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase//Default//cover.jpg",
@@ -25,12 +22,12 @@
    {
       "stories": [],
       "blocked": [],
-      "receivedfriends": ["g"],
+      "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0002",
-      "friends": [],
+      "friends": ["g"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase//Default//cover.jpg",
@@ -46,7 +43,7 @@
       "stories": [],
       "blocked": [],
       "receivedfriends": [],
-      "blockedBY": ["g"],
+      "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0003",
@@ -59,13 +56,13 @@
          "profileimg": "ImagesDatabase//Default//profile.png",
          "email": "y@gmail.com",
          "username": "y",
-         "status": "OFFLINE"
+         "status": "ONLINE"
       }]
    },
    {
       "stories": [],
       "blocked": [],
-      "receivedfriends": ["g"],
+      "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],

@@ -1,12 +1,10 @@
 package frontend.friends;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import frontend.general.Home;
 import java.awt.Color;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.Dimension;
 import javax.swing.DefaultListModel;
 
 /**
@@ -15,26 +13,23 @@ import javax.swing.DefaultListModel;
  */
 public class ViewSentFriendReq extends javax.swing.JFrame {
 
-    Account acc;
-    Databases Database = Databases.getInstance();
+    private Account acc;
+    private Databases Database = Databases.getInstance();
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public ViewSentFriendReq(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                Database.refresh();
-                DefaultListModel<String> listModel = new DefaultListModel<>();
-                for (Account user : acc.getFriendsManagement().getSentFriendRequests()) {
-                    listModel.addElement(user.getUsername());
-                }
-                usersList.setModel(listModel);
-            }
-        });
+        Database.read();
+        listModel.clear();
+        for (Account user : Database.getSentReqsDATABASE(acc.getUsername())) {
+            listModel.addElement(user.getUsername());
+        }
+        usersList.setModel(listModel);
     }
 
     /**
@@ -129,7 +124,6 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -142,9 +136,14 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No users selected");
         } else {
-            acc.getFriendsManagement().unsendFriendRequest(usersList.getSelectedValue());
-            this.setVisible(false);
-            this.setVisible(true);
+            Database.read();
+            acc.getFriendsManagement().unsendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
+            Database.save();
+            listModel.clear();
+            for (Account user : Database.getSentReqsDATABASE(acc.getUsername())) {
+                listModel.addElement(user.getUsername());
+            }
+            usersList.setModel(listModel);
             errorText.setForeground(Color.black);
             errorText.setText("Friend request unsent!");
         }

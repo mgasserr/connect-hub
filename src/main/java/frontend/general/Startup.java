@@ -12,6 +12,7 @@ import javax.swing.SwingWorker;
 public class Startup extends javax.swing.JFrame {
 
     Account acc = null;
+    private Databases Database = Databases.getInstance();
 
     public Startup() {
         initComponents();
@@ -175,6 +176,7 @@ public class Startup extends javax.swing.JFrame {
         if (usernameText.getText().equals("") || passwordText.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Some feilds are empty!", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else {
+            Database.read();
             acc = Register.getInstance().signIn(username, password);
             if (acc == null) {
                 loginerrorLabel.setText("Wrong username/password");
@@ -190,6 +192,7 @@ public class Startup extends javax.swing.JFrame {
 
                     @Override
                     protected void done() {
+                        Database.save();
                         Home homewindow = new Home(acc);
                         homewindow.setVisible(true);
                         Startup.this.setVisible(false);
@@ -236,7 +239,7 @@ public class Startup extends javax.swing.JFrame {
             }
         });
     }
- 
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LoginButton;

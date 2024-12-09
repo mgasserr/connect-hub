@@ -257,11 +257,51 @@ public class Databases {
         }
     }
 
-    public ArrayList<Account> getSuggestedAccounts(String username) {
+    public ArrayList<Account> getSuggestedAccountsDATABASE(String username) {
         ArrayList<Account> suggestedAccounts = new ArrayList<>();
         for (Account potentialFriend : accounts) {
             if (!potentialFriend.getUsername().equals(getAccount(username).getUsername()) && !getAccount(username).getFriendsManagement().getFriends().contains(potentialFriend) && !getAccount(username).getFriendsManagement().getBlockedUsers().contains(potentialFriend) && !getAccount(username).getFriendsManagement().getBlockedBy().contains(potentialFriend) && !getAccount(username).getFriendsManagement().getReceivedFriendRequests().contains(potentialFriend) && !getAccount(username).getFriendsManagement().getSentFriendRequests().contains(potentialFriend)) {
                 suggestedAccounts.add(potentialFriend);
+            }
+        }
+        return suggestedAccounts;
+    }
+
+    public ArrayList<Account> getFriendsDATABASE(String username) {
+        ArrayList<Account> suggestedAccounts = new ArrayList<>();
+        for (Account friend : accounts) {
+            if (getAccount(username).getFriendsManagement().getFriends().contains(friend)) {
+                suggestedAccounts.add(friend);
+            }
+        }
+        return suggestedAccounts;
+    }
+
+    public ArrayList<Account> getReceivedReqsDATABASE(String username) {
+        ArrayList<Account> suggestedAccounts = new ArrayList<>();
+        for (Account friend : accounts) {
+            if (getAccount(username).getFriendsManagement().getReceivedFriendRequests().contains(friend)) {
+                suggestedAccounts.add(friend);
+            }
+        }
+        return suggestedAccounts;
+    }
+
+    public ArrayList<Account> getSentReqsDATABASE(String username) {
+        ArrayList<Account> suggestedAccounts = new ArrayList<>();
+        for (Account friend : accounts) {
+            if (getAccount(username).getFriendsManagement().getSentFriendRequests().contains(friend)) {
+                suggestedAccounts.add(friend);
+            }
+        }
+        return suggestedAccounts;
+    }
+
+    public ArrayList<Account> getBlockedDATABASE(String username) {
+        ArrayList<Account> suggestedAccounts = new ArrayList<>();
+        for (Account friend : accounts) {
+            if (getAccount(username).getFriendsManagement().getBlockedUsers().contains(friend)) {
+                suggestedAccounts.add(friend);
             }
         }
         return suggestedAccounts;

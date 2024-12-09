@@ -92,9 +92,9 @@ public class FriendsManagement {
         senderacc.getFriendsManagement().addSentFriendRequest(receiveracc);
     }
 
-    public void unsendFriendRequest(String username) {
-        removeSentFriendRequest(Database.getAccount(username));
-        Database.getAccount(username).getFriendsManagement().removeReceivedFriendRequest(acc);
+    public void unsendFriendRequest(String username, String myacc) {
+        Database.getAccount(myacc).getFriendsManagement().removeSentFriendRequest(Database.getAccount(username));
+        Database.getAccount(username).getFriendsManagement().removeReceivedFriendRequest(Database.getAccount(myacc));
     }
 
     public void acceptFriendRequest(String sender, String receiver) {

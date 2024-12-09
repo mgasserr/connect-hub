@@ -43,11 +43,11 @@ public class Register {
             return "USERUSED";
             //ALREADY USED USERNAME ---> FRONTEND
         }
-
+        Database.read();
         Account A = new Account(Email, Username, Hashpass, DOB);
         A.setProfile(new ProfileManagement(A, null, null, null));
         Database.addNewAccount(A);
-        Database.refresh();
+        Database.save();
         return "SIGNUPDONE";
     }
 

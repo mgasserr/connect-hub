@@ -1,12 +1,10 @@
 package frontend.friends;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import frontend.general.Home;
 import java.awt.Color;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.Dimension;
 import javax.swing.DefaultListModel;
 
 /**
@@ -15,40 +13,23 @@ import javax.swing.DefaultListModel;
  */
 public class ViewSuggested extends javax.swing.JFrame {
 
-    Account acc;
-    Databases Database = Databases.getInstance();
+    private Account acc;
+    private Databases Database = Databases.getInstance();
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public ViewSuggested(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                Database.refresh();
-                DefaultListModel<String> listModel = new DefaultListModel<>();
-                for (Account user : Database.getAllAccounts()) {
-                    if (user.getUsername().equalsIgnoreCase(acc.getUsername())) {
-
-                    } else if (acc.getFriendsManagement().getFriends().contains(user)) {
-
-                    } else if (acc.getFriendsManagement().getSentFriendRequests().contains(user)) {
-
-                    } else if (acc.getFriendsManagement().getReceivedFriendRequests().contains(user)) {
-
-                    } else if (acc.getFriendsManagement().getBlockedBy().contains(user)) {
-
-                    } else if (acc.getFriendsManagement().getBlockedUsers().contains(user)) {
-
-                    } else {
-                        listModel.addElement(user.getUsername());
-                    }
-                }
-                usersList.setModel(listModel);
-            }
-        });
+        Database.read();
+        listModel.clear();
+        for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
+            listModel.addElement(user.getUsername());
+        }
+        usersList.setModel(listModel);
     }
 
     /**
@@ -154,16 +135,20 @@ public class ViewSuggested extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        // TODO add your handling code here:
         errorText.setText("");
         int i = usersList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
-            errorText.setText("No users selected");
+            errorText.setText("No accounts selected");
         } else {
+            Database.read();
             acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
-            this.setVisible(false);
-            this.setVisible(true);
+            Database.save();
+            listModel.clear();
+            for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
+                listModel.addElement(user.getUsername());
+            }
+            usersList.setModel(listModel);
             errorText.setForeground(Color.black);
             errorText.setText("Friend request sent!");
         }
@@ -171,7 +156,6 @@ public class ViewSuggested extends javax.swing.JFrame {
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -184,11 +168,16 @@ public class ViewSuggested extends javax.swing.JFrame {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
+            Database.read();
             acc.getFriendsManagement().Block(usersList.getSelectedValue(), acc.getUsername());
-            this.setVisible(false);
-            this.setVisible(true);
+            Database.save();
+            listModel.clear();
+            for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
+                listModel.addElement(user.getUsername());
+            }
+            usersList.setModel(listModel);
             errorText.setForeground(Color.black);
-            errorText.setText("Account blocked!");
+            errorText.setText("User blocked!");
         }
     }//GEN-LAST:event_blockButtonActionPerformed
 

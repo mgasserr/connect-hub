@@ -2,7 +2,6 @@ frontend\settings\Settings$5.class
 frontend\friends\ViewReceivedFriendReq$1.class
 frontend\friends\ViewFriendsList$4.class
 frontend\general\Home$3.class
-frontend\friends\ViewSuggested$5.class
 frontend\general\Startup$4.class
 frontend\settings\changeProfilePic$2.class
 frontend\settings\changePass$6.class
@@ -13,7 +12,6 @@ frontend\friends\ViewSuggested$2.class
 frontend\friends\ViewSentFriendReq$1.class
 Backend\Account\ProfileManagement.class
 frontend\friends\FindUsers$2.class
-frontend\friends\ViewSentFriendReq$4.class
 frontend\general\Home$6.class
 frontend\friends\FriendsManagement$6.class
 frontend\general\Signup.class
@@ -24,7 +22,6 @@ frontend\friends\FriendsManagement$3.class
 frontend\settings\changeCoverPic$4.class
 frontend\friends\ViewBlockList$1.class
 frontend\friends\ViewFriendsList$1.class
-frontend\friends\ViewBlockList$4.class
 frontend\settings\changeCoverPic$1.class
 frontend\general\Home$8.class
 frontend\settings\Settings$3.class
@@ -66,11 +63,9 @@ frontend\settings\changePass$2.class
 frontend\general\AddContent$4.class
 frontend\friends\FriendsManagement$4.class
 frontend\general\Startup.class
-frontend\friends\ViewReceivedFriendReq$5.class
 frontend\settings\changeCoverPic$3.class
 frontend\general\AddContent$1.class
 frontend\settings\changeProfilePic.class
-frontend\friends\ViewFriendsList$5.class
 frontend\friends\ViewSentFriendReq$3.class
 frontend\friends\ViewFriendsList.class
 frontend\general\Signup$1.class

@@ -1,12 +1,10 @@
 package frontend.friends;
 
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import frontend.general.Home;
 import java.awt.Color;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
+import java.awt.Dimension;
 import javax.swing.DefaultListModel;
 
 /**
@@ -15,26 +13,23 @@ import javax.swing.DefaultListModel;
  */
 public class ViewBlockList extends javax.swing.JFrame {
 
-    Account acc;
-    Databases Database = Databases.getInstance();
+    private Account acc;
+    private Databases Database = Databases.getInstance();
+    private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public ViewBlockList(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
-        addComponentListener(new ComponentAdapter() {
-            @Override
-            public void componentShown(ComponentEvent e) {
-                Database.refresh();
-                DefaultListModel<String> listModel = new DefaultListModel<>();
-                for (Account user : acc.getFriendsManagement().getBlockedUsers()) {
-                    listModel.addElement(user.getUsername());
-                }
-                blocklistText.setModel(listModel);
-            }
-        });
+        Database.read();
+        listModel.clear();
+        for (Account user : Database.getBlockedDATABASE(acc.getUsername())) {
+            listModel.addElement(user.getUsername());
+        }
+        usersList.setModel(listModel);
     }
 
     /**
@@ -48,7 +43,7 @@ public class ViewBlockList extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        blocklistText = new javax.swing.JList<>();
+        usersList = new javax.swing.JList<>();
         unblockButton = new javax.swing.JButton();
         Home = new javax.swing.JButton();
         errorText = new javax.swing.JLabel();
@@ -64,7 +59,7 @@ public class ViewBlockList extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("     View Block List");
 
-        jScrollPane1.setViewportView(blocklistText);
+        jScrollPane1.setViewportView(usersList);
 
         unblockButton.setBackground(new java.awt.Color(0, 204, 204));
         unblockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -130,23 +125,28 @@ public class ViewBlockList extends javax.swing.JFrame {
 
     private void unblockButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unblockButtonActionPerformed
         errorText.setText("");
-        int i = blocklistText.getSelectedIndex();
+        int i = usersList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
-            acc.getFriendsManagement().Unblock(blocklistText.getSelectedValue(), acc.getUsername());
-            this.setVisible(false);
-            this.setVisible(true);
+            Database.read();
+            acc.getFriendsManagement().Unblock(usersList.getSelectedValue(), acc.getUsername());
+            Database.save();
+            DefaultListModel listmodel = new DefaultListModel<>();
+            usersList.setModel(listmodel);
+            listModel.clear();
+            for (Account user : Database.getBlockedDATABASE(acc.getUsername())) {
+                listModel.addElement(user.getUsername());
+            }
+            usersList.setModel(listModel);
             errorText.setForeground(Color.black);
-            errorText.setText("Account unblocked!");
-            Database.refresh();
+            errorText.setText("User unblocked!");
         }
     }//GEN-LAST:event_unblockButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
-        Database.refresh();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
@@ -163,10 +163,10 @@ public class ViewBlockList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;
-    private javax.swing.JList<String> blocklistText;
     private javax.swing.JLabel errorText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton unblockButton;
+    private javax.swing.JList<String> usersList;
     // End of variables declaration//GEN-END:variables
 }
