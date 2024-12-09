@@ -29,6 +29,7 @@ public class Account {
         this.Profile = new ProfileManagement(this, null, null, null);
         this.friendsManagement = new FriendsManagement(this);
         this.contentManagement = new ContentManagement(this);
+        this.groupsManagement = new GroupManagement(this);
     }
 
     public static void resetAccountsCount() {

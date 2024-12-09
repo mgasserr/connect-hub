@@ -1,33 +1,33 @@
 package Backend.Account;
 
 import Backend.Databases.Databases;
+import Backend.Feed.Content;
+import Backend.Feed.Group;
 import java.util.ArrayList;
 
 public class GroupManagement {
 
-    private Account primaryadmin;
-    private ArrayList<Account> members;
+    private Account primaryAdmin;
     private ArrayList<Account> admins;
-    Databases Database = Databases.getInstance();
+    private ArrayList<Account> members;
+    private ArrayList<Content> content;
+    private ArrayList<Group> groups;
+    Databases D = Databases.getInstance();
 
     public GroupManagement(Account primaryadmin) {
-        this.primaryadmin = primaryadmin;
+        this.primaryAdmin = primaryadmin;
+        this.admins = new ArrayList<>();
+        this.members = new ArrayList<>();
+        this.groups = new ArrayList<>();
+        this.content = new ArrayList<>();
     }
 
-    public ArrayList<Account> getMembers() {
-        return members;
+    public Account getPrimaryAdmin() {
+        return primaryAdmin;
     }
 
-    public void setMembers(ArrayList<Account> members) {
-        this.members = members;
-    }
-
-    public Account getPrimaryadmin() {
-        return primaryadmin;
-    }
-
-    public void setPrimaryadmin(Account primaryadmin) {
-        this.primaryadmin = primaryadmin;
+    public void setPrimaryAdmin(Account primaryAdmin) {
+        this.primaryAdmin = primaryAdmin;
     }
 
     public ArrayList<Account> getAdmins() {
@@ -38,28 +38,67 @@ public class GroupManagement {
         this.admins = admins;
     }
 
-    public void addMember(Account acc) {
-        this.members.add(acc);
+    public ArrayList<Account> getMembers() {
+        return members;
     }
 
-    public void removeMember(Account acc) {
-        this.members.remove(acc);
+    public void setMembers(ArrayList<Account> members) {
+        this.members = members;
     }
 
-    public boolean isMember(Account acc) {
-        return this.members.contains(acc);
+    public ArrayList<Content> getContent() {
+        return content;
     }
 
-    public void addAdmin(Account acc) {
-        this.admins.add(acc);
+    public void setContent(ArrayList<Content> content) {
+        this.content = content;
     }
 
-    public void removeAdmin(Account acc) {
-        this.admins.remove(acc);
+    public ArrayList<Group> getGroups() {
+        return groups;
     }
 
-    public boolean isAdmin(Account acc) {
-        return this.admins.contains(acc);
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
+    public void addMember(String Name) {
+        this.members.add(D.getAccount(Name));
+    }
+
+    public void removeMember(String Name) {
+        this.members.remove(D.getAccount(Name));
+    }
+
+    public boolean isMember(String Name) {
+        return this.members.contains(D.getAccount(Name));
+    }
+
+    public void addAdmin(String Name) {
+        this.admins.add(D.getAccount(Name));
+    }
+
+    public void removeAdmin(String Name) {
+        this.admins.remove(D.getAccount(Name));
+    }
+
+    public boolean isAdmin(String Name) {
+        return this.admins.contains(D.getAccount(Name));
+    }
+
+    //CREATES NEW GROUP
+    public void addGroup(Group Group, String Name) {
+        D.getAccount(Name).getGroupsManagement().getGroups().add(Group);
+    }
+
+    //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void addContent(Content content) {
+        this.content.add(content);
+    }
+
+    //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void removeAdmin(Content content) {
+        this.content.remove(content);
     }
 
 }

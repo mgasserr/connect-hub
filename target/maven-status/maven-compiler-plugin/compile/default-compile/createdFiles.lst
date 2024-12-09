@@ -2,6 +2,7 @@ frontend\settings\Settings$5.class
 frontend\friends\ViewReceivedFriendReq$1.class
 frontend\friends\ViewFriendsList$4.class
 frontend\general\Home$3.class
+Backend\Feed\Group.class
 frontend\general\Startup$4.class
 frontend\settings\changeProfilePic$2.class
 frontend\settings\changePass$6.class
@@ -22,6 +23,7 @@ frontend\friends\FriendsManagement$3.class
 frontend\settings\changeCoverPic$4.class
 frontend\friends\ViewBlockList$1.class
 frontend\friends\ViewFriendsList$1.class
+Backend\Account\GroupManagement.class
 frontend\settings\changeCoverPic$1.class
 frontend\general\Home$8.class
 frontend\settings\Settings$3.class
@@ -38,8 +40,10 @@ frontend\settings\changeBio$2.class
 frontend\general\Startup$5.class
 frontend\settings\changeProfilePic$1.class
 frontend\friends\ViewBlockList$2.class
+frontend\general\test$2.class
 frontend\general\DisplayContent.class
 Backend\Authentication\Validations.class
+frontend\general\Home$9.class
 frontend\friends\ViewReceivedFriendReq$4.class
 frontend\friends\ViewSuggested$3.class
 frontend\general\MyProfile$2.class
@@ -81,6 +85,7 @@ frontend\friends\FindUsers$1.class
 frontend\friends\ViewReceivedFriendReq.class
 frontend\general\Startup$6.class
 frontend\general\MyProfile.class
+frontend\general\test$1.class
 frontend\settings\Settings$1.class
 frontend\friends\FindUsers.class
 Backend\Account\Activity.class
@@ -97,6 +102,7 @@ frontend\general\AddContent$2.class
 frontend\general\Signup$2.class
 frontend\general\Startup$2.class
 frontend\settings\changeCoverPic.class
+frontend\general\test.class
 frontend\friends\FindUsers$3.class
 frontend\settings\Settings.class
 frontend\friends\FriendsManagement$8.class

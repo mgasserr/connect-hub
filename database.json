@@ -1,98 +1,29 @@
-[
-   {
-      "stories": [],
-      "blocked": [],
-      "receivedfriends": [],
-      "blockedBY": [],
-      "sentfriends": [],
-      "posts": [
-         {
-            "path": "ImagesDatabase\\Content\\0001-lmaoooo.png",
-            "caption": "lmaoooo",
-            "timestamp": "2024-12-09T03:01:57.518186900"
-         },
-         {
-            "path": "ImagesDatabase\\Content\\0002-STOOOORYYY.png",
-            "caption": "STOOOORYYY",
-            "timestamp": "2024-12-09T03:02:24.653476500"
-         },
-         {
-            "path": "ImagesDatabase\\Content\\0003-testttt.png",
-            "caption": "testttt",
-            "timestamp": "2024-12-09T03:05:38.499590"
-         }
-      ],
-      "userid": "0001",
-      "friends": ["s"],
-      "info": [{
-         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2004-08-08",
-         "bio": "",
-         "profileimg": "ImagesDatabase\\ProfilePicture\\0001.png",
-         "email": "g@gmail.com",
-         "username": "g",
-         "status": "OFFLINE"
-      }]
-   },
-   {
-      "stories": [],
-      "blocked": [],
-      "receivedfriends": [],
-      "blockedBY": [],
-      "sentfriends": [],
-      "posts": [],
-      "userid": "0002",
-      "friends": ["g"],
-      "info": [{
-         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2004-10-10",
-         "bio": "",
-         "profileimg": "ImagesDatabase\\ProfilePicture\\0002.png",
-         "email": "s@gmail.com",
-         "username": "s",
-         "status": "OFFLINE"
-      }]
-   },
-   {
-      "stories": [],
-      "blocked": [],
-      "receivedfriends": [],
-      "blockedBY": [],
-      "sentfriends": [],
-      "posts": [],
-      "userid": "0003",
-      "friends": [],
-      "info": [{
-         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2003-11-28",
-         "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "y@gmail.com",
-         "username": "y",
-         "status": "OFFLINE"
-      }]
-   },
-   {
-      "stories": [],
-      "blocked": [],
-      "receivedfriends": [],
-      "blockedBY": [],
-      "sentfriends": [],
-      "posts": [],
-      "userid": "0004",
-      "friends": [],
-      "info": [{
-         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2004-11-03",
-         "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "z@gmail.com",
-         "username": "z",
-         "status": "OFFLINE"
-      }]
-   }
-]
+[{
+   "stories": [],
+   "blocked": [],
+   "groups": [{
+      "creator": "m",
+      "members": [],
+      "name": "l",
+      "description": "C",
+      "picture": "ImagesDatabase//Default//group.png",
+      "admins": [],
+      "content": []
+   }],
+   "receivedfriends": [],
+   "blockedBY": [],
+   "sentfriends": [],
+   "posts": [],
+   "userid": "0001",
+   "friends": [],
+   "info": [{
+      "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+      "coverimg": "ImagesDatabase//Default//cover.jpg",
+      "dob": "1990-01-01",
+      "bio": "",
+      "profileimg": "ImagesDatabase//Default//profile.png",
+      "email": "m@g.co",
+      "username": "m",
+      "status": "ONLINE"
+   }]
+}]

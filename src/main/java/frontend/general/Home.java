@@ -51,6 +51,7 @@ public class Home extends javax.swing.JFrame {
         NewContent = new javax.swing.JButton();
         LogOut = new javax.swing.JButton();
         View = new javax.swing.JButton();
+        Groups = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -116,6 +117,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Groups.setText("Groups");
+        Groups.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GroupsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,12 +134,14 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addComponent(Home)
                         .addGap(18, 18, 18)
                         .addComponent(Profile)
                         .addGap(18, 18, 18)
                         .addComponent(Friends)
+                        .addGap(18, 18, 18)
+                        .addComponent(Groups)
                         .addGap(18, 18, 18)
                         .addComponent(NewContent)
                         .addGap(18, 18, 18)
@@ -155,7 +165,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Friends)
                     .addComponent(Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Home)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(Groups))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
@@ -224,9 +235,19 @@ public class Home extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_HomeActionPerformed
 
+    private void GroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupsActionPerformed
+        //GOES TO GROUPS
+        Database.read();
+        test t = new test(acc);
+        t.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_GroupsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Friends;
+    private javax.swing.JButton Groups;
     private javax.swing.JButton Home;
     private javax.swing.JButton LogOut;
     private javax.swing.JButton NewContent;

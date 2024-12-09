@@ -20,10 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- *
- * @author Mohamed
- */
 public class Databases {
 
     private static Databases database;
@@ -48,6 +44,7 @@ public class Databases {
             JSONArray Arrayinfo = new JSONArray();
             JSONArray Arrayposts = new JSONArray();
             JSONArray Arraystories = new JSONArray();
+            JSONArray Arraygroups = new JSONArray();
 
             // INFO ARRAY
             JSONObject infoobj = new JSONObject();
@@ -114,9 +111,24 @@ public class Databases {
                 }
             }
 
+            // GROUPS
+            for (Group group : acc.getGroupsManagement().getGroups()) {
+                JSONObject groupsobj = new JSONObject();
+                groupsobj.put("name", group.getName());
+                groupsobj.put("description", group.getDescription());
+                groupsobj.put("picture", group.getPicture());
+                groupsobj.put("creator", acc.getGroupsManagement().getPrimaryAdmin().getUsername());
+                groupsobj.put("admins", acc.getGroupsManagement().getAdmins());
+                groupsobj.put("members", acc.getGroupsManagement().getMembers());
+                groupsobj.put("content", acc.getGroupsManagement().getContent());
+                Arraygroups.put(groupsobj);
+            }
+
+            userobj.put("friends", friendsusernames);
             userobj.put("posts", Arrayposts);
-            userobj.put("userid", acc.getUserId());
             userobj.put("stories", Arraystories);
+            userobj.put("groups", Arraygroups);
+            userobj.put("userid", acc.getUserId());
             Arrayusers.put(userobj);
         }
         try (FileWriter file = new FileWriter("database.json")) {
@@ -238,6 +250,19 @@ public class Databases {
                         account.getContentManagement().addContent(c);
                     }
                 }
+
+                JSONArray groupsArray = userobj.getJSONArray("groups");
+                for (int j = 0; j < groupsArray.length(); j++) {
+                    JSONObject groupObj = groupsArray.getJSONObject(j);
+                    String name = groupObj.getString("name");
+                    String description = groupObj.getString("description");
+                    ImageIcon picture = new ImageIcon(groupObj.getString("picture"));
+                    Group group = new Group(name, description, picture);
+                    
+                    String creator = groupObj.getString("creator");
+                    getAccount(creator).getGroupsManagement().addGroup(group, name);
+                    //MEMBERS, ADMINS, CONTENT HAVE NOT BEEN DONE YET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -333,9 +358,9 @@ public class Databases {
         return null;
     }
 
-    public void addNewAccount(Account account) {        //gets called when a user signs up
+    //gets called when a user signs up
+    public void addNewAccount(Account account) {
         accounts.add(account);
-
     }
 
     //VALIDATION TO CHECK IF THE USERNAME ALREADY USED 
