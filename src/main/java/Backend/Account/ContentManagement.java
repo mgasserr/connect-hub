@@ -1,5 +1,6 @@
 package Backend.Account;
 
+import Backend.Databases.Databases;
 import Backend.Feed.Content;
 import Backend.Feed.Posts;
 import Backend.Feed.Stories;
@@ -9,6 +10,7 @@ public class ContentManagement {
 
     private Account acc;
     private ArrayList<Content> content = new ArrayList<>();
+    private Databases D = Databases.getInstance();
 
     public ContentManagement(Account acc) {
         this.acc = acc;
@@ -25,10 +27,10 @@ public class ContentManagement {
     public void addContent(Content content) {
         if (content instanceof Stories) {
             if (!((Stories) content).isExpired()) {
-                this.content.add(content);
+                D.getAccount(acc.getUsername()).getContentManagement().getContent().add(content);
             }
         } else {
-            this.content.add(content);
+            D.getAccount(acc.getUsername()).getContentManagement().getContent().add(content);
         }
     }
 
