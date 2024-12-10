@@ -21,6 +21,8 @@ public class Group {
     private ArrayList<Account> admins;
     private ArrayList<Account> members;
     private ArrayList<Content> content;
+     private ArrayList<Account> requests;
+     private static ArrayList<Group> groups= new ArrayList<>();
     private Databases D = Databases.getInstance();
 
     public Group(Account Creator, String Name, String Description, ImageIcon Picture) {
@@ -37,6 +39,7 @@ public class Group {
             this.Description = Description;
         }
         count++;
+        groups.add(this);
     }
 
     public Account getCreator() {
@@ -158,4 +161,27 @@ public class Group {
     public void removeContent(Content content) {
         this.content.remove(content);
     }
+    
+     public void addRequest(String Name) {
+        this.requests.add(D.getAccount(Name));
+    }
+
+    public void removeRequest(String Name) {
+        this.requests.remove(D.getAccount(Name));
+        
+        
+    }
+
+    public ArrayList<Account> getRequests() {
+        return requests;
+    }
+
+    public static ArrayList<Group> getGroups() {
+        return groups;
+    }
+    public static void removeGroup(Group group) {
+         groups.remove(group);
+    }
+    
+    
 }

@@ -415,7 +415,15 @@ public class Databases {
         }
         return null;
     }
-
+    
+    public Group searchGroup(String groupName){
+        for (Group group : Group.getGroups()){
+            if(group.getName().equalsIgnoreCase(groupName)){
+                return group;
+            }
+        }
+        return null;
+    }
     public Account getGroupCreator(String groupName, String accountName) {
         for (Group group : getAccount(accountName).getGroups()) {
             if (group.getName().equalsIgnoreCase(groupName)) {
