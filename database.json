@@ -1,15 +1,35 @@
 [{
    "stories": [],
    "blocked": [],
-   "groups": [{
-      "creator": "m",
-      "members": [],
-      "name": "l",
-      "description": "C",
-      "picture": "ImagesDatabase//Default//group.png",
-      "admins": [],
-      "content": []
-   }],
+   "groups": [
+      {
+         "creator": "h",
+         "members": [],
+         "name": "k",
+         "description": "k",
+         "picture": "ImagesDatabase//Default//group.png",
+         "admins": [],
+         "content": []
+      },
+      {
+         "creator": "h",
+         "members": [],
+         "name": "l",
+         "description": "kj",
+         "picture": "ImagesDatabase//Default//group.png",
+         "admins": [],
+         "content": []
+      },
+      {
+         "creator": "h",
+         "members": [],
+         "name": "kpp",
+         "description": "a",
+         "picture": "ImagesDatabase//Default//group.png",
+         "admins": [],
+         "content": []
+      }
+   ],
    "receivedfriends": [],
    "blockedBY": [],
    "sentfriends": [],
@@ -19,11 +39,11 @@
    "info": [{
       "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
       "coverimg": "ImagesDatabase//Default//cover.jpg",
-      "dob": "1990-01-01",
+      "dob": "1996-01-01",
       "bio": "",
       "profileimg": "ImagesDatabase//Default//profile.png",
-      "email": "m@g.co",
-      "username": "m",
+      "email": "m@a.d",
+      "username": "h",
       "status": "ONLINE"
    }]
 }]

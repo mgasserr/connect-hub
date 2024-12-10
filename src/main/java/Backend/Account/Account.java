@@ -2,7 +2,9 @@ package Backend.Account;
 
 import Backend.Account.Activity.Status;
 import Backend.Databases.Databases;
+import Backend.Feed.Group;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Account {
 
@@ -16,7 +18,7 @@ public class Account {
     private ProfileManagement Profile;
     private FriendsManagement friendsManagement;
     private ContentManagement contentManagement;
-    private GroupManagement groupsManagement;
+    private ArrayList<Group> Groups;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -29,17 +31,25 @@ public class Account {
         this.Profile = new ProfileManagement(this, null, null, null);
         this.friendsManagement = new FriendsManagement(this);
         this.contentManagement = new ContentManagement(this);
-        this.groupsManagement = new GroupManagement(this);
+        this.Groups = new ArrayList<>();
     }
 
     public static void resetAccountsCount() {
         accountsCount = 0;
     }
 
-    public GroupManagement getGroupsManagement() {
-        return groupsManagement;
+    public ArrayList<Group> getGroups() {
+        return Groups;
     }
 
+    public void addGroup(Group Group) {
+        this.Groups.add(Group);
+    }
+    
+    public void removeGroup(Group Group) {
+        this.Groups.remove(Group);
+    }
+    
     public FriendsManagement getFriendsManagement() {
         return friendsManagement;
     }

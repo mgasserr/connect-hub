@@ -1,24 +1,30 @@
 package Backend.Feed;
 
-import Backend.Account.GroupManagement;
+import Backend.Account.Account;
+import Backend.Databases.Databases;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 public class Group {
 
+    private Account Creator;
     private String Name;
     private String Description;
     private ImageIcon Picture;
     private static int count = 0;
+    private ArrayList<Account> admins;
+    private ArrayList<Account> members;
+    private ArrayList<Content> content;
+    private Databases D = Databases.getInstance();
 
-    public Group(String Name, String Description, ImageIcon Picture) {
+    public Group(Account Creator, String Name, String Description, ImageIcon Picture) {
+        this.Creator = Creator;
         this.Name = Name;
         if (Picture == null) {
             this.Picture = new ImageIcon("ImagesDatabase//Default//group.png");
@@ -31,6 +37,14 @@ public class Group {
             this.Description = Description;
         }
         count++;
+    }
+
+    public Account getCreator() {
+        return Creator;
+    }
+
+    public void setCreator(Account Creator) {
+        this.Creator = Creator;
     }
 
     public String getName() {
@@ -62,12 +76,86 @@ public class Group {
             // Copy the file
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {
-            Logger.getLogger(GroupManagement.class.getName()).log(Level.SEVERE, "Error copying profile image", ex);
+            Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
         }
         //D.getAccount(acc.getUsername()).getProfile().ProfileImg = new ImageIcon(dest.toString());
     }
 
-    public static void resetCount() {
+    public static void resetGroupCount() {
         count = 0;
+    }
+    //MAIN METHODS FOR GROUPS DETAILS^^
+    
+    
+    //SECONDARY METHODS FOR GROUPS
+    public ArrayList<Account> getAdmins() {
+        return admins;
+    }
+
+    public void addAdmin(Account admin) {
+        this.admins.add(admin);
+    }
+    
+    public void removeAdmin(Account admin) {
+        this.admins.remove(admin);
+    }
+
+    public ArrayList<Account> getMembers() {
+        return members;
+    }
+
+    public void addMember(Account member) {
+        this.members.add(member);
+    }
+    
+    public void removeMember(Account member) {
+        this.members.remove(member);
+    }
+
+    public ArrayList<Content> getContent() {
+        return content;
+    }
+
+    public void setContent(ArrayList<Content> content) {
+        this.content = content;
+    }
+
+    public void addMember(String Name) {
+        this.members.add(D.getAccount(Name));
+    }
+
+    public void removeMember(String Name) {
+        this.members.remove(D.getAccount(Name));
+    }
+
+    public boolean isMember(String Name) {
+        return this.members.contains(D.getAccount(Name));
+    }
+
+    public void addAdmin(String Name) {
+        this.admins.add(D.getAccount(Name));
+    }
+
+    public void removeAdmin(String Name) {
+        this.admins.remove(D.getAccount(Name));
+    }
+
+    public boolean isAdmin(String Name) {
+        return this.admins.contains(D.getAccount(Name));
+    }
+
+    //CREATES NEW GROUP
+    public void addGroup(Group Group, String Name) {
+        D.getAccount(Name).getGroups().add(Group);
+    }
+
+    //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void addContent(Content content) {
+        this.content.add(content);
+    }
+
+    //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void removeContent(Content content) {
+        this.content.remove(content);
     }
 }
