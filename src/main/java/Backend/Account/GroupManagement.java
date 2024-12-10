@@ -97,7 +97,7 @@ public class GroupManagement {
     }
 
     //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public void removeAdmin(Content content) {
+    public void removeContent(Content content) {
         this.content.remove(content);
     }
 
