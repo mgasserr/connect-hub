@@ -7,19 +7,11 @@ package frontend.notifications;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
-import Backend.Notifications.FriendReqNoti;
 import Backend.Notifications.Notification;
-import frontend.general.hometest;
-import java.awt.Dimension;
 import java.time.format.DateTimeFormatter;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
@@ -146,34 +138,6 @@ public class friendReqNotiJPANEL extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void notificationsConstructor() {
-        jPopupMenu4.setLayout(new BoxLayout(jPopupMenu4, BoxLayout.Y_AXIS));
-        jPopupMenu4.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        int counter = 0;
-        for (Notification noti : Database.getAccount(acc.getUsername()).getNotifications()) {
-            if (noti instanceof FriendReqNoti) {
-                counter++;
-                friendReqNotiJPANEL newjPanel = new friendReqNotiJPANEL(Database.getAccount(acc.getUsername()), noti, jPopupMenu4, this);
-                jPopupMenu4.add(newjPanel);
-            }
-        }
-        jPopupMenu4.setPreferredSize(new Dimension(411, (80 * counter)));
-
-        notisToggle.getModel().addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                ButtonModel model = (ButtonModel) e.getSource();
-                if (model.isPressed() && model.isArmed()) {
-                    if (model.isSelected()) {
-                        jPopupMenu4.show(notisToggle, 0, notisToggle.getHeight());
-                    } else {
-                        jPopupMenu4.setVisible(false);
-                    }
-                }
-            }
-        });
-    }
-    
     private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
         Database.read();
         notiDatabase.read();

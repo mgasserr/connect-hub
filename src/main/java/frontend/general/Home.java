@@ -1,23 +1,34 @@
 package frontend.general;
 
-import frontend.groups.test;
 import Backend.Account.Account;
-import Backend.Authentication.Register;
 import Backend.Databases.Databases;
+import Backend.Databases.NotificationsDatabase;
+import Backend.Notifications.FriendReqNoti;
+import Backend.Notifications.Notification;
 import frontend.friends.FriendsManagement;
 import frontend.groups.GroupsManagement;
+import frontend.notifications.friendReqNotiJPANEL;
 import frontend.settings.Settings;
+import java.awt.Dimension;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Home extends javax.swing.JFrame {
 
     private Account acc;
-    Databases Database = Databases.getInstance();
+    private Databases Database = Databases.getInstance();
+    private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
 
     public Home(Account acc) {
         initComponents();
         Database.read();
+        notiDatabase.read();
+        notificationsConstructor();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
@@ -43,6 +54,7 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        notiPopupMenu = new javax.swing.JPopupMenu();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         newsFeed = new javax.swing.JList<>();
@@ -54,7 +66,7 @@ public class Home extends javax.swing.JFrame {
         LogOut = new javax.swing.JButton();
         View = new javax.swing.JButton();
         Groups = new javax.swing.JButton();
-        Notifications = new javax.swing.JButton();
+        notisToggle = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -127,7 +139,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        Notifications.setText("Notifications");
+        notisToggle.setText("Notifications");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,9 +161,9 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(Groups)
                         .addGap(18, 18, 18)
                         .addComponent(NewContent)
-                        .addGap(18, 18, 18)
-                        .addComponent(Notifications)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(notisToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Settings)
                         .addGap(18, 18, 18)
                         .addComponent(LogOut)))
@@ -174,7 +186,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Home)
                     .addComponent(jLabel1)
                     .addComponent(Groups)
-                    .addComponent(Notifications))
+                    .addComponent(notisToggle))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -185,6 +197,33 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void notificationsConstructor() {
+        notiPopupMenu.setLayout(new BoxLayout(notiPopupMenu, BoxLayout.Y_AXIS));
+        notiPopupMenu.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        int counter = 0;
+        for (Notification noti : Database.getAccount(acc.getUsername()).getNotifications()) {
+            if (noti instanceof FriendReqNoti) {
+                counter++;
+                friendReqNotiJPANEL newjPanel = new friendReqNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
+                notiPopupMenu.add(newjPanel);
+            }
+        }
+        notiPopupMenu.setPreferredSize(new Dimension(411, (80 * counter)));
+
+        notisToggle.getModel().addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                ButtonModel model = (ButtonModel) e.getSource();
+                if (model.isPressed() && model.isArmed()) {
+                    if (model.isSelected()) {
+                        notiPopupMenu.show(notisToggle, 0, notisToggle.getHeight());
+                    } else {
+                        notiPopupMenu.setVisible(false);
+                    }
+                }
+            }
+        });
+    }
     private void ProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileActionPerformed
         //GOES TO PROFILE
         MyProfile p = new MyProfile(acc);
@@ -261,12 +300,13 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Home;
     private javax.swing.JButton LogOut;
     private javax.swing.JButton NewContent;
-    private javax.swing.JButton Notifications;
     private javax.swing.JButton Profile;
     private javax.swing.JButton Settings;
     private javax.swing.JButton View;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> newsFeed;
+    private javax.swing.JPopupMenu notiPopupMenu;
+    private javax.swing.JToggleButton notisToggle;
     // End of variables declaration//GEN-END:variables
 }
