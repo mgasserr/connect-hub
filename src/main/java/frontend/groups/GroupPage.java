@@ -52,6 +52,7 @@ public class GroupPage extends javax.swing.JFrame {
         ViewMembers = new javax.swing.JButton();
         name = new javax.swing.JTextField();
         Description = new javax.swing.JTextField();
+        ViewRequests = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +97,13 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
+        ViewRequests.setText("VIEW REQUESTS");
+        ViewRequests.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewRequestsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,7 +121,8 @@ public class GroupPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ViewMembers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Leave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(Leave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ViewRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -149,7 +158,10 @@ public class GroupPage extends javax.swing.JFrame {
                             .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(ViewMembers))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(ViewRequests)
+                        .addGap(18, 18, 18)
+                        .addComponent(ViewMembers)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(VIEW)
@@ -180,18 +192,30 @@ public class GroupPage extends javax.swing.JFrame {
     private void LeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveActionPerformed
         Database.read();
         if (Database.getGroup(g.getName()).getCreator().equals(acc.getUsername())) {
-          JOptionPane.showMessageDialog(this, "The creator can't leave the group!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "The creator can't leave the group!", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
             Database.getGroup(g.getName()).removeAdmin(acc.getUsername());
             Database.getGroup(g.getName()).removeMember(acc.getUsername());
+            Database.getAccount(acc.getUsername()).removeGroup(g);
         } else {
             Database.getGroup(g.getName()).removeMember(acc.getUsername());
+            Database.getAccount(acc.getUsername()).removeGroup(g);
         }
         Database.save();
         Home h = new Home(acc);
         h.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_LeaveActionPerformed
+
+    private void ViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewRequestsActionPerformed
+        if (Database.getGroup(g.getName()).isAdmin(acc.getUsername()) || Database.getGroup(g.getName()).equals(acc.getUsername())) {
+            ViewRequestsList R = new ViewRequestsList(acc, g);
+            R.setVisible(true);
+            this.setVisible(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Only admins have access!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_ViewRequestsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -201,6 +225,7 @@ public class GroupPage extends javax.swing.JFrame {
     private javax.swing.JLabel Picture;
     private javax.swing.JButton VIEW;
     private javax.swing.JButton ViewMembers;
+    private javax.swing.JButton ViewRequests;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

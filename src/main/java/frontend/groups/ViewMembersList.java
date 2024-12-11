@@ -190,14 +190,14 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
-
             if (acc.getUsername().equals(g.getCreator())) {
                 // Creator logic
                 if (g.isAdmin(usernamelist)) {
-                    g.removeAdmin(usernamelist);
+                    Database.getGroup(g.getName()).removeAdmin(usernamelist);
                 }
                 if (g.isMember(usernamelist)) {
-                    g.removeMember(usernamelist);
+                    Database.getGroup(g.getName()).removeMember(usernamelist);
+                    Database.getAccount(usernamelist).removeGroup(g);
                     errorText.setForeground(Color.green);
                     errorText.setText("Member removed!");
                 }
@@ -207,7 +207,8 @@ public class ViewMembersList extends javax.swing.JFrame {
                     errorText.setForeground(Color.red);
                     errorText.setText("You can't remove someone in the same position or higher!");
                 } else {
-                    g.removeMember(usernamelist);
+                    Database.getGroup(g.getName()).removeMember(usernamelist);
+                    Database.getAccount(usernamelist).removeGroup(g); //MAYBE WONT WORK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     errorText.setForeground(Color.green);
                     errorText.setText("Member removed!");
                 }
@@ -216,7 +217,6 @@ public class ViewMembersList extends javax.swing.JFrame {
                 errorText.setForeground(Color.red);
                 errorText.setText("You don't have permission to remove this member!");
             }
-
             Database.save();
             listModel.clear();
             for (Account member : Database.getGroup(g.getName()).getMembers()) {

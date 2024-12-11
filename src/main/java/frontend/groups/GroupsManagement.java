@@ -4,17 +4,17 @@ import Backend.Account.Account;
 import Backend.Databases.Databases;
 
 public class GroupsManagement extends javax.swing.JFrame {
-
+    
     Account acc;
     private Databases Database = Databases.getInstance();
-
+    
     public GroupsManagement(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,17 +100,19 @@ public class GroupsManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-        FindGroup F= new FindGroup(acc);
+        FindGroup F = new FindGroup(acc);
         F.setVisible(true);
         dispose();
     }//GEN-LAST:event_SearchActionPerformed
 
     private void GroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupListActionPerformed
-        
+        ViewGroupsList GL = new ViewGroupsList(acc);
+        GL.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_GroupListActionPerformed
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
-        CreateGroup G= new CreateGroup(acc);
+        CreateGroup G = new CreateGroup(acc);
         G.setVisible(true);
         dispose();
     }//GEN-LAST:event_CreateActionPerformed
