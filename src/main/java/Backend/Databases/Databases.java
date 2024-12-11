@@ -120,6 +120,7 @@ public class Databases {
                 groupsobj.put("creator", group.getCreator().getUsername());
                 groupsobj.put("admins", group.getAdmins());
                 groupsobj.put("members", group.getMembers());
+                groupsobj.put("requests", group.getRequests());
                 groupsobj.put("content", group.getContent());
                 Arraygroups.put(groupsobj);
             }
@@ -265,15 +266,23 @@ public class Databases {
                     for (int k = 0; k < adminsArray.length(); k++) {
                         Account Admin = getAccount(adminsArray.getString(k));
                         if (adminsArray != null) {
-                            getGroup(name, creator).addAdmin(Admin);
+                            getGroup(name).addAdmin(Admin.getUsername());
                         }
                     }
 
                     JSONArray membersArray = groupObj.getJSONArray("members");
                     for (int k = 0; k < membersArray.length(); k++) {
                         Account Member = getAccount(membersArray.getString(k));
-                        if (adminsArray != null) {
-                            getGroup(name, creator).addMember(Member);
+                        if (membersArray != null) {
+                            getGroup(name).addMember(Member.getUsername());
+                        }
+                    }
+                    
+                    JSONArray requestsArray = groupObj.getJSONArray("requests");
+                    for (int k = 0; k < requestsArray.length(); k++) {
+                        Account Request = getAccount(requestsArray.getString(k));
+                        if (requestsArray != null) {
+                            getGroup(name).addRequest(Request.getUsername());
                         }
                     }
 
@@ -406,8 +415,8 @@ public class Databases {
         return false;
     }
 
-    //MAYBE USELESS??
-    public Group getGroup(String groupName, String accountName) {
+    ///////////////////////////////////////////////////////////////////////////
+    public Group getGroupToCreator(String groupName, String accountName) {
         for (Group group : getAccount(accountName).getGroups()) {
             if (group.getName().equalsIgnoreCase(groupName)) {
                 return group;
@@ -415,8 +424,9 @@ public class Databases {
         }
         return null;
     }
+    ///////////////////////////////////////////////////////////////////////////
     
-    public Group searchGroup(String groupName){
+    public Group getGroup(String groupName){
         for (Group group : Group.getGroups()){
             if(group.getName().equalsIgnoreCase(groupName)){
                 return group;
@@ -424,6 +434,7 @@ public class Databases {
         }
         return null;
     }
+    
     public Account getGroupCreator(String groupName, String accountName) {
         for (Group group : getAccount(accountName).getGroups()) {
             if (group.getName().equalsIgnoreCase(groupName)) {
@@ -459,7 +470,6 @@ public class Databases {
         }
         return null;
     }
-    //MAYBE USELESS??
 
     //VALIDATION TO CHECK IF THE ENTERED USERNAME AND PASSWORD ARE CORRECT
     public boolean loginCheck(String username, String password) {

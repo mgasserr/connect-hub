@@ -21,8 +21,8 @@ public class Group {
     private ArrayList<Account> admins;
     private ArrayList<Account> members;
     private ArrayList<Content> content;
-     private ArrayList<Account> requests;
-     private static ArrayList<Group> groups= new ArrayList<>();
+    private ArrayList<Account> requests;
+    private static ArrayList<Group> groups = new ArrayList<>();
     private Databases D = Databases.getInstance();
 
     public Group(Account Creator, String Name, String Description, ImageIcon Picture) {
@@ -42,6 +42,7 @@ public class Group {
         groups.add(this);
     }
 
+    //MAIN METHODS FOR GROUPS DETAILS
     public Account getCreator() {
         return Creator;
     }
@@ -87,40 +88,18 @@ public class Group {
     public static void resetGroupCount() {
         count = 0;
     }
-    //MAIN METHODS FOR GROUPS DETAILS^^
-    
-    
+
     //SECONDARY METHODS FOR GROUPS
-    public ArrayList<Account> getAdmins() {
-        return admins;
-    }
-
-    public void addAdmin(Account admin) {
-        this.admins.add(admin);
-    }
-    
-    public void removeAdmin(Account admin) {
-        this.admins.remove(admin);
-    }
-
-    public ArrayList<Account> getMembers() {
-        return members;
-    }
-
-    public void addMember(Account member) {
-        this.members.add(member);
-    }
-    
-    public void removeMember(Account member) {
-        this.members.remove(member);
-    }
-
     public ArrayList<Content> getContent() {
         return content;
     }
 
     public void setContent(ArrayList<Content> content) {
         this.content = content;
+    }
+
+    public ArrayList<Account> getMembers() {
+        return members;
     }
 
     public void addMember(String Name) {
@@ -135,6 +114,10 @@ public class Group {
         return this.members.contains(D.getAccount(Name));
     }
 
+    public ArrayList<Account> getAdmins() {
+        return admins;
+    }
+    
     public void addAdmin(String Name) {
         this.admins.add(D.getAccount(Name));
     }
@@ -147,7 +130,28 @@ public class Group {
         return this.admins.contains(D.getAccount(Name));
     }
 
-    //CREATES NEW GROUP
+    public void addRequest(String Name) {
+        this.requests.add(D.getAccount(Name));
+    }
+
+    public void removeRequest(String Name) {
+        this.requests.remove(D.getAccount(Name));
+
+    }
+
+    public ArrayList<Account> getRequests() {
+        return requests;
+    }
+
+    public static ArrayList<Group> getGroups() {
+        return groups;
+    }
+
+    public static void removeGroup(Group group) {
+        groups.remove(group);
+    }
+
+    //ADD GROUPS TO USER ACCOUNT
     public void addGroup(Group Group, String Name) {
         D.getAccount(Name).getGroups().add(Group);
     }
@@ -161,27 +165,5 @@ public class Group {
     public void removeContent(Content content) {
         this.content.remove(content);
     }
-    
-     public void addRequest(String Name) {
-        this.requests.add(D.getAccount(Name));
-    }
 
-    public void removeRequest(String Name) {
-        this.requests.remove(D.getAccount(Name));
-        
-        
-    }
-
-    public ArrayList<Account> getRequests() {
-        return requests;
-    }
-
-    public static ArrayList<Group> getGroups() {
-        return groups;
-    }
-    public static void removeGroup(Group group) {
-         groups.remove(group);
-    }
-    
-    
 }

@@ -242,7 +242,6 @@ public class Home extends javax.swing.JFrame {
         test t = new test(acc);
         t.setVisible(true);
         this.setVisible(false);
-
     }//GEN-LAST:event_GroupsActionPerformed
 
 

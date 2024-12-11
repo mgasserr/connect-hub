@@ -68,7 +68,7 @@ public class test extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String grpname = this.name.getText();
-        Group g = Database.searchGroup(grpname);
+        Group g = Database.getGroup(grpname);
         g.addRequest(acc.getUsername());
         Database.save();
     }//GEN-LAST:event_jButton1ActionPerformed
