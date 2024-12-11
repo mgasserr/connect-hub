@@ -111,6 +111,7 @@ public class Group {
     }
 
     public void addMember(String Name) {
+        this.requests.remove(D.getAccount(Name));
         this.members.add(D.getAccount(Name));
     }
 

@@ -33,7 +33,7 @@
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="25" max="32767" attributes="0"/>
                       <Component id="Home" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Profile" min="-2" max="-2" attributes="0"/>
@@ -44,6 +44,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="NewContent" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="Notifications" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="Settings" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="LogOut" min="-2" max="-2" attributes="0"/>
@@ -51,10 +53,10 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
-              <Component id="View" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="View" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="416" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,10 +73,11 @@
                   <Component id="Home" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Groups" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Notifications" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="332" max="-2" attributes="0"/>
-              <EmptySpace pref="7" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="View" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -178,6 +181,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroupsActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="Notifications">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Notifications"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

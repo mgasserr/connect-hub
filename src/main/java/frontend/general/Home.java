@@ -5,6 +5,7 @@ import Backend.Account.Account;
 import Backend.Authentication.Register;
 import Backend.Databases.Databases;
 import frontend.friends.FriendsManagement;
+import frontend.groups.GroupsManagement;
 import frontend.settings.Settings;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -53,6 +54,7 @@ public class Home extends javax.swing.JFrame {
         LogOut = new javax.swing.JButton();
         View = new javax.swing.JButton();
         Groups = new javax.swing.JButton();
+        Notifications = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -125,6 +127,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Notifications.setText("Notifications");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,7 +139,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(Home)
                         .addGap(18, 18, 18)
                         .addComponent(Profile)
@@ -146,14 +150,16 @@ public class Home extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(NewContent)
                         .addGap(18, 18, 18)
+                        .addComponent(Notifications)
+                        .addGap(18, 18, 18)
                         .addComponent(Settings)
                         .addGap(18, 18, 18)
                         .addComponent(LogOut)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(320, 320, 320)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(View)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(416, 416, 416))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,10 +173,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Profile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Home)
                     .addComponent(jLabel1)
-                    .addComponent(Groups))
+                    .addComponent(Groups)
+                    .addComponent(Notifications))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGap(7, 7, 7)
                 .addComponent(View)
                 .addContainerGap())
         );
@@ -239,6 +246,9 @@ public class Home extends javax.swing.JFrame {
     private void GroupsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupsActionPerformed
         //GOES TO GROUPS
         Database.read();
+        GroupsManagement g = new GroupsManagement(acc);
+        g.setVisible(true);
+        ///////////////////////////////////////////////
         test t = new test(acc);
         t.setVisible(true);
         this.setVisible(false);
@@ -251,6 +261,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Home;
     private javax.swing.JButton LogOut;
     private javax.swing.JButton NewContent;
+    private javax.swing.JButton Notifications;
     private javax.swing.JButton Profile;
     private javax.swing.JButton Settings;
     private javax.swing.JButton View;
