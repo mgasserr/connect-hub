@@ -55,8 +55,9 @@ public class Account {
         this.Groups.add(Group);
     }
     
-    public void removeGroup(Group Group) {
-        this.Groups.remove(Group);
+    public void removeGroup(Group group) {
+        Group.getGroups().remove(Databases.getInstance().getGroup(group.getName()));
+        this.Groups.remove(group);
     }
     
     public FriendsManagement getFriendsManagement() {
