@@ -25,13 +25,15 @@ C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\general
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\general\MyProfile.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\general\Signup.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\general\Startup.java
-C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\addpost.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\AddPost.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\CreateGroup.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\FindGroup.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\GroupPage.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\GroupsManagement.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\test.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\ViewGroupsList.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\ViewMembersList.java
+C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\groups\ViewRequestsList.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\settings\changeBio.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\settings\changeCoverPic.java
 C:\Users\hp\OneDrive\Documents\GitHub\Connect-Hub\src\main\java\frontend\settings\changePass.java
