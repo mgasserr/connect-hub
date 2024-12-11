@@ -7,10 +7,7 @@
          "members": [],
          "name": "g1",
          "description": "d1",
-         "requests": [
-            "y",
-            "s"
-         ],
+         "requests": [],
          "picture": "ImagesDatabase//Default//group.png",
          "admins": [],
          "content": []
@@ -37,13 +34,10 @@
       "blocked": [],
       "groups": [{
          "creator": "s",
-         "members": [],
+         "members": ["y"],
          "name": "g2",
          "description": "d2",
-         "requests": [
-            "s",
-            "y"
-         ],
+         "requests": [],
          "picture": "ImagesDatabase//Default//group.png",
          "admins": [],
          "content": []
@@ -62,7 +56,7 @@
          "profileimg": "ImagesDatabase//Default//profile.png",
          "email": "s@jdsf.com",
          "username": "s",
-         "status": "ONLINE"
+         "status": "OFFLINE"
       }]
    }
 ]

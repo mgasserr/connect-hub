@@ -87,11 +87,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="CREATE GROUP"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="GroupList">
       <Properties>
         <Property name="text" type="java.lang.String" value="VIEW GROUPS LIST"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroupListActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

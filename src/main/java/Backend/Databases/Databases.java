@@ -145,6 +145,7 @@ public class Databases {
             Account.resetAccountsCount();
             Content.resetContentCount();
             Group.resetGroupCount();
+            Group.getGroups().clear();
             accounts.clear();
             for (Group group : Group.getGroups()) {
                 group.getAdmins().clear();

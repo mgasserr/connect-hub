@@ -188,6 +188,7 @@ public class FindGroup extends javax.swing.JFrame {
             errorText.setText("Search field is empty");
         } else {
             listModel.clear();
+            System.out.println(Group.getGroups().size());
             for (Group group : Group.getGroups()) {
                 if (group.getName().startsWith(searchText.getText())) {
                     listModel.addElement(group.getName());

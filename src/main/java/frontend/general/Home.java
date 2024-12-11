@@ -249,9 +249,9 @@ public class Home extends javax.swing.JFrame {
         GroupsManagement g = new GroupsManagement(acc);
         g.setVisible(true);
         ///////////////////////////////////////////////
-        test t = new test(acc);
+        /*test t = new test(acc);
         t.setVisible(true);
-        this.setVisible(false);
+        this.setVisible(false);*/
     }//GEN-LAST:event_GroupsActionPerformed
 
 

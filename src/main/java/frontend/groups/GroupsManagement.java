@@ -45,8 +45,18 @@ public class GroupsManagement extends javax.swing.JFrame {
         });
 
         Create.setText("CREATE GROUP");
+        Create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateActionPerformed(evt);
+            }
+        });
 
         GroupList.setText("VIEW GROUPS LIST");
+        GroupList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GroupListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,8 +100,20 @@ public class GroupsManagement extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-        // TODO add your handling code here:
+        FindGroup F= new FindGroup(acc);
+        F.setVisible(true);
+        dispose();
     }//GEN-LAST:event_SearchActionPerformed
+
+    private void GroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupListActionPerformed
+        
+    }//GEN-LAST:event_GroupListActionPerformed
+
+    private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
+        CreateGroup G= new CreateGroup(acc);
+        G.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_CreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
