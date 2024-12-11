@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Backend.Notifications;
 
-/**
- *
- * @author Mohamed
- */
+import java.time.LocalDateTime;
+
 public class FriendReqNoti extends Notification {
+
+    String sender;
+
+    public FriendReqNoti(LocalDateTime timestamp, boolean opened, String sender) {
+        super(timestamp, opened);
+        super.message = sender + " sent you a friend request!";
+        this.sender = sender;
+    }
+
+    public String getSender() {
+        return sender;
+    }
 
 }

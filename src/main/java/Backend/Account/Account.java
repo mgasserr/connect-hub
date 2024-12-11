@@ -2,7 +2,9 @@ package Backend.Account;
 
 import Backend.Account.Activity.Status;
 import Backend.Databases.Databases;
+import Backend.Notifications.Notification;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Account {
 
@@ -16,6 +18,7 @@ public class Account {
     private ProfileManagement Profile;
     private FriendsManagement friendsManagement;
     private ContentManagement contentManagement;
+    private ArrayList<Notification> notifications;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -94,9 +97,15 @@ public class Account {
         this.Profile = Profile;
     }
 
-    public void logout() {
-        this.status = Activity.Status.OFFLINE;
-        Databases Database = Databases.getInstance();
-        Database.save();
+    public void addNotification(Notification noti) {
+        this.notifications.add(noti);
+    }
+
+    public void removeNotificationbyIndex(int i) {
+        this.notifications.remove(i);
+    }
+
+    public ArrayList<Notification> getNotifications() {
+        return notifications;
     }
 }
