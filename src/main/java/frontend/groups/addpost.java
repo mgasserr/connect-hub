@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package frontend.groups;
 
 import Backend.Account.Account;
@@ -21,14 +18,14 @@ import javax.swing.JOptionPane;
  *
  * @author hp
  */
-public class addpost extends javax.swing.JFrame {
+public class AddPost extends javax.swing.JFrame {
 
    Account acc;
    Group g;
     Databases Database=Databases.getInstance();
     ContentFactory F = new ContentFactory();
     String imagePath;
-    public addpost(Account acc,Group group) {
+    public AddPost(Account acc,Group group) {
         initComponents();
         this.acc=acc;
         this.g=group;
@@ -126,9 +123,7 @@ public class addpost extends javax.swing.JFrame {
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(Home)
-                            .addContainerGap(391, Short.MAX_VALUE))
+                        .addComponent(Home)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(4, 4, 4)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,8 +141,8 @@ public class addpost extends javax.swing.JFrame {
                             .addGap(28, 28, 28)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
-                                .addComponent(PostorStory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(PostorStory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();

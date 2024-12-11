@@ -3,18 +3,20 @@ package frontend.groups;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Feed.Group;
+import frontend.general.Home;
 import javax.swing.DefaultListModel;
-
+import javax.swing.JOptionPane;
 
 public class GroupPage extends javax.swing.JFrame {
 
-Account acc;
-Group g;
-Databases Database=Databases.getInstance();
-    public GroupPage(Account acc,Group group) {
+    Account acc;
+    Group g;
+    Databases Database = Databases.getInstance();
+
+    public GroupPage(Account acc, Group group) {
         initComponents();
-        this.acc=acc;
-        this.g=group;
+        this.acc = acc;
+        this.g = group;
         Picture.setIcon(Database.getGroup(group.getName()).getPicture());
         name.setText(Database.getGroup(group.getName()).getName());
         Description.setText(Database.getGroup(group.getName()).getDescription());
@@ -32,10 +34,7 @@ Databases Database=Databases.getInstance();
         }
         postsList.setModel(postsFeedModel);
     }
-        
-    
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -84,6 +83,11 @@ Databases Database=Databases.getInstance();
         });
 
         Leave.setText("LEAVE");
+        Leave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LeaveActionPerformed(evt);
+            }
+        });
 
         ViewMembers.setText("VIEW MEMBERS");
         ViewMembers.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +162,7 @@ Databases Database=Databases.getInstance();
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddContentActionPerformed
-       addpost c = new addpost(acc,g);
+        AddPost c = new AddPost(acc, g);
         c.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AddContentActionPerformed
@@ -168,12 +172,27 @@ Databases Database=Databases.getInstance();
     }//GEN-LAST:event_VIEWActionPerformed
 
     private void ViewMembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewMembersActionPerformed
-       ViewMembersList V= new ViewMembersList(acc,g);
-       V.setVisible(true);
-       dispose();
+        ViewMembersList V = new ViewMembersList(acc, g);
+        V.setVisible(true);
+        dispose();
     }//GEN-LAST:event_ViewMembersActionPerformed
 
-  
+    private void LeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveActionPerformed
+        Database.read();
+        if (Database.getGroup(g.getName()).getCreator().equals(acc.getUsername())) {
+          JOptionPane.showMessageDialog(this, "The creator can't leave the group!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
+            Database.getGroup(g.getName()).removeAdmin(acc.getUsername());
+            Database.getGroup(g.getName()).removeMember(acc.getUsername());
+        } else {
+            Database.getGroup(g.getName()).removeMember(acc.getUsername());
+        }
+        Database.save();
+        Home h = new Home(acc);
+        h.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_LeaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddContent;

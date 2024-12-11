@@ -3,18 +3,24 @@ package frontend.groups;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Feed.Group;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 public class CreateGroup extends javax.swing.JFrame {
 
     Account acc;
     Databases Database = Databases.getInstance();
-    Databases D=Databases.getInstance();
+    Databases D = Databases.getInstance();
+    String path;
 
     public CreateGroup(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        picture.setIcon(new ImageIcon("ImagesDatabase//Default//group.png"));
     }
 
     @SuppressWarnings("unchecked")
@@ -62,6 +68,11 @@ public class CreateGroup extends javax.swing.JFrame {
         jLabel1.setText("Create Group");
 
         Change.setText("CHANGE");
+        Change.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChangeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,12 +139,30 @@ public class CreateGroup extends javax.swing.JFrame {
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         D.read();
-        String name=this.name.getText();
-        String desc=this.description.getText();
-        Group g =new Group(acc, name, desc, null);
+        String name = this.name.getText();
+        String desc = this.description.getText();
+
+        Group g = new Group(acc, name, desc, new ImageIcon(path));
         g.addGroup(g, acc.getUsername());
         D.save();
     }//GEN-LAST:event_CreateActionPerformed
+
+    private void ChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeActionPerformed
+        JFileChooser fc = new JFileChooser();
+        Database.read();
+        if (fc.showOpenDialog(fc) == JFileChooser.APPROVE_OPTION) {
+            File tempfile = fc.getSelectedFile();
+            if (!tempfile.getName().endsWith(".png") && !tempfile.getName().endsWith(".jpg") && !tempfile.getName().endsWith(".jpeg")) {
+                JOptionPane.showMessageDialog(this, "Please choose a .png/.jpg/.jpeg file only.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                
+                this.path = tempfile.getAbsolutePath();
+                ImageIcon img = new ImageIcon(path);
+                this.picture.setIcon(img);
+                Database.save();
+            }
+        }
+    }//GEN-LAST:event_ChangeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Change;

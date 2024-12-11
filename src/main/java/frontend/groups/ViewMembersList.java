@@ -109,11 +109,12 @@ public class ViewMembersList extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(Home)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(134, 134, 134)
-                                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -160,8 +161,8 @@ public class ViewMembersList extends javax.swing.JFrame {
                     //acc.getGroup(g.getName()).addAdmin(usernamelist);
                     Database.save();
                     listModel.clear();
-                    for (Account members : Database.getGroup(g.getName()).getMembers()) {
-                        listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
+                    for (Account member : Database.getGroup(g.getName()).getMembers()) {
+                        listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
                     }
                     usersList.setModel(listModel);
                     errorText.setForeground(Color.black);
@@ -189,11 +190,37 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
-            acc.getFriendsManagement().deleteFriend(usernamelist, acc.getUsername());
+
+            if (acc.getUsername().equals(g.getCreator())) {
+                // Creator logic
+                if (g.isAdmin(usernamelist)) {
+                    g.removeAdmin(usernamelist);
+                }
+                if (g.isMember(usernamelist)) {
+                    g.removeMember(usernamelist);
+                    errorText.setForeground(Color.green);
+                    errorText.setText("Member removed!");
+                }
+            } else if (g.isAdmin(acc.getUsername())) {
+                // Admin logic
+                if (g.isAdmin(usernamelist) || g.getCreator().equals(usernamelist)) {
+                    errorText.setForeground(Color.red);
+                    errorText.setText("You can't remove someone in the same position or higher!");
+                } else {
+                    g.removeMember(usernamelist);
+                    errorText.setForeground(Color.green);
+                    errorText.setText("Member removed!");
+                }
+            } else {
+                // No permission
+                errorText.setForeground(Color.red);
+                errorText.setText("You don't have permission to remove this member!");
+            }
+
             Database.save();
             listModel.clear();
-            for (Account user : Database.getFriendsDATABASE(acc.getUsername())) {
-                listModel.addElement(user.getUsername() + " -" + user.getStatus().toString());
+            for (Account member : Database.getGroup(g.getName()).getMembers()) {
+                listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
             }
             usersList.setModel(listModel);
             errorText.setForeground(Color.black);
@@ -230,17 +257,16 @@ public class ViewMembersList extends javax.swing.JFrame {
                     //acc.getGroup(g.getName()).removeAdmin(usernamelist);
                     Database.save();
                     listModel.clear();
-                    for (Account members : Database.getGroup(g.getName()).getMembers()) {
-                        listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
+                    for (Account member : Database.getGroup(g.getName()).getMembers()) {
+                        listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
                     }
                     usersList.setModel(listModel);
                     errorText.setForeground(Color.black);
                     errorText.setText("Demoted successfully");
                 }
-            }
-            else{
-                 errorText.setForeground(Color.black);
-            errorText.setText("You must be primary admin");
+            } else {
+                errorText.setForeground(Color.black);
+                errorText.setText("You must be primary admin");
             }
         }
 

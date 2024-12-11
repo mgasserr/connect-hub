@@ -73,7 +73,7 @@ public class Group {
 
     public void setPicture(String Imgpath) {
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase//ProfilePicture//" + count + ".png");
+        Path dest = Path.of("ImagesDatabase//Group//" + count + ".png");
         try {
             // Ensure the destination directory exists
             Files.createDirectories(dest.getParent());
@@ -194,4 +194,8 @@ public class Group {
         this.content.remove(content);
     }
 
+    
+    
+    
+    
 }
