@@ -1,7 +1,8 @@
 package Backend.Account;
 
 import Backend.Account.Activity.Status;
-import Backend.Notifications.*;
+import Backend.Databases.Databases;
+import Backend.Feed.Group;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class Account {
     private ProfileManagement Profile;
     private FriendsManagement friendsManagement;
     private ContentManagement contentManagement;
-    private ArrayList<Notification> notifications = new ArrayList<>();
+    private ArrayList<Group> Groups;
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -30,12 +31,35 @@ public class Account {
         this.Profile = new ProfileManagement(this, null, null, null);
         this.friendsManagement = new FriendsManagement(this);
         this.contentManagement = new ContentManagement(this);
+        this.Groups = new ArrayList<>();
     }
 
     public static void resetAccountsCount() {
         accountsCount = 0;
     }
 
+    public ArrayList<Group> getGroups() {
+        return Groups;
+    }
+    
+    public Group getGroup(String groupName){
+        for (Group group : Group.getGroups()){
+            if(group.getName().equalsIgnoreCase(groupName)){
+                return group;
+            }
+        }
+        return null;
+    }
+
+    public void addGroup(Group Group) {
+        this.Groups.add(Group);
+    }
+    
+    public void removeGroup(Group group) {
+        Group.getGroups().remove(Databases.getInstance().getGroup(group.getName()));
+        this.Groups.remove(group);
+    }
+    
     public FriendsManagement getFriendsManagement() {
         return friendsManagement;
     }
@@ -96,96 +120,9 @@ public class Account {
         this.Profile = Profile;
     }
 
-    public void addNotification(Notification noti) {
-        this.notifications.add(noti);
-    }
-
-    public void removeNotificationbyIndex(int i) {
-        this.notifications.remove(i);
-    }
-
-    public void removeReqNotibyIndex(int i) {
-        int counter = 0;
-        for (int j = 0; j < notifications.size(); j++) {
-            if (this.notifications.get(j) instanceof FriendReqNoti) {
-                counter++;
-                if (counter == i) {
-                    this.notifications.remove(j);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void removeGroupAddNotibyIndex(int i) {
-        int counter = 0;
-        for (int j = 0; j < notifications.size(); j++) {
-            if (this.notifications.get(j) instanceof AddedToGroupNoti) {
-                counter++;
-                if (counter == i) {
-                    this.notifications.remove(j);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void removeGroupPostNotibyIndex(int i) {
-        int counter = 0;
-        for (int j = 0; j < notifications.size(); j++) {
-            if (this.notifications.get(j) instanceof NewPostToGroupNoti) {
-                counter++;
-                if (counter == i) {
-                    this.notifications.remove(j);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void removeGroupRoleNotibyIndex(int i) {
-        int counter = 0;
-        for (int j = 0; j < notifications.size(); j++) {
-            if (this.notifications.get(j) instanceof GroupRoleChangeNoti) {
-                counter++;
-                if (counter == i) {
-                    this.notifications.remove(j);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void removeNotiByID(String ID) {
-        for (Notification notification : notifications) {
-            if (notification.getNotiID().equals(ID)) {
-                this.notifications.remove(notification);
-                return;
-            }
-        }
-    }
-
-    public void removeReqNotibySender(String username) {
-        for (Notification notification : notifications) {
-            if (notification instanceof FriendReqNoti friendReqNoti) {
-                if (friendReqNoti.getSender().equals(username)) {
-                    this.notifications.remove(notification);
-                    return;
-                }
-            }
-        }
-    }
-
-    public ArrayList<Notification> getNotifications() {
-        return notifications;
-    }
-
-    public Notification getNotiById(String ID) {
-        for (Notification notification : notifications) {
-            if (notification.getNotiID().equals(ID)) {
-                return notification;
-            }
-        }
-        return null;
+    public void logout() {
+        this.status = Activity.Status.OFFLINE;
+        Databases Database = Databases.getInstance();
+        Database.save();
     }
 }

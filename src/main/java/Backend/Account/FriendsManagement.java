@@ -11,7 +11,7 @@ public class FriendsManagement {
     private ArrayList<Account> SentFriendRequests = new ArrayList<>();
     private ArrayList<Account> BlockedUsers = new ArrayList<>();
     private ArrayList<Account> BlockedBy = new ArrayList<>();
-    Databases Database = Databases.getInstance();
+    private Databases Database = Databases.getInstance();
 
     public FriendsManagement(Account acc) {
         this.acc = acc;

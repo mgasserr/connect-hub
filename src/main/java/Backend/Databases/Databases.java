@@ -20,10 +20,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/**
- *
- * @author Mohamed
- */
 public class Databases {
 
     private static Databases database;
@@ -48,6 +44,7 @@ public class Databases {
             JSONArray Arrayinfo = new JSONArray();
             JSONArray Arrayposts = new JSONArray();
             JSONArray Arraystories = new JSONArray();
+            JSONArray Arraygroups = new JSONArray();
 
             // INFO ARRAY
             JSONObject infoobj = new JSONObject();
@@ -114,9 +111,26 @@ public class Databases {
                 }
             }
 
+            // GROUPS
+            for (Group group : getAccount(acc.getUsername()).getGroups()) {
+                JSONObject groupsobj = new JSONObject();
+                Group g = getGroup(group.getName());
+                groupsobj.put("name", g.getName());
+                groupsobj.put("description", g.getDescription());
+                groupsobj.put("picture", g.getPicture());
+                groupsobj.put("creator", g.getCreator().getUsername());
+                groupsobj.put("admins", g.getAdminsUsernames());
+                groupsobj.put("members", g.getMembersUsernames());
+                groupsobj.put("requests", g.getRequestUsernames());
+                groupsobj.put("content", g.getContent());
+                Arraygroups.put(groupsobj);
+            }
+
+            userobj.put("friends", friendsusernames);
             userobj.put("posts", Arrayposts);
-            userobj.put("userid", acc.getUserId());
             userobj.put("stories", Arraystories);
+            userobj.put("groups", Arraygroups);
+            userobj.put("userid", acc.getUserId());
             Arrayusers.put(userobj);
         }
         try (FileWriter file = new FileWriter("database.json")) {
@@ -128,9 +142,16 @@ public class Databases {
 
     public void read() {
         try (BufferedReader reader = new BufferedReader(new FileReader("database.json"))) {
-            accounts.clear();
             Account.resetAccountsCount();
             Content.resetContentCount();
+            Group.resetGroupCount();
+            Group.getGroups().clear();
+            accounts.clear();
+            for (Group group : Group.getGroups()) {
+                group.getAdmins().clear();
+                group.getMembers().clear();
+                group.getRequests().clear();
+            }
 
             StringBuilder jsonContent = new StringBuilder();
             String line;
@@ -238,6 +259,49 @@ public class Databases {
                         account.getContentManagement().addContent(c);
                     }
                 }
+
+                JSONArray groupsArray = userobj.getJSONArray("groups");
+                for (int j = 0; j < groupsArray.length(); j++) {
+                    JSONObject groupObj = groupsArray.getJSONObject(j);
+                    String creator = groupObj.getString("creator");
+                    String name = groupObj.getString("name");
+                    String description = groupObj.getString("description");
+                    ImageIcon picture = new ImageIcon(groupObj.getString("picture"));
+                    Group group = new Group(getAccount(creator), name, description, picture);
+                    group.addGroup(group, account.getUsername());
+
+                    JSONArray adminsArray = groupObj.getJSONArray("admins");
+                    for (int k = 0; k < adminsArray.length(); k++) {
+                        Account Admin = getAccount(adminsArray.getString(k));
+                        if (adminsArray != null) {
+                            getGroup(name).addAdmin(Admin.getUsername());
+                        }
+                    }
+
+                    JSONArray membersArray = groupObj.getJSONArray("members");
+                    for (int k = 0; k < membersArray.length(); k++) {
+                        Account Member = getAccount(membersArray.getString(k));
+                        if (membersArray != null) {
+                            getGroup(name).addMember(Member.getUsername());
+                        }
+                    }
+
+                    JSONArray requestsArray = groupObj.getJSONArray("requests");
+                    for (int k = 0; k < requestsArray.length(); k++) {
+                        Account Request = getAccount(requestsArray.getString(k));
+                        if (requestsArray != null) {
+                            getGroup(name).addRequest(Request.getUsername());
+                        }
+                    }
+
+//PRBLY WONT WORK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    
+//                    JSONArray contentArray = groupObj.getJSONArray("content");
+//                    for (int k = 0; k < contentArray.length(); k++) {
+//                        Account Member = getAccount(contentArray.getString(k));
+//                        if (adminsArray != null) {
+//                            getGroup(name, creator).addMember(Member);
+//                        }
+                }
             }
 
         } catch (FileNotFoundException e) {
@@ -333,9 +397,9 @@ public class Databases {
         return null;
     }
 
-    public void addNewAccount(Account account) {        //gets called when a user signs up
+    //gets called when a user signs up
+    public void addNewAccount(Account account) {
         accounts.add(account);
-
     }
 
     //VALIDATION TO CHECK IF THE USERNAME ALREADY USED 
@@ -356,6 +420,62 @@ public class Databases {
             }
         }
         return false;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    public Group getGroupToCreator(String groupName, String accountName) {
+        for (Group group : getAccount(accountName).getGroups()) {
+            if (group.getName().equalsIgnoreCase(groupName)) {
+                return group;
+            }
+        }
+        return null;
+    }
+    ///////////////////////////////////////////////////////////////////////////
+
+    public Group getGroup(String groupName) {
+        for (Group group : Group.getGroups()) {
+            if (group.getName().equalsIgnoreCase(groupName)) {
+                return group;
+            }
+        }
+        return null;
+    }
+
+    public Account getGroupCreator(String groupName, String accountName) {
+        for (Group group : getAccount(accountName).getGroups()) {
+            if (group.getName().equalsIgnoreCase(groupName)) {
+                return group.getCreator();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Account> getGroupAdmins(String groupName, String accountName) {
+        for (Group group : getAccount(accountName).getGroups()) {
+            if (group.getName().equalsIgnoreCase(groupName)) {
+                return group.getAdmins();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Account> getGroupMembers(String groupName, String accountName) {
+        for (Group group : getAccount(accountName).getGroups()) {
+            if (group.getName().equalsIgnoreCase(groupName)) {
+                return group.getMembers();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Content> getGroupContent(String groupName, String accountName) {
+        for (Group group : getAccount(accountName).getGroups()) {
+            if (group.getName().equalsIgnoreCase(groupName)) {
+                return group.getContent();
+            }
+        }
+        return null;
     }
 
     //VALIDATION TO CHECK IF THE ENTERED USERNAME AND PASSWORD ARE CORRECT
