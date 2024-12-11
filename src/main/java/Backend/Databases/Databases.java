@@ -113,16 +113,14 @@ public class Databases {
 
             // GROUPS
             for (Group group : getAccount(acc.getUsername()).getGroups()) {
-                //System.out.println(getGroup(group.getName()).getRequests().size() + "saveeeeeeeeeeeeeee");
                 JSONObject groupsobj = new JSONObject();
-                Group g= getGroup(group.getName());
-                //System.out.println(g.getRequests().size() + "saveeeeeeeeeeeeeee");
+                Group g = getGroup(group.getName());
                 groupsobj.put("name", g.getName());
                 groupsobj.put("description", g.getDescription());
                 groupsobj.put("picture", g.getPicture());
                 groupsobj.put("creator", g.getCreator().getUsername());
-                groupsobj.put("admins", g.getAdmins());
-                groupsobj.put("members", g.getMembers());
+                groupsobj.put("admins", g.getAdminsUsernames());
+                groupsobj.put("members", g.getMembersUsernames());
                 groupsobj.put("requests", g.getRequestUsernames());
                 groupsobj.put("content", g.getContent());
                 Arraygroups.put(groupsobj);
@@ -144,11 +142,13 @@ public class Databases {
 
     public void read() {
         try (BufferedReader reader = new BufferedReader(new FileReader("database.json"))) {
-            accounts.clear();
             Account.resetAccountsCount();
             Content.resetContentCount();
             Group.resetGroupCount();
-            for(Group group: Group.getGroups()){
+            accounts.clear();
+            for (Group group : Group.getGroups()) {
+                group.getAdmins().clear();
+                group.getMembers().clear();
                 group.getRequests().clear();
             }
 
@@ -284,7 +284,7 @@ public class Databases {
                             getGroup(name).addMember(Member.getUsername());
                         }
                     }
-                    
+
                     JSONArray requestsArray = groupObj.getJSONArray("requests");
                     for (int k = 0; k < requestsArray.length(); k++) {
                         Account Request = getAccount(requestsArray.getString(k));
@@ -300,7 +300,6 @@ public class Databases {
 //                        if (adminsArray != null) {
 //                            getGroup(name, creator).addMember(Member);
 //                        }
-                   
                 }
             }
 
@@ -432,16 +431,16 @@ public class Databases {
         return null;
     }
     ///////////////////////////////////////////////////////////////////////////
-    
-    public Group getGroup(String groupName){
-        for (Group group : Group.getGroups()){
-            if(group.getName().equalsIgnoreCase(groupName)){
+
+    public Group getGroup(String groupName) {
+        for (Group group : Group.getGroups()) {
+            if (group.getName().equalsIgnoreCase(groupName)) {
                 return group;
             }
         }
         return null;
     }
-    
+
     public Account getGroupCreator(String groupName, String accountName) {
         for (Group group : getAccount(accountName).getGroups()) {
             if (group.getName().equalsIgnoreCase(groupName)) {

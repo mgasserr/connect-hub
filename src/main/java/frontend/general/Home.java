@@ -17,7 +17,6 @@ public class Home extends javax.swing.JFrame {
     public Home(Account acc) {
         initComponents();
         Database.read();
-        System.out.println(acc.getGroups().size());
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;

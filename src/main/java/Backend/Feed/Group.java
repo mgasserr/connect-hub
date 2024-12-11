@@ -101,6 +101,14 @@ public class Group {
     public ArrayList<Account> getMembers() {
         return members;
     }
+    
+    public ArrayList<String> getMembersUsernames() {
+        ArrayList<String> usernames = new ArrayList<>();
+        for (Account account : members) {
+            usernames.add(account.getUsername());  // Get username of each account
+        }
+        return usernames;
+    }
 
     public void addMember(String Name) {
         this.members.add(D.getAccount(Name));
@@ -118,6 +126,14 @@ public class Group {
         return admins;
     }
     
+    public ArrayList<String> getAdminsUsernames() {
+        ArrayList<String> usernames = new ArrayList<>();
+        for (Account account : admins) {
+            usernames.add(account.getUsername());  // Get username of each account
+        }
+        return usernames;
+    }
+    
     public void addAdmin(String Name) {
         this.admins.add(D.getAccount(Name));
     }
@@ -132,18 +148,16 @@ public class Group {
 
     public void addRequest(String Name) {
         D.getGroup(this.Name).getRequests().add(D.getAccount(Name));
-        //this.requests.add(D.getAccount(Name));
-        System.out.println(requests.size());
     }
 
     public void removeRequest(String Name) {
         this.requests.remove(D.getAccount(Name));
-
     }
 
     public ArrayList<Account> getRequests() {
         return requests;
     }
+    
     public ArrayList<String> getRequestUsernames() {
         ArrayList<String> usernames = new ArrayList<>();
         for (Account account : requests) {
