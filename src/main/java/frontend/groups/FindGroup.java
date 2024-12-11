@@ -2,6 +2,7 @@ package frontend.groups;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Feed.Group;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,7 +15,7 @@ public class FindGroup extends javax.swing.JFrame {
     private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public FindGroup(Account acc) {
-         initComponents();
+        initComponents();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
@@ -152,8 +153,14 @@ public class FindGroup extends javax.swing.JFrame {
         if (i == -1) {
             errorText.setForeground(Color.red);
             errorText.setText("No groups selected");
-        } else {
-            acc.getFriendsManagement().sendFriendRequest(groupsList.getSelectedValue(), acc.getUsername());
+        } else if (Database.getGroup(groupsList.getSelectedValue()).isMember(acc.getUsername()) || Database.getGroup(groupsList.getSelectedValue()).getCreator().getUsername().equalsIgnoreCase(acc.getUsername())) 
+        {
+            errorText.setText("Already in group");
+        }else if(Database.getGroup(groupsList.getSelectedValue()).isRequest(acc.getUsername())){
+            errorText.setText("Already requested");
+        }
+        else {
+            Database.getGroup(groupsList.getSelectedValue()).addRequest(acc.getUsername());
             Database.save();
             listModel.clear();
             groupsList.setModel(listModel);
@@ -181,9 +188,9 @@ public class FindGroup extends javax.swing.JFrame {
             errorText.setText("Search field is empty");
         } else {
             listModel.clear();
-            for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
-                if (user.getUsername().startsWith(searchText.getText())) {
-                    listModel.addElement(user.getUsername());
+            for (Group group : Group.getGroups()) {
+                if (group.getName().startsWith(searchText.getText())) {
+                    listModel.addElement(group.getName());
                 }
             }
             groupsList.setModel(listModel);

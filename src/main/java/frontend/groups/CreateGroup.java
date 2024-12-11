@@ -2,11 +2,13 @@ package frontend.groups;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Feed.Group;
 
 public class CreateGroup extends javax.swing.JFrame {
 
     Account acc;
     Databases Database = Databases.getInstance();
+    Databases D=Databases.getInstance();
 
     public CreateGroup(Account acc) {
         initComponents();
@@ -48,6 +50,11 @@ public class CreateGroup extends javax.swing.JFrame {
         jLabel5.setText("GROUP DESCRIPTION");
 
         Create.setText("CREATE");
+        Create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateActionPerformed(evt);
+            }
+        });
 
         Home.setText("Home");
 
@@ -118,6 +125,15 @@ public class CreateGroup extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
+
+    private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
+        D.read();
+        String name=this.name.getText();
+        String desc=this.description.getText();
+        Group g =new Group(acc, name, desc, null);
+        g.addGroup(g, acc.getUsername());
+        D.save();
+    }//GEN-LAST:event_CreateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Change;

@@ -2,18 +2,31 @@ package frontend.groups;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Feed.Group;
 import frontend.general.Home;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.DefaultListModel;
 
 public class ViewMembersList extends javax.swing.JFrame {
 
     Account acc;
+    Group g;
     private Databases Database = Databases.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
 
-    public ViewMembersList() {
+    public ViewMembersList(Account acc, Group group) {
         initComponents();
+        this.acc = acc;
+        this.g = group;
+        usersList.setPreferredSize(new Dimension(258, 286));
+        errorText.setText("");
+        Database.read();
+        listModel.clear();
+        for (Account members : Database.getGroup(g.getName()).getMembers()) {
+            listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
+        }
+        usersList.setModel(listModel);
     }
 
     @SuppressWarnings("unchecked")
@@ -139,15 +152,25 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
-            acc.getFriendsManagement().Block(usernamelist, acc.getUsername());
-            Database.save();
-            listModel.clear();
-            for (Account user : Database.getFriendsDATABASE(acc.getUsername())) {
-                listModel.addElement(user.getUsername() + " -" + user.getStatus().toString());
+            if (Database.getGroup(g.getName()).getCreator().equals(acc.getUsername())) {
+                if (Database.getGroup(g.getName()).isAdmin(usernamelist)) {
+                    errorText.setText("User already admin");
+                } else {
+                    Database.getGroup(g.getName()).addAdmin(usernamelist);
+                    //acc.getGroup(g.getName()).addAdmin(usernamelist);
+                    Database.save();
+                    listModel.clear();
+                    for (Account members : Database.getGroup(g.getName()).getMembers()) {
+                        listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
+                    }
+                    usersList.setModel(listModel);
+                    errorText.setForeground(Color.black);
+                    errorText.setText("Promoted successfully");
+                }
+            } else {
+                errorText.setForeground(Color.black);
+                errorText.setText("You must be primary admin");
             }
-            usersList.setModel(listModel);
-            errorText.setForeground(Color.black);
-            errorText.setText("Friend blocked!");
         }
     }//GEN-LAST:event_PromoteActionPerformed
 
@@ -186,7 +209,42 @@ public class ViewMembersList extends javax.swing.JFrame {
     }//GEN-LAST:event_HomeActionPerformed
 
     private void DemoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DemoteActionPerformed
-        // TODO add your handling code here:
+        errorText.setText("");
+        int i = usersList.getSelectedIndex();
+        if (i == -1) {
+            errorText.setForeground(Color.red);
+            errorText.setText("No users selected");
+        } else {
+            String usernamelist = usersList.getSelectedValue();
+            if (usernamelist.contains(" -ONLINE")) {
+                usernamelist = usernamelist.replace(" -ONLINE", "");
+            } else if (usernamelist.contains(" -OFFLINE")) {
+                usernamelist = usernamelist.replace(" -OFFLINE", "");
+            }
+            Database.read();
+            if (Database.getGroup(g.getName()).getCreator().equals(acc.getUsername())) {
+                if (!Database.getGroup(g.getName()).isAdmin(usernamelist)) {
+                    errorText.setText("User is not admin");
+                } else {
+                    Database.getGroup(g.getName()).removeAdmin(usernamelist);
+                    //acc.getGroup(g.getName()).removeAdmin(usernamelist);
+                    Database.save();
+                    listModel.clear();
+                    for (Account members : Database.getGroup(g.getName()).getMembers()) {
+                        listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
+                    }
+                    usersList.setModel(listModel);
+                    errorText.setForeground(Color.black);
+                    errorText.setText("Demoted successfully");
+                }
+            }
+            else{
+                 errorText.setForeground(Color.black);
+            errorText.setText("You must be primary admin");
+            }
+        }
+
+
     }//GEN-LAST:event_DemoteActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing

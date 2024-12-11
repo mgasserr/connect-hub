@@ -50,15 +50,15 @@
                               <Component id="Picture" min="-2" pref="145" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="GroupName" min="-2" pref="97" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="name" min="-2" pref="71" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="Description" min="-2" pref="83" max="-2" attributes="0"/>
+                              <Component id="Description" min="-2" pref="71" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="64" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="76" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -77,8 +77,8 @@
                           <Component id="Picture" alignment="3" min="-2" pref="91" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="GroupName" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="name" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="Description" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -111,17 +111,7 @@
         <Property name="text" type="java.lang.String" value="Group"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="GroupName">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="GroupName"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Description"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="Description">
       <Properties>
         <Property name="text" type="java.lang.String" value="Description"/>
       </Properties>
@@ -143,7 +133,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="ContentList">
+        <Component class="javax.swing.JList" name="postsList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -159,11 +149,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="VIEW"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VIEWActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="AddContent">
       <Properties>
         <Property name="text" type="java.lang.String" value="POST"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AddContentActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Leave">
       <Properties>
@@ -174,6 +170,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="VIEW MEMBERS"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewMembersActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="name">
+    </Component>
+    <Component class="javax.swing.JTextField" name="Description">
     </Component>
   </SubComponents>
 </Form>

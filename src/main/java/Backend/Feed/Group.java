@@ -158,6 +158,9 @@ public class Group {
     public ArrayList<Account> getRequests() {
         return requests;
     }
+    public boolean isRequest(String Name) {
+        return this.requests.contains(D.getAccount(Name));
+    }
     
     public ArrayList<String> getRequestUsernames() {
         ArrayList<String> usernames = new ArrayList<>();
