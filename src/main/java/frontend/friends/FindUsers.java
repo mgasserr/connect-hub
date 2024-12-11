@@ -2,6 +2,8 @@ package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Databases.NotificationsDatabase;
+import Backend.Notifications.FriendReqNoti;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +18,7 @@ public class FindUsers extends javax.swing.JFrame {
     private Account acc;
     private Databases Database = Databases.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
+    private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
 
     public FindUsers(Account acc) {
         initComponents();
@@ -25,6 +28,7 @@ public class FindUsers extends javax.swing.JFrame {
         usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
         Database.read();
+        notiDatabase.read();
         searchText.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -194,6 +198,7 @@ public class FindUsers extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         // TODO add your handling code here:
         Database.read();
+        notiDatabase.read();
         errorText.setText("");
         if (searchText.getText().equals("")) {
             errorText.setForeground(Color.red);
@@ -211,6 +216,7 @@ public class FindUsers extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         Database.read();
+        notiDatabase.read();
         errorText.setText("");
         int i = usersList.getSelectedIndex();
         if (i == -1) {
@@ -218,7 +224,9 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setText("No accounts selected");
         } else {
             acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
+            Database.getAccount(usersList.getSelectedValue()).addNotification(new FriendReqNoti(null, false, acc.getUsername()));
             Database.save();
+            notiDatabase.save();
             listModel.clear();
             usersList.setModel(listModel);
             searchText.setText("");
@@ -235,8 +243,10 @@ public class FindUsers extends javax.swing.JFrame {
             errorText.setText("No users selected");
         } else {
             Database.read();
+            notiDatabase.read();
             acc.getFriendsManagement().Block(usersList.getSelectedValue(), acc.getUsername());
             Database.save();
+            notiDatabase.save();
             listModel.clear();
             usersList.setModel(listModel);
             searchText.setText("");

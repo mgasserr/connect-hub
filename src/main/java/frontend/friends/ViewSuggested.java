@@ -2,6 +2,8 @@ package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Databases.NotificationsDatabase;
+import Backend.Notifications.FriendReqNoti;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,6 +18,7 @@ public class ViewSuggested extends javax.swing.JFrame {
     private Account acc;
     private Databases Database = Databases.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
+    private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
 
     public ViewSuggested(Account acc) {
         initComponents();
@@ -25,6 +28,7 @@ public class ViewSuggested extends javax.swing.JFrame {
         usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
         Database.read();
+        notiDatabase.read();
         listModel.clear();
         for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
             listModel.addElement(user.getUsername());
@@ -142,8 +146,11 @@ public class ViewSuggested extends javax.swing.JFrame {
             errorText.setText("No accounts selected");
         } else {
             Database.read();
+            notiDatabase.read();
             acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
+            Database.getAccount(usersList.getSelectedValue()).addNotification(new FriendReqNoti(null, false, acc.getUsername()));
             Database.save();
+            notiDatabase.save();
             listModel.clear();
             for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
                 listModel.addElement(user.getUsername());
