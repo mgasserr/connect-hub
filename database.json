@@ -1,49 +1,68 @@
-[{
-   "stories": [],
-   "blocked": [],
-   "groups": [
-      {
-         "creator": "h",
+[
+   {
+      "stories": [],
+      "blocked": [],
+      "groups": [{
+         "creator": "y",
          "members": [],
-         "name": "k",
-         "description": "k",
+         "name": "g1",
+         "description": "d1",
+         "requests": [
+            "y",
+            "s"
+         ],
          "picture": "ImagesDatabase//Default//group.png",
          "admins": [],
          "content": []
-      },
-      {
-         "creator": "h",
+      }],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0001",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "1999-01-01",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "y@jsbf.com",
+         "username": "y",
+         "status": "ONLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "groups": [{
+         "creator": "s",
          "members": [],
-         "name": "l",
-         "description": "kj",
+         "name": "g2",
+         "description": "d2",
+         "requests": [
+            "s",
+            "y"
+         ],
          "picture": "ImagesDatabase//Default//group.png",
          "admins": [],
          "content": []
-      },
-      {
-         "creator": "h",
-         "members": [],
-         "name": "kpp",
-         "description": "a",
-         "picture": "ImagesDatabase//Default//group.png",
-         "admins": [],
-         "content": []
-      }
-   ],
-   "receivedfriends": [],
-   "blockedBY": [],
-   "sentfriends": [],
-   "posts": [],
-   "userid": "0001",
-   "friends": [],
-   "info": [{
-      "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-      "coverimg": "ImagesDatabase//Default//cover.jpg",
-      "dob": "1996-01-01",
-      "bio": "",
-      "profileimg": "ImagesDatabase//Default//profile.png",
-      "email": "m@a.d",
-      "username": "h",
-      "status": "ONLINE"
-   }]
-}]
+      }],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0002",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "2006-01-01",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "s@jdsf.com",
+         "username": "s",
+         "status": "ONLINE"
+      }]
+   }
+]

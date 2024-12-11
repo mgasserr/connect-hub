@@ -3,6 +3,7 @@ package frontend.general;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Authentication.Register;
+import Backend.Feed.Group;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;

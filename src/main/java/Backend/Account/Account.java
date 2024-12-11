@@ -41,6 +41,15 @@ public class Account {
     public ArrayList<Group> getGroups() {
         return Groups;
     }
+    
+    public Group getGroup(String groupName){
+        for (Group group : Group.getGroups()){
+            if(group.getName().equalsIgnoreCase(groupName)){
+                return group;
+            }
+        }
+        return null;
+    }
 
     public void addGroup(Group Group) {
         this.Groups.add(Group);

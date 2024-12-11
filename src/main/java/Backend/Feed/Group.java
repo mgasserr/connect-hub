@@ -18,10 +18,10 @@ public class Group {
     private String Description;
     private ImageIcon Picture;
     private static int count = 0;
-    private ArrayList<Account> admins;
-    private ArrayList<Account> members;
-    private ArrayList<Content> content;
-    private ArrayList<Account> requests;
+    private ArrayList<Account> admins = new ArrayList<>();
+    private ArrayList<Account> members = new ArrayList<>();
+    private ArrayList<Content> content = new ArrayList<>();
+    private ArrayList<Account> requests = new ArrayList<>();
     private static ArrayList<Group> groups = new ArrayList<>();
     private Databases D = Databases.getInstance();
 
@@ -39,7 +39,7 @@ public class Group {
             this.Description = Description;
         }
         count++;
-        groups.add(this);
+    
     }
 
     //MAIN METHODS FOR GROUPS DETAILS
@@ -131,7 +131,9 @@ public class Group {
     }
 
     public void addRequest(String Name) {
-        this.requests.add(D.getAccount(Name));
+        D.getGroup(this.Name).getRequests().add(D.getAccount(Name));
+        //this.requests.add(D.getAccount(Name));
+        System.out.println(requests.size());
     }
 
     public void removeRequest(String Name) {
@@ -141,6 +143,13 @@ public class Group {
 
     public ArrayList<Account> getRequests() {
         return requests;
+    }
+    public ArrayList<String> getRequestUsernames() {
+        ArrayList<String> usernames = new ArrayList<>();
+        for (Account account : requests) {
+            usernames.add(account.getUsername());  // Get username of each account
+        }
+        return usernames;
     }
 
     public static ArrayList<Group> getGroups() {
@@ -154,6 +163,7 @@ public class Group {
     //ADD GROUPS TO USER ACCOUNT
     public void addGroup(Group Group, String Name) {
         D.getAccount(Name).getGroups().add(Group);
+        groups.add(Group);
     }
 
     //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
