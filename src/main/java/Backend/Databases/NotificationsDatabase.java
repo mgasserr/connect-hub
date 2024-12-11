@@ -38,21 +38,29 @@ public class NotificationsDatabase {
             JSONArray Arraynotis = new JSONArray();
             for (Notification noti : acc.getNotifications()) {
                 JSONObject notiobj = new JSONObject();
-                if (noti instanceof FriendReqNoti friendReqNoti) {
-                    notiobj.put("type", "friendreq");
-                    notiobj.put("sender", friendReqNoti.getSender());
-                } else if (noti instanceof AddedToGroupNoti addedToGroupNoti) {
-                    notiobj.put("type", "addedtogroup");
-                    notiobj.put("groupid", addedToGroupNoti.getGroupID());
-                } else if (noti instanceof GroupRoleChangeNoti groupRoleChangeNoti) {
-                    notiobj.put("type", "rolechange");
-                    notiobj.put("groupid", groupRoleChangeNoti.getGroupID());
-                    notiobj.put("newrole", groupRoleChangeNoti.getNewGroupRole());
-                } else if (noti instanceof NewPostToGroupNoti newPostToGroupNoti) {
-                    notiobj.put("type", "newposttogroup");
-                    notiobj.put("groupid", newPostToGroupNoti.getGroupID());
+                switch (noti) {
+                    case FriendReqNoti friendReqNoti -> {
+                        notiobj.put("type", "friendreq");
+                        notiobj.put("sender", friendReqNoti.getSender());
+                    }
+                    case AddedToGroupNoti addedToGroupNoti -> {
+                        notiobj.put("type", "addedtogroup");
+                        notiobj.put("groupid", addedToGroupNoti.getGroupID());
+                    }
+                    case GroupRoleChangeNoti groupRoleChangeNoti -> {
+                        notiobj.put("type", "rolechange");
+                        notiobj.put("groupid", groupRoleChangeNoti.getGroupID());
+                        notiobj.put("newrole", groupRoleChangeNoti.getNewGroupRole());
+                    }
+                    case NewPostToGroupNoti newPostToGroupNoti -> {
+                        notiobj.put("type", "newposttogroup");
+                        notiobj.put("groupid", newPostToGroupNoti.getGroupID());
+                    }
+                    default -> {
+                        System.out.println("Error in reading notification type.");
+                    }
                 }
-                notiobj.put("opened", noti.isOpened());
+                notiobj.put("opened", noti.isOpenedString());
                 notiobj.put("time", noti.getTimestamp());
 
                 Arraynotis.put(notiobj);
@@ -68,7 +76,7 @@ public class NotificationsDatabase {
     }
 
     public void read() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("database.json"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("notidatabase.json"))) {
             Notification.resetNotiCount();
             StringBuilder jsonContent = new StringBuilder();
             String line;

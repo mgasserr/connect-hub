@@ -2,6 +2,7 @@ package frontend.friends;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Databases.NotificationsDatabase;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -12,11 +13,12 @@ import javax.swing.DefaultListModel;
  * @author Zeina Hazem
  */
 public class ViewSentFriendReq extends javax.swing.JFrame {
-
+    
     private Account acc;
     private Databases Database = Databases.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
-
+    private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
+    
     public ViewSentFriendReq(Account acc) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -25,6 +27,7 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
         usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
         Database.read();
+        notiDatabase.read();
         listModel.clear();
         for (Account user : Database.getSentReqsDATABASE(acc.getUsername())) {
             listModel.addElement(user.getUsername());
@@ -137,8 +140,11 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
             errorText.setText("No users selected");
         } else {
             Database.read();
+            notiDatabase.read();
             acc.getFriendsManagement().unsendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
+            Database.getAccount(usersList.getSelectedValue()).removeReqNotibySender(acc.getUsername());
             Database.save();
+            notiDatabase.save();
             listModel.clear();
             for (Account user : Database.getSentReqsDATABASE(acc.getUsername())) {
                 listModel.addElement(user.getUsername());

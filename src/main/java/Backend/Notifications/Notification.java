@@ -33,8 +33,12 @@ public abstract class Notification {
         return timestamp;
     }
 
-    public boolean isOpened() {
+    public boolean isOpenedBoolean() {
         return opened;
+    }
+
+    public String isOpenedString() {
+        return opened + "";
     }
 
     public void setTimestamp(LocalDateTime timestamp) {
