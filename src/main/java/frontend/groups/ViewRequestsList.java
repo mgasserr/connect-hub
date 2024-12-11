@@ -23,7 +23,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
         errorText.setText("");
         Database.read();
         listModel.clear();
-        for (Account members : Database.getGroup(g.getName()).getMembers()) {
+        for (Account members : Database.getGroup(g.getName()).getRequests()) {
             listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
         }
         usersList.setModel(listModel);

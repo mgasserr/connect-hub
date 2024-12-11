@@ -4,7 +4,16 @@
       "blocked": [],
       "groups": [{
          "creator": "y",
-         "members": [],
+         "members": [
+            "s",
+            "s",
+            "s",
+            "s",
+            "s",
+            "s",
+            "s",
+            "s"
+         ],
          "name": "g1",
          "description": "d1",
          "requests": [],
@@ -32,16 +41,37 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [{
-         "creator": "s",
-         "members": ["y"],
-         "name": "g2",
-         "description": "d2",
-         "requests": [],
-         "picture": "ImagesDatabase//Default//group.png",
-         "admins": [],
-         "content": []
-      }],
+      "groups": [
+         {
+            "creator": "s",
+            "members": ["y"],
+            "name": "g2",
+            "description": "d2",
+            "requests": [],
+            "picture": "ImagesDatabase//Default//group.png",
+            "admins": [],
+            "content": []
+         },
+         {
+            "creator": "y",
+            "members": [
+               "s",
+               "s",
+               "s",
+               "s",
+               "s",
+               "s",
+               "s",
+               "s"
+            ],
+            "name": "g1",
+            "description": "d1",
+            "requests": [],
+            "picture": "ImagesDatabase//Default//group.png",
+            "admins": [],
+            "content": []
+         }
+      ],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],

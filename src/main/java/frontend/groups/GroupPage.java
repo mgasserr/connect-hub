@@ -208,7 +208,7 @@ public class GroupPage extends javax.swing.JFrame {
     }//GEN-LAST:event_LeaveActionPerformed
 
     private void ViewRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewRequestsActionPerformed
-        if (Database.getGroup(g.getName()).isAdmin(acc.getUsername()) || Database.getGroup(g.getName()).equals(acc.getUsername())) {
+        if (Database.getGroup(g.getName()).isAdmin(acc.getUsername()) || Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
             ViewRequestsList R = new ViewRequestsList(acc, g);
             R.setVisible(true);
             this.setVisible(false);
