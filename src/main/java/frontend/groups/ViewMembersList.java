@@ -153,7 +153,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
-            if (Database.getGroup(g.getName()).getCreator().equals(acc.getUsername())) {
+            if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
                 if (Database.getGroup(g.getName()).isAdmin(usernamelist)) {
                     errorText.setText("User already admin");
                 } else {
@@ -190,20 +190,20 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
-            if (acc.getUsername().equals(g.getCreator())) {
+            if (acc.getUsername().equals(g.getCreator().getUsername())) {
                 // Creator logic
-                if (g.isAdmin(usernamelist)) {
+                if (Database.getGroup(g.getName()).isAdmin(usernamelist)) {
                     Database.getGroup(g.getName()).removeAdmin(usernamelist);
                 }
-                if (g.isMember(usernamelist)) {
+                if (Database.getGroup(g.getName()).isMember(usernamelist)) {
                     Database.getGroup(g.getName()).removeMember(usernamelist);
-                    Database.getAccount(usernamelist).removeGroup(g);
+                    //Database.getAccount(usernamelist).removeGroup(Database.getGroup(g.getName()));
                     errorText.setForeground(Color.green);
                     errorText.setText("Member removed!");
                 }
-            } else if (g.isAdmin(acc.getUsername())) {
+            } else if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
                 // Admin logic
-                if (g.isAdmin(usernamelist) || g.getCreator().equals(usernamelist)) {
+                if (Database.getGroup(g.getName()).isAdmin(usernamelist) || g.getCreator().getUsername().equals(usernamelist)) {
                     errorText.setForeground(Color.red);
                     errorText.setText("You can't remove someone in the same position or higher!");
                 } else {
@@ -223,8 +223,8 @@ public class ViewMembersList extends javax.swing.JFrame {
                 listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
             }
             usersList.setModel(listModel);
-            errorText.setForeground(Color.black);
-            errorText.setText("Friend removed!");
+            
+            
         }
     }//GEN-LAST:event_RemoveActionPerformed
 
@@ -249,7 +249,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
-            if (Database.getGroup(g.getName()).getCreator().equals(acc.getUsername())) {
+            if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
                 if (!Database.getGroup(g.getName()).isAdmin(usernamelist)) {
                     errorText.setText("User is not admin");
                 } else {

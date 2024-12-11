@@ -4,20 +4,11 @@
       "blocked": [],
       "groups": [{
          "creator": "y",
-         "members": [
-            "s",
-            "s",
-            "s",
-            "s",
-            "s",
-            "s",
-            "s",
-            "s"
-         ],
+         "members": ["g"],
          "name": "g1",
          "description": "d1",
          "requests": [],
-         "picture": "ImagesDatabase//Default//group.png",
+         "picture": "javax.swing.ImageIcon@23624ee0",
          "admins": [],
          "content": []
       }],
@@ -30,10 +21,10 @@
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "1999-01-01",
+         "dob": "2005-01-01",
          "bio": "",
          "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "y@jsbf.com",
+         "email": "y@jed.com",
          "username": "y",
          "status": "OFFLINE"
       }]
@@ -41,37 +32,16 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [
-         {
-            "creator": "s",
-            "members": ["y"],
-            "name": "g2",
-            "description": "d2",
-            "requests": [],
-            "picture": "ImagesDatabase//Default//group.png",
-            "admins": [],
-            "content": []
-         },
-         {
-            "creator": "y",
-            "members": [
-               "s",
-               "s",
-               "s",
-               "s",
-               "s",
-               "s",
-               "s",
-               "s"
-            ],
-            "name": "g1",
-            "description": "d1",
-            "requests": [],
-            "picture": "ImagesDatabase//Default//group.png",
-            "admins": [],
-            "content": []
-         }
-      ],
+      "groups": [{
+         "creator": "g",
+         "members": [],
+         "name": "g2",
+         "description": "d2",
+         "requests": [],
+         "picture": "javax.swing.ImageIcon@2e378980",
+         "admins": [],
+         "content": []
+      }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
@@ -81,12 +51,12 @@
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2006-01-01",
+         "dob": "1991-01-01",
          "bio": "",
          "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "s@jdsf.com",
-         "username": "s",
-         "status": "OFFLINE"
+         "email": "g@asdhf.com",
+         "username": "g",
+         "status": "ONLINE"
       }]
    }
 ]

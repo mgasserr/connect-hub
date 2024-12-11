@@ -146,12 +146,14 @@ public class Databases {
             Content.resetContentCount();
             Group.resetGroupCount();
             Group.getGroups().clear();
+            
             accounts.clear();
             for (Group group : Group.getGroups()) {
                 group.getAdmins().clear();
                 group.getMembers().clear();
                 group.getRequests().clear();
             }
+           
 
             StringBuilder jsonContent = new StringBuilder();
             String line;
