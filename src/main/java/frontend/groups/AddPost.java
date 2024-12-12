@@ -196,13 +196,18 @@ public class AddPost extends javax.swing.JFrame {
         } else {
             c = F.Feed("Story", acc.getUserId(), map, null);
         }
+        String[] temp = new String[5];
+        temp[0] = "Content";
+        temp[1] = acc.getUsername();
+        temp[2] = c.getTime().toString();
+        temp[3] = c.getContentMap().get("Text");
+        temp[4] = c.getContentMap().get("Path");
         for (Account account : Database.getGroup(g.getName()).getMembers()) {
             if (!account.getUsername().equals(acc.getUsername())) {
-                Database.getAccount(account.getUsername()).addNotification(new NewPostToGroupNoti(null, false, g.getName(), type));
+                Database.getAccount(account.getUsername()).addNotification(new NewPostToGroupNoti(null, false, g.getName(), type, temp));
             }
         }
         Database.getGroup(g.getName()).addContent(c);
-        
         Database.save();
         notiDatabase.save();
         JOptionPane.showMessageDialog(this, type + " posted successfully.");

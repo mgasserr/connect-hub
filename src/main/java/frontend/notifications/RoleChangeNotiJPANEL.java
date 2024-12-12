@@ -9,6 +9,7 @@ import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
 import Backend.Notifications.GroupRoleChangeNoti;
 import Backend.Notifications.Notification;
+import frontend.general.Home;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -103,7 +104,7 @@ public class RoleChangeNotiJPANEL extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(97, 97, 97)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(leaveButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(unreadButton)
@@ -134,6 +135,9 @@ public class RoleChangeNotiJPANEL extends javax.swing.JPanel {
         Database.save();
         notiDatabase.save();
         popupmenu.setVisible(false);
+        Home home = new Home(acc);
+        home.setVisible(true);
+        mainwindow.setVisible(false);
         JOptionPane.showMessageDialog(mainwindow, "Successfully left group: " + groupName + "!");
     }//GEN-LAST:event_leaveButtonActionPerformed
 

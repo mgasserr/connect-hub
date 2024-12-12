@@ -13,6 +13,7 @@ public class GroupPage extends javax.swing.JFrame {
     Account acc;
     Group g;
     Databases Database = Databases.getInstance();
+    String[] temp;
 
     public GroupPage(Account acc, Group group) {
         initComponents();
@@ -217,6 +218,7 @@ public class GroupPage extends javax.swing.JFrame {
             String line = postsList.getSelectedValue();
             String[] temp = line.split("~");
             DisplayContent c = new DisplayContent(acc, temp);
+            this.temp = temp;
             c.setVisible(true);
         }    }//GEN-LAST:event_VIEWActionPerformed
 

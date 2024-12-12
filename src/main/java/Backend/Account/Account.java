@@ -209,17 +209,17 @@ public class Account {
     }
 
     public void removeALLGroupNotisbyGroupName(String groupname) {
+        ArrayList<Notification> toRemove = new ArrayList<>();
         for (Notification notification : notifications) {
-            if (!(notification instanceof FriendReqNoti)) {
-                if (((GroupRoleChangeNoti) notification).getGroupName().equals(groupname)) {
-                    this.notifications.remove(notification);
-                } else if (((AddedToGroupNoti) notification).getGroupName().equals(groupname)) {
-                    this.notifications.remove(notification);
-                } else if (((NewPostToGroupNoti) notification).getGroupName().equals(groupname)) {
-                    this.notifications.remove(notification);
-                }
+            if (notification instanceof GroupRoleChangeNoti && ((GroupRoleChangeNoti) notification).getGroupName().equals(groupname)) {
+                toRemove.add(notification);
+            } else if (notification instanceof NewPostToGroupNoti && ((NewPostToGroupNoti) notification).getGroupName().equals(groupname)) {
+                toRemove.add(notification);
+            } else if (notification instanceof AddedToGroupNoti && ((AddedToGroupNoti) notification).getGroupName().equals(groupname)) {
+                toRemove.add(notification);
             }
         }
+        notifications.removeAll(toRemove);
     }
 
     public ArrayList<Notification> getNotifications() {

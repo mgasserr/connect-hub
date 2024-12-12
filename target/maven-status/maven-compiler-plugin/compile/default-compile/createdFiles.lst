@@ -12,10 +12,13 @@ frontend\settings\changePass$3.class
 frontend\groups\GroupSettings$3.class
 frontend\groups\changePicture$2.class
 frontend\groups\GroupPage$5.class
+frontend\notifications\RoleChangeNotiJPANEL.class
 frontend\friends\FriendsManagement$3.class
 frontend\settings\changeCoverPic$4.class
+frontend\notifications\NewPostToGroupNotiJPANEL$1.class
 frontend\groups\FindGroup.class
 frontend\groups\ViewMembersList$3.class
+frontend\notifications\AddedToGroupNotiJPANEL$1.class
 frontend\groups\test.class
 frontend\settings\Settings$3.class
 frontend\groups\GroupPage$4.class
@@ -28,12 +31,14 @@ frontend\general\MyProfile$1.class
 frontend\friends\ViewSuggested$4.class
 frontend\settings\changeBio$2.class
 frontend\groups\ViewRequestsList$1.class
+frontend\notifications\NewPostToGroupNotiJPANEL$2.class
 frontend\groups\CreateGroup$1.class
 frontend\settings\changeBio.class
 frontend\settings\changeBio$1.class
 frontend\groups\GroupsManagement$2.class
 frontend\groups\changePicture$1.class
 frontend\friends\ViewFriendsList$3.class
+frontend\notifications\AddedToGroupNotiJPANEL$2.class
 frontend\general\Home.class
 frontend\groups\GroupsManagement$1.class
 frontend\settings\changePass.class
@@ -76,6 +81,7 @@ frontend\general\Startup$1.class
 frontend\general\Signup$3.class
 frontend\settings\Settings$5.class
 frontend\general\Home$3.class
+frontend\notifications\AddedToGroupNotiJPANEL.class
 frontend\general\Startup$4.class
 frontend\settings\changeProfilePic$2.class
 frontend\settings\changePass$6.class
@@ -99,6 +105,7 @@ frontend\settings\changeCoverPic$1.class
 frontend\groups\changeDescription$3.class
 frontend\general\Home$8.class
 frontend\groups\ViewMembersList$5.class
+frontend\notifications\NewPostToGroupNotiJPANEL$3.class
 frontend\friends\ViewSentFriendReq$2.class
 frontend\friends\ViewReceivedFriendReq$3.class
 frontend\groups\AddPost$4.class
@@ -131,6 +138,7 @@ frontend\friends\ViewBlockList.class
 frontend\settings\changePass$2.class
 frontend\groups\GroupsManagement$4.class
 frontend\general\AddContent$4.class
+frontend\notifications\RoleChangeNotiJPANEL$1.class
 frontend\groups\ViewRequestsList.class
 frontend\friends\FriendsManagement$4.class
 frontend\settings\changeCoverPic$3.class
@@ -162,7 +170,9 @@ frontend\settings\Settings$7.class
 frontend\settings\changePass$4.class
 frontend\friends\FriendsManagement$1.class
 frontend\general\AddContent$2.class
+frontend\notifications\NewPostToGroupNotiJPANEL.class
 frontend\friends\FindUsers$3.class
+frontend\notifications\RoleChangeNotiJPANEL$2.class
 frontend\settings\Settings.class
 frontend\groups\ViewRequestsList$4.class
 frontend\friends\FriendsManagement$2.class

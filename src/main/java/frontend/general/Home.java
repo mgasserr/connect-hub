@@ -35,8 +35,6 @@ public class Home extends javax.swing.JFrame {
         this.acc = acc;
         contentConstructor();
         notificationsConstructor();
-       
-
         DefaultListModel<String> newsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
         for (int i = 0; i < Group.getGroups().size(); i++) {
             if (Group.getGroups().get(i).isMember(acc.getUsername()) || Group.getGroups().get(i).getCreator().getUsername().equals(acc.getUsername())) {
@@ -151,6 +149,11 @@ public class Home extends javax.swing.JFrame {
         });
 
         notisToggle.setText("Notifications");
+        notisToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notisToggleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -337,6 +340,10 @@ public class Home extends javax.swing.JFrame {
         t.setVisible(true);
         this.setVisible(false);*/
     }//GEN-LAST:event_GroupsActionPerformed
+
+    private void notisToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notisToggleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notisToggleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

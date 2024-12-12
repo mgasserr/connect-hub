@@ -4,6 +4,7 @@ import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
 import Backend.Notifications.*;
+import frontend.general.Home;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -142,6 +143,9 @@ public class FriendReqNotiJPANEL extends javax.swing.JPanel {
         Database.save();
         notiDatabase.save();
         popupmenu.setVisible(false);
+        Home home = new Home(acc);
+        home.setVisible(true);
+        mainwindow.setVisible(false);
         JOptionPane.showMessageDialog(mainwindow, "Friend request accepted!");
     }//GEN-LAST:event_acceptButtonActionPerformed
 
@@ -153,6 +157,9 @@ public class FriendReqNotiJPANEL extends javax.swing.JPanel {
         Database.save();
         notiDatabase.save();
         popupmenu.setVisible(false);
+        Home home = new Home(acc);
+        home.setVisible(true);
+        mainwindow.setVisible(false);
         JOptionPane.showMessageDialog(mainwindow, "Friend request declined!");
     }//GEN-LAST:event_declineButtonActionPerformed
 

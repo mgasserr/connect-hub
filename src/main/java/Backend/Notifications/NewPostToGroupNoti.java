@@ -6,8 +6,9 @@ public class NewPostToGroupNoti extends Notification {
 
     String groupName;
     String type;
+    String[] temp;
 
-    public NewPostToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName, String type) {
+    public NewPostToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName, String type, String[] temp) {
         super(timestamp, opened);
         if (type.equalsIgnoreCase("Post")) {
             super.message = "A new post was added to group: " + groupName;
@@ -16,6 +17,7 @@ public class NewPostToGroupNoti extends Notification {
         }
         this.groupName = groupName;
         this.type = type;
+        this.temp = temp;
     }
 
     public String getGroupName() {
@@ -24,5 +26,9 @@ public class NewPostToGroupNoti extends Notification {
 
     public String getType() {
         return type;
+    }
+
+    public String[] getTemp() {
+        return temp;
     }
 }

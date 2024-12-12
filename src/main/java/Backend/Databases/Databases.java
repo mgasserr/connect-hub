@@ -540,6 +540,7 @@ public class Databases {
 
     public void logoutDatabase(String username) {
         read();
+        NotificationsDatabase.getInstance().read();
         for (Account account : accounts) {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 account.setStatus(Activity.Status.OFFLINE);

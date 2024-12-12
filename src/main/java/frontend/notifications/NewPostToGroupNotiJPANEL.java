@@ -7,7 +7,10 @@ package frontend.notifications;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
+import Backend.Feed.Group;
 import Backend.Notifications.*;
+import frontend.general.DisplayContent;
+import frontend.general.Home;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -20,20 +23,22 @@ import javax.swing.event.PopupMenuListener;
  * @author Mohamed
  */
 public class NewPostToGroupNotiJPANEL extends javax.swing.JPanel {
-
+    
     private Databases Database = Databases.getInstance();
     private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
     private JFrame mainwindow;
     private Account acc;
     private String groupName;
     private JPopupMenu popupmenu;
-
+    private String[] temp;
+    
     public NewPostToGroupNotiJPANEL(Account acc, Notification noti, JPopupMenu popupmenu, JFrame hometestwindow) {
         initComponents();
         Database.read();
         notiDatabase.read();
         this.mainwindow = hometestwindow;
         this.acc = acc;
+        this.temp = ((NewPostToGroupNoti) noti).getTemp();
         this.popupmenu = popupmenu;
         this.popupmenu.addPopupMenuListener(new PopupMenuListener() {
             @Override
@@ -46,11 +51,11 @@ public class NewPostToGroupNotiJPANEL extends javax.swing.JPanel {
                     notiDatabase.save();
                 }
             }
-
+            
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
             }
-
+            
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {
             }
@@ -58,6 +63,9 @@ public class NewPostToGroupNotiJPANEL extends javax.swing.JPanel {
         this.groupName = ((NewPostToGroupNoti) noti).getGroupName();
         messageLabel.setText(noti.getMessage());
         timeLabel.setText(noti.getTimestamp().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        if (Database.getGroup(groupName).getCreator().getUsername().equals(acc.getUsername())) {
+            leaveButton.setVisible(false);
+        }
     }
 
     /**
@@ -141,8 +149,8 @@ public class NewPostToGroupNotiJPANEL extends javax.swing.JPanel {
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         Database.read();
         notiDatabase.read();
-        //METHOD TO VIEW POST
-        Database.save();
+        DisplayContent displaycontent = new DisplayContent(acc, temp);
+        displaycontent.setVisible(true);
         notiDatabase.save();
         popupmenu.setVisible(false);
     }//GEN-LAST:event_viewButtonActionPerformed
@@ -155,6 +163,9 @@ public class NewPostToGroupNotiJPANEL extends javax.swing.JPanel {
         Database.save();
         notiDatabase.save();
         popupmenu.setVisible(false);
+        Home home = new Home(acc);
+        home.setVisible(true);
+        mainwindow.setVisible(false);
         JOptionPane.showMessageDialog(mainwindow, "Successfully left group: " + groupName + "!");
     }//GEN-LAST:event_leaveButtonActionPerformed
 

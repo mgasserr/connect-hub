@@ -4,6 +4,7 @@ import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
 import Backend.Notifications.*;
+import frontend.general.Home;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -12,14 +13,14 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
 public class AddedToGroupNotiJPANEL extends javax.swing.JPanel {
-    
+
     private Databases Database = Databases.getInstance();
     private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
     private JFrame mainwindow;
     private Account acc;
     private String groupName;
     private JPopupMenu popupmenu;
-    
+
     public AddedToGroupNotiJPANEL(Account acc, Notification noti, JPopupMenu popupmenu, JFrame hometestwindow) {
         initComponents();
         Database.read();
@@ -38,11 +39,11 @@ public class AddedToGroupNotiJPANEL extends javax.swing.JPanel {
                     notiDatabase.save();
                 }
             }
-            
+
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
             }
-            
+
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {
             }
@@ -125,6 +126,9 @@ public class AddedToGroupNotiJPANEL extends javax.swing.JPanel {
         Database.save();
         notiDatabase.save();
         popupmenu.setVisible(false);
+        Home home = new Home(acc);
+        home.setVisible(true);
+        mainwindow.setVisible(false);
         JOptionPane.showMessageDialog(mainwindow, "Successfully left group: " + groupName + "!");
     }//GEN-LAST:event_leaveButtonActionPerformed
 
