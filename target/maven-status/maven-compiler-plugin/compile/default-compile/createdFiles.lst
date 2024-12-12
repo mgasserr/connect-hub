@@ -7,6 +7,7 @@ frontend\settings\Settings$2.class
 Backend\Account\ProfileManagement.class
 frontend\friends\FindUsers$2.class
 frontend\general\Home$6.class
+frontend\groups\ViewSuggestedGroups$1.class
 frontend\general\Signup.class
 frontend\settings\changePass$3.class
 frontend\groups\GroupSettings$3.class
@@ -32,6 +33,7 @@ frontend\friends\ViewSuggested$4.class
 frontend\settings\changeBio$2.class
 frontend\groups\ViewRequestsList$1.class
 frontend\notifications\NewPostToGroupNotiJPANEL$2.class
+frontend\groups\AddPost$5.class
 frontend\groups\CreateGroup$1.class
 frontend\settings\changeBio.class
 frontend\settings\changeBio$1.class
@@ -125,6 +127,7 @@ frontend\groups\GroupSettings$1.class
 frontend\groups\ViewGroupsList$3.class
 frontend\friends\FindUsers$6.class
 frontend\general\Home$2.class
+frontend\groups\ViewSuggestedGroups$3.class
 frontend\settings\changeCoverPic$2.class
 frontend\groups\GroupPage.class
 frontend\friends\FriendsManagement$5.class
@@ -138,9 +141,11 @@ frontend\friends\ViewBlockList.class
 frontend\settings\changePass$2.class
 frontend\groups\GroupsManagement$4.class
 frontend\general\AddContent$4.class
+frontend\groups\GroupPage$9.class
 frontend\notifications\RoleChangeNotiJPANEL$1.class
 frontend\groups\ViewRequestsList.class
 frontend\friends\FriendsManagement$4.class
+frontend\groups\ViewSuggestedGroups$2.class
 frontend\settings\changeCoverPic$3.class
 frontend\general\AddContent$1.class
 frontend\general\Home$10.class
@@ -153,6 +158,7 @@ frontend\groups\FindGroup$3.class
 frontend\friends\ViewSuggested$1.class
 frontend\general\Home$4.class
 frontend\general\Home$7.class
+frontend\groups\ViewSuggestedGroups.class
 frontend\friends\FindUsers$1.class
 frontend\friends\ViewReceivedFriendReq.class
 frontend\groups\changeDescription.class
@@ -166,6 +172,7 @@ frontend\general\Home$5.class
 frontend\groups\CreateGroup.class
 frontend\friends\FindUsers$4.class
 frontend\groups\FindGroup$4.class
+frontend\groups\GroupPage$8.class
 frontend\settings\Settings$7.class
 frontend\settings\changePass$4.class
 frontend\friends\FriendsManagement$1.class
@@ -177,6 +184,7 @@ frontend\settings\Settings.class
 frontend\groups\ViewRequestsList$4.class
 frontend\friends\FriendsManagement$2.class
 frontend\general\AddContent$3.class
+frontend\groups\GroupsManagement$5.class
 frontend\groups\FindGroup$5.class
 frontend\groups\GroupPage$7.class
 frontend\groups\changePicture$4.class

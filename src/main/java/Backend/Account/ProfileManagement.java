@@ -20,12 +20,12 @@ public class ProfileManagement {
     public ProfileManagement(Account acc, ImageIcon ProfileImg, ImageIcon CoverImg, String Bio) {
         this.acc = acc;
         if (ProfileImg == null) {
-            this.ProfileImg = new ImageIcon("ImagesDatabase//Default//profile.png");
+            this.ProfileImg = new ImageIcon("ImagesDatabase\\Default\\profile.png");
         } else {
             this.ProfileImg = ProfileImg;
         }
         if (CoverImg == null) {
-            this.CoverImg = new ImageIcon("ImagesDatabase//Default//cover.jpg");
+            this.CoverImg = new ImageIcon("ImagesDatabase\\Default\\cover.jpg");
         } else {
             this.CoverImg = CoverImg;
         }
@@ -42,7 +42,7 @@ public class ProfileManagement {
 
     public void setProfileImg(String Imgpath) {
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase//ProfilePicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase\\ProfilePicture\\" + acc.getUserId() + ".png");
         try {
             // Ensure the destination directory exists
             Files.createDirectories(dest.getParent());
@@ -60,7 +60,7 @@ public class ProfileManagement {
 
     public void setCoverImg(String Imgpath) {
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase//CoverPicture//" + acc.getUserId() + ".png");
+        Path dest = Path.of("ImagesDatabase\\CoverPicture\\" + acc.getUserId() + ".png");
         try {
             Files.createDirectories(dest.getParent());
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);

@@ -100,6 +100,7 @@ public class Databases {
                     postsobj.put("caption", content.getContentMap().get("Text"));
                     postsobj.put("path", content.getContentMap().get("Path"));
                     postsobj.put("AuthorID", content.getAuthorId());
+                    postsobj.put("ContentID", content.getContentId());
                     postsobj.put("timestamp", content.getTime().toString()); // Ensure timestamp is serialized as string
                     Arrayposts.put(postsobj);
                 } else if (content instanceof Stories) {
@@ -107,6 +108,7 @@ public class Databases {
                     storyobj.put("caption", content.getContentMap().get("Text"));
                     storyobj.put("path", content.getContentMap().get("Path"));
                     storyobj.put("AuthorID", content.getAuthorId());
+                    storyobj.put("ContentID", content.getContentId());
                     storyobj.put("timestamp", content.getTime().toString()); // Ensure timestamp is serialized as string
                     Arraystories.put(storyobj);
                 }
@@ -131,6 +133,7 @@ public class Databases {
                         postsobj.put("caption", content.getContentMap().get("Text"));
                         postsobj.put("path", content.getContentMap().get("Path"));
                         postsobj.put("AuthorID", content.getAuthorId());
+                        postsobj.put("ContentID", content.getContentId());
                         postsobj.put("timestamp", content.getTime().toString()); // Ensure timestamp is serialized as string
                         Arraygposts.put(postsobj);
                     } else if (content instanceof Stories) {
@@ -138,6 +141,7 @@ public class Databases {
                         storyobj.put("caption", content.getContentMap().get("Text"));
                         storyobj.put("path", content.getContentMap().get("Path"));
                         storyobj.put("AuthorID", content.getAuthorId());
+                        storyobj.put("ContentID", content.getContentId());
                         storyobj.put("timestamp", content.getTime().toString()); // Ensure timestamp is serialized as string
                         Arraygstories.put(storyobj);
                     }
@@ -267,8 +271,10 @@ public class Databases {
                     contentmap.put("Text", postObj.getString("caption"));
                     contentmap.put("Path", postObj.getString("path"));
                     String AuthorID = postObj.getString("AuthorID");
+                    String ContentID = postObj.getString("ContentID");
                     LocalDateTime timestamp = LocalDateTime.parse(postObj.getString("timestamp"), DateTimeFormatter.ISO_DATE_TIME);
                     Content c = factory.Feed("Post", AuthorID, contentmap, timestamp);
+                    c.setContentId(ContentID);
                     account.getContentManagement().addContent(c);
                 }
 
@@ -279,8 +285,10 @@ public class Databases {
                     contentmap.put("Text", storyObj.getString("caption"));
                     contentmap.put("Path", storyObj.getString("path"));
                     String AuthorID = storyObj.getString("AuthorID");
+                    String ContentID = storyObj.getString("ContentID");
                     LocalDateTime timestamp = LocalDateTime.parse(storyObj.getString("timestamp"), DateTimeFormatter.ISO_DATE_TIME);
                     Content c = factory.Feed("Story", AuthorID, contentmap, timestamp);
+                    c.setContentId(ContentID);
                     if (!((Stories) c).isExpired()) {
                         account.getContentManagement().addContent(c);
                     }
@@ -328,21 +336,24 @@ public class Databases {
                         contentmap.put("Text", gpostObj.getString("caption"));
                         contentmap.put("Path", gpostObj.getString("path"));
                         String AuthorID = gpostObj.getString("AuthorID");
+                        String ContentID = gpostObj.getString("ContentID");
                         LocalDateTime timestamp = LocalDateTime.parse(gpostObj.getString("timestamp"), DateTimeFormatter.ISO_DATE_TIME);
                         Content c = factory.Feed("Post", AuthorID, contentmap, timestamp);
+                        c.setContentId(ContentID);
                         getGroup(name).addContent(c);
                     }
 
                     JSONArray gstoriesArray = groupObj.getJSONArray("stories");
-
                     for (int k = 0; k < gstoriesArray.length(); k++) {
                         JSONObject gstoryObj = gstoriesArray.getJSONObject(k);
                         Map<String, String> contentmap = new HashMap<>();
                         contentmap.put("Text", gstoryObj.getString("caption"));
                         contentmap.put("Path", gstoryObj.getString("path"));
                         String AuthorID = gstoryObj.getString("AuthorID");
+                        String ContentID = gstoryObj.getString("ContentID");
                         LocalDateTime timestamp = LocalDateTime.parse(gstoryObj.getString("timestamp"), DateTimeFormatter.ISO_DATE_TIME);
                         Content c = factory.Feed("Story", AuthorID, contentmap, timestamp);
+                        c.setContentId(ContentID);
                         if (!((Stories) c).isExpired()) {
                             getGroup(name).addContent(c);
                         }

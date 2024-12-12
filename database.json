@@ -1,54 +1,31 @@
-[
-   {
+[{
+   "stories": [],
+   "blocked": [],
+   "groups": [{
+      "creator": "m",
       "stories": [],
-      "blocked": [],
-      "groups": [],
-      "receivedfriends": [],
-      "blockedBY": [],
-      "sentfriends": [],
+      "members": [],
+      "name": "m",
+      "description": "m",
+      "requests": [],
       "posts": [],
-      "userid": "0001",
-      "friends": ["m"],
-      "info": [{
-         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2009-01-01",
-         "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "y@g.co",
-         "username": "y",
-         "status": "OFFLINE"
-      }]
-   },
-   {
-      "stories": [],
-      "blocked": [],
-      "groups": [{
-         "creator": "m",
-         "stories": [],
-         "members": [],
-         "name": "hi",
-         "description": "hi",
-         "requests": [],
-         "posts": [],
-         "picture": "ImagesDatabase//Default//group.png",
-         "admins": []
-      }],
-      "receivedfriends": [],
-      "blockedBY": [],
-      "sentfriends": [],
-      "posts": [],
-      "userid": "0002",
-      "friends": ["y"],
-      "info": [{
-         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2004-01-01",
-         "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "m@g.co",
-         "username": "m",
-         "status": "OFFLINE"
-      }]
-   }
-]
+      "picture": "ImagesDatabase\\Default\\group.png",
+      "admins": []
+   }],
+   "receivedfriends": [],
+   "blockedBY": [],
+   "sentfriends": [],
+   "posts": [],
+   "userid": "0001",
+   "friends": [],
+   "info": [{
+      "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+      "coverimg": "ImagesDatabase\\Default\\cover.jpg",
+      "dob": "1988-01-01",
+      "bio": "",
+      "profileimg": "ImagesDatabase\\Default\\profile.png",
+      "email": "m@a.co",
+      "username": "m",
+      "status": "OFFLINE"
+   }]
+}]

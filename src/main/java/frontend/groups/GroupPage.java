@@ -2,27 +2,30 @@ package frontend.groups;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Feed.Content;
 import Backend.Feed.Group;
 import frontend.general.DisplayContent;
 import frontend.general.Home;
+import java.nio.file.Path;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 public class GroupPage extends javax.swing.JFrame {
-
+    
     Account acc;
     Group g;
     Databases Database = Databases.getInstance();
     String[] temp;
-
+    
     public GroupPage(Account acc, Group group) {
         initComponents();
+        Database.read();
         this.acc = acc;
         this.g = group;
         Picture.setIcon(Database.getGroup(group.getName()).getPicture());
         name.setText(Database.getGroup(group.getName()).getName());
-        Description.setText(Database.getGroup(group.getName()).getDescription());
-
+        description.setText(Database.getGroup(group.getName()).getDescription());
+        
         DefaultListModel<String> postsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
         for (int j = 0; j < Database.getGroup(g.getName()).getContent().size(); j++) {
             // Extract content details
@@ -30,7 +33,7 @@ public class GroupPage extends javax.swing.JFrame {
             String text = (String) Database.getGroup(g.getName()).getContent().get(j).getContentMap().get("Text");
             String path = (String) Database.getGroup(g.getName()).getContent().get(j).getContentMap().get("Path");
             // Format the data for display
-            String listItem = String.format("%s~%s~%s~%s", Database.getAccountbyID(Database.getGroup(g.getName()).getContent().get(j).getAuthorId()).getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
+            String listItem = String.format("%s~%s~%s~%s~%s", "Content", Database.getAccountbyID(Database.getGroup(g.getName()).getContent().get(j).getAuthorId()).getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
             // Add the formatted string to the DefaultListModel
             postsFeedModel.addElement(listItem);
         }
@@ -38,15 +41,18 @@ public class GroupPage extends javax.swing.JFrame {
         
         Settings.setVisible(false);
         ViewRequests.setVisible(false);
+        Leave.setVisible(true);
         if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
             Settings.setVisible(true);
             ViewRequests.setVisible(true);
+            Leave.setVisible(false);
         }
+        
         if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
             ViewRequests.setVisible(true);
         }
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -62,33 +68,41 @@ public class GroupPage extends javax.swing.JFrame {
         AddContent = new javax.swing.JButton();
         Leave = new javax.swing.JButton();
         ViewMembers = new javax.swing.JButton();
-        name = new javax.swing.JTextField();
-        Description = new javax.swing.JTextField();
         ViewRequests = new javax.swing.JButton();
         Settings = new javax.swing.JButton();
         Home = new javax.swing.JButton();
+        DeleteContent = new javax.swing.JButton();
+        EditContent = new javax.swing.JButton();
+        name = new javax.swing.JLabel();
+        description = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Group page");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel1.setText("Name");
+        jLabel1.setText("Name:");
 
         jLabel2.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel2.setText("Group");
 
-        jLabel3.setText("Description");
+        jLabel3.setText("Description:");
 
-        jLabel4.setText("Picture");
+        jLabel4.setText("Picture:");
 
         jScrollPane1.setViewportView(postsList);
 
-        VIEW.setText("VIEW");
+        VIEW.setText(" VIEW POST");
         VIEW.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VIEWActionPerformed(evt);
             }
         });
 
-        AddContent.setText("POST");
+        AddContent.setText("ADD POST");
         AddContent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AddContentActionPerformed(evt);
@@ -130,80 +144,100 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
+        DeleteContent.setText("DELETE POST");
+        DeleteContent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteContentActionPerformed(evt);
+            }
+        });
+
+        EditContent.setText("EDIT POST");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(AddContent)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(DeleteContent)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(EditContent)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(VIEW))
+                            .addComponent(jScrollPane1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(Home, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ViewMembers, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(Leave, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(ViewRequests, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(AddContent)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(VIEW))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Leave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(ViewMembers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ViewRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(Home, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Settings, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Picture, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Picture, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(Picture, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel4)
+                        .addGap(64, 64, 64))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)
-                                .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(36, 36, 36))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jLabel4)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Picture, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(Home)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ViewRequests)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(ViewMembers)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(Settings)))
+                        .addComponent(Settings))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(VIEW)
                     .addComponent(AddContent)
+                    .addComponent(DeleteContent)
+                    .addComponent(EditContent)
+                    .addComponent(VIEW)
                     .addComponent(Leave))
                 .addGap(18, 18, 18))
         );
@@ -279,10 +313,37 @@ public class GroupPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SettingsActionPerformed
 
+    private void DeleteContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteContentActionPerformed
+        if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername()) || Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
+            int i = postsList.getSelectedIndex();
+            if (i == -1) {
+                JOptionPane.showMessageDialog(this, "Choose a content to delete!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String line = postsList.getSelectedValue();
+                String[] temp = line.split("~");
+                Path dest = Path.of(temp[4]);
+                String temp1 = dest.getFileName().toString();
+                String temp2 = temp1.substring(0, temp1.length() - 4);
+                System.out.println((Database.getGroup(g.getName()).getContent().size()));
+                Database.getGroup(g.getName()).removeContent(Database.getGroup(g.getName()).getcontent(temp2));
+                Database.save();
+                DefaultListModel x = (DefaultListModel) postsList.getModel();
+                x.removeElementAt(i);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "You must be admin or above to delete a post!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_DeleteContentActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        Database.logoutDatabase(acc.getUsername());
+    }//GEN-LAST:event_formWindowClosing
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddContent;
-    private javax.swing.JTextField Description;
+    private javax.swing.JButton DeleteContent;
+    private javax.swing.JButton EditContent;
     private javax.swing.JButton Home;
     private javax.swing.JButton Leave;
     private javax.swing.JLabel Picture;
@@ -290,12 +351,13 @@ public class GroupPage extends javax.swing.JFrame {
     private javax.swing.JButton VIEW;
     private javax.swing.JButton ViewMembers;
     private javax.swing.JButton ViewRequests;
+    private javax.swing.JLabel description;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField name;
+    private javax.swing.JLabel name;
     private javax.swing.JList<String> postsList;
     // End of variables declaration//GEN-END:variables
 }
