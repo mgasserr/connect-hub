@@ -102,7 +102,7 @@ public class GroupsManagement extends javax.swing.JFrame {
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
         FindGroup F = new FindGroup(acc);
         F.setVisible(true);
-        dispose();
+         this.setVisible(false);
     }//GEN-LAST:event_SearchActionPerformed
 
     private void GroupListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupListActionPerformed
@@ -114,7 +114,7 @@ public class GroupsManagement extends javax.swing.JFrame {
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         CreateGroup G = new CreateGroup(acc);
         G.setVisible(true);
-        dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_CreateActionPerformed
 
 

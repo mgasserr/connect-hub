@@ -287,6 +287,7 @@ public class Home extends javax.swing.JFrame {
         Database.read();
         GroupsManagement g = new GroupsManagement(acc);
         g.setVisible(true);
+         this.setVisible(false);
         ///////////////////////////////////////////////
         /*test t = new test(acc);
         t.setVisible(true);

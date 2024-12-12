@@ -177,7 +177,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
             Database.read();
             Database.getGroup(g.getName()).addMember(usernamelist);
             Database.getGroup(g.getName()).removeRequest(usernamelist);
-            Database.getAccount(usernamelist).addGroup(g);
+            //Database.getAccount(usernamelist).addGroup(g);
             //acc.getGroup(g.getName()).addAdmin(usernamelist);
             Database.save();
             listModel.clear();

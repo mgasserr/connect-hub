@@ -39,6 +39,7 @@ public class Group {
             this.Description = Description;
         }
         count++;
+        
     
     }
 
@@ -187,6 +188,7 @@ public class Group {
     //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public void addContent(Content content) {
         this.content.add(content);
+       
     }
 
     //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
