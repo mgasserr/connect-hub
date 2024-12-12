@@ -1,4 +1,3 @@
-
 package frontend.groups;
 
 import Backend.Account.Account;
@@ -20,18 +19,18 @@ import javax.swing.JOptionPane;
  */
 public class AddPost extends javax.swing.JFrame {
 
-   Account acc;
-   Group g;
-    Databases Database=Databases.getInstance();
+    Account acc;
+    Group g;
+    Databases Database = Databases.getInstance();
     ContentFactory F = new ContentFactory();
     String imagePath;
-    public AddPost(Account acc,Group group) {
+
+    public AddPost(Account acc, Group group) {
         initComponents();
-        this.acc=acc;
-        this.g=group;
+        this.acc = acc;
+        this.g = group;
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -88,10 +87,10 @@ public class AddPost extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(203, 203, 203)
                 .addComponent(confirmButton)
-                .addGap(207, 207, 207))
+                .addContainerGap(225, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -116,9 +115,9 @@ public class AddPost extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(387, Short.MAX_VALUE)
+                .addContainerGap(411, Short.MAX_VALUE)
                 .addComponent(confirmButton)
-                .addContainerGap())
+                .addGap(38, 38, 38))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -142,7 +141,7 @@ public class AddPost extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
                                 .addComponent(PostorStory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap(99, Short.MAX_VALUE)))
         );
 
         pack();
@@ -194,11 +193,11 @@ public class AddPost extends javax.swing.JFrame {
             c = F.Feed("Story", acc.getUserId(), map, null);
         }
         Database.getGroup(g.getName()).addContent(c);
+        
         Database.save();
         JOptionPane.showMessageDialog(this, type + " posted successfully.");
     }//GEN-LAST:event_confirmButtonActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Home;

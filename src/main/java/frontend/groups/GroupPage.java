@@ -22,13 +22,13 @@ public class GroupPage extends javax.swing.JFrame {
         Description.setText(Database.getGroup(group.getName()).getDescription());
 
         DefaultListModel<String> postsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
-        for (int j = 0; j < Database.getAccount(acc.getUsername()).getContentManagement().getContent().size(); j++) {
+        for (int j = 0; j < Database.getGroup(g.getName()).getContent().size(); j++) {
             // Extract content details
-            String time = Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getTime().toString();
-            String text = (String) Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getContentMap().get("Text");
-            String path = (String) Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getContentMap().get("Path");
+            String time = Database.getGroup(g.getName()).getContent().get(j).getTime().toString();
+            String text = (String) Database.getGroup(g.getName()).getContent().get(j).getContentMap().get("Text");
+            String path = (String) Database.getGroup(g.getName()).getContent().get(j).getContentMap().get("Path");
             // Format the data for display
-            String listItem = String.format("%s~%s~%s~%s", acc.getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
+            String listItem = String.format("%s~%s~%s~%s", Database.getAccountbyID(Database.getGroup(g.getName()).getContent().get(j).getAuthorId()).getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
             // Add the formatted string to the DefaultListModel
             postsFeedModel.addElement(listItem);
         }
