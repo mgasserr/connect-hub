@@ -2,90 +2,70 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [{
-         "creator": "y",
-         "members": [
-            "s",
-            "s",
-            "s",
-            "s",
-            "s",
-            "s",
-            "s",
-            "s"
-         ],
-         "name": "g1",
-         "description": "d1",
-         "requests": [],
-         "picture": "ImagesDatabase//Default//group.png",
-         "admins": [],
-         "content": []
-      }],
+      "groups": [],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0001",
-      "friends": [],
+      "friends": ["m"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "1999-01-01",
+         "dob": "2009-01-01",
          "bio": "",
          "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "y@jsbf.com",
+         "email": "y@g.co",
          "username": "y",
-         "status": "OFFLINE"
+         "status": "ONLINE"
       }]
    },
    {
       "stories": [],
       "blocked": [],
-      "groups": [
-         {
-            "creator": "s",
-            "members": ["y"],
-            "name": "g2",
-            "description": "d2",
-            "requests": [],
-            "picture": "ImagesDatabase//Default//group.png",
-            "admins": [],
-            "content": []
-         },
-         {
-            "creator": "y",
-            "members": [
-               "s",
-               "s",
-               "s",
-               "s",
-               "s",
-               "s",
-               "s",
-               "s"
-            ],
-            "name": "g1",
-            "description": "d1",
-            "requests": [],
-            "picture": "ImagesDatabase//Default//group.png",
-            "admins": [],
-            "content": []
-         }
-      ],
+      "groups": [{
+         "creator": "m",
+         "stories": [],
+         "members": ["y"],
+         "name": "hi",
+         "description": "hi",
+         "requests": [],
+         "posts": [{
+            "path": "ImagesDatabase\\Content\\0003-0002.png",
+            "AuthorID": "0002",
+            "caption": "hi",
+            "timestamp": "2024-12-12T16:33:38.569772400"
+         }],
+         "picture": "ImagesDatabase//Default//group.png",
+         "admins": []
+      }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [],
+      "posts": [
+         {
+            "path": "ImagesDatabase\\Content\\0001-0002.png",
+            "AuthorID": "0002",
+            "caption": "",
+            "timestamp": "2024-12-12T16:33:29.539785300"
+         },
+         {
+            "path": "ImagesDatabase\\Content\\0002-0002.png",
+            "AuthorID": "0002",
+            "caption": "kk",
+            "timestamp": "2024-12-12T16:38:46.176692300"
+         }
+      ],
       "userid": "0002",
-      "friends": [],
+      "friends": ["y"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2006-01-01",
+         "dob": "2004-01-01",
          "bio": "",
          "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "s@jdsf.com",
-         "username": "s",
+         "email": "m@g.co",
+         "username": "m",
          "status": "OFFLINE"
       }]
    }

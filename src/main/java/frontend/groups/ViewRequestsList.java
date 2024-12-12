@@ -150,9 +150,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
-            Database.getGroup(g.getName()).addMember(usernamelist);
             Database.getGroup(g.getName()).removeRequest(usernamelist);
-            Database.getAccount(usernamelist).addGroup(g);
             //acc.getGroup(g.getName()).addAdmin(usernamelist);
             Database.save();
             listModel.clear();
@@ -183,7 +181,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
             Database.getGroup(g.getName()).addMember(usernamelist);
             Database.getAccount(usernamelist).addNotification(new AddedToGroupNoti(null, false, g.getName()));
             Database.getGroup(g.getName()).removeRequest(usernamelist);
-            Database.getAccount(usernamelist).addGroup(g);
+            //Database.getAccount(usernamelist).addGroup(g);
             //acc.getGroup(g.getName()).addAdmin(usernamelist);
             Database.save();
             notiDatabase.save();

@@ -22,7 +22,8 @@ public class ViewGroupsList extends javax.swing.JFrame {
         errorText.setText("");
         Database.read();
         listModel.clear();
-        for (Group group : Database.getAccount(this.acc.getUsername()).getGroups()) {
+        for (Group group : Group.getGroups()) {
+            if(Database.getGroup(group.getName()).isMember(acc.getUsername())||Database.getGroup(group.getName()).getCreator().getUsername().equalsIgnoreCase(acc.getUsername()))
             listModel.addElement(group.getName());
         }
         groupsList.setModel(listModel);
