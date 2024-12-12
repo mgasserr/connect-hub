@@ -1,1 +1,10 @@
-[]
+[
+   {
+      "userid": "0001",
+      "notifications": []
+   },
+   {
+      "userid": "0002",
+      "notifications": []
+   }
+]
