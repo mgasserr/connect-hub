@@ -39,8 +39,7 @@ public class Group {
             this.Description = Description;
         }
         count++;
-        
-    
+
     }
 
     //MAIN METHODS FOR GROUPS DETAILS
@@ -83,6 +82,7 @@ public class Group {
         } catch (IOException ex) {
             Logger.getLogger(Group.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.Picture = new ImageIcon(dest.toString());
         //D.getAccount(acc.getUsername()).getProfile().ProfileImg = new ImageIcon(dest.toString());
     }
 
@@ -102,7 +102,7 @@ public class Group {
     public ArrayList<Account> getMembers() {
         return members;
     }
-    
+
     public ArrayList<String> getMembersUsernames() {
         ArrayList<String> usernames = new ArrayList<>();
         for (Account account : members) {
@@ -127,7 +127,7 @@ public class Group {
     public ArrayList<Account> getAdmins() {
         return admins;
     }
-    
+
     public ArrayList<String> getAdminsUsernames() {
         ArrayList<String> usernames = new ArrayList<>();
         for (Account account : admins) {
@@ -135,7 +135,7 @@ public class Group {
         }
         return usernames;
     }
-    
+
     public void addAdmin(String Name) {
         this.admins.add(D.getAccount(Name));
     }
@@ -159,10 +159,11 @@ public class Group {
     public ArrayList<Account> getRequests() {
         return requests;
     }
+
     public boolean isRequest(String Name) {
         return this.requests.contains(D.getAccount(Name));
     }
-    
+
     public ArrayList<String> getRequestUsernames() {
         ArrayList<String> usernames = new ArrayList<>();
         for (Account account : requests) {
@@ -175,8 +176,11 @@ public class Group {
         return groups;
     }
 
-    public static void removeGroup(Group group) {
-        groups.remove(group);
+    public void removeGroup(Group Group, String Name) {
+        D.getAccount(Name).getGroups().remove(Group);
+        groups.remove(Group);
+        System.out.println(groups.size());
+        System.out.println(D.getAccount(Name).getGroups().size());
     }
 
     //ADD GROUPS TO USER ACCOUNT
@@ -185,19 +189,13 @@ public class Group {
         groups.add(Group);
     }
 
-    //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public void addContent(Content content) {
         this.content.add(content);
-       
+
     }
 
-    //MAYBE WRONG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public void removeContent(Content content) {
         this.content.remove(content);
     }
 
-    
-    
-    
-    
 }
