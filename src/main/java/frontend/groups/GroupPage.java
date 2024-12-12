@@ -228,15 +228,15 @@ public class GroupPage extends javax.swing.JFrame {
 
     private void LeaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeaveActionPerformed
         Database.read();
-        if (Database.getGroup(g.getName()).getCreator().equals(acc.getUsername())) {
+        if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
             JOptionPane.showMessageDialog(this, "The creator can't leave the group!", "ERROR", JOptionPane.ERROR_MESSAGE);
         } else if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
             Database.getGroup(g.getName()).removeAdmin(acc.getUsername());
             Database.getGroup(g.getName()).removeMember(acc.getUsername());
-            Database.getAccount(acc.getUsername()).removeGroup(g);
+            //Database.getAccount(acc.getUsername()).removeGroup(g);
         } else {
             Database.getGroup(g.getName()).removeMember(acc.getUsername());
-            Database.getAccount(acc.getUsername()).removeGroup(g);
+            //Database.getAccount(acc.getUsername()).removeGroup(g);
         }
         Database.save();
         Home h = new Home(acc);

@@ -28,10 +28,10 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         Database.read();
         notiDatabase.read();
-        notificationsConstructor();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        notificationsConstructor();
 
         DefaultListModel<String> newsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
         for (int i = 0; i < acc.getFriendsManagement().getFriends().size(); i++) {
@@ -287,7 +287,7 @@ public class Home extends javax.swing.JFrame {
         Database.read();
         GroupsManagement g = new GroupsManagement(acc);
         g.setVisible(true);
-         this.setVisible(false);
+        this.setVisible(false);
         ///////////////////////////////////////////////
         /*test t = new test(acc);
         t.setVisible(true);

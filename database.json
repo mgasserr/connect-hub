@@ -1,31 +1,88 @@
-[{
-   "stories": [],
-   "blocked": [],
-   "groups": [{
-      "creator": "j",
+[
+   {
       "stories": [],
-      "members": [],
-      "name": "mm",
-      "description": "",
-      "requests": [],
+      "blocked": [],
+      "groups": [{
+         "creator": "j",
+         "stories": [],
+         "members": ["y"],
+         "name": "mm",
+         "description": "",
+         "requests": [],
+         "posts": [
+            {
+               "path": "ImagesDatabase\\Content\\0001-0001.png",
+               "AuthorID": "0001",
+               "caption": "hey gus",
+               "timestamp": "2024-12-12T17:20:44.701881500"
+            },
+            {
+               "path": "ImagesDatabase\\Content\\0002-0002.png",
+               "AuthorID": "0002",
+               "caption": "kak",
+               "timestamp": "2024-12-12T17:26:24.199625100"
+            }
+         ],
+         "picture": "javax.swing.ImageIcon@667d6b5e",
+         "admins": ["y"]
+      }],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
       "posts": [],
-      "picture": "javax.swing.ImageIcon@667d6b5e",
-      "admins": []
-   }],
-   "receivedfriends": [],
-   "blockedBY": [],
-   "sentfriends": [],
-   "posts": [],
-   "userid": "0001",
-   "friends": [],
-   "info": [{
-      "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-      "coverimg": "ImagesDatabase//Default//cover.jpg",
-      "dob": "1991-01-01",
-      "bio": "",
-      "profileimg": "ImagesDatabase//Default//profile.png",
-      "email": "w@k.c",
-      "username": "j",
-      "status": "OFFLINE"
-   }]
-}]
+      "userid": "0001",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "1991-01-01",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "w@k.c",
+         "username": "j",
+         "status": "OFFLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "groups": [],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0002",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "1996-01-01",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "y@asdf.com",
+         "username": "y",
+         "status": "ONLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "groups": [],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0003",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase//Default//cover.jpg",
+         "dob": "1999-01-01",
+         "bio": "",
+         "profileimg": "ImagesDatabase//Default//profile.png",
+         "email": "g@adsfh.com",
+         "username": "g",
+         "status": "OFFLINE"
+      }]
+   }
+]
