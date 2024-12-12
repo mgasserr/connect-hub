@@ -31,6 +31,15 @@ public class ViewMembersList extends javax.swing.JFrame {
             listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
         }
         usersList.setModel(listModel);
+
+        Promote.setVisible(true);
+        Demote.setVisible(true);
+        Remove.setVisible(true);
+        if (Database.getGroup(g.getName()).isMember(acc.getUsername())) {
+            Promote.setVisible(false);
+            Demote.setVisible(false);
+            Remove.setVisible(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -229,8 +238,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
             }
             usersList.setModel(listModel);
-            
-            
+
         }
     }//GEN-LAST:event_RemoveActionPerformed
 

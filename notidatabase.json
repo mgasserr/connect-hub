@@ -1,7 +1,35 @@
 [
    {
       "userid": "0001",
-      "notifications": []
+      "notifications": [
+         {
+            "opened": "false",
+            "time": "2024-12-12T18:09:07.087168400",
+            "type": "addedtogroup",
+            "groupname": "hi"
+         },
+         {
+            "opened": "false",
+            "time": "2024-12-12T18:13:11.113767100",
+            "type": "rolechange",
+            "groupname": "hi",
+            "newrole": "Member"
+         },
+         {
+            "opened": "false",
+            "time": "2024-12-12T18:13:14.132555300",
+            "type": "rolechange",
+            "groupname": "hi",
+            "newrole": "Admin"
+         },
+         {
+            "opened": "false",
+            "time": "2024-12-12T18:13:45.923570700",
+            "type": "rolechange",
+            "groupname": "hi",
+            "newrole": "Member"
+         }
+      ]
    },
    {
       "userid": "0002",

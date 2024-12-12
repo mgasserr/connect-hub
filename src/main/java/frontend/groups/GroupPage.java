@@ -35,6 +35,16 @@ public class GroupPage extends javax.swing.JFrame {
             postsFeedModel.addElement(listItem);
         }
         postsList.setModel(postsFeedModel);
+        
+        Settings.setVisible(false);
+        ViewRequests.setVisible(false);
+        if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
+            Settings.setVisible(true);
+            ViewRequests.setVisible(true);
+        }
+        if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
+            ViewRequests.setVisible(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -180,12 +190,9 @@ public class GroupPage extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addComponent(jLabel4)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Home)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ViewRequests)

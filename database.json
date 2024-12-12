@@ -30,70 +30,14 @@
          "name": "hi",
          "description": "hi",
          "requests": [],
-         "posts": [
-            {
-               "path": "ImagesDatabase\\Content\\0003-0002.png",
-               "AuthorID": "0002",
-               "caption": "hi",
-               "timestamp": "2024-12-12T16:33:38.569772400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0004-0002.png",
-               "AuthorID": "0002",
-               "caption": "hhhhhhh",
-               "timestamp": "2024-12-12T17:20:44.089038400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0005-0001.png",
-               "AuthorID": "0001",
-               "caption": "ikk",
-               "timestamp": "2024-12-12T17:23:03.247304900"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0006-0002.png",
-               "AuthorID": "0002",
-               "caption": "sss",
-               "timestamp": "2024-12-12T17:28:04.897225400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0007-0002.png",
-               "AuthorID": "0002",
-               "caption": "TESTT",
-               "timestamp": "2024-12-12T17:29:14.289047500"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0008-0001.png",
-               "AuthorID": "0001",
-               "caption": "asdasdasdasdddddd",
-               "timestamp": "2024-12-12T17:33:53.814790400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0009-0002.png",
-               "AuthorID": "0002",
-               "caption": "sssssdddd",
-               "timestamp": "2024-12-12T17:37:19.749711200"
-            }
-         ],
+         "posts": [],
          "picture": "ImagesDatabase//Default//group.png",
-         "admins": ["y"]
+         "admins": []
       }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [
-         {
-            "path": "ImagesDatabase\\Content\\0001-0002.png",
-            "AuthorID": "0002",
-            "caption": "",
-            "timestamp": "2024-12-12T16:33:29.539785300"
-         },
-         {
-            "path": "ImagesDatabase\\Content\\0002-0002.png",
-            "AuthorID": "0002",
-            "caption": "kk",
-            "timestamp": "2024-12-12T16:38:46.176692300"
-         }
-      ],
+      "posts": [],
       "userid": "0002",
       "friends": ["y"],
       "info": [{
