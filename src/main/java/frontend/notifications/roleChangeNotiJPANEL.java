@@ -1,9 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package frontend.notifications;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
-import Backend.Notifications.*;
+import Backend.Notifications.GroupRoleChangeNoti;
+import Backend.Notifications.Notification;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -15,16 +20,16 @@ import javax.swing.event.PopupMenuListener;
  *
  * @author Mohamed
  */
-public class FriendReqNotiJPANEL extends javax.swing.JPanel {
+public class RoleChangeNotiJPANEL extends javax.swing.JPanel {
 
     private Databases Database = Databases.getInstance();
     private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
     private JFrame mainwindow;
     private Account acc;
-    private String sender;
+    private String groupName;
     private JPopupMenu popupmenu;
 
-    public FriendReqNotiJPANEL(Account acc, Notification noti, JPopupMenu popupmenu, JFrame hometestwindow) {
+    public RoleChangeNotiJPANEL(Account acc, Notification noti, JPopupMenu popupmenu, JFrame hometestwindow) {
         initComponents();
         Database.read();
         notiDatabase.read();
@@ -51,7 +56,7 @@ public class FriendReqNotiJPANEL extends javax.swing.JPanel {
             public void popupMenuCanceled(PopupMenuEvent e) {
             }
         });
-        this.sender = ((FriendReqNoti) noti).getSender();
+        this.groupName = ((GroupRoleChangeNoti) noti).getGroupName();
         messageLabel.setText(noti.getMessage());
         timeLabel.setText(noti.getTimestamp().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
     }
@@ -65,27 +70,18 @@ public class FriendReqNotiJPANEL extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        declineButton = new javax.swing.JButton();
-        acceptButton = new javax.swing.JButton();
+        leaveButton = new javax.swing.JButton();
         messageLabel = new javax.swing.JLabel();
         timeLabel = new javax.swing.JLabel();
         unreadButton = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        declineButton.setBackground(new java.awt.Color(204, 0, 0));
-        declineButton.setText("DECLINE");
-        declineButton.addActionListener(new java.awt.event.ActionListener() {
+        leaveButton.setBackground(new java.awt.Color(204, 0, 0));
+        leaveButton.setText("LEAVE");
+        leaveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                declineButtonActionPerformed(evt);
-            }
-        });
-
-        acceptButton.setBackground(new java.awt.Color(0, 204, 0));
-        acceptButton.setText("ACCEPT");
-        acceptButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acceptButtonActionPerformed(evt);
+                leaveButtonActionPerformed(evt);
             }
         });
 
@@ -107,10 +103,8 @@ public class FriendReqNotiJPANEL extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(messageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(acceptButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(declineButton))
+                        .addGap(97, 97, 97)
+                        .addComponent(leaveButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(unreadButton)
                         .addGap(112, 112, 112)
@@ -123,9 +117,7 @@ public class FriendReqNotiJPANEL extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(messageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(declineButton)
-                        .addComponent(acceptButton)))
+                    .addComponent(leaveButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(timeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,32 +126,20 @@ public class FriendReqNotiJPANEL extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void acceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptButtonActionPerformed
+    private void leaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveButtonActionPerformed
         Database.read();
         notiDatabase.read();
-        acc.getFriendsManagement().acceptFriendRequest(sender, acc.getUsername());
-        Database.getAccount(acc.getUsername()).removeReqNotibySender(sender);
+        Database.getGroup(groupName).removeMember(acc.getUsername());
+        Database.getAccount(acc.getUsername()).removeALLGroupNotisbyGroupName(groupName);
         Database.save();
         notiDatabase.save();
         popupmenu.setVisible(false);
-        JOptionPane.showMessageDialog(mainwindow, "Friend request accepted!");
-    }//GEN-LAST:event_acceptButtonActionPerformed
-
-    private void declineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declineButtonActionPerformed
-        Database.read();
-        notiDatabase.read();
-        acc.getFriendsManagement().declineFriendRequest(sender, acc.getUsername());
-        Database.getAccount(acc.getUsername()).removeReqNotibySender(sender);
-        Database.save();
-        notiDatabase.save();
-        popupmenu.setVisible(false);
-        JOptionPane.showMessageDialog(mainwindow, "Friend request declined!");
-    }//GEN-LAST:event_declineButtonActionPerformed
+        JOptionPane.showMessageDialog(mainwindow, "Successfully left group: " + groupName + "!");
+    }//GEN-LAST:event_leaveButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton acceptButton;
-    private javax.swing.JButton declineButton;
+    private javax.swing.JButton leaveButton;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JLabel timeLabel;
     private javax.swing.JButton unreadButton;

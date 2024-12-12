@@ -208,6 +208,20 @@ public class Account {
         }
     }
 
+    public void removeALLGroupNotisbyGroupName(String groupname) {
+        for (Notification notification : notifications) {
+            if (!(notification instanceof FriendReqNoti)) {
+                if (((GroupRoleChangeNoti) notification).getGroupName().equals(groupname)) {
+                    this.notifications.remove(notification);
+                } else if (((AddedToGroupNoti) notification).getGroupName().equals(groupname)) {
+                    this.notifications.remove(notification);
+                } else if (((NewPostToGroupNoti) notification).getGroupName().equals(groupname)) {
+                    this.notifications.remove(notification);
+                }
+            }
+        }
+    }
+
     public ArrayList<Notification> getNotifications() {
         return notifications;
     }

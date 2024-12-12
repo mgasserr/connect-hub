@@ -497,6 +497,7 @@ public class Databases {
             if (account.getUsername().equalsIgnoreCase(username)) {
                 account.setStatus(Activity.Status.OFFLINE);
                 save();
+                NotificationsDatabase.getInstance().save();
                 return;
             }
         }

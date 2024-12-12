@@ -1,24 +1,25 @@
 package Backend.Notifications;
 
+import Backend.Feed.Group;
 import java.time.LocalDateTime;
 
 public class GroupRoleChangeNoti extends Notification {
 
-    String groupID;
-    String newGroupRole;
+    String groupName;
+    String newRole;
 
-    public GroupRoleChangeNoti(LocalDateTime timestamp, boolean opened, String groupObject) {
+    public GroupRoleChangeNoti(LocalDateTime timestamp, boolean opened, String groupName, String newRole) {
         super(timestamp, opened);
-        super.message = "Your role in " + groupObject + " was changed to " + groupObject;
-        this.groupID = groupObject;
-        this.newGroupRole = groupObject;
+        this.groupName = groupName;
+        this.newRole = newRole;
+        super.message = "Your role in group: " + groupName + ", was changed to " + newRole;
     }
 
-    public String getGroupID() {
-        return groupID;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public String getNewGroupRole() {
-        return newGroupRole;
+    public String getnewRole() {
+        return newRole;
     }
 }

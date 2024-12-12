@@ -4,15 +4,25 @@ import java.time.LocalDateTime;
 
 public class NewPostToGroupNoti extends Notification {
 
-    String groupID;
+    String groupName;
+    String type;
 
-    public NewPostToGroupNoti(LocalDateTime timestamp, boolean opened, String groupObject) {
+    public NewPostToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName, String type) {
         super(timestamp, opened);
-        super.message = "New post added to group: " + groupObject;
-        this.groupID = groupObject;
+        if (type.equalsIgnoreCase("Post")) {
+            super.message = "A new post was added to group: " + groupName;
+        } else {
+            super.message = "A new story was added to group: " + groupName;
+        }
+        this.groupName = groupName;
+        this.type = type;
     }
 
-    public String getGroupID() {
-        return groupID;
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public String getType() {
+        return type;
     }
 }

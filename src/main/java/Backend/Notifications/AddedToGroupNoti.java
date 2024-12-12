@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 
 public class AddedToGroupNoti extends Notification {
 
-    String groupID;
+    String groupName;
 
-    public AddedToGroupNoti(LocalDateTime timestamp, boolean opened, String groupObject) {
+    public AddedToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName) {
         super(timestamp, opened);
-        super.message = "You were added to group: " + groupObject;
-        this.groupID = groupObject;
+        this.groupName = groupName;
+        super.message = "Your request to join group" + groupName + ", was accepted!";
     }
 
-    public String getGroupID() {
-        return groupID;
+    public String getGroupName() {
+        return groupName;
     }
 
 }
