@@ -3,13 +3,13 @@ package frontend.general;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
+
+import Backend.Notifications.*;
 import Backend.Feed.Group;
-import Backend.Notifications.FriendReqNoti;
-import Backend.Notifications.Notification;
 import frontend.friends.FriendsManagement;
 import frontend.groups.GroupPage;
 import frontend.groups.GroupsManagement;
-import frontend.notifications.friendReqNotiJPANEL;
+import frontend.notifications.*;
 import frontend.settings.Settings;
 import java.awt.Dimension;
 import javax.swing.BorderFactory;
@@ -33,7 +33,9 @@ public class Home extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
+        contentConstructor();
         notificationsConstructor();
+       
 
         DefaultListModel<String> newsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
         for (int i = 0; i < Group.getGroups().size(); i++) {
@@ -206,6 +208,24 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void contentConstructor() {
+        DefaultListModel<String> newsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
+        for (int i = 0; i < acc.getFriendsManagement().getFriends().size(); i++) {
+            String friendUsername = acc.getFriendsManagement().getFriends().get(i).getUsername();
+            for (int j = 0; j < acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().size(); j++) {
+                // Extract content details
+                String time = acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getTime().toString();
+                String text = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Text");
+                String path = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Path");
+                // Format the data for display
+                String listItem = String.format("%s~%s~%s~%s", friendUsername, time, text != null ? text : "No Text", path != null ? path : "No Path");
+                // Add the formatted string to the DefaultListModel
+                newsFeedModel.addElement(listItem);
+            }
+        }
+        newsFeed.setModel(newsFeedModel);
+    }
+
     private void notificationsConstructor() {
         notiPopupMenu.setLayout(new BoxLayout(notiPopupMenu, BoxLayout.Y_AXIS));
         notiPopupMenu.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -213,22 +233,30 @@ public class Home extends javax.swing.JFrame {
         for (Notification noti : Database.getAccount(acc.getUsername()).getNotifications()) {
             if (noti instanceof FriendReqNoti) {
                 counter++;
-                friendReqNotiJPANEL newjPanel = new friendReqNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
+                FriendReqNotiJPANEL newjPanel = new FriendReqNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
+                notiPopupMenu.add(newjPanel);
+            } else if (noti instanceof AddedToGroupNoti) {
+                counter++;
+                AddedToGroupNotiJPANEL newjPanel = new AddedToGroupNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
+                notiPopupMenu.add(newjPanel);
+            } else if (noti instanceof GroupRoleChangeNoti) {
+                counter++;
+                RoleChangeNotiJPANEL newjPanel = new RoleChangeNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
+                notiPopupMenu.add(newjPanel);
+            } else if (noti instanceof NewPostToGroupNoti) {
+                counter++;
+                NewPostToGroupNotiJPANEL newjPanel = new NewPostToGroupNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
                 notiPopupMenu.add(newjPanel);
             }
         }
         notiPopupMenu.setPreferredSize(new Dimension(411, (80 * counter)));
-
-        notisToggle.getModel().addChangeListener(new ChangeListener() {
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                ButtonModel model = (ButtonModel) e.getSource();
-                if (model.isPressed() && model.isArmed()) {
-                    if (model.isSelected()) {
-                        notiPopupMenu.show(notisToggle, 0, notisToggle.getHeight());
-                    } else {
-                        notiPopupMenu.setVisible(false);
-                    }
+        notisToggle.getModel().addChangeListener((ChangeEvent e) -> {
+            ButtonModel model = (ButtonModel) e.getSource();
+            if (model.isPressed() && model.isArmed()) {
+                if (model.isSelected()) {
+                    notiPopupMenu.show(notisToggle, 0, notisToggle.getHeight());
+                } else {
+                    notiPopupMenu.setVisible(false);
                 }
             }
         });

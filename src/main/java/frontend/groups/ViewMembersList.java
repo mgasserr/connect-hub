@@ -2,7 +2,10 @@ package frontend.groups;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Group;
+import Backend.Notifications.FriendReqNoti;
+import Backend.Notifications.GroupRoleChangeNoti;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +16,7 @@ public class ViewMembersList extends javax.swing.JFrame {
     Account acc;
     Group g;
     private Databases Database = Databases.getInstance();
+    private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public ViewMembersList(Account acc, Group group) {
@@ -153,13 +157,15 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
+            notiDatabase.read();
             if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
                 if (Database.getGroup(g.getName()).isAdmin(usernamelist)) {
                     errorText.setText("User already admin");
                 } else {
                     Database.getGroup(g.getName()).addAdmin(usernamelist);
-                    //acc.getGroup(g.getName()).addAdmin(usernamelist);
+                    Database.getAccount(usernamelist).addNotification(new GroupRoleChangeNoti(null, false, g.getName(), "Admin"));
                     Database.save();
+                    notiDatabase.save();
                     listModel.clear();
                     for (Account member : Database.getGroup(g.getName()).getMembers()) {
                         listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
@@ -249,13 +255,15 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
+            notiDatabase.read();
             if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
                 if (!Database.getGroup(g.getName()).isAdmin(usernamelist)) {
                     errorText.setText("User is not admin");
                 } else {
                     Database.getGroup(g.getName()).removeAdmin(usernamelist);
-                    //acc.getGroup(g.getName()).removeAdmin(usernamelist);
+                    Database.getAccount(usernamelist).addNotification(new GroupRoleChangeNoti(null, false, g.getName(), "Member"));
                     Database.save();
+                    notiDatabase.save();
                     listModel.clear();
                     for (Account member : Database.getGroup(g.getName()).getMembers()) {
                         listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());

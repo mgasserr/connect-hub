@@ -15,21 +15,21 @@ import java.util.logging.Logger;
 import org.json.JSONException;
 
 public class NotificationsDatabase {
-
+    
     private static NotificationsDatabase notidatabase;
     private Databases D = Databases.getInstance();
-
+    
     private NotificationsDatabase() {
         super();
     }
-
+    
     public static NotificationsDatabase getInstance() {
         if (notidatabase == null) {
             notidatabase = new NotificationsDatabase();
         }
         return notidatabase;
     }
-
+    
     public void save() {
         JSONArray Arrayusers = new JSONArray();
         for (Account acc : D.getAllAccounts()) {
@@ -45,16 +45,17 @@ public class NotificationsDatabase {
                     }
                     case AddedToGroupNoti addedToGroupNoti -> {
                         notiobj.put("type", "addedtogroup");
-                        notiobj.put("groupid", addedToGroupNoti.getGroupID());
+                        notiobj.put("groupname", addedToGroupNoti.getGroupName());
                     }
                     case GroupRoleChangeNoti groupRoleChangeNoti -> {
                         notiobj.put("type", "rolechange");
-                        notiobj.put("groupid", groupRoleChangeNoti.getGroupID());
-                        notiobj.put("newrole", groupRoleChangeNoti.getNewGroupRole());
+                        notiobj.put("groupname", groupRoleChangeNoti.getGroupName());
+                        notiobj.put("newrole", groupRoleChangeNoti.getnewRole());
                     }
                     case NewPostToGroupNoti newPostToGroupNoti -> {
                         notiobj.put("type", "newposttogroup");
-                        notiobj.put("groupid", newPostToGroupNoti.getGroupID());
+                        notiobj.put("groupname", newPostToGroupNoti.getGroupName());
+                        notiobj.put("type", newPostToGroupNoti.getType());
                     }
                     default -> {
                         System.out.println("Error in reading notification type.");
@@ -62,7 +63,7 @@ public class NotificationsDatabase {
                 }
                 notiobj.put("opened", noti.isOpenedString());
                 notiobj.put("time", noti.getTimestamp());
-
+                
                 Arraynotis.put(notiobj);
             }
             userobj.put("notifications", Arraynotis);
@@ -74,7 +75,7 @@ public class NotificationsDatabase {
             System.out.println("Error in saving in notidatabase.json");
         }
     }
-
+    
     public void read() {
         try (BufferedReader reader = new BufferedReader(new FileReader("notidatabase.json"))) {
             Notification.resetNotiCount();
@@ -96,15 +97,15 @@ public class NotificationsDatabase {
                             acc.addNotification(newnoti);
                         }
                         case "addedtogroup" -> {             //WAITING FOR ACCOUNT.GETGROUPBYID!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            Notification newnoti = new AddedToGroupNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupid"));
+                            Notification newnoti = new AddedToGroupNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"));
                             acc.addNotification(newnoti);
                         }
                         case "rolechange" -> {               //WAITING FOR ACCOUNT.GETGROUPBYID!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            Notification newnoti = new GroupRoleChangeNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupid"));
+                            Notification newnoti = new GroupRoleChangeNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("newrole"));
                             acc.addNotification(newnoti);
                         }
                         case "newposttogroup" -> {            //WAITING FOR ACCOUNT.GETGROUPBYID!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            Notification newnoti = new NewPostToGroupNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupid"));
+                            Notification newnoti = new NewPostToGroupNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("type"));
                             acc.addNotification(newnoti);
                         }
                     }

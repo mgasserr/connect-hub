@@ -2,7 +2,10 @@ package frontend.groups;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Group;
+import Backend.Notifications.AddedToGroupNoti;
+import Backend.Notifications.GroupRoleChangeNoti;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -13,6 +16,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
     Account acc;
     Group g;
     private Databases Database = Databases.getInstance();
+    private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public ViewRequestsList(Account acc, Group group) {
@@ -173,11 +177,14 @@ public class ViewRequestsList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
+            notiDatabase.read();
             Database.getGroup(g.getName()).addMember(usernamelist);
+            Database.getAccount(usernamelist).addNotification(new AddedToGroupNoti(null, false, g.getName()));
             Database.getGroup(g.getName()).removeRequest(usernamelist);
             //Database.getAccount(usernamelist).addGroup(g);
             //acc.getGroup(g.getName()).addAdmin(usernamelist);
             Database.save();
+            notiDatabase.save();
             listModel.clear();
             for (Account member : Database.getGroup(g.getName()).getRequests()) {
                 listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());

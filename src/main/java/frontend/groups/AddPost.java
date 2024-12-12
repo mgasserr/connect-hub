@@ -2,9 +2,11 @@ package frontend.groups;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
+import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Content;
 import Backend.Feed.ContentFactory;
 import Backend.Feed.Group;
+import Backend.Notifications.NewPostToGroupNoti;
 import frontend.general.Home;
 import java.io.File;
 import java.util.HashMap;
@@ -21,9 +23,10 @@ public class AddPost extends javax.swing.JFrame {
 
     Account acc;
     Group g;
-    Databases Database = Databases.getInstance();
-    ContentFactory F = new ContentFactory();
-    String imagePath;
+    private Databases Database = Databases.getInstance();
+    private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
+    private ContentFactory F = new ContentFactory();
+    private String imagePath;
 
     public AddPost(Account acc, Group group) {
         initComponents();
@@ -186,15 +189,22 @@ public class AddPost extends javax.swing.JFrame {
         }
         Content c;
         Database.read();
+        notiDatabase.read();
         String type = (String) PostorStory.getSelectedItem();
         if (type.equals("Post")) {
             c = F.Feed("Post", acc.getUserId(), map, null);
         } else {
             c = F.Feed("Story", acc.getUserId(), map, null);
         }
+        for (Account account : Database.getGroup(g.getName()).getMembers()) {
+            if (!account.getUsername().equals(acc.getUsername())) {
+                Database.getAccount(account.getUsername()).addNotification(new NewPostToGroupNoti(null, false, g.getName(), type));
+            }
+        }
         Database.getGroup(g.getName()).addContent(c);
         
         Database.save();
+        notiDatabase.save();
         JOptionPane.showMessageDialog(this, type + " posted successfully.");
     }//GEN-LAST:event_confirmButtonActionPerformed
 
