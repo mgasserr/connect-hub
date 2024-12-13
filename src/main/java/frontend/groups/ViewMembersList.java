@@ -86,7 +86,7 @@ public class ViewMembersList extends javax.swing.JFrame {
             }
         });
 
-        Promote.setBackground(new java.awt.Color(0, 204, 204));
+        Promote.setBackground(new java.awt.Color(255, 102, 153));
         Promote.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Promote.setText("PROMOTE");
         Promote.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class ViewMembersList extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(usersList);
 
-        removeButton.setBackground(new java.awt.Color(0, 204, 204));
+        removeButton.setBackground(new java.awt.Color(255, 102, 153));
         removeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         removeButton.setText("REMOVE");
         removeButton.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +118,7 @@ public class ViewMembersList extends javax.swing.JFrame {
             }
         });
 
-        Demote.setBackground(new java.awt.Color(0, 204, 204));
+        Demote.setBackground(new java.awt.Color(255, 102, 153));
         Demote.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Demote.setText("DEMOTE");
         Demote.addActionListener(new java.awt.event.ActionListener() {
