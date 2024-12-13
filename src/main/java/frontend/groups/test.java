@@ -31,7 +31,7 @@ public class test extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setBackground(new java.awt.Color(255, 102, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setText("SEND REQUEST");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -46,7 +46,7 @@ public class test extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 204, 204));
+        jButton2.setBackground(new java.awt.Color(255, 102, 153));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton2.setText("CREATE");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
