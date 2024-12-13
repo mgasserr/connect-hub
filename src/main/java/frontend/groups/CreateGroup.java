@@ -123,6 +123,13 @@ public class CreateGroup extends javax.swing.JFrame {
             D.read();
             String name = this.name.getText();
             String desc = this.Description.getText();
+            for (Group group : Group.getGroups()) {
+                if(group.getName().equalsIgnoreCase(name)){
+                    JOptionPane.showMessageDialog(this, "Group name is already used!", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                
+            }
             Group g = new Group(acc, name, desc, null);
             g.addGroup(g, acc.getUsername());
             D.save();

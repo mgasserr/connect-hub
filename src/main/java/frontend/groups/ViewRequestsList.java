@@ -161,7 +161,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
             }
             usersList.setModel(listModel);
             errorText.setForeground(Color.black);
-            errorText.setText("Accepted successfully");
+            errorText.setText("Declined successfully");
         }
     }//GEN-LAST:event_DeclineActionPerformed
 

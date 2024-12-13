@@ -1,22 +1,41 @@
 [
    {
       "userid": "0001",
-      "notifications": []
+      "notifications": [{
+         "opened": "false",
+         "time": "2024-12-13T04:45:39.908359100",
+         "type": "addedtogroup",
+         "groupname": "g's group"
+      }]
    },
    {
       "userid": "0002",
       "notifications": [
          {
-            "opened": "false",
-            "time": "2024-12-13T04:21:24.122904600",
+            "opened": "true",
+            "time": "2024-12-13T04:38:03.408686500",
             "type": "addedtogroup",
-            "groupname": "m"
+            "groupname": "yassin's group"
+         },
+         {
+            "temp": [
+               "Content",
+               "y",
+               "2024-12-13T04:40:01.806803300",
+               "hey buts",
+               "ImagesDatabase\\Content\\0001-0001.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T04:40:01.810795900",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
          },
          {
             "opened": "false",
-            "time": "2024-12-13T04:21:39.724512300",
+            "time": "2024-12-13T04:46:04.362172400",
             "type": "rolechange",
-            "groupname": "m",
+            "groupname": "yassin's group",
             "newrole": "Admin"
          }
       ]
@@ -26,48 +45,28 @@
       "notifications": [
          {
             "opened": "false",
-            "time": "2024-12-13T04:21:21.710725100",
+            "time": "2024-12-13T04:38:01.052578200",
             "type": "addedtogroup",
-            "groupname": "m"
+            "groupname": "yassin's group"
          },
          {
+            "temp": [
+               "Content",
+               "y",
+               "2024-12-13T04:40:01.806803300",
+               "hey buts",
+               "ImagesDatabase\\Content\\0001-0001.png"
+            ],
+            "posttype": "Post",
             "opened": "false",
-            "time": "2024-12-13T04:21:56.244023400",
-            "type": "addedtogroup",
-            "groupname": "yassin group"
-         },
-         {
-            "opened": "false",
-            "time": "2024-12-13T04:29:01.661174100",
-            "type": "rolechange",
-            "groupname": "yassin group",
-            "newrole": "Admin"
+            "time": "2024-12-13T04:40:01.810795900",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
          }
       ]
    },
    {
       "userid": "0004",
-      "notifications": [
-         {
-            "opened": "false",
-            "time": "2024-12-13T04:21:53.485649300",
-            "type": "addedtogroup",
-            "groupname": "yassin group"
-         },
-         {
-            "temp": [
-               "Content",
-               "g",
-               "2024-12-13T04:27:34.122536700",
-               "koki",
-               "ImagesDatabase\\Content\\0002-0003.png"
-            ],
-            "posttype": "Post",
-            "opened": "false",
-            "time": "2024-12-13T04:27:34.125528800",
-            "type": "newposttogroup",
-            "groupname": "yassin group"
-         }
-      ]
+      "notifications": []
    }
 ]

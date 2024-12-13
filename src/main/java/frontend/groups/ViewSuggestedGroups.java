@@ -22,8 +22,10 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
         groupsList.setPreferredSize(new Dimension(258, 286));
         listModel.clear();
         for (Group group : Group.getGroups()) {
-            if (!(group.isMember(this.acc.getUsername())) || !(group.getCreator().getUsername().equals(this.acc.getUsername()))) {
-                listModel.addElement(group.getName());
+            if (!(group.isMember(this.acc.getUsername()))) {
+                if (!(group.getCreator().getUsername().equals(this.acc.getUsername()))) {
+                    listModel.addElement(group.getName());
+                }
             }
         }
         groupsList.setModel(listModel);
@@ -128,7 +130,6 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
         } else {
             Database.getGroup(groupsList.getSelectedValue()).addRequest(acc.getUsername());
             Database.save();
-            listModel.clear();
             groupsList.setModel(listModel);
             errorText.setForeground(Color.black);
             errorText.setText("Request to join sent!");

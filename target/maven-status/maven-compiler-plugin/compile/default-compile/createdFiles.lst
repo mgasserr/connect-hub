@@ -167,6 +167,7 @@ Frontend\groups\FindGroup$1.class
 Frontend\General\AddContent$3.class
 Frontend\groups\GroupsManagement$1.class
 Frontend\groups\AddPost.class
+Backend\Notifications\NotiFactory.class
 Frontend\Settings\changeProfilePic$1.class
 Frontend\Friends\ViewSuggested$2.class
 Frontend\groups\ViewRequestsList$1.class
