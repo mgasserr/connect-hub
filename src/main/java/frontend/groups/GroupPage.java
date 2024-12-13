@@ -104,7 +104,7 @@ public class GroupPage extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(postsList);
 
-        VIEW.setBackground(new java.awt.Color(0, 204, 204));
+        VIEW.setBackground(new java.awt.Color(255, 102, 153));
         VIEW.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         VIEW.setText(" VIEW POST");
         VIEW.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        AddContent.setBackground(new java.awt.Color(0, 204, 204));
+        AddContent.setBackground(new java.awt.Color(255, 102, 153));
         AddContent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         AddContent.setText("ADD POST");
         AddContent.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        Leave.setBackground(new java.awt.Color(0, 204, 204));
+        Leave.setBackground(new java.awt.Color(255, 102, 153));
         Leave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Leave.setText("LEAVE");
         Leave.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +131,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        ViewMembers.setBackground(new java.awt.Color(0, 204, 204));
+        ViewMembers.setBackground(new java.awt.Color(255, 102, 153));
         ViewMembers.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ViewMembers.setText("VIEW MEMBERS");
         ViewMembers.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        ViewRequests.setBackground(new java.awt.Color(0, 204, 204));
+        ViewRequests.setBackground(new java.awt.Color(255, 102, 153));
         ViewRequests.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ViewRequests.setText("VIEW REQUESTS");
         ViewRequests.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +149,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        Settings.setBackground(new java.awt.Color(0, 204, 204));
+        Settings.setBackground(new java.awt.Color(255, 102, 153));
         Settings.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Settings.setText("SETTINGS");
         Settings.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +158,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        Home.setBackground(new java.awt.Color(0, 204, 204));
+        Home.setBackground(new java.awt.Color(255, 102, 153));
         Home.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Home.setText("HOME");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +167,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        DeleteContent.setBackground(new java.awt.Color(0, 204, 204));
+        DeleteContent.setBackground(new java.awt.Color(255, 102, 153));
         DeleteContent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         DeleteContent.setText("DELETE POST");
         DeleteContent.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +176,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        EditContent.setBackground(new java.awt.Color(0, 204, 204));
+        EditContent.setBackground(new java.awt.Color(255, 102, 153));
         EditContent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         EditContent.setText("EDIT POST");
         EditContent.addActionListener(new java.awt.event.ActionListener() {
