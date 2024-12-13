@@ -161,7 +161,7 @@ public class Search extends javax.swing.JFrame {
             }
         });
 
-        searchButton.setBackground(new java.awt.Color(0, 204, 204));
+        searchButton.setBackground(new java.awt.Color(255, 102, 153));
         searchButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         searchButton.setText("SEARCH");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,7 +175,7 @@ public class Search extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(searchList);
 
-        addfriendButton.setBackground(new java.awt.Color(0, 204, 204));
+        addfriendButton.setBackground(new java.awt.Color(255, 102, 153));
         addfriendButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addfriendButton.setText("ADD FRIEND");
         addfriendButton.addActionListener(new java.awt.event.ActionListener() {
@@ -193,7 +193,7 @@ public class Search extends javax.swing.JFrame {
 
         errorText.setForeground(new java.awt.Color(255, 0, 0));
 
-        blockuserButton.setBackground(new java.awt.Color(0, 204, 204));
+        blockuserButton.setBackground(new java.awt.Color(255, 102, 153));
         blockuserButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         blockuserButton.setText("BLOCK");
         blockuserButton.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +202,7 @@ public class Search extends javax.swing.JFrame {
             }
         });
 
-        removefriendButton.setBackground(new java.awt.Color(0, 204, 204));
+        removefriendButton.setBackground(new java.awt.Color(255, 102, 153));
         removefriendButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         removefriendButton.setText("REMOVE FRIEND");
         removefriendButton.addActionListener(new java.awt.event.ActionListener() {
@@ -211,7 +211,7 @@ public class Search extends javax.swing.JFrame {
             }
         });
 
-        reqtojoinButton.setBackground(new java.awt.Color(0, 204, 204));
+        reqtojoinButton.setBackground(new java.awt.Color(255, 102, 153));
         reqtojoinButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         reqtojoinButton.setText("REQUEST TO JOIN");
         reqtojoinButton.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +220,7 @@ public class Search extends javax.swing.JFrame {
             }
         });
 
-        viewgroupButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewgroupButton.setBackground(new java.awt.Color(255, 102, 153));
         viewgroupButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         viewgroupButton.setText("VIEW GROUP");
         viewgroupButton.addActionListener(new java.awt.event.ActionListener() {
@@ -229,7 +229,7 @@ public class Search extends javax.swing.JFrame {
             }
         });
 
-        leaveButton.setBackground(new java.awt.Color(0, 204, 204));
+        leaveButton.setBackground(new java.awt.Color(255, 102, 153));
         leaveButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         leaveButton.setText("LEAVE GROUP");
         leaveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +238,7 @@ public class Search extends javax.swing.JFrame {
             }
         });
 
-        viewprofileButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewprofileButton.setBackground(new java.awt.Color(255, 102, 153));
         viewprofileButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         viewprofileButton.setText("VIEW PROFILE");
         viewprofileButton.addActionListener(new java.awt.event.ActionListener() {

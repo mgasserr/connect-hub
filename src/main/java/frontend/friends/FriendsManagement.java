@@ -49,7 +49,7 @@ public class FriendsManagement extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("Friends Management");
 
-        addButton.setBackground(new java.awt.Color(0, 204, 204));
+        addButton.setBackground(new java.awt.Color(255, 102, 153));
         addButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addButton.setText("ADD FRIEND");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +58,7 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
-        viewreceivedreqButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewreceivedreqButton.setBackground(new java.awt.Color(255, 102, 153));
         viewreceivedreqButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         viewreceivedreqButton.setText("VIEW RECEIVED FRIEND REQUESTS");
         viewreceivedreqButton.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +67,7 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
-        viewlistButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewlistButton.setBackground(new java.awt.Color(255, 102, 153));
         viewlistButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         viewlistButton.setText("VIEW FRIENDS LIST");
         viewlistButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +76,7 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
-        viewblockButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewblockButton.setBackground(new java.awt.Color(255, 102, 153));
         viewblockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         viewblockButton.setText("VIEW BLOCK LIST");
         viewblockButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
-        viewsentreqButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewsentreqButton.setBackground(new java.awt.Color(255, 102, 153));
         viewsentreqButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         viewsentreqButton.setText("VIEW PENDING FRIEND REQUESTS");
         viewsentreqButton.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +101,7 @@ public class FriendsManagement extends javax.swing.JFrame {
             }
         });
 
-        viewsuggestedButton.setBackground(new java.awt.Color(0, 204, 204));
+        viewsuggestedButton.setBackground(new java.awt.Color(255, 102, 153));
         viewsuggestedButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         viewsuggestedButton.setText("VIEW SUGGESTED FRIENDS");
         viewsuggestedButton.addActionListener(new java.awt.event.ActionListener() {

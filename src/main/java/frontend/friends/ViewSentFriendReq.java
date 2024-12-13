@@ -64,9 +64,9 @@ public class ViewSentFriendReq extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(usersList);
 
-        unsendButton.setBackground(new java.awt.Color(0, 204, 204));
+        unsendButton.setBackground(new java.awt.Color(255, 102, 153));
         unsendButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        unsendButton.setText("UNEND REQUEST");
+        unsendButton.setText("UNSEND REQUEST");
         unsendButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unsendButtonActionPerformed(evt);

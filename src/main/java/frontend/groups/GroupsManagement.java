@@ -37,6 +37,8 @@ public class GroupsManagement extends javax.swing.JFrame {
 
         jLabel1.setText("Groups Management");
 
+        Home.setBackground(new java.awt.Color(255, 102, 153));
+        Home.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +46,8 @@ public class GroupsManagement extends javax.swing.JFrame {
             }
         });
 
+        Search.setBackground(new java.awt.Color(255, 102, 153));
+        Search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Search.setText("SEARCH GROUP");
         Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,6 +55,8 @@ public class GroupsManagement extends javax.swing.JFrame {
             }
         });
 
+        Create.setBackground(new java.awt.Color(255, 102, 153));
+        Create.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Create.setText("CREATE GROUP");
         Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +64,8 @@ public class GroupsManagement extends javax.swing.JFrame {
             }
         });
 
+        GroupsSuggestions.setBackground(new java.awt.Color(255, 102, 153));
+        GroupsSuggestions.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         GroupsSuggestions.setText("GROUPS SUGGESTION");
         GroupsSuggestions.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +84,7 @@ public class GroupsManagement extends javax.swing.JFrame {
                 .addComponent(Home)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(141, Short.MAX_VALUE)
+                .addContainerGap(105, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Create, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -96,7 +104,7 @@ public class GroupsManagement extends javax.swing.JFrame {
                 .addComponent(Create)
                 .addGap(18, 18, 18)
                 .addComponent(GroupsSuggestions)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();

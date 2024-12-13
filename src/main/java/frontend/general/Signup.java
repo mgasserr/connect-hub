@@ -87,7 +87,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setText("YEAR");
 
-        CreateButton.setBackground(new java.awt.Color(0, 204, 204));
+        CreateButton.setBackground(new java.awt.Color(255, 102, 153));
         CreateButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CreateButton.setText("CREATE");
         CreateButton.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +99,7 @@ public class Signup extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("USERNAME");
 
-        jButton1.setBackground(new java.awt.Color(0, 204, 204));
+        jButton1.setBackground(new java.awt.Color(255, 102, 153));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

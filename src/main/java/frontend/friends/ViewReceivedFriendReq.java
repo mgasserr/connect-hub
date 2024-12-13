@@ -64,7 +64,7 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(usersList);
 
-        declineButton.setBackground(new java.awt.Color(0, 204, 204));
+        declineButton.setBackground(new java.awt.Color(255, 102, 153));
         declineButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         declineButton.setText("DECLINE");
         declineButton.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +73,7 @@ public class ViewReceivedFriendReq extends javax.swing.JFrame {
             }
         });
 
-        acceptButton.setBackground(new java.awt.Color(0, 204, 204));
+        acceptButton.setBackground(new java.awt.Color(255, 102, 153));
         acceptButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         acceptButton.setText("ACCEPT");
         acceptButton.addActionListener(new java.awt.event.ActionListener() {

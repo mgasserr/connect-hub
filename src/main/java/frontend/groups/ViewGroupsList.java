@@ -63,7 +63,7 @@ public class ViewGroupsList extends javax.swing.JFrame {
             }
         });
 
-        View.setBackground(new java.awt.Color(0, 204, 204));
+        View.setBackground(new java.awt.Color(255, 102, 153));
         View.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         View.setText("VIEW");
         View.addActionListener(new java.awt.event.ActionListener() {

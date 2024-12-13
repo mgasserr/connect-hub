@@ -51,9 +51,9 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
             }
         });
 
-        RequestToJoin.setBackground(new java.awt.Color(0, 204, 204));
+        RequestToJoin.setBackground(new java.awt.Color(255, 102, 153));
         RequestToJoin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        RequestToJoin.setText("Request to join");
+        RequestToJoin.setText("REQUEST TO JOIN");
         RequestToJoin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RequestToJoinActionPerformed(evt);
