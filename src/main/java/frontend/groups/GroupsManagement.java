@@ -37,7 +37,7 @@ public class GroupsManagement extends javax.swing.JFrame {
 
         jLabel1.setText("Groups Management");
 
-        Home.setBackground(new java.awt.Color(0, 204, 204));
+        Home.setBackground(new java.awt.Color(255, 102, 153));
         Home.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -46,7 +46,7 @@ public class GroupsManagement extends javax.swing.JFrame {
             }
         });
 
-        Search.setBackground(new java.awt.Color(0, 204, 204));
+        Search.setBackground(new java.awt.Color(255, 102, 153));
         Search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Search.setText("SEARCH GROUP");
         Search.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +55,7 @@ public class GroupsManagement extends javax.swing.JFrame {
             }
         });
 
-        Create.setBackground(new java.awt.Color(0, 204, 204));
+        Create.setBackground(new java.awt.Color(255, 102, 153));
         Create.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Create.setText("CREATE GROUP");
         Create.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class GroupsManagement extends javax.swing.JFrame {
             }
         });
 
-        GroupsSuggestions.setBackground(new java.awt.Color(0, 204, 204));
+        GroupsSuggestions.setBackground(new java.awt.Color(255, 102, 153));
         GroupsSuggestions.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         GroupsSuggestions.setText("GROUPS SUGGESTION");
         GroupsSuggestions.addActionListener(new java.awt.event.ActionListener() {
