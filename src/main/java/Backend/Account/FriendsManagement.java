@@ -126,4 +126,13 @@ public class FriendsManagement {
         unblockeracc.getFriendsManagement().removeBlockedUser(usertobeunblockedacc);
         usertobeunblockedacc.getFriendsManagement().removeBlockedBy(unblockeracc);
     }
+
+    public boolean hasFriend(String username) {
+        for (Account friend : Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends()) {
+            if (friend.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

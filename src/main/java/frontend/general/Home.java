@@ -69,7 +69,7 @@ public class Home extends javax.swing.JFrame {
         View = new javax.swing.JButton();
         Groups = new javax.swing.JButton();
         notisToggle = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -149,7 +149,12 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Search");
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,7 +181,7 @@ public class Home extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Settings)
                         .addGap(17, 17, 17)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(View)
@@ -197,7 +202,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(Groups)
                     .addComponent(notisToggle)
-                    .addComponent(jButton1))
+                    .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
@@ -248,6 +253,10 @@ public class Home extends javax.swing.JFrame {
             } else if (noti instanceof NewPostToGroupNoti) {
                 counter++;
                 NewPostToGroupNotiJPANEL newjPanel = new NewPostToGroupNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
+                notiPopupMenu.add(newjPanel);
+            } else if (noti instanceof MemberJoinReqNoti) {
+                counter++;
+                MemberRequestNotiJPANEL newjPanel = new MemberRequestNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
                 notiPopupMenu.add(newjPanel);
             }
         }
@@ -334,7 +343,7 @@ public class Home extends javax.swing.JFrame {
         GroupsManagement g = new GroupsManagement(acc);
         g.setVisible(true);
         this.setVisible(false);
-    ///////////////////////////////////////////////
+        ///////////////////////////////////////////////
         /*test t = new test(acc);
         t.setVisible(true);
         this.setVisible(false);*/
@@ -343,6 +352,13 @@ public class Home extends javax.swing.JFrame {
     private void notisToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notisToggleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_notisToggleActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        Database.read();
+        Search search = new Search(acc);
+        search.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_searchButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -354,11 +370,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton Profile;
     private javax.swing.JButton Settings;
     private javax.swing.JButton View;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> newsFeed;
     private javax.swing.JPopupMenu notiPopupMenu;
     private javax.swing.JToggleButton notisToggle;
+    private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
 }

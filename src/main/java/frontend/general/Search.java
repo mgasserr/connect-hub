@@ -8,7 +8,11 @@ import Backend.Notifications.NotiFactory;
 import frontend.groups.GroupPage;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class Search extends javax.swing.JFrame {
 
@@ -16,6 +20,7 @@ public class Search extends javax.swing.JFrame {
     private Databases Database = Databases.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
     private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
+    private NotiFactory NF = new NotiFactory();
 
     public Search(Account acc) {
         initComponents();
@@ -38,6 +43,63 @@ public class Search extends javax.swing.JFrame {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 if (searchText.getText().isEmpty()) {
                     searchText.setText("Search...");
+                }
+            }
+        });
+        searchList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedIndex = searchList.getSelectedIndex();
+                    String selectedString = searchList.getSelectedValue();
+                    if (selectedIndex != -1) {
+                        if (selectedString.endsWith(" -FRIEND")) {
+                            viewButton.setVisible(false);
+                            leaveButton.setVisible(false);
+                            reqtojoinButton.setVisible(false);
+                            removefriendButton.setVisible(true);
+                            addfriendButton.setVisible(false);
+                            blockuserButton.setVisible(true);
+                        } else if (selectedString.endsWith(" -USER")) {
+                            viewButton.setVisible(false);
+                            leaveButton.setVisible(false);
+                            reqtojoinButton.setVisible(false);
+                            removefriendButton.setVisible(false);
+                            addfriendButton.setVisible(true);
+                            blockuserButton.setVisible(true);
+                        } else if (selectedString.endsWith(" -GROUP")) {
+                            for (Group group : Group.getGroups()) {
+                                if (group.getName().equals(selectedString.replace(" -GROUP", ""))) {
+                                    if ((group.getCreator().getUsername().equals(acc.getUsername()))) {
+                                        viewButton.setVisible(true);
+                                        leaveButton.setVisible(false);
+                                        reqtojoinButton.setVisible(false);
+                                        removefriendButton.setVisible(false);
+                                        addfriendButton.setVisible(false);
+                                        blockuserButton.setVisible(false);
+                                        break;
+                                    } else if ((group.isMember(acc.getUsername()))) {
+                                        viewButton.setVisible(true);
+                                        leaveButton.setVisible(true);
+                                        reqtojoinButton.setVisible(false);
+                                        removefriendButton.setVisible(false);
+                                        addfriendButton.setVisible(false);
+                                        blockuserButton.setVisible(false);
+                                        break;
+                                    } else {
+                                        viewButton.setVisible(false);
+                                        leaveButton.setVisible(false);
+                                        reqtojoinButton.setVisible(true);
+                                        removefriendButton.setVisible(false);
+                                        addfriendButton.setVisible(false);
+                                        blockuserButton.setVisible(false);
+                                        break;
+                                    }
+                                }
+                            }
+
+                        }
+                    }
                 }
             }
         });
@@ -67,6 +129,12 @@ public class Search extends javax.swing.JFrame {
         leaveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Search");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         searchText.setText("Search...");
         searchText.addActionListener(new java.awt.event.ActionListener() {
@@ -162,26 +230,25 @@ public class Search extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addComponent(searchText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(viewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(blockuserButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(addfriendButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(removefriendButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(reqtojoinButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(leaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(leaveButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(blockuserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addfriendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(removefriendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(reqtojoinButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Home)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(203, 203, 203)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,12 +261,11 @@ public class Search extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(viewButton)
                         .addGap(18, 18, 18)
                         .addComponent(leaveButton)
@@ -210,8 +276,9 @@ public class Search extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(addfriendButton)
                         .addGap(18, 18, 18)
-                        .addComponent(blockuserButton)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(blockuserButton))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -231,12 +298,17 @@ public class Search extends javax.swing.JFrame {
             errorText.setText("Search field is empty");
         } else {
             listModel.clear();
-            for (Account user : Database.getSuggestedAccountsDATABASE(acc.getUsername())) {
+            ArrayList<Account> alluserslist = Database.getAllAccounts();
+            alluserslist.remove(acc.getUsername());
+            for (Account user : alluserslist) {
                 if (user.getUsername().startsWith(searchText.getText())) {
-                    listModel.addElement(user.getUsername() + " -USER");
+                    if (Database.getAccount(acc.getUsername()).getFriendsManagement().hasFriend(user.getUsername())) {
+                        listModel.addElement(user.getUsername() + " -FRIEND");
+                    } else {
+                        listModel.addElement(user.getUsername() + " -USER");
+                    }
                 }
             }
-            System.out.println(Group.getGroups().size());
             for (Group group : Group.getGroups()) {
                 if (group.getName().startsWith(searchText.getText())) {
                     listModel.addElement(group.getName() + " -GROUP");
@@ -250,14 +322,13 @@ public class Search extends javax.swing.JFrame {
         Database.read();
         notiDatabase.read();
         errorText.setText("");
-        NotiFactory NF = new NotiFactory();
         int i = searchList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
-            errorText.setText("No accounts selected");
+            errorText.setText("No account selected");
         } else {
-            acc.getFriendsManagement().sendFriendRequest(searchList.getSelectedValue(), acc.getUsername());
-            Database.getAccount(searchList.getSelectedValue()).addNotification(NF.CreateNoti("FriendRequest", null, false, acc.getUsername(), null, null));
+            Database.getAccount(acc.getUsername()).getFriendsManagement().sendFriendRequest(searchList.getSelectedValue().replace(" -USER", ""), acc.getUsername());
+            Database.getAccount(searchList.getSelectedValue().replace(" -USER", "")).addNotification(NF.CreateNoti("FriendRequest", null, false, acc.getUsername(), null, null));
             Database.save();
             notiDatabase.save();
             listModel.clear();
@@ -280,11 +351,17 @@ public class Search extends javax.swing.JFrame {
         int i = searchList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
-            errorText.setText("No users selected");
+            errorText.setText("No user selected");
         } else {
             Database.read();
             notiDatabase.read();
-            acc.getFriendsManagement().Block(searchList.getSelectedValue(), acc.getUsername());
+            String tempuser = null;
+            if (searchList.getSelectedValue().endsWith(" -USER")) {
+                tempuser = searchList.getSelectedValue().replace(" -USER", "");
+            } else if (searchList.getSelectedValue().endsWith(" -FRIEND")) {
+                tempuser = searchList.getSelectedValue().replace(" -FRIEND", "");
+            }
+            Database.getAccount(acc.getUsername()).getFriendsManagement().Block(tempuser, acc.getUsername());
             Database.save();
             notiDatabase.save();
             listModel.clear();
@@ -301,21 +378,12 @@ public class Search extends javax.swing.JFrame {
         int i = searchList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
-            errorText.setText("No users selected");
+            errorText.setText("No user selected");
         } else {
-            String usernamelist = searchList.getSelectedValue();
-            if (usernamelist.contains(" -ONLINE")) {
-                usernamelist = usernamelist.replace(" -ONLINE", "");
-            } else if (usernamelist.contains(" -OFFLINE")) {
-                usernamelist = usernamelist.replace(" -OFFLINE", "");
-            }
             Database.read();
-            acc.getFriendsManagement().deleteFriend(usernamelist, acc.getUsername());
+            Database.getAccount(acc.getUsername()).getFriendsManagement().deleteFriend(searchList.getSelectedValue().replace(" -FRIEND", ""), acc.getUsername());
             Database.save();
             listModel.clear();
-            for (Account user : Database.getFriendsDATABASE(acc.getUsername())) {
-                listModel.addElement(user.getUsername() + " -" + user.getStatus().toString());
-            }
             searchList.setModel(listModel);
             errorText.setForeground(Color.black);
             errorText.setText("Friend removed!");
@@ -324,18 +392,21 @@ public class Search extends javax.swing.JFrame {
 
     private void reqtojoinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reqtojoinButtonActionPerformed
         Database.read();
+        notiDatabase.read();
         errorText.setText("");
         int i = searchList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
-            errorText.setText("No groups selected");
-        } else if (Database.getGroup(searchList.getSelectedValue()).isMember(acc.getUsername()) || Database.getGroup(searchList.getSelectedValue()).getCreator().getUsername().equalsIgnoreCase(acc.getUsername())) {
-            errorText.setText("Already in group");
-        } else if (Database.getGroup(searchList.getSelectedValue()).isRequest(acc.getUsername())) {
+            errorText.setText("No group selected");
+        } else if (Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")).isRequest(acc.getUsername())) {
             errorText.setText("Already requested");
         } else {
-            Database.getGroup(searchList.getSelectedValue()).addRequest(acc.getUsername());
+            Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")).addRequest(acc.getUsername());
+            for (Account account : Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")).getAdmins()) {
+                Database.getAccount(account.getUsername()).addNotification(NF.CreateNoti("MemberRequest", null, false, searchList.getSelectedValue().replace(" -GROUP", ""), acc.getUsername(), null));
+            }
             Database.save();
+            notiDatabase.save();
             listModel.clear();
             searchList.setModel(listModel);
             searchText.setText("");
@@ -345,25 +416,38 @@ public class Search extends javax.swing.JFrame {
     }//GEN-LAST:event_reqtojoinButtonActionPerformed
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
+        Database.read();
         errorText.setText("");
         int i = searchList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
             errorText.setText("No group selected");
         } else {
-            String grouplist = searchList.getSelectedValue();
-            Database.read();
-            GroupPage GP = new GroupPage(Database.getAccount(acc.getUsername()), Database.getGroup(grouplist));
+            GroupPage GP = new GroupPage(Database.getAccount(acc.getUsername()), Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")));
+            Database.save();
             GP.setVisible(true);
             this.setVisible(false);
-            Database.save();
             listModel.clear();
+            searchList.setModel(listModel);
+            searchText.setText("");
         }
     }//GEN-LAST:event_viewButtonActionPerformed
 
     private void leaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveButtonActionPerformed
-        // TODO add your handling code here:
+        Database.read();
+        if (Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")).isAdmin(acc.getUsername())) {
+            Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")).removeAdmin(acc.getUsername());
+            Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")).removeMember(acc.getUsername());
+        } else {
+            Database.getGroup(searchList.getSelectedValue().replace(" -GROUP", "")).removeMember(acc.getUsername());
+        }
+        Database.save();
     }//GEN-LAST:event_leaveButtonActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        Database.logoutDatabase(acc.getUsername());
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

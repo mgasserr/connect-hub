@@ -30,7 +30,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
         errorText.setText("");
         listModel.clear();
         for (Account members : Database.getGroup(g.getName()).getRequests()) {
-            listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
+            listModel.addElement(members.getUsername());
         }
         usersList.setModel(listModel);
     }
@@ -146,14 +146,11 @@ public class ViewRequestsList extends javax.swing.JFrame {
             errorText.setText("No users selected");
         } else {
             String usernamelist = usersList.getSelectedValue();
-            if (usernamelist.contains(" -ONLINE")) {
-                usernamelist = usernamelist.replace(" -ONLINE", "");
-            } else if (usernamelist.contains(" -OFFLINE")) {
-                usernamelist = usernamelist.replace(" -OFFLINE", "");
-            }
             Database.read();
             Database.getGroup(g.getName()).removeRequest(usernamelist);
-            //acc.getGroup(g.getName()).addAdmin(usernamelist);
+            for (Account account : Database.getGroup(g.getName()).getAdmins()) {
+                Database.getAccount(account.getUsername()).removeMemberReqNotibyRequester(usernamelist);
+            }
             Database.save();
             listModel.clear();
             for (Account member : Database.getGroup(g.getName()).getRequests()) {
@@ -173,19 +170,15 @@ public class ViewRequestsList extends javax.swing.JFrame {
             errorText.setText("No users selected");
         } else {
             String usernamelist = usersList.getSelectedValue();
-            if (usernamelist.contains(" -ONLINE")) {
-                usernamelist = usernamelist.replace(" -ONLINE", "");
-            } else if (usernamelist.contains(" -OFFLINE")) {
-                usernamelist = usernamelist.replace(" -OFFLINE", "");
-            }
             Database.read();
             notiDatabase.read();
             NotiFactory NF = new NotiFactory();
             Database.getGroup(g.getName()).addMember(usernamelist);
             Database.getAccount(usernamelist).addNotification(NF.CreateNoti("AddedToGroup", null, false, g.getName(), null, null));
             Database.getGroup(g.getName()).removeRequest(usernamelist);
-            //Database.getAccount(usernamelist).addGroup(g);
-            //acc.getGroup(g.getName()).addAdmin(usernamelist);
+            for (Account account : Database.getGroup(g.getName()).getAdmins()) {
+                Database.getAccount(account.getUsername()).removeMemberReqNotibyRequester(usernamelist);
+            }
             Database.save();
             notiDatabase.save();
             listModel.clear();
