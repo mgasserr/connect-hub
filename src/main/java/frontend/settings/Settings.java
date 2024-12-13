@@ -46,7 +46,7 @@ public class Settings extends javax.swing.JFrame {
             }
         });
 
-        changepassButton.setBackground(new java.awt.Color(255, 102, 153));
+        changepassButton.setBackground(new java.awt.Color(0, 204, 153));
         changepassButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         changepassButton.setText("CHANGE PASSWORD");
         changepassButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +55,7 @@ public class Settings extends javax.swing.JFrame {
             }
         });
 
-        changeprofileButton.setBackground(new java.awt.Color(255, 102, 153));
+        changeprofileButton.setBackground(new java.awt.Color(0, 204, 153));
         changeprofileButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         changeprofileButton.setText("CHANGE PROFILE PICTURE");
         changeprofileButton.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class Settings extends javax.swing.JFrame {
             }
         });
 
-        changecoverButton.setBackground(new java.awt.Color(255, 102, 153));
+        changecoverButton.setBackground(new java.awt.Color(0, 204, 153));
         changecoverButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         changecoverButton.setText("CHANGE COVER PHOTO");
         changecoverButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +76,7 @@ public class Settings extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel3.setText("Settings");
 
-        changebioButton.setBackground(new java.awt.Color(255, 102, 153));
+        changebioButton.setBackground(new java.awt.Color(0, 204, 153));
         changebioButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         changebioButton.setText("CHANGE BIO");
         changebioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class Settings extends javax.swing.JFrame {
             }
         });
 
-        logoutButton.setBackground(new java.awt.Color(255, 102, 153));
+        logoutButton.setBackground(new java.awt.Color(204, 0, 51));
         logoutButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         logoutButton.setText("LOGOUT");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {

@@ -1,4 +1,4 @@
-package frontend.groups;
+package frontend.groups.groupsInfo;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
@@ -53,7 +53,7 @@ public class changePicture extends javax.swing.JFrame {
             }
         });
 
-        choosepicButton.setBackground(new java.awt.Color(255, 102, 153));
+        choosepicButton.setBackground(new java.awt.Color(0, 204, 153));
         choosepicButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         choosepicButton.setText("UPLOAD PICTURE");
         choosepicButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +62,7 @@ public class changePicture extends javax.swing.JFrame {
             }
         });
 
-        confirmButton.setBackground(new java.awt.Color(255, 102, 153));
+        confirmButton.setBackground(new java.awt.Color(0, 204, 153));
         confirmButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         confirmButton.setText("CONFIRM");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {

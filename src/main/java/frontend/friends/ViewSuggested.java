@@ -67,7 +67,7 @@ public class ViewSuggested extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(usersList);
 
-        addButton.setBackground(new java.awt.Color(255, 102, 153));
+        addButton.setBackground(new java.awt.Color(0, 204, 153));
         addButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addButton.setText("ADD FRIEND");
         addButton.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +85,7 @@ public class ViewSuggested extends javax.swing.JFrame {
 
         errorText.setForeground(new java.awt.Color(255, 0, 0));
 
-        blockButton.setBackground(new java.awt.Color(255, 102, 153));
+        blockButton.setBackground(new java.awt.Color(0, 204, 153));
         blockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         blockButton.setText("BLOCK");
         blockButton.addActionListener(new java.awt.event.ActionListener() {

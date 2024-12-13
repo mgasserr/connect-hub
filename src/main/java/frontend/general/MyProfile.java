@@ -77,7 +77,7 @@ public class MyProfile extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("MY POSTS");
 
-        ViewPost.setBackground(new java.awt.Color(255, 102, 153));
+        ViewPost.setBackground(new java.awt.Color(0, 204, 153));
         ViewPost.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ViewPost.setText("VIEW POST");
         ViewPost.addActionListener(new java.awt.event.ActionListener() {

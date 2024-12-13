@@ -1,9 +1,10 @@
-package frontend.groups;
+package frontend.groups.groupsFiltering;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Feed.Group;
 import frontend.general.Home;
+import frontend.groups.groupsInfo.GroupPage;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.DefaultListModel;
@@ -63,7 +64,7 @@ public class ViewGroupsList extends javax.swing.JFrame {
             }
         });
 
-        View.setBackground(new java.awt.Color(255, 102, 153));
+        View.setBackground(new java.awt.Color(0, 204, 153));
         View.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         View.setText("VIEW");
         View.addActionListener(new java.awt.event.ActionListener() {

@@ -1,4 +1,4 @@
-package frontend.groups;
+package frontend.groups.groupsFiltering;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
@@ -51,7 +51,7 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
             }
         });
 
-        RequestToJoin.setBackground(new java.awt.Color(255, 102, 153));
+        RequestToJoin.setBackground(new java.awt.Color(0, 204, 153));
         RequestToJoin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         RequestToJoin.setText("REQUEST TO JOIN");
         RequestToJoin.addActionListener(new java.awt.event.ActionListener() {

@@ -1,4 +1,4 @@
-package frontend.groups;
+package frontend.groups.groupsInfo;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
@@ -104,7 +104,7 @@ public class GroupPage extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(postsList);
 
-        VIEW.setBackground(new java.awt.Color(255, 102, 153));
+        VIEW.setBackground(new java.awt.Color(0, 204, 153));
         VIEW.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         VIEW.setText(" VIEW POST");
         VIEW.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +113,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        AddContent.setBackground(new java.awt.Color(255, 102, 153));
+        AddContent.setBackground(new java.awt.Color(0, 204, 153));
         AddContent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         AddContent.setText("ADD POST");
         AddContent.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        Leave.setBackground(new java.awt.Color(255, 102, 153));
+        Leave.setBackground(new java.awt.Color(204, 0, 51));
         Leave.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Leave.setText("LEAVE");
         Leave.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +131,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        ViewMembers.setBackground(new java.awt.Color(255, 102, 153));
+        ViewMembers.setBackground(new java.awt.Color(0, 204, 153));
         ViewMembers.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ViewMembers.setText("VIEW MEMBERS");
         ViewMembers.addActionListener(new java.awt.event.ActionListener() {
@@ -140,7 +140,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        ViewRequests.setBackground(new java.awt.Color(255, 102, 153));
+        ViewRequests.setBackground(new java.awt.Color(0, 204, 153));
         ViewRequests.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         ViewRequests.setText("VIEW REQUESTS");
         ViewRequests.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +149,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        Settings.setBackground(new java.awt.Color(255, 102, 153));
+        Settings.setBackground(new java.awt.Color(0, 204, 153));
         Settings.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Settings.setText("SETTINGS");
         Settings.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +158,6 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        Home.setBackground(new java.awt.Color(255, 102, 153));
         Home.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Home.setText("HOME");
         Home.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +166,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        DeleteContent.setBackground(new java.awt.Color(255, 102, 153));
+        DeleteContent.setBackground(new java.awt.Color(0, 204, 153));
         DeleteContent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         DeleteContent.setText("DELETE POST");
         DeleteContent.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +175,7 @@ public class GroupPage extends javax.swing.JFrame {
             }
         });
 
-        EditContent.setBackground(new java.awt.Color(255, 102, 153));
+        EditContent.setBackground(new java.awt.Color(0, 204, 153));
         EditContent.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         EditContent.setText("EDIT POST");
         EditContent.addActionListener(new java.awt.event.ActionListener() {
@@ -206,20 +205,14 @@ public class GroupPage extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Home, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Settings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ViewMembers)
-                                .addComponent(Leave, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(ViewMembers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Leave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(ViewRequests, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Picture, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,13 +220,23 @@ public class GroupPage extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48))))
+                        .addGap(48, 48, 48))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Picture, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(Home)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(Home))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,8 +258,6 @@ public class GroupPage extends javax.swing.JFrame {
                         .addGap(24, 24, 24)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Home)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(ViewRequests)
                         .addGap(12, 12, 12)
                         .addComponent(ViewMembers)
