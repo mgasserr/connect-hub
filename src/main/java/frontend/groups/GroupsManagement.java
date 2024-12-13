@@ -10,6 +10,7 @@ public class GroupsManagement extends javax.swing.JFrame {
     
     public GroupsManagement(Account acc) {
         initComponents();
+        Database.read();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;

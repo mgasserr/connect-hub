@@ -13,6 +13,7 @@ public class changeDescription extends javax.swing.JFrame {
 
     public changeDescription(Account acc, Group group) {
         initComponents();
+        Database.read();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;

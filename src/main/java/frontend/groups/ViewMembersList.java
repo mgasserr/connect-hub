@@ -4,13 +4,10 @@ import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Group;
-import Backend.Notifications.FriendReqNoti;
-import Backend.Notifications.GroupRoleChangeNoti;
 import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.time.LocalDateTime;
 import javax.swing.DefaultListModel;
 
 public class ViewMembersList extends javax.swing.JFrame {
@@ -24,11 +21,14 @@ public class ViewMembersList extends javax.swing.JFrame {
 
     public ViewMembersList(Account acc, Group group) {
         initComponents();
+        Database.read();
+        notiDatabase.read();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.acc = acc;
         this.g = group;
         usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
-        Database.read();
         listModel.clear();
         for (Account members : Database.getGroup(g.getName()).getMembers()) {
             listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());

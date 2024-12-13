@@ -6,11 +6,9 @@ import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Content;
 import Backend.Feed.ContentFactory;
 import Backend.Feed.Group;
-import Backend.Notifications.NewPostToGroupNoti;
 import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.io.File;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
@@ -32,6 +30,10 @@ public class AddPost extends javax.swing.JFrame {
 
     public AddPost(Account acc, Group group) {
         initComponents();
+        Database.read();
+        notiDatabase.read();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.acc = acc;
         this.g = group;
     }
