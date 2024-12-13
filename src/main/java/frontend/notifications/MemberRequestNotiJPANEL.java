@@ -145,6 +145,7 @@ public class MemberRequestNotiJPANEL extends javax.swing.JPanel {
         for (Account account : Database.getGroup(groupname).getAdmins()) {
             Database.getAccount(account.getUsername()).removeMemberReqNotibyRequester(requester);
         }
+        Database.getAccount(Database.getGroup(groupname).getCreator().getUsername()).removeMemberReqNotibyRequester(requester);
         Database.save();
         notiDatabase.save();
         popupmenu.setVisible(false);

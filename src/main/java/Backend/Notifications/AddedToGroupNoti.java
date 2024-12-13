@@ -9,7 +9,7 @@ public class AddedToGroupNoti extends Notification {
     AddedToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName) {
         super(timestamp, opened);
         this.groupName = groupName;
-        super.message = "Your request to join group" + groupName + ", was accepted!";
+        super.message = "Your request to join group: " + groupName + ", was accepted!";
     }
 
     public String getGroupName() {

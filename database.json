@@ -6,15 +6,9 @@
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [{
-         "path": "ImagesDatabase\\Content\\0001-0001.png",
-         "AuthorID": "0001",
-         "caption": "hi",
-         "ContentID": "0001-0001",
-         "timestamp": "2024-12-13T21:56:38.331749100"
-      }],
+      "posts": [],
       "userid": "0001",
-      "friends": ["m"],
+      "friends": ["g"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
@@ -29,13 +23,29 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [],
+      "groups": [{
+         "creator": "g",
+         "stories": [],
+         "members": [],
+         "name": "gassergroup",
+         "description": "lol",
+         "requests": ["z"],
+         "posts": [{
+            "path": "ImagesDatabase\\Content\\0001-0002.png",
+            "AuthorID": "0002",
+            "caption": "sss",
+            "ContentID": "0001-0002",
+            "timestamp": "2024-12-13T23:28:03.280418400"
+         }],
+         "picture": "ImagesDatabase\\Default\\group.png",
+         "admins": []
+      }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0002",
-      "friends": [],
+      "friends": ["y"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
@@ -50,23 +60,13 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [{
-         "creator": "m",
-         "stories": [],
-         "members": [],
-         "name": "Programming 2",
-         "description": "hi",
-         "requests": [],
-         "posts": [],
-         "picture": "ImagesDatabase\\Group\\1.png",
-         "admins": []
-      }],
+      "groups": [],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0003",
-      "friends": ["y"],
+      "friends": [],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",

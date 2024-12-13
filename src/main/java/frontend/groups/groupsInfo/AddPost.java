@@ -216,10 +216,11 @@ public class AddPost extends javax.swing.JFrame {
                 Database.getAccount(account.getUsername()).addNotification(NF.CreateNoti("NewPost", null, false, g.getName(), type, temp));
             }
         }
+        Database.getAccount(Database.getGroup(g.getName()).getCreator().getUsername()).addNotification(NF.CreateNoti("NewPost", null, false, g.getName(), type, temp));
         Database.getGroup(g.getName()).addContent(c);
         Database.save();
         notiDatabase.save();
-        GroupPage G= new GroupPage(acc, g);
+        GroupPage G = new GroupPage(acc, g);
         G.setVisible(true);
         this.setVisible(false);
         JOptionPane.showMessageDialog(this, type + " posted successfully.");

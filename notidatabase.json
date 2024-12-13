@@ -1,65 +1,31 @@
 [
    {
       "userid": "0001",
-      "notifications": [{
-         "temp": [
-            "Content",
-            "m",
-            "2024-12-13T22:22:30.785533700",
-            "hola",
-            "ImagesDatabase\\Content\\0002-0003.png"
-         ],
-         "posttype": "Post",
-         "opened": "false",
-         "time": "2024-12-13T22:22:30.786531700",
-         "type": "newposttogroup",
-         "groupname": "Programming 2"
-      }]
-   },
-   {
-      "userid": "0002",
       "notifications": []
    },
    {
-      "userid": "0003",
+      "userid": "0002",
       "notifications": [{
-         "requester": "y",
-         "opened": "true",
-         "time": "2024-12-13T22:05:52.822942",
-         "type": "memberrequest",
-         "groupname": "Programming 2"
+         "temp": [
+            "Content",
+            "g",
+            "2024-12-13T23:28:03.280418400",
+            "sss",
+            "ImagesDatabase\\Content\\0001-0002.png"
+         ],
+         "posttype": "Post",
+         "opened": "false",
+         "time": "2024-12-13T23:28:03.284408",
+         "type": "newposttogroup",
+         "groupname": "gassergroup"
       }]
    },
    {
+      "userid": "0003",
+      "notifications": []
+   },
+   {
       "userid": "0004",
-      "notifications": [
-         {
-            "opened": "false",
-            "time": "2024-12-13T22:22:18.424363",
-            "type": "addedtogroup",
-            "groupname": "Programming 2"
-         },
-         {
-            "temp": [
-               "Content",
-               "m",
-               "2024-12-13T22:22:30.785533700",
-               "hola",
-               "ImagesDatabase\\Content\\0002-0003.png"
-            ],
-            "posttype": "Post",
-            "opened": "false",
-            "time": "2024-12-13T22:22:30.786531700",
-            "type": "newposttogroup",
-            "groupname": "Programming 2"
-         },
-         {
-            "opened": "false",
-            "time": "2024-12-13T22:22:57.534408300",
-            "type": "rolechange",
-            "groupname": "Programming 2",
-            "newrole": "Admin"
-         }
-      ]
+      "notifications": []
    }
 ]

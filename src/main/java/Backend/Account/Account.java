@@ -21,6 +21,7 @@ public class Account {
     private ContentManagement contentManagement;
     private ArrayList<Group> Groups;
     private ArrayList<Notification> notifications = new ArrayList<>();
+    private Databases Database = Databases.getInstance();
 
     public Account(String Email, String Username, String Password, LocalDate DOB) {
         accountsCount++;
@@ -209,10 +210,10 @@ public class Account {
     }
 
     public void removeMemberReqNotibyRequester(String username) {
-        for (Notification notification : notifications) {
+        for (Notification notification : Database.getAccount(this.Username).getNotifications()) {
             if (notification instanceof MemberJoinReqNoti memberJoinReqNoti) {
                 if (memberJoinReqNoti.getRequester().equals(username)) {
-                    this.notifications.remove(notification);
+                    Database.getAccount(this.Username).getNotifications().remove(notification);
                     return;
                 }
             }

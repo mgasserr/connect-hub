@@ -228,6 +228,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 usernamelist = usernamelist.replace(" -OFFLINE", "");
             }
             Database.read();
+            notiDatabase.read();
             if (acc.getUsername().equals(g.getCreator().getUsername())) {
                 // Creator logic
                 if (Database.getGroup(g.getName()).isAdmin(usernamelist)) {
@@ -235,7 +236,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 }
                 if (Database.getGroup(g.getName()).isMember(usernamelist)) {
                     Database.getGroup(g.getName()).removeMember(usernamelist);
-                    //Database.getAccount(usernamelist).removeGroup(Database.getGroup(g.getName()));
+                    Database.getAccount(usernamelist).removeALLGroupNotisbyGroupName(g.getName());
                     errorText.setForeground(Color.green);
                     errorText.setText("Member removed!");
                 }
@@ -246,6 +247,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                     errorText.setText("You can't remove someone in the same position or higher!");
                 } else {
                     Database.getGroup(g.getName()).removeMember(usernamelist);
+                    Database.getAccount(usernamelist).removeALLGroupNotisbyGroupName(g.getName());
                     errorText.setForeground(Color.green);
                     errorText.setText("Member removed!");
                 }
@@ -255,6 +257,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 errorText.setText("You don't have permission to remove this member!");
             }
             Database.save();
+            notiDatabase.save();
             listModel.clear();
             for (Account member : Database.getGroup(g.getName()).getMembers()) {
                 listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());

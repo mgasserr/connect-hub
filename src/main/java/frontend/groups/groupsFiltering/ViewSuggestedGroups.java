@@ -1,7 +1,7 @@
 package frontend.groups.groupsFiltering;
 
 import Backend.Account.Account;
-import Backend.Databases.Databases;
+import Backend.Databases.*;
 import Backend.Feed.Group;
 import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
@@ -13,6 +13,7 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
 
     Account acc;
     private Databases Database = Databases.getInstance();
+    private NotificationsDatabase NotiDatabase = NotificationsDatabase.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
 
     public ViewSuggestedGroups(Account acc) {
@@ -119,6 +120,7 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
 
     private void RequestToJoinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestToJoinActionPerformed
         Database.read();
+        NotiDatabase.read();
         errorText.setText("");
         int i = groupsList.getSelectedIndex();
         if (i == -1) {
@@ -134,7 +136,9 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
             for (Account account : Database.getGroup(groupsList.getSelectedValue()).getAdmins()) {
                 Database.getAccount(account.getUsername()).addNotification(NF.CreateNoti("MemberRequest", null, false, groupsList.getSelectedValue(), acc.getUsername(), null));
             }
+            Database.getAccount(Database.getGroup(groupsList.getSelectedValue()).getCreator().getUsername()).addNotification(NF.CreateNoti("MemberRequest", null, false, groupsList.getSelectedValue(), acc.getUsername(), null));
             Database.save();
+            NotiDatabase.save();
             groupsList.setModel(listModel);
             errorText.setForeground(Color.black);
             errorText.setText("Request to join sent!");

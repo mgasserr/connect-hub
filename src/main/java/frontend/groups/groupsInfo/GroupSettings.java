@@ -1,7 +1,7 @@
 package frontend.groups.groupsInfo;
 
 import Backend.Account.Account;
-import Backend.Databases.Databases;
+import Backend.Databases.*;
 import Backend.Feed.Group;
 import frontend.general.Home;
 
@@ -10,6 +10,7 @@ public class GroupSettings extends javax.swing.JFrame {
     Account acc;
     Group g;
     Databases Database = Databases.getInstance();
+    private NotificationsDatabase NotiDatabase = NotificationsDatabase.getInstance();
 
     public GroupSettings(Account acc, Group group) {
         initComponents();
@@ -140,8 +141,13 @@ public class GroupSettings extends javax.swing.JFrame {
 
     private void deleteGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGroupActionPerformed
         Database.read();
+        NotiDatabase.read();
         g.removeGroup(Database.getGroup(g.getName()), g.getCreator().getUsername());
+        for (Account account : Database.getAllAccounts()) {
+            account.removeALLGroupNotisbyGroupName(g.getName());
+        }
         Database.save();
+        NotiDatabase.save();
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
