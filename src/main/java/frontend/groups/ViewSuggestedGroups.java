@@ -3,6 +3,7 @@ package frontend.groups;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Feed.Group;
+import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -129,6 +130,10 @@ public class ViewSuggestedGroups extends javax.swing.JFrame {
             errorText.setText("Already requested");
         } else {
             Database.getGroup(groupsList.getSelectedValue()).addRequest(acc.getUsername());
+            NotiFactory NF = new NotiFactory();
+            for (Account account : Database.getGroup(groupsList.getSelectedValue()).getAdmins()) {
+                Database.getAccount(account.getUsername()).addNotification(NF.CreateNoti("MemberRequest", null, false, groupsList.getSelectedValue(), acc.getUsername(), null));
+            }
             Database.save();
             groupsList.setModel(listModel);
             errorText.setForeground(Color.black);
