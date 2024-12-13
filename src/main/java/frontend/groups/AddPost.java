@@ -6,7 +6,7 @@ import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Content;
 import Backend.Feed.ContentFactory;
 import Backend.Feed.Group;
-import Backend.Notifications.NewPostToGroupNoti;
+import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.awt.Dimension;
 import java.io.File;
@@ -31,6 +31,10 @@ public class AddPost extends javax.swing.JFrame {
 
     public AddPost(Account acc, Group group) {
         initComponents();
+        Database.read();
+        notiDatabase.read();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.acc = acc;
         this.g = group;
     }
@@ -200,6 +204,7 @@ public class AddPost extends javax.swing.JFrame {
         } else {
             c = F.Feed("Story", acc.getUserId(), map, null);
         }
+        NotiFactory NF = new NotiFactory();
         String[] temp = new String[5];
         temp[0] = "Content";
         temp[1] = acc.getUsername();
@@ -208,7 +213,7 @@ public class AddPost extends javax.swing.JFrame {
         temp[4] = c.getContentMap().get("Path");
         for (Account account : Database.getGroup(g.getName()).getMembers()) {
             if (!account.getUsername().equals(acc.getUsername())) {
-                Database.getAccount(account.getUsername()).addNotification(new NewPostToGroupNoti(null, false, g.getName(), type, temp));
+                Database.getAccount(account.getUsername()).addNotification(NF.CreateNoti("NewPost", null, false, g.getName(), type, temp));
             }
         }
         Database.getGroup(g.getName()).addContent(c);

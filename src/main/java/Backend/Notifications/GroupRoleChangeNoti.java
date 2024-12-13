@@ -8,7 +8,7 @@ public class GroupRoleChangeNoti extends Notification {
     String groupName;
     String newRole;
 
-    public GroupRoleChangeNoti(LocalDateTime timestamp, boolean opened, String groupName, String newRole) {
+    GroupRoleChangeNoti(LocalDateTime timestamp, boolean opened, String groupName, String newRole) {
         super(timestamp, opened);
         this.groupName = groupName;
         this.newRole = newRole;

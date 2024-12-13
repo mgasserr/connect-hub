@@ -1,9 +1,7 @@
 package frontend.general;
 
 import Backend.Account.Account;
-import Backend.Databases.Databases;
-import Backend.Databases.NotificationsDatabase;
-
+import Backend.Databases.*;
 import Backend.Notifications.*;
 import Backend.Feed.Group;
 import frontend.friends.FriendsManagement;
@@ -12,13 +10,8 @@ import frontend.groups.GroupsManagement;
 import frontend.notifications.*;
 import frontend.settings.Settings;
 import java.awt.Dimension;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonModel;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 public class Home extends javax.swing.JFrame {
 
@@ -335,7 +328,7 @@ public class Home extends javax.swing.JFrame {
         GroupsManagement g = new GroupsManagement(acc);
         g.setVisible(true);
         this.setVisible(false);
-        ///////////////////////////////////////////////
+    ///////////////////////////////////////////////
         /*test t = new test(acc);
         t.setVisible(true);
         this.setVisible(false);*/

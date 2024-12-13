@@ -4,8 +4,7 @@ import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Group;
-import Backend.Notifications.AddedToGroupNoti;
-import Backend.Notifications.GroupRoleChangeNoti;
+import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,11 +20,14 @@ public class ViewRequestsList extends javax.swing.JFrame {
 
     public ViewRequestsList(Account acc, Group group) {
         initComponents();
+        Database.read();
+        notiDatabase.read();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.acc = acc;
         this.g = group;
         usersList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
-        Database.read();
         listModel.clear();
         for (Account members : Database.getGroup(g.getName()).getRequests()) {
             listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
@@ -178,8 +180,9 @@ public class ViewRequestsList extends javax.swing.JFrame {
             }
             Database.read();
             notiDatabase.read();
+            NotiFactory NF = new NotiFactory();
             Database.getGroup(g.getName()).addMember(usernamelist);
-            Database.getAccount(usernamelist).addNotification(new AddedToGroupNoti(null, false, g.getName()));
+            Database.getAccount(usernamelist).addNotification(NF.CreateNoti("AddedToGroup", null, false, g.getName(), null, null));
             Database.getGroup(g.getName()).removeRequest(usernamelist);
             //Database.getAccount(usernamelist).addGroup(g);
             //acc.getGroup(g.getName()).addAdmin(usernamelist);

@@ -16,6 +16,7 @@ public class FindGroup extends javax.swing.JFrame {
 
     public FindGroup(Account acc) {
         initComponents();
+        Database.read();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;

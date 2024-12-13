@@ -13,6 +13,7 @@ public class GroupSettings extends javax.swing.JFrame {
 
     public GroupSettings(Account acc, Group group) {
         initComponents();
+        Database.read();
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;

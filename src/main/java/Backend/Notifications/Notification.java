@@ -10,7 +10,7 @@ public abstract class Notification {
     private boolean opened;
     private static int notiCounter;
 
-    public Notification(LocalDateTime timestamp, boolean opened) {
+    Notification(LocalDateTime timestamp, boolean opened) {
         notiCounter++;
         notiID = notiCounter + "";
         if (timestamp == null) {
