@@ -66,7 +66,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
             }
         });
 
-        Decline.setBackground(new java.awt.Color(0, 204, 204));
+        Decline.setBackground(new java.awt.Color(255, 102, 153));
         Decline.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Decline.setText("DECLINE");
         Decline.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +75,7 @@ public class ViewRequestsList extends javax.swing.JFrame {
             }
         });
 
-        Accept.setBackground(new java.awt.Color(0, 204, 204));
+        Accept.setBackground(new java.awt.Color(255, 102, 153));
         Accept.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Accept.setText("ACCEPT");
         Accept.addActionListener(new java.awt.event.ActionListener() {
