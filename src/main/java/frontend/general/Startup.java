@@ -71,7 +71,7 @@ public class Startup extends javax.swing.JFrame {
 
         jLabel5.setText("Don't have an account? Sign up!");
 
-        SignupButton.setBackground(new java.awt.Color(255, 102, 153));
+        SignupButton.setBackground(new java.awt.Color(0, 204, 153));
         SignupButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         SignupButton.setText("SIGN UP");
         SignupButton.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +80,7 @@ public class Startup extends javax.swing.JFrame {
             }
         });
 
-        LoginButton.setBackground(new java.awt.Color(255, 102, 153));
+        LoginButton.setBackground(new java.awt.Color(0, 204, 153));
         LoginButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         LoginButton.setText("LOGIN");
         LoginButton.addActionListener(new java.awt.event.ActionListener() {

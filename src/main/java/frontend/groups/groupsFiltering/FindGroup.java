@@ -1,4 +1,4 @@
-package frontend.groups;
+package frontend.groups.groupsFiltering;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
@@ -64,7 +64,7 @@ public class FindGroup extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(groupsList);
 
-        RequestToJoin.setBackground(new java.awt.Color(255, 102, 153));
+        RequestToJoin.setBackground(new java.awt.Color(0, 204, 153));
         RequestToJoin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         RequestToJoin.setText("REQUEST TO JOIN");
         RequestToJoin.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class FindGroup extends javax.swing.JFrame {
             }
         });
 
-        searchButton.setBackground(new java.awt.Color(255, 102, 153));
+        searchButton.setBackground(new java.awt.Color(0, 204, 153));
         searchButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         searchButton.setText("SEARCH");
         searchButton.addActionListener(new java.awt.event.ActionListener() {

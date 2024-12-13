@@ -5,8 +5,8 @@ import Backend.Databases.*;
 import Backend.Notifications.*;
 import Backend.Feed.Group;
 import frontend.friends.FriendsManagement;
-import frontend.groups.GroupPage;
-import frontend.groups.GroupsManagement;
+import frontend.groups.groupsInfo.GroupPage;
+import frontend.groups.groupsFiltering.GroupsManagement;
 import frontend.notifications.*;
 import frontend.settings.Settings;
 import java.awt.Dimension;
@@ -85,6 +85,7 @@ public class Home extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(newsFeed);
 
+        Friends.setBackground(new java.awt.Color(0, 204, 153));
         Friends.setText("Friends");
         Friends.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +93,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Settings.setBackground(new java.awt.Color(0, 204, 153));
         Settings.setText("Settings");
         Settings.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +101,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Home.setBackground(new java.awt.Color(0, 204, 153));
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +109,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Profile.setBackground(new java.awt.Color(0, 204, 153));
         Profile.setText("Profile");
         Profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +117,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        NewContent.setBackground(new java.awt.Color(0, 204, 153));
         NewContent.setText("New content");
         NewContent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +125,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        LogOut.setBackground(new java.awt.Color(204, 0, 51));
         LogOut.setText("Log Out");
         LogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +133,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        View.setBackground(new java.awt.Color(255, 102, 153));
+        View.setBackground(new java.awt.Color(0, 204, 153));
         View.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         View.setText("VIEW");
         View.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +142,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        Groups.setBackground(new java.awt.Color(0, 204, 153));
         Groups.setText("Groups");
         Groups.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +150,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        notisToggle.setBackground(new java.awt.Color(0, 204, 153));
         notisToggle.setText("Notifications");
         notisToggle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +158,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        searchButton.setBackground(new java.awt.Color(0, 204, 153));
         searchButton.setText("Search");
         searchButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -1,4 +1,4 @@
-package frontend.groups;
+package frontend.groups.groupsInfo;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
@@ -43,7 +43,7 @@ public class EditContent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Post");
 
-        newCaption.setBackground(new java.awt.Color(255, 102, 153));
+        newCaption.setBackground(new java.awt.Color(0, 204, 153));
         newCaption.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         newCaption.setText("CHANGE CAPTION");
         newCaption.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +52,7 @@ public class EditContent extends javax.swing.JFrame {
             }
         });
 
-        newPicture.setBackground(new java.awt.Color(255, 102, 153));
+        newPicture.setBackground(new java.awt.Color(0, 204, 153));
         newPicture.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         newPicture.setText("CHANGE PICTURE");
         newPicture.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +63,7 @@ public class EditContent extends javax.swing.JFrame {
 
         jLabel1.setText("New Caption:");
 
-        CONFIRM.setBackground(new java.awt.Color(255, 102, 153));
+        CONFIRM.setBackground(new java.awt.Color(0, 204, 153));
         CONFIRM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CONFIRM.setText("CONFIRM");
         CONFIRM.addActionListener(new java.awt.event.ActionListener() {

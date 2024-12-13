@@ -49,7 +49,7 @@ public class changeBio extends javax.swing.JFrame {
         captionText.setRows(5);
         jScrollPane1.setViewportView(captionText);
 
-        confirmButton.setBackground(new java.awt.Color(255, 102, 153));
+        confirmButton.setBackground(new java.awt.Color(0, 204, 153));
         confirmButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         confirmButton.setText("CONFIRM");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {

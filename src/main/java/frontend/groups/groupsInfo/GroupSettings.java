@@ -1,4 +1,4 @@
-package frontend.groups;
+package frontend.groups.groupsInfo;
 
 import Backend.Account.Account;
 import Backend.Databases.Databases;
@@ -38,7 +38,7 @@ public class GroupSettings extends javax.swing.JFrame {
             }
         });
 
-        changePicture.setBackground(new java.awt.Color(255, 102, 153));
+        changePicture.setBackground(new java.awt.Color(0, 204, 153));
         changePicture.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         changePicture.setText("CHANGE GROUP PICTURE");
         changePicture.addActionListener(new java.awt.event.ActionListener() {
@@ -47,7 +47,7 @@ public class GroupSettings extends javax.swing.JFrame {
             }
         });
 
-        changeDescriptio.setBackground(new java.awt.Color(255, 102, 153));
+        changeDescriptio.setBackground(new java.awt.Color(0, 204, 153));
         changeDescriptio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         changeDescriptio.setText("CHANGE GROUP DESCRIPTION");
         changeDescriptio.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +66,7 @@ public class GroupSettings extends javax.swing.JFrame {
             }
         });
 
-        deleteGroup.setBackground(new java.awt.Color(255, 102, 153));
+        deleteGroup.setBackground(new java.awt.Color(0, 204, 153));
         deleteGroup.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         deleteGroup.setText("DELETE GROUP");
         deleteGroup.addActionListener(new java.awt.event.ActionListener() {
