@@ -17,6 +17,9 @@ public class GroupPage extends javax.swing.JFrame {
 
     public GroupPage(Account acc, Group group) {
         initComponents();
+        Database.read();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.acc = acc;
         this.g = group;
         Picture.setIcon(Database.getGroup(group.getName()).getPicture());

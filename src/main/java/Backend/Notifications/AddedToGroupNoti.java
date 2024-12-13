@@ -6,7 +6,7 @@ public class AddedToGroupNoti extends Notification {
 
     String groupName;
 
-    public AddedToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName) {
+    AddedToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName) {
         super(timestamp, opened);
         this.groupName = groupName;
         super.message = "Your request to join group" + groupName + ", was accepted!";

@@ -87,6 +87,7 @@ public class NotificationsDatabase {
             while ((line = reader.readLine()) != null) {
                 jsonContent.append(line);
             }
+            NotiFactory NF = new NotiFactory();
             JSONArray Arrayusers = new JSONArray(jsonContent.toString());
             for (int i = 0; i < Arrayusers.length(); i++) {
                 JSONObject userobj = Arrayusers.getJSONObject(i);
@@ -96,16 +97,13 @@ public class NotificationsDatabase {
                     JSONObject notiobj = Arraynotis.getJSONObject(j);
                     switch (notiobj.getString("type")) {
                         case "friendreq" -> {
-                            Notification newnoti = new FriendReqNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("sender"));
-                            acc.addNotification(newnoti);
+                            acc.addNotification(NF.CreateNoti("FriendRequest", LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("sender"), null, null));
                         }
                         case "addedtogroup" -> {
-                            Notification newnoti = new AddedToGroupNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"));
-                            acc.addNotification(newnoti);
+                            acc.addNotification(NF.CreateNoti("AddedToGroup", LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), null, null));
                         }
                         case "rolechange" -> {
-                            Notification newnoti = new GroupRoleChangeNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("newrole"));
-                            acc.addNotification(newnoti);
+                            acc.addNotification(NF.CreateNoti("RoleChange", LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("newrole"), null));
                         }
                         case "newposttogroup" -> {
                             JSONArray temparray = notiobj.getJSONArray("temp");
@@ -113,8 +111,7 @@ public class NotificationsDatabase {
                             for (int k = 0; k < temparray.length(); k++) {
                                 tempstring[k] = temparray.getString(k);
                             }
-                            Notification newnoti = new NewPostToGroupNoti(LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("posttype"), tempstring);
-                            acc.addNotification(newnoti);
+                            acc.addNotification(NF.CreateNoti("NewPost", LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("posttype"), tempstring));
                         }
                     }
                 }

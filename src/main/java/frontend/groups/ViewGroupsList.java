@@ -9,26 +9,30 @@ import java.awt.Dimension;
 import javax.swing.DefaultListModel;
 
 public class ViewGroupsList extends javax.swing.JFrame {
-    
+
     Account acc;
     Group g;
     private Databases Database = Databases.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
-    
+
     public ViewGroupsList(Account acc) {
         initComponents();
+        Database.read();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         this.acc = acc;
         groupsList.setPreferredSize(new Dimension(258, 286));
         errorText.setText("");
         Database.read();
         listModel.clear();
         for (Group group : Group.getGroups()) {
-            if(Database.getGroup(group.getName()).isMember(acc.getUsername())||Database.getGroup(group.getName()).getCreator().getUsername().equalsIgnoreCase(acc.getUsername()))
-            listModel.addElement(group.getName());
+            if (Database.getGroup(group.getName()).isMember(acc.getUsername()) || Database.getGroup(group.getName()).getCreator().getUsername().equalsIgnoreCase(acc.getUsername())) {
+                listModel.addElement(group.getName());
+            }
         }
         groupsList.setModel(listModel);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

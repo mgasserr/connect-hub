@@ -8,15 +8,15 @@ public class NewPostToGroupNoti extends Notification {
     String type;
     String[] temp;
 
-    public NewPostToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName, String type, String[] temp) {
+    NewPostToGroupNoti(LocalDateTime timestamp, boolean opened, String groupName, String posttype, String[] temp) {
         super(timestamp, opened);
-        if (type.equalsIgnoreCase("Post")) {
+        if (posttype.equalsIgnoreCase("Post")) {
             super.message = "A new post was added to group: " + groupName;
         } else {
             super.message = "A new story was added to group: " + groupName;
         }
         this.groupName = groupName;
-        this.type = type;
+        this.type = posttype;
         this.temp = temp;
     }
 

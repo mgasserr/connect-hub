@@ -4,9 +4,11 @@ import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
 import Backend.Notifications.FriendReqNoti;
+import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.time.LocalDateTime;
 import javax.swing.DefaultListModel;
 
 /**
@@ -218,13 +220,14 @@ public class FindUsers extends javax.swing.JFrame {
         Database.read();
         notiDatabase.read();
         errorText.setText("");
+        NotiFactory NF = new NotiFactory();
         int i = usersList.getSelectedIndex();
         if (i == -1) {
             errorText.setForeground(Color.red);
             errorText.setText("No accounts selected");
         } else {
             acc.getFriendsManagement().sendFriendRequest(usersList.getSelectedValue(), acc.getUsername());
-            Database.getAccount(usersList.getSelectedValue()).addNotification(new FriendReqNoti(null, false, acc.getUsername()));
+            Database.getAccount(usersList.getSelectedValue()).addNotification(NF.CreateNoti("FriendRequest", null, false, acc.getUsername(), null, null));
             Database.save();
             notiDatabase.save();
             listModel.clear();
