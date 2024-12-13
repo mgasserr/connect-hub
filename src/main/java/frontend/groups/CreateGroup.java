@@ -46,6 +46,8 @@ public class CreateGroup extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setText("GROUP DESCRIPTION");
 
+        Create.setBackground(new java.awt.Color(0, 204, 204));
+        Create.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Create.setText("CREATE");
         Create.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +55,8 @@ public class CreateGroup extends javax.swing.JFrame {
             }
         });
 
+        Home.setBackground(new java.awt.Color(0, 204, 204));
+        Home.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Home.setText("Home");
         Home.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +108,7 @@ public class CreateGroup extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(Create)
                 .addContainerGap())
         );
