@@ -68,7 +68,7 @@ public class changePass extends javax.swing.JFrame {
             }
         });
 
-        doneButton.setBackground(new java.awt.Color(0, 204, 204));
+        doneButton.setBackground(new java.awt.Color(255, 102, 153));
         doneButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         doneButton.setText("DONE");
         doneButton.addActionListener(new java.awt.event.ActionListener() {
@@ -77,7 +77,7 @@ public class changePass extends javax.swing.JFrame {
             }
         });
 
-        backButton.setBackground(new java.awt.Color(0, 204, 204));
+        backButton.setBackground(new java.awt.Color(255, 102, 153));
         backButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         backButton.setText("BACK");
         backButton.addActionListener(new java.awt.event.ActionListener() {
