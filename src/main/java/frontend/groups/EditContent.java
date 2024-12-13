@@ -43,6 +43,8 @@ public class EditContent extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Post");
 
+        newCaption.setBackground(new java.awt.Color(0, 204, 204));
+        newCaption.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         newCaption.setText("CHANGE CAPTION");
         newCaption.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -50,6 +52,8 @@ public class EditContent extends javax.swing.JFrame {
             }
         });
 
+        newPicture.setBackground(new java.awt.Color(0, 204, 204));
+        newPicture.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         newPicture.setText("CHANGE PICTURE");
         newPicture.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +63,8 @@ public class EditContent extends javax.swing.JFrame {
 
         jLabel1.setText("New Caption:");
 
+        CONFIRM.setBackground(new java.awt.Color(0, 204, 204));
+        CONFIRM.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         CONFIRM.setText("CONFIRM");
         CONFIRM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +100,7 @@ public class EditContent extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addContainerGap(112, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(caption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
