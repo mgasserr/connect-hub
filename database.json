@@ -2,51 +2,13 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [{
-         "creator": "y",
-         "stories": [],
-         "members": [
-            "g",
-            "m",
-            "z"
-         ],
-         "name": "yassin's group",
-         "description": "cmon guyzzzzzz",
-         "requests": [],
-         "posts": [
-            {
-               "path": "ImagesDatabase\\Content\\0002-0001.png",
-               "AuthorID": "0001",
-               "caption": "kqkak",
-               "ContentID": "0002-0001",
-               "timestamp": "2024-12-13T18:53:48.757530100"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0003-0004.png",
-               "AuthorID": "0004",
-               "caption": "hgtdrtfguhji",
-               "ContentID": "0007-0004",
-               "timestamp": "2024-12-13T19:03:12.057498300"
-            }
-         ],
-         "picture": "ImagesDatabase\\Default\\group.png",
-         "admins": ["g"]
-      }],
+      "groups": [],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [{
-         "path": "ImagesDatabase\\Content\\0001-0001.png",
-         "AuthorID": "0001",
-         "caption": "ho",
-         "ContentID": "0005-0001",
-         "timestamp": "2024-12-13T19:00:35.110309"
-      }],
+      "posts": [],
       "userid": "0001",
-      "friends": [
-         "g",
-         "m"
-      ],
+      "friends": [],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
@@ -61,32 +23,13 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [{
-         "creator": "g",
-         "stories": [],
-         "members": ["y"],
-         "name": "g's group",
-         "description": "cokoko",
-         "requests": [],
-         "posts": [{
-            "path": "ImagesDatabase\\Content\\0004-0001.png",
-            "AuthorID": "0001",
-            "caption": "kokokokokokokokokokokokoko",
-            "ContentID": "0006-0001",
-            "timestamp": "2024-12-13T19:01:01.900848200"
-         }],
-         "picture": "ImagesDatabase\\Default\\group.png",
-         "admins": []
-      }],
+      "groups": [],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0002",
-      "friends": [
-         "y",
-         "z"
-      ],
+      "friends": [],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
@@ -105,31 +48,9 @@
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [
-         {
-            "path": "ImagesDatabase\\Content\\0005-0003.png",
-            "AuthorID": "0003",
-            "caption": "fuuuuuuuuuuuu",
-            "ContentID": "0001-0003",
-            "timestamp": "2024-12-13T18:49:01.004187200"
-         },
-         {
-            "path": "ImagesDatabase\\Content\\0006-0003.png",
-            "AuthorID": "0003",
-            "caption": "holynno",
-            "ContentID": "0003-0003",
-            "timestamp": "2024-12-13T18:56:02.668808600"
-         },
-         {
-            "path": "ImagesDatabase\\Content\\0007-0003.png",
-            "AuthorID": "0003",
-            "caption": "fuc",
-            "ContentID": "0004-0003",
-            "timestamp": "2024-12-13T18:58:50.776858600"
-         }
-      ],
+      "posts": [],
       "userid": "0003",
-      "friends": ["y"],
+      "friends": [],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
@@ -144,23 +65,13 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [{
-         "creator": "z",
-         "stories": [],
-         "members": [],
-         "name": "zozo grp",
-         "description": "zoz",
-         "requests": [],
-         "posts": [],
-         "picture": "ImagesDatabase\\Default\\group.png",
-         "admins": []
-      }],
+      "groups": [],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0004",
-      "friends": ["g"],
+      "friends": [],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
