@@ -65,10 +65,19 @@ public class FriendsManagement {
         this.BlockedUsers.add(user);
     }
 
-    public void addBlockedBy(Account friend, Account myacc) {
-        this.BlockedBy.add(friend);
-        if (myacc.getFriendsManagement().getFriends().contains(friend)) {
-            myacc.getFriendsManagement().removeFriend(friend);
+    public void addBlockedBy(Account blocker, Account myacc) {
+        this.BlockedBy.add(blocker);
+        if (myacc.getFriendsManagement().getFriends().contains(Database.getAccount(blocker.getUsername()))) {
+            myacc.getFriendsManagement().removeFriend(Database.getAccount(blocker.getUsername()));
+        }
+        if (myacc.getFriendsManagement().getReceivedFriendRequests().contains(blocker)) {
+            myacc.getFriendsManagement().removeReceivedFriendRequest(blocker);
+            Database.getAccount(blocker.getUsername()).getFriendsManagement().removeSentFriendRequest(Database.getAccount(myacc.getUsername()));
+            Database.getAccount(myacc.getUsername()).removeReqNotibySender(blocker.getUsername());
+        } else if (blocker.getFriendsManagement().getReceivedFriendRequests().contains(myacc)) {
+            blocker.getFriendsManagement().removeReceivedFriendRequest(myacc);
+            Database.getAccount(myacc.getUsername()).getFriendsManagement().removeSentFriendRequest(Database.getAccount(blocker.getUsername()));
+            Database.getAccount(blocker.getUsername()).removeReqNotibySender(myacc.getUsername());
         }
     }
 
@@ -129,6 +138,34 @@ public class FriendsManagement {
 
     public boolean hasFriend(String username) {
         for (Account friend : Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends()) {
+            if (friend.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isBlockedORBlockedBy(String username) {
+        for (Account friend : Database.getAccount(acc.getUsername()).getFriendsManagement().getBlockedUsers()) {
+            if (friend.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        for (Account friend : Database.getAccount(acc.getUsername()).getFriendsManagement().getBlockedBy()) {
+            if (friend.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isRequestedORSent(String username) {
+        for (Account friend : Database.getAccount(acc.getUsername()).getFriendsManagement().getReceivedFriendRequests()) {
+            if (friend.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        for (Account friend : Database.getAccount(acc.getUsername()).getFriendsManagement().getSentFriendRequests()) {
             if (friend.getUsername().equals(username)) {
                 return true;
             }

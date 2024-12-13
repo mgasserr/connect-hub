@@ -153,8 +153,9 @@ public class ViewRequestsList extends javax.swing.JFrame {
             }
             Database.save();
             listModel.clear();
-            for (Account member : Database.getGroup(g.getName()).getRequests()) {
-                listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
+            usersList.setModel(listModel);
+            for (Account members : Database.getGroup(g.getName()).getRequests()) {
+                listModel.addElement(members.getUsername());
             }
             usersList.setModel(listModel);
             errorText.setForeground(Color.black);
@@ -179,11 +180,13 @@ public class ViewRequestsList extends javax.swing.JFrame {
             for (Account account : Database.getGroup(g.getName()).getAdmins()) {
                 Database.getAccount(account.getUsername()).removeMemberReqNotibyRequester(usernamelist);
             }
+            Database.getAccount(Database.getGroup(g.getName()).getCreator().getUsername()).removeMemberReqNotibyRequester(usernamelist);
             Database.save();
             notiDatabase.save();
             listModel.clear();
+            usersList.setModel(listModel);
             for (Account member : Database.getGroup(g.getName()).getRequests()) {
-                listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
+                listModel.addElement(member.getUsername());
             }
             usersList.setModel(listModel);
             errorText.setForeground(Color.black);

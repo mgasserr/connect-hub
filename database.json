@@ -5,7 +5,11 @@
       "groups": [{
          "creator": "y",
          "stories": [],
-         "members": ["g"],
+         "members": [
+            "g",
+            "m",
+            "z"
+         ],
          "name": "yassin's group",
          "description": "cmon guyzzzzzz",
          "requests": [],
@@ -55,7 +59,10 @@
       "sentfriends": [],
       "posts": [],
       "userid": "0002",
-      "friends": ["y"],
+      "friends": [
+         "y",
+         "z"
+      ],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
@@ -107,7 +114,7 @@
       "sentfriends": [],
       "posts": [],
       "userid": "0004",
-      "friends": [],
+      "friends": ["g"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
