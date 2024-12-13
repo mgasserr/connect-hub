@@ -40,6 +40,12 @@ public class NewPostToGroupNotiJPANEL extends javax.swing.JPanel {
         this.acc = acc;
         this.temp = ((NewPostToGroupNoti) noti).getTemp();
         this.popupmenu = popupmenu;
+        this.groupName = ((NewPostToGroupNoti) noti).getGroupName();
+        if(acc.getUsername().equals(Database.getGroup(groupName).getCreator())){
+            leaveButton.setVisible(false);
+        }else{
+            leaveButton.setVisible(true);
+        }
         this.popupmenu.addPopupMenuListener(new PopupMenuListener() {
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
@@ -60,7 +66,6 @@ public class NewPostToGroupNotiJPANEL extends javax.swing.JPanel {
             public void popupMenuCanceled(PopupMenuEvent e) {
             }
         });
-        this.groupName = ((NewPostToGroupNoti) noti).getGroupName();
         messageLabel.setText(noti.getMessage());
         timeLabel.setText(noti.getTimestamp().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
         if (Database.getGroup(groupName).getCreator().getUsername().equals(acc.getUsername())) {
