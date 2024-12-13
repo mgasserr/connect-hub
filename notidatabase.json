@@ -1,4 +1,73 @@
-[{
-   "userid": "0001",
-   "notifications": []
-}]
+[
+   {
+      "userid": "0001",
+      "notifications": []
+   },
+   {
+      "userid": "0002",
+      "notifications": [
+         {
+            "opened": "false",
+            "time": "2024-12-13T04:21:24.122904600",
+            "type": "addedtogroup",
+            "groupname": "m"
+         },
+         {
+            "opened": "false",
+            "time": "2024-12-13T04:21:39.724512300",
+            "type": "rolechange",
+            "groupname": "m",
+            "newrole": "Admin"
+         }
+      ]
+   },
+   {
+      "userid": "0003",
+      "notifications": [
+         {
+            "opened": "false",
+            "time": "2024-12-13T04:21:21.710725100",
+            "type": "addedtogroup",
+            "groupname": "m"
+         },
+         {
+            "opened": "false",
+            "time": "2024-12-13T04:21:56.244023400",
+            "type": "addedtogroup",
+            "groupname": "yassin group"
+         },
+         {
+            "opened": "false",
+            "time": "2024-12-13T04:29:01.661174100",
+            "type": "rolechange",
+            "groupname": "yassin group",
+            "newrole": "Admin"
+         }
+      ]
+   },
+   {
+      "userid": "0004",
+      "notifications": [
+         {
+            "opened": "false",
+            "time": "2024-12-13T04:21:53.485649300",
+            "type": "addedtogroup",
+            "groupname": "yassin group"
+         },
+         {
+            "temp": [
+               "Content",
+               "g",
+               "2024-12-13T04:27:34.122536700",
+               "koki",
+               "ImagesDatabase\\Content\\0002-0003.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T04:27:34.125528800",
+            "type": "newposttogroup",
+            "groupname": "yassin group"
+         }
+      ]
+   }
+]
