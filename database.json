@@ -8,7 +8,13 @@
       "name": "m",
       "description": "m",
       "requests": [],
-      "posts": [],
+      "posts": [{
+         "path": "ImagesDatabase\\Content\\0001-0001.png",
+         "AuthorID": "0001",
+         "caption": "holaaaaaa",
+         "ContentID": "0001-0001",
+         "timestamp": "2024-12-13T02:38:50.062282600"
+      }],
       "picture": "ImagesDatabase\\Default\\group.png",
       "admins": []
    }],

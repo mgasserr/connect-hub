@@ -11,12 +11,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 public class GroupPage extends javax.swing.JFrame {
-    
+
     Account acc;
     Group g;
     Databases Database = Databases.getInstance();
     String[] temp;
-    
+
     public GroupPage(Account acc, Group group) {
         initComponents();
         Database.read();
@@ -25,7 +25,7 @@ public class GroupPage extends javax.swing.JFrame {
         Picture.setIcon(Database.getGroup(group.getName()).getPicture());
         name.setText(Database.getGroup(group.getName()).getName());
         description.setText(Database.getGroup(group.getName()).getDescription());
-        
+
         DefaultListModel<String> postsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
         for (int j = 0; j < Database.getGroup(g.getName()).getContent().size(); j++) {
             // Extract content details
@@ -38,21 +38,27 @@ public class GroupPage extends javax.swing.JFrame {
             postsFeedModel.addElement(listItem);
         }
         postsList.setModel(postsFeedModel);
-        
+
         Settings.setVisible(false);
         ViewRequests.setVisible(false);
+        DeleteContent.setVisible(false);
+        EditContent.setVisible(false);
         Leave.setVisible(true);
+        
         if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername())) {
             Settings.setVisible(true);
             ViewRequests.setVisible(true);
+            DeleteContent.setVisible(true);
+            EditContent.setVisible(true);
             Leave.setVisible(false);
         }
-        
         if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
             ViewRequests.setVisible(true);
+            DeleteContent.setVisible(true);
+            EditContent.setVisible(true);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -152,6 +158,11 @@ public class GroupPage extends javax.swing.JFrame {
         });
 
         EditContent.setText("EDIT POST");
+        EditContent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditContentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,7 +335,6 @@ public class GroupPage extends javax.swing.JFrame {
                 Path dest = Path.of(temp[4]);
                 String temp1 = dest.getFileName().toString();
                 String temp2 = temp1.substring(0, temp1.length() - 4);
-                System.out.println((Database.getGroup(g.getName()).getContent().size()));
                 Database.getGroup(g.getName()).removeContent(Database.getGroup(g.getName()).getcontent(temp2));
                 Database.save();
                 DefaultListModel x = (DefaultListModel) postsList.getModel();
@@ -338,6 +348,25 @@ public class GroupPage extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         Database.logoutDatabase(acc.getUsername());
     }//GEN-LAST:event_formWindowClosing
+
+    private void EditContentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditContentActionPerformed
+        if (Database.getGroup(g.getName()).getCreator().getUsername().equals(acc.getUsername()) || Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
+            int i = postsList.getSelectedIndex();
+            if (i == -1) {
+                JOptionPane.showMessageDialog(this, "Choose a content to edit!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String line = postsList.getSelectedValue();
+                String[] temp = line.split("~");
+                Path dest = Path.of(temp[4]);
+                String temp1 = dest.getFileName().toString();
+                String temp2 = temp1.substring(0, temp1.length() - 4);
+                EditContent EC = new EditContent(acc, g, temp2, this);
+                EC.setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "You must be admin or above to delete a post!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_EditContentActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

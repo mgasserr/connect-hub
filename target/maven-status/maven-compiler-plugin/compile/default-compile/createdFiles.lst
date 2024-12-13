@@ -16,6 +16,7 @@ frontend\groups\GroupPage$5.class
 frontend\notifications\RoleChangeNotiJPANEL.class
 frontend\friends\FriendsManagement$3.class
 frontend\settings\changeCoverPic$4.class
+frontend\groups\EditContent.class
 frontend\notifications\NewPostToGroupNotiJPANEL$1.class
 frontend\groups\FindGroup.class
 frontend\groups\ViewMembersList$3.class
@@ -35,6 +36,7 @@ frontend\groups\ViewRequestsList$1.class
 frontend\notifications\NewPostToGroupNotiJPANEL$2.class
 frontend\groups\AddPost$5.class
 frontend\groups\CreateGroup$1.class
+frontend\groups\GroupPage$10.class
 frontend\settings\changeBio.class
 frontend\settings\changeBio$1.class
 frontend\groups\GroupsManagement$2.class
@@ -67,6 +69,7 @@ frontend\settings\Settings$1.class
 Backend\Account\Activity.class
 frontend\groups\AddPost$1.class
 frontend\general\AddContent.class
+frontend\groups\EditContent$2.class
 frontend\groups\GroupPage$1.class
 Backend\Databases\Databases.class
 frontend\groups\ViewMembersList$2.class
@@ -81,6 +84,7 @@ frontend\friends\FriendsManagement$8.class
 frontend\groups\changeDescription$1.class
 frontend\general\Startup$1.class
 frontend\general\Signup$3.class
+frontend\groups\EditContent$3.class
 frontend\settings\Settings$5.class
 frontend\general\Home$3.class
 frontend\notifications\AddedToGroupNotiJPANEL.class
@@ -97,6 +101,7 @@ frontend\friends\FriendsManagement$6.class
 frontend\friends\FindUsers$5.class
 frontend\groups\AddPost.class
 Backend\Authentication\PasswordHash.class
+frontend\groups\EditContent$1.class
 frontend\groups\GroupSettings.class
 frontend\friends\ViewBlockList$1.class
 frontend\friends\ViewFriendsList$1.class
