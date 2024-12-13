@@ -29,7 +29,7 @@ public class Group {
         this.Creator = Creator;
         this.Name = Name;
         if (Picture == null) {
-            this.Picture = new ImageIcon("ImagesDatabase//Default//group.png");
+            this.Picture = new ImageIcon("ImagesDatabase\\Default\\group.png");
         } else {
             this.Picture = Picture;
         }
@@ -73,7 +73,7 @@ public class Group {
 
     public void setPicture(String Imgpath) {
         Path Src = Path.of(Imgpath);
-        Path dest = Path.of("ImagesDatabase//Group//" + count + ".png");
+        Path dest = Path.of("ImagesDatabase\\Group\\" + count + ".png");
         try {
             // Ensure the destination directory exists
             Files.createDirectories(dest.getParent());
@@ -88,6 +88,10 @@ public class Group {
 
     public static void resetGroupCount() {
         count = 0;
+    }
+
+    public static int getCount() {
+        return count;
     }
 
     //SECONDARY METHODS FOR GROUPS
@@ -191,11 +195,19 @@ public class Group {
 
     public void addContent(Content content) {
         this.content.add(content);
-
     }
 
     public void removeContent(Content content) {
         this.content.remove(content);
+    }
+
+    public Content getcontent(String contentID) {
+        for (int i = 0; i < content.size(); i++) {
+            if (content.get(i).getContentId().equals(contentID)) {
+                return content.get(i);
+            }
+        }
+        return null;
     }
 
 }

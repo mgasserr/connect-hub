@@ -30,7 +30,7 @@ public abstract class Content {
         }
         setContentMap(ContentMap);
         Path Src = Path.of((String) this.ContentMap.get("Path"));
-        Path dest = Path.of("ImagesDatabase//Content//" + this.contentId + ".png");
+        Path dest = Path.of("ImagesDatabase\\Content\\" + this.contentId + ".png");
         this.ContentMap.put("Path", dest.toString());
         try {
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
@@ -66,7 +66,7 @@ public abstract class Content {
     public void setContentMap(Map<String, String> ContentMap) {
         this.ContentMap = ContentMap;
         Path Src = Path.of(this.ContentMap.get("Path"));
-        Path dest = Path.of("ImagesDatabase/Content//" + contentId + ".png");
+        Path dest = Path.of("ImagesDatabase\\Content\\" + contentId + ".png");
         try {
             Files.copy(Src, dest, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException ex) {

@@ -3,9 +3,7 @@ package frontend.groups;
 import Backend.Account.Account;
 import Backend.Databases.Databases;
 import Backend.Feed.Group;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
+import frontend.general.Home;
 import javax.swing.JOptionPane;
 
 public class CreateGroup extends javax.swing.JFrame {
@@ -13,7 +11,6 @@ public class CreateGroup extends javax.swing.JFrame {
     Account acc;
     Databases Database = Databases.getInstance();
     Databases D = Databases.getInstance();
-    String path;
 
     public CreateGroup(Account acc) {
         initComponents();
@@ -21,21 +18,17 @@ public class CreateGroup extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
         this.acc = acc;
-        picture.setIcon(new ImageIcon("ImagesDatabase//Default//group.png"));
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        picture = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Create = new javax.swing.JButton();
         Home = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        Change = new javax.swing.JButton();
         name = new javax.swing.JTextField();
         Description = new javax.swing.JTextField();
 
@@ -46,9 +39,6 @@ public class CreateGroup extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("GROUP PICTURE");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("GROUP NAME");
@@ -64,43 +54,35 @@ public class CreateGroup extends javax.swing.JFrame {
         });
 
         Home.setText("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
         jLabel1.setText("Create Group");
-
-        Change.setText("CHANGE");
-        Change.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChangeActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Home)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(Change, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(picture, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                    .addComponent(name)
-                    .addComponent(Description))
-                .addGap(111, 111, 111))
+                    .addComponent(Home, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(name)
+                        .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(222, 222, 222)
+                .addGap(159, 159, 159)
                 .addComponent(Create)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -111,22 +93,18 @@ public class CreateGroup extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(Home))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(picture, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(Change)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(Description, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
                 .addComponent(Create)
                 .addContainerGap())
         );
@@ -139,42 +117,32 @@ public class CreateGroup extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
-        D.read();
-        String name = this.name.getText();
-        String desc = this.Description.getText();
-
-        Group g = new Group(acc, name, desc, null);
-        g.addGroup(g, acc.getUsername());
-        D.save();
+        if (name.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Enter the group name!", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            D.read();
+            String name = this.name.getText();
+            String desc = this.Description.getText();
+            Group g = new Group(acc, name, desc, null);
+            g.addGroup(g, acc.getUsername());
+            D.save();
+            JOptionPane.showMessageDialog(this, " Created successfully.");
+        }
     }//GEN-LAST:event_CreateActionPerformed
 
-    private void ChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChangeActionPerformed
-        JFileChooser fc = new JFileChooser();
-        Database.read();
-        if (fc.showOpenDialog(fc) == JFileChooser.APPROVE_OPTION) {
-            File tempfile = fc.getSelectedFile();
-            if (!tempfile.getName().endsWith(".png") && !tempfile.getName().endsWith(".jpg") && !tempfile.getName().endsWith(".jpeg")) {
-                JOptionPane.showMessageDialog(this, "Please choose a .png/.jpg/.jpeg file only.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            } else {
-                
-                this.path = tempfile.getAbsolutePath();
-                ImageIcon img = new ImageIcon(path);
-                this.picture.setIcon(img);
-                Database.save();
-            }
-        }
-    }//GEN-LAST:event_ChangeActionPerformed
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        Home home = new Home(acc);
+        home.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_HomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Change;
     private javax.swing.JButton Create;
     private javax.swing.JTextField Description;
     private javax.swing.JButton Home;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField name;
-    private javax.swing.JLabel picture;
     // End of variables declaration//GEN-END:variables
 }

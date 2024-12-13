@@ -34,6 +34,18 @@ public class ViewMembersList extends javax.swing.JFrame {
             listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
         }
         usersList.setModel(listModel);
+
+        Promote.setVisible(true);
+        Demote.setVisible(true);
+        Remove.setVisible(true);
+        if (Database.getGroup(g.getName()).isMember(acc.getUsername())) {
+            Promote.setVisible(false);
+            Demote.setVisible(false);
+            Remove.setVisible(false);
+        }
+        if(Database.getGroup(g.getName()).isAdmin(acc.getUsername())){
+            Remove.setVisible(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -217,7 +229,6 @@ public class ViewMembersList extends javax.swing.JFrame {
                     errorText.setText("You can't remove someone in the same position or higher!");
                 } else {
                     Database.getGroup(g.getName()).removeMember(usernamelist);
-                    Database.getAccount(usernamelist).removeGroup(g); //MAYBE WONT WORK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                     errorText.setForeground(Color.green);
                     errorText.setText("Member removed!");
                 }

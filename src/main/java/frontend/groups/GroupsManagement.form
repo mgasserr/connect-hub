@@ -35,13 +35,13 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="182" max="32767" attributes="0"/>
+              <EmptySpace pref="141" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="Search" max="32767" attributes="0"/>
                   <Component id="Create" max="32767" attributes="0"/>
-                  <Component id="GroupList" min="-2" max="-2" attributes="0"/>
+                  <Component id="GroupsSuggestions" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -53,13 +53,13 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Home" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
               <Component id="Search" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="Create" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="GroupList" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="111" max="32767" attributes="0"/>
+              <Component id="GroupsSuggestions" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="75" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,6 +74,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Home"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="HomeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Search">
       <Properties>
@@ -91,12 +94,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="GroupList">
+    <Component class="javax.swing.JButton" name="GroupsSuggestions">
       <Properties>
-        <Property name="text" type="java.lang.String" value="VIEW GROUPS LIST"/>
+        <Property name="text" type="java.lang.String" value="GROUPS SUGGESTION"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroupListActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GroupsSuggestionsActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

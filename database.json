@@ -2,21 +2,37 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [],
+      "groups": [{
+         "creator": "m",
+         "stories": [],
+         "members": ["y"],
+         "name": "m",
+         "description": "m",
+         "requests": [],
+         "posts": [{
+            "path": "ImagesDatabase\\Content\\0001-0001.png",
+            "AuthorID": "0001",
+            "caption": "holaaaaaa",
+            "ContentID": "0001-0001",
+            "timestamp": "2024-12-13T02:38:50.062282600"
+         }],
+         "picture": "ImagesDatabase\\Default\\group.png",
+         "admins": ["y"]
+      }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0001",
-      "friends": ["m"],
+      "friends": [],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2009-01-01",
+         "coverimg": "ImagesDatabase\\Default\\cover.jpg",
+         "dob": "1988-01-01",
          "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "y@g.co",
-         "username": "y",
+         "profileimg": "ImagesDatabase\\Default\\profile.png",
+         "email": "m@a.co",
+         "username": "m",
          "status": "OFFLINE"
       }]
    },
@@ -24,86 +40,72 @@
       "stories": [],
       "blocked": [],
       "groups": [{
-         "creator": "m",
+         "creator": "y",
          "stories": [],
-         "members": [],
-         "name": "hi",
-         "description": "hi",
+         "members": ["g"],
+         "name": "yassin group",
+         "description": "drips",
          "requests": [],
-         "posts": [
-            {
-               "path": "ImagesDatabase\\Content\\0003-0002.png",
-               "AuthorID": "0002",
-               "caption": "hi",
-               "timestamp": "2024-12-12T16:33:38.569772400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0004-0002.png",
-               "AuthorID": "0002",
-               "caption": "hhhhhhh",
-               "timestamp": "2024-12-12T17:20:44.089038400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0005-0001.png",
-               "AuthorID": "0001",
-               "caption": "ikk",
-               "timestamp": "2024-12-12T17:23:03.247304900"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0006-0002.png",
-               "AuthorID": "0002",
-               "caption": "sss",
-               "timestamp": "2024-12-12T17:28:04.897225400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0007-0002.png",
-               "AuthorID": "0002",
-               "caption": "TESTT",
-               "timestamp": "2024-12-12T17:29:14.289047500"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0008-0001.png",
-               "AuthorID": "0001",
-               "caption": "asdasdasdasdddddd",
-               "timestamp": "2024-12-12T17:33:53.814790400"
-            },
-            {
-               "path": "ImagesDatabase\\Content\\0009-0002.png",
-               "AuthorID": "0002",
-               "caption": "sssssdddd",
-               "timestamp": "2024-12-12T17:37:19.749711200"
-            }
-         ],
-         "picture": "ImagesDatabase//Default//group.png",
-         "admins": ["y"]
+         "posts": [],
+         "picture": "ImagesDatabase\\Default\\group.png",
+         "admins": ["g"]
       }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [
-         {
-            "path": "ImagesDatabase\\Content\\0001-0002.png",
-            "AuthorID": "0002",
-            "caption": "",
-            "timestamp": "2024-12-12T16:33:29.539785300"
-         },
-         {
-            "path": "ImagesDatabase\\Content\\0002-0002.png",
-            "AuthorID": "0002",
-            "caption": "kk",
-            "timestamp": "2024-12-12T16:38:46.176692300"
-         }
-      ],
+      "posts": [],
       "userid": "0002",
-      "friends": ["y"],
+      "friends": [],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
-         "coverimg": "ImagesDatabase//Default//cover.jpg",
-         "dob": "2004-01-01",
+         "coverimg": "ImagesDatabase\\Default\\cover.jpg",
+         "dob": "1993-01-01",
          "bio": "",
-         "profileimg": "ImagesDatabase//Default//profile.png",
-         "email": "m@g.co",
-         "username": "m",
+         "profileimg": "ImagesDatabase\\Default\\profile.png",
+         "email": "y@sdheq.com",
+         "username": "y",
+         "status": "OFFLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "groups": [],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0003",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase\\Default\\cover.jpg",
+         "dob": "1988-01-01",
+         "bio": "",
+         "profileimg": "ImagesDatabase\\Default\\profile.png",
+         "email": "g@eufh.copm",
+         "username": "g",
+         "status": "OFFLINE"
+      }]
+   },
+   {
+      "stories": [],
+      "blocked": [],
+      "groups": [],
+      "receivedfriends": [],
+      "blockedBY": [],
+      "sentfriends": [],
+      "posts": [],
+      "userid": "0004",
+      "friends": [],
+      "info": [{
+         "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
+         "coverimg": "ImagesDatabase\\Default\\cover.jpg",
+         "dob": "1999-01-01",
+         "bio": "",
+         "profileimg": "ImagesDatabase\\Default\\profile.png",
+         "email": "z@qedfu.com",
+         "username": "z",
          "status": "OFFLINE"
       }]
    }

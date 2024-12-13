@@ -141,9 +141,7 @@ public class GroupSettings extends javax.swing.JFrame {
     private void deleteGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGroupActionPerformed
         Database.read();
         g.removeGroup(Database.getGroup(g.getName()), g.getCreator().getUsername());
-        System.out.println(Group.getGroups().size() + "kk");
         Database.save();
-        System.out.println(Group.getGroups().size() + "kkk");
         Home home = new Home(acc);
         home.setVisible(true);
         this.setVisible(false);
