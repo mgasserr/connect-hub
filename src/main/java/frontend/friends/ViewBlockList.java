@@ -61,7 +61,7 @@ public class ViewBlockList extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(usersList);
 
-        unblockButton.setBackground(new java.awt.Color(0, 204, 204));
+        unblockButton.setBackground(new java.awt.Color(255, 102, 153));
         unblockButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         unblockButton.setText("UNBLOCK");
         unblockButton.addActionListener(new java.awt.event.ActionListener() {
