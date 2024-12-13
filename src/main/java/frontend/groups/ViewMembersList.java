@@ -9,6 +9,8 @@ import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.DefaultListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ViewMembersList extends javax.swing.JFrame {
 
@@ -34,17 +36,32 @@ public class ViewMembersList extends javax.swing.JFrame {
             listModel.addElement(members.getUsername() + " -" + members.getStatus().toString());
         }
         usersList.setModel(listModel);
-
+        usersList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int selectedIndex = usersList.getSelectedIndex();
+                    String selectedString = usersList.getSelectedValue();
+                    if (selectedIndex != -1) {
+                        if (selectedString.replace(" -OFFLINE", "").equals(acc.getUsername()) || selectedString.replace(" -ONLINE", "").equals(acc.getUsername())) {
+                            removeButton.setVisible(false);
+                        } else {
+                            removeButton.setVisible(true);
+                        }
+                    }
+                }
+            }
+        });
         Promote.setVisible(true);
         Demote.setVisible(true);
-        Remove.setVisible(true);
+        removeButton.setVisible(true);
         if (Database.getGroup(g.getName()).isMember(acc.getUsername())) {
             Promote.setVisible(false);
             Demote.setVisible(false);
-            Remove.setVisible(false);
+            removeButton.setVisible(false);
         }
-        if(Database.getGroup(g.getName()).isAdmin(acc.getUsername())){
-            Remove.setVisible(true);
+        if (Database.getGroup(g.getName()).isAdmin(acc.getUsername())) {
+            removeButton.setVisible(true);
         }
     }
 
@@ -56,7 +73,7 @@ public class ViewMembersList extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         usersList = new javax.swing.JList<>();
-        Remove = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
         errorText = new javax.swing.JLabel();
         Home = new javax.swing.JButton();
         Demote = new javax.swing.JButton();
@@ -83,12 +100,12 @@ public class ViewMembersList extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(usersList);
 
-        Remove.setBackground(new java.awt.Color(0, 204, 204));
-        Remove.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        Remove.setText("REMOVE");
-        Remove.addActionListener(new java.awt.event.ActionListener() {
+        removeButton.setBackground(new java.awt.Color(0, 204, 204));
+        removeButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        removeButton.setText("REMOVE");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RemoveActionPerformed(evt);
+                removeButtonActionPerformed(evt);
             }
         });
 
@@ -122,7 +139,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                         .addGap(72, 72, 72)
                         .addComponent(Demote)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Remove))
+                        .addComponent(removeButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -132,8 +149,8 @@ public class ViewMembersList extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(errorText, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -151,7 +168,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Promote)
                     .addComponent(Demote)
-                    .addComponent(Remove))
+                    .addComponent(removeButton))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -196,7 +213,7 @@ public class ViewMembersList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_PromoteActionPerformed
 
-    private void RemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveActionPerformed
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         // TODO add your handling code here:
         errorText.setText("");
         int i = usersList.getSelectedIndex();
@@ -245,7 +262,7 @@ public class ViewMembersList extends javax.swing.JFrame {
             usersList.setModel(listModel);
 
         }
-    }//GEN-LAST:event_RemoveActionPerformed
+    }//GEN-LAST:event_removeButtonActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
         // TODO add your handling code here:
@@ -302,10 +319,10 @@ public class ViewMembersList extends javax.swing.JFrame {
     private javax.swing.JButton Demote;
     private javax.swing.JButton Home;
     private javax.swing.JButton Promote;
-    private javax.swing.JButton Remove;
     private javax.swing.JLabel errorText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeButton;
     private javax.swing.JList<String> usersList;
     // End of variables declaration//GEN-END:variables
 }
