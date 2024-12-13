@@ -61,6 +61,11 @@ public class NotificationsDatabase {
                         }
                         notiobj.put("temp", temparray);
                     }
+                    case MemberJoinReqNoti memberJoinReqNoti -> {
+                        notiobj.put("type", "memberrequest");
+                        notiobj.put("groupname", memberJoinReqNoti.getGroupName());
+                        notiobj.put("requester", memberJoinReqNoti.getRequester());
+                    }
                     default -> {
                         System.out.println("Error in reading notification type.");
                     }
@@ -104,6 +109,9 @@ public class NotificationsDatabase {
                         }
                         case "rolechange" -> {
                             acc.addNotification(NF.CreateNoti("RoleChange", LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("newrole"), null));
+                        }
+                        case "memberrequest" -> {
+                            acc.addNotification(NF.CreateNoti("MemberRequest", LocalDateTime.parse(notiobj.getString("time")), notiobj.getBoolean("opened"), notiobj.getString("groupname"), notiobj.getString("requester"), null));
                         }
                         case "newposttogroup" -> {
                             JSONArray temparray = notiobj.getJSONArray("temp");

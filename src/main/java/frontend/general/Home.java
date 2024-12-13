@@ -69,6 +69,7 @@ public class Home extends javax.swing.JFrame {
         View = new javax.swing.JButton();
         Groups = new javax.swing.JButton();
         notisToggle = new javax.swing.JToggleButton();
+        searchButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -148,6 +149,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        searchButton.setText("Search");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,20 +180,20 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(notisToggle, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(Settings)
-                        .addGap(18, 18, 18)
+                        .addGap(17, 17, 17)
+                        .addComponent(searchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(View)
+                        .addGap(328, 328, 328)
                         .addComponent(LogOut)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(View)
-                .addGap(416, 416, 416))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LogOut)
                     .addComponent(Settings)
                     .addComponent(NewContent)
                     .addComponent(Friends)
@@ -193,11 +201,14 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(Home)
                     .addComponent(jLabel1)
                     .addComponent(Groups)
-                    .addComponent(notisToggle))
+                    .addComponent(notisToggle)
+                    .addComponent(searchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(7, 7, 7)
-                .addComponent(View)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(View)
+                    .addComponent(LogOut))
                 .addContainerGap())
         );
 
@@ -242,6 +253,10 @@ public class Home extends javax.swing.JFrame {
             } else if (noti instanceof NewPostToGroupNoti) {
                 counter++;
                 NewPostToGroupNotiJPANEL newjPanel = new NewPostToGroupNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
+                notiPopupMenu.add(newjPanel);
+            } else if (noti instanceof MemberJoinReqNoti) {
+                counter++;
+                MemberRequestNotiJPANEL newjPanel = new MemberRequestNotiJPANEL(Database.getAccount(acc.getUsername()), noti, notiPopupMenu, this);
                 notiPopupMenu.add(newjPanel);
             }
         }
@@ -328,7 +343,7 @@ public class Home extends javax.swing.JFrame {
         GroupsManagement g = new GroupsManagement(acc);
         g.setVisible(true);
         this.setVisible(false);
-    ///////////////////////////////////////////////
+        ///////////////////////////////////////////////
         /*test t = new test(acc);
         t.setVisible(true);
         this.setVisible(false);*/
@@ -337,6 +352,13 @@ public class Home extends javax.swing.JFrame {
     private void notisToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notisToggleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_notisToggleActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        Database.read();
+        Search search = new Search(acc);
+        search.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_searchButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -353,5 +375,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JList<String> newsFeed;
     private javax.swing.JPopupMenu notiPopupMenu;
     private javax.swing.JToggleButton notisToggle;
+    private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
 }

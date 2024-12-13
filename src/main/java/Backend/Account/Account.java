@@ -208,6 +208,17 @@ public class Account {
         }
     }
 
+    public void removeMemberReqNotibyRequester(String username) {
+        for (Notification notification : notifications) {
+            if (notification instanceof MemberJoinReqNoti memberJoinReqNoti) {
+                if (memberJoinReqNoti.getRequester().equals(username)) {
+                    this.notifications.remove(notification);
+                    return;
+                }
+            }
+        }
+    }
+
     public void removeALLGroupNotisbyGroupName(String groupname) {
         ArrayList<Notification> toRemove = new ArrayList<>();
         for (Notification notification : notifications) {
