@@ -9,7 +9,13 @@
    },
    {
       "userid": "0003",
-      "notifications": []
+      "notifications": [{
+         "requester": "y",
+         "opened": "true",
+         "time": "2024-12-13T22:05:52.822942",
+         "type": "memberrequest",
+         "groupname": "Programming 2"
+      }]
    },
    {
       "userid": "0004",

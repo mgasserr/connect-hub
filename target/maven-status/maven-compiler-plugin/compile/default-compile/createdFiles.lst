@@ -93,6 +93,7 @@ frontend\general\Startup$1.class
 frontend\general\Signup$3.class
 frontend\groups\groupsInfo\GroupSettings$2.class
 frontend\settings\Settings$5.class
+frontend\friends\ViewFriendProfile.class
 frontend\groups\groupsInfo\GroupSettings.class
 frontend\general\Home$3.class
 frontend\notifications\AddedToGroupNotiJPANEL.class
@@ -166,6 +167,7 @@ frontend\groups\groupsInfo\changeDescription$2.class
 frontend\friends\FriendsManagement$4.class
 frontend\general\Search$12.class
 frontend\general\Search$3.class
+frontend\friends\ViewFriendProfile$1.class
 frontend\settings\changeCoverPic$3.class
 frontend\general\AddContent$1.class
 frontend\general\Home$10.class

@@ -5,6 +5,7 @@ import Backend.Databases.Databases;
 import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Group;
 import Backend.Notifications.NotiFactory;
+import frontend.friends.ViewFriendProfile;
 import frontend.groups.groupsInfo.GroupPage;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -491,9 +492,15 @@ public class Search extends javax.swing.JFrame {
             errorText.setText("No user selected");
         } else {
             Database.read();
-            MyProfile profile = new MyProfile(acc1);
+            String tempuser = new String();
+            if (searchList.getSelectedValue().endsWith(" -USER")) {
+                tempuser = searchList.getSelectedValue().replace(" -USER", "");
+            }
+            if (searchList.getSelectedValue().endsWith(" -FRIEND")) {
+                tempuser = searchList.getSelectedValue().replace(" -FRIEND", "");
+            }
+            ViewFriendProfile profile = new ViewFriendProfile(Database.getAccount(tempuser));
             profile.setVisible(true);
-            this.setVisible(false);
             Database.save();
             listModel.clear();
             searchList.setModel(listModel);

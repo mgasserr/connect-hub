@@ -21,11 +21,11 @@ public class GroupsManagement extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         Home = new javax.swing.JButton();
         Search = new javax.swing.JButton();
         Create = new javax.swing.JButton();
         GroupsSuggestions = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Groups Management");
@@ -34,8 +34,6 @@ public class GroupsManagement extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
-
-        jLabel1.setText("Groups Management");
 
         Home.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Home.setText("Home");
@@ -72,6 +70,9 @@ public class GroupsManagement extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Bauhaus 93", 0, 24)); // NOI18N
+        jLabel1.setText("Groups management");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,15 +96,15 @@ public class GroupsManagement extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(Home))
-                .addGap(48, 48, 48)
+                    .addComponent(Home)
+                    .addComponent(jLabel1))
+                .addGap(42, 42, 42)
                 .addComponent(Search)
                 .addGap(18, 18, 18)
                 .addComponent(Create)
                 .addGap(18, 18, 18)
                 .addComponent(GroupsSuggestions)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();

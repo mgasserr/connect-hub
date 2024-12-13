@@ -6,15 +6,21 @@
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [],
+      "posts": [{
+         "path": "ImagesDatabase\\Content\\0001-0001.png",
+         "AuthorID": "0001",
+         "caption": "hi",
+         "ContentID": "0001-0001",
+         "timestamp": "2024-12-13T21:56:38.331749100"
+      }],
       "userid": "0001",
-      "friends": [],
+      "friends": ["m"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
          "dob": "2001-01-01",
          "bio": "",
-         "profileimg": "ImagesDatabase\\Default\\profile.png",
+         "profileimg": "ImagesDatabase\\ProfilePicture\\0001.png",
          "email": "y@gmail.com",
          "username": "y",
          "status": "OFFLINE"
@@ -44,13 +50,23 @@
    {
       "stories": [],
       "blocked": [],
-      "groups": [],
+      "groups": [{
+         "creator": "m",
+         "stories": [],
+         "members": ["y"],
+         "name": "Programming 2",
+         "description": "",
+         "requests": ["z"],
+         "posts": [],
+         "picture": "ImagesDatabase\\Default\\group.png",
+         "admins": []
+      }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
       "posts": [],
       "userid": "0003",
-      "friends": [],
+      "friends": ["y"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
