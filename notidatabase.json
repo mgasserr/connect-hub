@@ -5,14 +5,113 @@
    },
    {
       "userid": "0002",
-      "notifications": []
+      "notifications": [
+         {
+            "temp": [
+               "Content",
+               "z",
+               "2024-12-13T18:43:59.393376100",
+               "shhhhhhh",
+               "ImagesDatabase\\Content\\0002-0004.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T18:43:59.401355200",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
+         },
+         {
+            "temp": [
+               "Content",
+               "y",
+               "2024-12-13T18:53:48.757530100",
+               "kqkak",
+               "ImagesDatabase\\Content\\0002-0001.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T18:53:48.759514700",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
+         },
+         {
+            "temp": [
+               "Content",
+               "z",
+               "2024-12-13T19:03:12.057498300",
+               "hgtdrtfguhji",
+               "ImagesDatabase\\Content\\0007-0004.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T19:03:12.060458900",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
+         }
+      ]
    },
    {
       "userid": "0003",
-      "notifications": []
+      "notifications": [
+         {
+            "temp": [
+               "Content",
+               "z",
+               "2024-12-13T18:43:59.393376100",
+               "shhhhhhh",
+               "ImagesDatabase\\Content\\0002-0004.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T18:43:59.401355200",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
+         },
+         {
+            "temp": [
+               "Content",
+               "y",
+               "2024-12-13T18:53:48.757530100",
+               "kqkak",
+               "ImagesDatabase\\Content\\0002-0001.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T18:53:48.759514700",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
+         },
+         {
+            "temp": [
+               "Content",
+               "z",
+               "2024-12-13T19:03:12.057498300",
+               "hgtdrtfguhji",
+               "ImagesDatabase\\Content\\0007-0004.png"
+            ],
+            "posttype": "Post",
+            "opened": "false",
+            "time": "2024-12-13T19:03:12.060458900",
+            "type": "newposttogroup",
+            "groupname": "yassin's group"
+         }
+      ]
    },
    {
       "userid": "0004",
-      "notifications": []
+      "notifications": [{
+         "temp": [
+            "Content",
+            "y",
+            "2024-12-13T18:53:48.757530100",
+            "kqkak",
+            "ImagesDatabase\\Content\\0002-0001.png"
+         ],
+         "posttype": "Post",
+         "opened": "false",
+         "time": "2024-12-13T18:53:48.759514700",
+         "type": "newposttogroup",
+         "groupname": "yassin's group"
+      }]
    }
 ]

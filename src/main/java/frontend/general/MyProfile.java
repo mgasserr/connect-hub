@@ -28,7 +28,7 @@ public class MyProfile extends javax.swing.JFrame {
             String text = (String) Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getContentMap().get("Text");
             String path = (String) Database.getAccount(acc.getUsername()).getContentManagement().getContent().get(j).getContentMap().get("Path");
             // Format the data for display
-            String listItem = String.format("%s~%s~%s~%s", acc.getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
+            String listItem = String.format("%s~%s~%s~%s~%s", "Content",acc.getUsername(), time, text != null ? text : "No Text", path != null ? path : "No Path");
             // Add the formatted string to the DefaultListModel
             postsFeedModel.addElement(listItem);
         }

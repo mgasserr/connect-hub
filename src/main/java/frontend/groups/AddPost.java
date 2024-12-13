@@ -219,6 +219,9 @@ public class AddPost extends javax.swing.JFrame {
         Database.getGroup(g.getName()).addContent(c);
         Database.save();
         notiDatabase.save();
+        GroupPage G= new GroupPage(acc, g);
+        G.setVisible(true);
+        this.setVisible(false);
         JOptionPane.showMessageDialog(this, type + " posted successfully.");
     }//GEN-LAST:event_confirmButtonActionPerformed
 

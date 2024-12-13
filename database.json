@@ -13,22 +13,40 @@
          "name": "yassin's group",
          "description": "cmon guyzzzzzz",
          "requests": [],
-         "posts": [{
-            "path": "ImagesDatabase\\Content\\0001-0001.png",
-            "AuthorID": "0001",
-            "caption": "hey buts",
-            "ContentID": "0001-0001",
-            "timestamp": "2024-12-13T04:40:01.806803300"
-         }],
+         "posts": [
+            {
+               "path": "ImagesDatabase\\Content\\0002-0001.png",
+               "AuthorID": "0001",
+               "caption": "kqkak",
+               "ContentID": "0002-0001",
+               "timestamp": "2024-12-13T18:53:48.757530100"
+            },
+            {
+               "path": "ImagesDatabase\\Content\\0003-0004.png",
+               "AuthorID": "0004",
+               "caption": "hgtdrtfguhji",
+               "ContentID": "0007-0004",
+               "timestamp": "2024-12-13T19:03:12.057498300"
+            }
+         ],
          "picture": "ImagesDatabase\\Default\\group.png",
          "admins": ["g"]
       }],
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [],
+      "posts": [{
+         "path": "ImagesDatabase\\Content\\0001-0001.png",
+         "AuthorID": "0001",
+         "caption": "ho",
+         "ContentID": "0005-0001",
+         "timestamp": "2024-12-13T19:00:35.110309"
+      }],
       "userid": "0001",
-      "friends": ["g"],
+      "friends": [
+         "g",
+         "m"
+      ],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",
@@ -50,7 +68,13 @@
          "name": "g's group",
          "description": "cokoko",
          "requests": [],
-         "posts": [],
+         "posts": [{
+            "path": "ImagesDatabase\\Content\\0004-0001.png",
+            "AuthorID": "0001",
+            "caption": "kokokokokokokokokokokokoko",
+            "ContentID": "0006-0001",
+            "timestamp": "2024-12-13T19:01:01.900848200"
+         }],
          "picture": "ImagesDatabase\\Default\\group.png",
          "admins": []
       }],
@@ -81,9 +105,31 @@
       "receivedfriends": [],
       "blockedBY": [],
       "sentfriends": [],
-      "posts": [],
+      "posts": [
+         {
+            "path": "ImagesDatabase\\Content\\0005-0003.png",
+            "AuthorID": "0003",
+            "caption": "fuuuuuuuuuuuu",
+            "ContentID": "0001-0003",
+            "timestamp": "2024-12-13T18:49:01.004187200"
+         },
+         {
+            "path": "ImagesDatabase\\Content\\0006-0003.png",
+            "AuthorID": "0003",
+            "caption": "holynno",
+            "ContentID": "0003-0003",
+            "timestamp": "2024-12-13T18:56:02.668808600"
+         },
+         {
+            "path": "ImagesDatabase\\Content\\0007-0003.png",
+            "AuthorID": "0003",
+            "caption": "fuc",
+            "ContentID": "0004-0003",
+            "timestamp": "2024-12-13T18:58:50.776858600"
+         }
+      ],
       "userid": "0003",
-      "friends": [],
+      "friends": ["y"],
       "info": [{
          "password": "a4ayc/80/OGda4BO/1o/V0etpOqiLx1JwB5S3beHW0s=",
          "coverimg": "ImagesDatabase\\Default\\cover.jpg",

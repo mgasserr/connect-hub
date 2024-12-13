@@ -207,6 +207,9 @@ public class AddContent extends javax.swing.JFrame {
         }
         acc.getContentManagement().addContent(c);
         Database.save();
+         Home H=new Home(acc);
+        H.setVisible(true);
+        this.setVisible(false);
         JOptionPane.showMessageDialog(this, type + " posted successfully.");
     }//GEN-LAST:event_confirmButtonActionPerformed
 

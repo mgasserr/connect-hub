@@ -29,6 +29,7 @@ public class Home extends javax.swing.JFrame {
         contentConstructor();
         notificationsConstructor();
         DefaultListModel<String> newsFeedModel = new DefaultListModel<>(); // Initialize DefaultListModel
+        newsFeedModel.clear();
         for (int i = 0; i < Group.getGroups().size(); i++) {
             if (Group.getGroups().get(i).isMember(acc.getUsername()) || Group.getGroups().get(i).getCreator().getUsername().equals(acc.getUsername())) {
                 String listItem = String.format("%s~%s", "Group", Group.getGroups().get(i).getName());
@@ -36,13 +37,13 @@ public class Home extends javax.swing.JFrame {
             }
         }
 
-        for (int i = 0; i < acc.getFriendsManagement().getFriends().size(); i++) {
-            String friendUsername = acc.getFriendsManagement().getFriends().get(i).getUsername();
-            for (int j = 0; j < acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().size(); j++) {
+        for (int i = 0; i < Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends().size(); i++) {
+            String friendUsername = Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends().get(i).getUsername();
+            for (int j = 0; j < Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends().get(i).getContentManagement().getContent().size(); j++) {
                 // Extract content details
-                String time = acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getTime().toString();
-                String text = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Text");
-                String path = (String) acc.getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Path");
+                String time = Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getTime().toString();
+                String text = (String) Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Text");
+                String path = (String) Database.getAccount(acc.getUsername()).getFriendsManagement().getFriends().get(i).getContentManagement().getContent().get(j).getContentMap().get("Path");
                 // Format the data for display
                 String listItem = String.format("%s~%s~%s~%s~%s", "Content", friendUsername, time, text != null ? text : "No Text", path != null ? path : "No Path");
                 // Add the formatted string to the DefaultListModel
