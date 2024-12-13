@@ -6,9 +6,11 @@ import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Group;
 import Backend.Notifications.AddedToGroupNoti;
 import Backend.Notifications.GroupRoleChangeNoti;
+import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.time.LocalDateTime;
 import javax.swing.DefaultListModel;
 
 public class ViewRequestsList extends javax.swing.JFrame {
@@ -178,8 +180,9 @@ public class ViewRequestsList extends javax.swing.JFrame {
             }
             Database.read();
             notiDatabase.read();
+            NotiFactory NF = new NotiFactory();
             Database.getGroup(g.getName()).addMember(usernamelist);
-            Database.getAccount(usernamelist).addNotification(new AddedToGroupNoti(null, false, g.getName()));
+            Database.getAccount(usernamelist).addNotification(NF.CreateNoti("AddedToGroup", null, false, g.getName(), null, null));
             Database.getGroup(g.getName()).removeRequest(usernamelist);
             //Database.getAccount(usernamelist).addGroup(g);
             //acc.getGroup(g.getName()).addAdmin(usernamelist);

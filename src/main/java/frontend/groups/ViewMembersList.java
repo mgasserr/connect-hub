@@ -6,18 +6,21 @@ import Backend.Databases.NotificationsDatabase;
 import Backend.Feed.Group;
 import Backend.Notifications.FriendReqNoti;
 import Backend.Notifications.GroupRoleChangeNoti;
+import Backend.Notifications.NotiFactory;
 import frontend.general.Home;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.time.LocalDateTime;
 import javax.swing.DefaultListModel;
 
 public class ViewMembersList extends javax.swing.JFrame {
 
-    Account acc;
-    Group g;
+    private Account acc;
+    private Group g;
     private Databases Database = Databases.getInstance();
     private NotificationsDatabase notiDatabase = NotificationsDatabase.getInstance();
     private DefaultListModel<String> listModel = new DefaultListModel<>();
+    private NotiFactory NF = new NotiFactory();
 
     public ViewMembersList(Account acc, Group group) {
         initComponents();
@@ -163,7 +166,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                     errorText.setText("User already admin");
                 } else {
                     Database.getGroup(g.getName()).addAdmin(usernamelist);
-                    Database.getAccount(usernamelist).addNotification(new GroupRoleChangeNoti(null, false, g.getName(), "Admin"));
+                    Database.getAccount(usernamelist).addNotification(NF.CreateNoti("RoleChange", null, false, g.getName(), "Admin", null));
                     Database.save();
                     notiDatabase.save();
                     listModel.clear();
@@ -229,8 +232,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                 listModel.addElement(member.getUsername() + " -" + member.getStatus().toString());
             }
             usersList.setModel(listModel);
-            
-            
+
         }
     }//GEN-LAST:event_RemoveActionPerformed
 
@@ -261,7 +263,7 @@ public class ViewMembersList extends javax.swing.JFrame {
                     errorText.setText("User is not admin");
                 } else {
                     Database.getGroup(g.getName()).removeAdmin(usernamelist);
-                    Database.getAccount(usernamelist).addNotification(new GroupRoleChangeNoti(null, false, g.getName(), "Member"));
+                    Database.getAccount(usernamelist).addNotification(NF.CreateNoti("RoleChange", null, false, g.getName(), "Member", null));
                     Database.save();
                     notiDatabase.save();
                     listModel.clear();
