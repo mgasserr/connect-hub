@@ -53,12 +53,12 @@
       "groups": [{
          "creator": "m",
          "stories": [],
-         "members": ["y"],
+         "members": [],
          "name": "Programming 2",
-         "description": "",
-         "requests": ["z"],
+         "description": "hi",
+         "requests": [],
          "posts": [],
-         "picture": "ImagesDatabase\\Default\\group.png",
+         "picture": "ImagesDatabase\\Group\\1.png",
          "admins": []
       }],
       "receivedfriends": [],

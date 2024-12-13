@@ -127,7 +127,7 @@ public class EditContent extends javax.swing.JFrame {
             c.put("Path", Database.getGroup(g.getName()).getcontent(temp).getContentMap().get("Path"));
             Database.getGroup(g.getName()).getcontent(temp).setContentMap(c);
             errorText.setForeground(Color.green);
-            errorText.setText("Caption changed!");
+            errorText.setText("Caption updated!");
         }
     }//GEN-LAST:event_newCaptionActionPerformed
 
@@ -144,7 +144,7 @@ public class EditContent extends javax.swing.JFrame {
                 c.put("Path", path);
                 Database.getGroup(g.getName()).getcontent(temp).setContentMap(c);
                 errorText.setForeground(Color.green);
-                errorText.setText("Picture changed!");
+                errorText.setText("Picture updated!");
             }
         }
     }//GEN-LAST:event_newPictureActionPerformed
