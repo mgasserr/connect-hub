@@ -145,7 +145,7 @@ Built to showcase a complete desktop social app with a structured backend and a 
       <a href="https://github.com/mgasserr">
         <img src="https://avatars.githubusercontent.com/mgasserr?v=4" width="96" height="96" alt="trtl88" />
         <br />
-        <sub><b>trtl88</b></sub>
+        <sub><b>mgasserr</b></sub>
       </a>
     </td>
     <td align="center">
