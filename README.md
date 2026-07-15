@@ -142,8 +142,8 @@ Built to showcase a complete desktop social app with a structured backend and a 
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/trtl88">
-        <img src="https://avatars.githubusercontent.com/trtl88?v=4" width="96" height="96" alt="trtl88" />
+      <a href="https://github.com/mgasserr">
+        <img src="https://avatars.githubusercontent.com/mgasserr?v=4" width="96" height="96" alt="trtl88" />
         <br />
         <sub><b>trtl88</b></sub>
       </a>
